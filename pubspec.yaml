@@ -1,0 +1,43 @@
+name: user_career
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+dependencies:
+  user_career_auth:
+    path: user_career_auth
+  user_career_core:
+    path: user_career_core
+  user_career_home:
+    path: user_career_home
+  user_career_more:
+    path: user_career_more
+  user_career_request:
+    path: user_career_request
+  user_career_message:
+    path: user_career_message
+  user_career_user:
+    path: user_career_user
+  auto_route: ^8.2.0
+  cupertino_icons: ^1.0.6
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+
+dev_dependencies:
+  auto_route_generator: ^8.0.0
+  build_runner: ^2.4.11
+  flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter
+  riverpod_generator: ^2.4.0
+
+flutter:
+  uses-material-design: true

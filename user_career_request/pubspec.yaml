@@ -1,0 +1,29 @@
+name: user_career_request
+description: "A new Flutter package project."
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  user_career_core:
+    path: ../user_career_core
+  auto_route: ^8.2.0
+  awesome_dialog: ^3.2.1
+  flutter:
+    sdk: flutter
+  flutter_riverpod: ^2.5.1
+  flutter_svg: ^2.0.10
+  riverpod_annotation: ^2.3.5
+
+dev_dependencies:
+  auto_route_generator: ^8.0.0
+  build_runner: ^2.4.11
+  flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter
+  riverpod_generator: ^2.4.0
+
+flutter:

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="mainColor">#0089D6</color>
+    <color name="secondaryMainColor">#C2F3A5</color>
+    <color name="thirdMainColor">#85AFF8</color>
+
+    <color name="main1Color">#0E72ED</color>
+    <color name="main2Color">#85AFF8</color>
+    <color name="main3Color">#85AFF8</color>
+
+    <color name="white1Color">#FFFFFF</color>
+    <color name="white2Color">#FAFCFF</color>
+    <color name="white3Color">#F0F2F5</color>
+    <color name="white4Color">#ECF4FF</color>
+    <color name="white5Color">#D0D6E5</color>
+
+    <color name="black1Color">#242133</color>
+    <color name="black2Color">#393C49</color>
+    <color name="black3Color">#6F767E</color>
+    <color name="black4Color">#AEB5C7</color>
+
+    <color name="successColor">#00AB56</color>
+    <color name="errorColor">#FF424F</color>
+    <color name="oldM1Color">#626C70</color>
+    <color name="oldGray10">#27272A</color>
+    <color name="oldGray1">#F5F5FA</color>
+
+    <color name="tabbarTitle">#002757</color>
+</resources>

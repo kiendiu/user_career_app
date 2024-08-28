@@ -1,0 +1,56 @@
+name: user_career_core
+description: "A new Flutter package project."
+version: 0.0.1
+homepage:
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+  flutter: ">=1.17.0"
+
+dependencies:
+  auto_route: ^8.2.0
+  flutter:
+    sdk: flutter
+  flutter_gen: ^5.6.0
+  flutter_riverpod: ^2.5.1
+  mobile_framework:
+    git:
+      url: 'git@gitlab.ommani.vn:mobile-ommani/common/ommanisoft_mobile_framework.git'
+      ref: riverpod-1.54.31
+      path: mobile_framework/
+  onesignal_flutter: ^5.2.2
+  recase: ^4.1.0
+  riverpod_annotation: ^2.3.5
+  slang: ^3.31.1
+  slang_flutter: ^3.31.0
+
+dev_dependencies:
+  auto_route_generator: ^8.0.0
+  build_runner: ^2.4.11
+  flutter_gen_runner: ^5.6.0
+  flutter_lints: ^4.0.0
+  flutter_test:
+    sdk: flutter
+  riverpod_generator: ^2.4.0
+  slang_build_runner: ^3.31.0
+
+flutter_gen:
+  output: lib/common/gen/
+  assets:
+    outputs:
+      style: dot-delimiter
+      package_parameter_enabled: true
+  colors:
+    enabled: true
+    outputs:
+      class_name: AppColors
+    inputs:
+      - assets/colors/colors.xml
+  integrations:
+    flutter_svg: true
+    lottie: true
+
+flutter:
+  assets:
+    - assets/icons/
+    - assets/jsons/

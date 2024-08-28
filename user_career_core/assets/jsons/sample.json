@@ -1,0 +1,39 @@
+{
+  "data thường":
+  {
+    "name": "Nguyễn Văn A",
+    "age": 20,
+    "phoneNumber": "0940506040"
+  },
+
+  "data dạng danh sách":
+  [
+    {
+      "name": "",
+      "age": "",
+      "phoneNumber": "0940506040"
+    }
+  ],
+  "data phân trang":
+  {
+    "data": [
+      {
+        "name": "",
+        "age": "",
+        "phoneNumber": "0940506040"
+      }
+    ],
+    "metadata": {
+      "total": 100,
+      "page": 1,
+      "totalPage": 1,
+      "size": 10
+    }
+  },
+  "lỗi": {
+    "statusCode": 404,
+    "message": "Không tìm thấy dữ liệu"
+  }
+}
+
+

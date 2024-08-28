@@ -1,0 +1,14 @@
+{
+  "tab_bar": {
+    "home": "Trang chủ",
+    "request": "Yêu cầu",
+    "message": "Tin nhắn",
+    "more": "Tài khoản"
+  },
+
+  "base_upload_avatar_view" : {
+    "delete" : "Xóa",
+    "capture" : "Camera",
+    "pick_image" : "Thư viện"
+  }
+}
