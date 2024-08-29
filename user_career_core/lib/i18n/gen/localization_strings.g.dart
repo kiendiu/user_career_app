@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 7
+/// Strings: 54
 ///
-/// Built on 2024-08-28 at 02:13 UTC
+/// Built on 2024-08-28 at 07:03 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -147,7 +147,54 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	late final Translations _root = this; // ignore: unused_field
 
 	// Translations
+	late final _LocalizationStringsAuthVi auth = _LocalizationStringsAuthVi._(_root);
 	late final _LocalizationStringsCommonVi common = _LocalizationStringsCommonVi._(_root);
+}
+
+// Path: auth
+class _LocalizationStringsAuthVi {
+	_LocalizationStringsAuthVi._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get nameApp => 'KMAD User Career';
+	String get textFieldIdTitle => 'ID cửa hàng';
+	String get textFieldIdHint => 'demo.ommani.net';
+	String get textHelpSignInIdPage => ' Hỗ trợ ';
+	String get textPhoneNumberHelpSignInIdPage => '0981 009 299';
+	String get textTitleId => 'ID cửa hàng';
+	String get textFieldEmailTitle => 'Email';
+	String get textFieldEmailHint => 'Vui lòng nhập';
+	String get textFieldPasswordTitle => 'Mật khẩu';
+	String get textFieldPasswordHint => 'Vui lòng nhập';
+	String get textButtonForgotPasswordText => 'Quên mật khẩu?';
+	String get textButtonBackToSignInIdText => 'Quay lại chọn cửa hàng';
+	String get buttonSignInText => 'Đăng nhập';
+	String get textPageTitleResetPasswordPage => 'Quên mật khẩu';
+	String get textPageContentResetPasswordPage => 'Nhập email để đặt lại mật khẩu';
+	String get textFieldNewPasswordTitle => 'Mật khẩu mới';
+	String get textFieldNewPasswordHint => 'Vui lòng nhập';
+	String get textFieldConfirmPasswordTitle => 'Nhập lại mật khẩu này';
+	String get textFieldConfirmPasswordHint => 'Vui lòng nhập';
+	String get buttonResetPasswordText => 'Đặt lại mật khẩu';
+	String get textPageTitleVerifyPage => 'Nhập mã xác thực';
+	String get textPageContentVerifyPage => 'Mã xác thực 6 số đã được gửi tới ';
+	String get textPageContentTimeVerifyPage => 'Mã có hiệu lực trong 5 phút.';
+	String get textQuestionConfirmEmail => 'Chưa nhận được email?';
+	String get textButtonResendEmailText => 'Gửi lại email';
+	String get buttonConfirmText => 'Xác nhận';
+	String get textPageTitleUpdatePasswordPage => 'Đặt lại mật khẩu mới';
+	String get textPageContentUpdatePasswordPage => 'Đặt mật khẩu mới. Đảm bảo mật khẩu mới khác với mật khẩu trước đó';
+	String get buttonUpdatePasswordText => 'Cập nhật mật khẩu';
+	String get textPageTitleSuccessfulPage => 'Thành công';
+	String get textPageContentSuccessfulPage => 'Thành công! Mật khẩu đã được thay đổi.\nClick “Tiếp tục" để đăng nhập.';
+	String get buttonNextText => 'Tiếp tục';
+	String get signInSuccessfulText => 'Đăng nhập thành công';
+	String get signInIdSuccessfulText => 'Cập nhật ID cửa hàng thành công';
+	String get sendMailVerifySuccessfulText => 'Gửi mã xác thực thành công';
+	String get sendVerifyCodeSuccessfulText => 'Xác thực thành công';
+	String get resetPasswordSuccessfulText => 'Đặt lại mật khẩu thành công';
 }
 
 // Path: common
@@ -159,6 +206,16 @@ class _LocalizationStringsCommonVi {
 	// Translations
 	late final _LocalizationStringsCommonTabBarVi tabBar = _LocalizationStringsCommonTabBarVi._(_root);
 	late final _LocalizationStringsCommonBaseUploadAvatarViewVi baseUploadAvatarView = _LocalizationStringsCommonBaseUploadAvatarViewVi._(_root);
+	String get errorCheckEmail => 'Email không đúng định dạng';
+	String get errorCheckPassword => 'Vui lòng nhập Mật khẩu';
+	String get errorCallPhone => 'Không thể gọi số điện thoại';
+	String get errorCheckNewPassword => 'Mật khẩu tối thiểu 9 ký tự';
+	String get errorCheckConfirmPassword => 'Mật khẩu không trùng khớp';
+	String get noPermission => 'Không có quyền xem nội dung này';
+	String get emptyList => 'Không có kết quả phù hợp';
+	String get refreshText => 'Làm mới';
+	String get titleSelectBranch => 'Chọn chi nhánh';
+	String get emptyNotification => 'Bạn chưa có thông báo nào';
 }
 
 // Path: common.tabBar
@@ -192,6 +249,43 @@ class _LocalizationStringsCommonBaseUploadAvatarViewVi {
 extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
+			case 'auth.nameApp': return 'KMAD User Career';
+			case 'auth.textFieldIdTitle': return 'ID cửa hàng';
+			case 'auth.textFieldIdHint': return 'demo.ommani.net';
+			case 'auth.textHelpSignInIdPage': return ' Hỗ trợ ';
+			case 'auth.textPhoneNumberHelpSignInIdPage': return '0981 009 299';
+			case 'auth.textTitleId': return 'ID cửa hàng';
+			case 'auth.textFieldEmailTitle': return 'Email';
+			case 'auth.textFieldEmailHint': return 'Vui lòng nhập';
+			case 'auth.textFieldPasswordTitle': return 'Mật khẩu';
+			case 'auth.textFieldPasswordHint': return 'Vui lòng nhập';
+			case 'auth.textButtonForgotPasswordText': return 'Quên mật khẩu?';
+			case 'auth.textButtonBackToSignInIdText': return 'Quay lại chọn cửa hàng';
+			case 'auth.buttonSignInText': return 'Đăng nhập';
+			case 'auth.textPageTitleResetPasswordPage': return 'Quên mật khẩu';
+			case 'auth.textPageContentResetPasswordPage': return 'Nhập email để đặt lại mật khẩu';
+			case 'auth.textFieldNewPasswordTitle': return 'Mật khẩu mới';
+			case 'auth.textFieldNewPasswordHint': return 'Vui lòng nhập';
+			case 'auth.textFieldConfirmPasswordTitle': return 'Nhập lại mật khẩu này';
+			case 'auth.textFieldConfirmPasswordHint': return 'Vui lòng nhập';
+			case 'auth.buttonResetPasswordText': return 'Đặt lại mật khẩu';
+			case 'auth.textPageTitleVerifyPage': return 'Nhập mã xác thực';
+			case 'auth.textPageContentVerifyPage': return 'Mã xác thực 6 số đã được gửi tới ';
+			case 'auth.textPageContentTimeVerifyPage': return 'Mã có hiệu lực trong 5 phút.';
+			case 'auth.textQuestionConfirmEmail': return 'Chưa nhận được email?';
+			case 'auth.textButtonResendEmailText': return 'Gửi lại email';
+			case 'auth.buttonConfirmText': return 'Xác nhận';
+			case 'auth.textPageTitleUpdatePasswordPage': return 'Đặt lại mật khẩu mới';
+			case 'auth.textPageContentUpdatePasswordPage': return 'Đặt mật khẩu mới. Đảm bảo mật khẩu mới khác với mật khẩu trước đó';
+			case 'auth.buttonUpdatePasswordText': return 'Cập nhật mật khẩu';
+			case 'auth.textPageTitleSuccessfulPage': return 'Thành công';
+			case 'auth.textPageContentSuccessfulPage': return 'Thành công! Mật khẩu đã được thay đổi.\nClick “Tiếp tục" để đăng nhập.';
+			case 'auth.buttonNextText': return 'Tiếp tục';
+			case 'auth.signInSuccessfulText': return 'Đăng nhập thành công';
+			case 'auth.signInIdSuccessfulText': return 'Cập nhật ID cửa hàng thành công';
+			case 'auth.sendMailVerifySuccessfulText': return 'Gửi mã xác thực thành công';
+			case 'auth.sendVerifyCodeSuccessfulText': return 'Xác thực thành công';
+			case 'auth.resetPasswordSuccessfulText': return 'Đặt lại mật khẩu thành công';
 			case 'common.tabBar.home': return 'Trang chủ';
 			case 'common.tabBar.request': return 'Yêu cầu';
 			case 'common.tabBar.message': return 'Tin nhắn';
@@ -199,6 +293,16 @@ extension on Translations {
 			case 'common.baseUploadAvatarView.delete': return 'Xóa';
 			case 'common.baseUploadAvatarView.capture': return 'Camera';
 			case 'common.baseUploadAvatarView.pickImage': return 'Thư viện';
+			case 'common.errorCheckEmail': return 'Email không đúng định dạng';
+			case 'common.errorCheckPassword': return 'Vui lòng nhập Mật khẩu';
+			case 'common.errorCallPhone': return 'Không thể gọi số điện thoại';
+			case 'common.errorCheckNewPassword': return 'Mật khẩu tối thiểu 9 ký tự';
+			case 'common.errorCheckConfirmPassword': return 'Mật khẩu không trùng khớp';
+			case 'common.noPermission': return 'Không có quyền xem nội dung này';
+			case 'common.emptyList': return 'Không có kết quả phù hợp';
+			case 'common.refreshText': return 'Làm mới';
+			case 'common.titleSelectBranch': return 'Chọn chi nhánh';
+			case 'common.emptyNotification': return 'Bạn chưa có thông báo nào';
 			default: return null;
 		}
 	}

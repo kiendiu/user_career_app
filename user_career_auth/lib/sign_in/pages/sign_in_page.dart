@@ -1,6 +1,10 @@
-import 'package:auto_route/annotations.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:auto_route/auto_route.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:user_career_auth/core/router.gm.dart';
+import 'package:user_career_auth/sign_in/controllers/sign_in_controller.dart';
+import 'package:user_career_core/user_career_core.dart';
+import 'package:user_career_core/views/app_button.dart';
 
 @RoutePage()
 class SignInPage extends ConsumerStatefulWidget {
@@ -13,6 +17,112 @@ class SignInPage extends ConsumerStatefulWidget {
 class _SignInPageState extends ConsumerState<SignInPage> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return BaseScaffold(
+      backgroundColor: AppColors.white1Color,
+      noAppBar: true,
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            _buildAppLogo(),
+            _buildTextFieldEmail(),
+            _buildTextFieldPassword(),
+            _buildTextButtonForgotPassword(),
+            _buildButtonSignIn(),
+            // buildTextButtonComeBack(),
+          ],
+        ),
+      ).center().paddingSymmetric(horizontal: 20.0),
+    );
+  }
+
+  Widget _buildAppLogo() {
+    return Column(
+      children: [
+        // Assets.icons.icLogoKmad
+        //     .svg(height: 80)
+        //     .marginOnly(bottom: 10),
+        Container(
+          decoration: BoxDecoration(
+            color: const Color(0xffECF4FF),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Text(
+            L.auth.nameApp,
+            style: ref
+                .theme.smallTextStyle
+                .textColor(const Color(0xff1170FF)),
+          ).paddingAll(6.0),
+        ),
+      ],
+    ).marginOnly(bottom: 34);
+  }
+  Widget _buildTextFieldEmail() {
+    return TextFieldView.outsideBorder(
+      isRequired: true,
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      title: L.auth.textFieldEmailTitle,
+      placeholder: L.auth.textFieldEmailHint,
+      textFieldDidChange: (text) => ref
+          .read(signInControllerProvider.notifier)
+          .updateUserName(text?.trim() ?? ""),
+      errorText: () => L.common.errorCheckEmail,
+      validator: (text) {
+        return ref.read(signInControllerProvider).isUsernameValid;
+      },
+    ).marginOnly(bottom: 20);
+  }
+  Widget _buildTextFieldPassword() {
+    return PasswordTextFieldView(
+      shouldShowOutsideBorder: true,
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      title: L.auth.textFieldPasswordTitle,
+      placeholder: L.auth.textFieldPasswordHint,
+      shouldShowBorder: false,
+      textFieldDidChange: (text) => ref
+          .read(signInControllerProvider.notifier)
+          .updatePassword(text?.trim() ?? ""),
+      errorText: () => L.common.errorCheckPassword,
+      validator: (text) => ref.read(signInControllerProvider).isPasswordValid,
+    ).marginOnly(bottom: 20);
+  }
+  Widget _buildTextButtonForgotPassword() {
+    return IntrinsicWidth(
+      child: Text(
+        L.auth.textButtonForgotPasswordText,
+        style: ref.theme.itemTextStyle.textColor(AppColors.main1Color),
+      ).onTapWidget(() => context.router.push(const SendMailVerifyRoute())),
+    ).align(Alignment.centerRight).marginOnly(bottom: 10.0);
+  }
+  Widget _buildButtonSignIn() {
+    return Consumer(builder: (context, ref, child){
+      return AppButton(
+        title: L.auth.buttonSignInText,
+        onPressed: () => _login(),
+        isEnabled: ref.watch(signInControllerProvider).canLogin,
+      ).marginOnly(bottom: 10);
+    });
+  }
+  // Widget buildTextButtonComeBack() {
+  //   return TextButton.icon(
+  //     onPressed: () {
+  //       ref.read(signInControllerProvider.notifier).onTapComeBack();
+  //       context.router.replaceAll(const [SignInIdRoute()]);
+  //     },
+  //     icon: const Icon(Icons.arrow_back, color: AppColors.main1Color),
+  //     label: Text(
+  //       L.auth.textButtonBackToSignInIdText,
+  //       style: ref.theme.itemTextStyle.textColor(AppColors.main1Color),
+  //     ),
+  //   );
+  // }
+
+  void _login() {
+    ref.read(signInControllerProvider.notifier).signIn().then((value) {
+      if (value) {
+        NotificationCenter().postNotification(RawStringNotificationName("open_main_route"));
+      }
+    });
   }
 }

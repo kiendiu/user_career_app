@@ -10,5 +10,15 @@
     "delete" : "Xóa",
     "capture" : "Camera",
     "pick_image" : "Thư viện"
-  }
+  },
+  "error_check_email": "Email không đúng định dạng",
+  "error_check_password": "Vui lòng nhập Mật khẩu",
+  "error_call_phone": "Không thể gọi số điện thoại",
+  "error_check_new_password": "Mật khẩu tối thiểu 9 ký tự",
+  "error_check_confirm_password": "Mật khẩu không trùng khớp",
+  "no_permission": "Không có quyền xem nội dung này",
+  "empty_list": "Không có kết quả phù hợp",
+  "refresh_text" : "Làm mới",
+  "title_select_branch" : "Chọn chi nhánh",
+  "empty_notification": "Bạn chưa có thông báo nào"
 }

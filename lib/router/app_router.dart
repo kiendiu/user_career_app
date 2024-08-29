@@ -1,7 +1,5 @@
 import 'package:user_career_auth/core/router.dart';
-import 'package:user_career_auth/core/router.gm.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/common/career_storage_key.dart';
 import 'package:user_career_home/core/router.dart';
 import 'package:user_career_home/core/router.gm.dart';
 import 'package:user_career_request/core/router.dart';
@@ -51,6 +49,19 @@ class AppRouter extends $AppRouter {
       //         ]);
       //       } else {
       //         router.replaceAll([SignInIdRoute()]);
+      //       }
+      //     },
+      //   )
+      // ]
+      // guards: [
+      //   AutoRouteGuardCallback(
+      //         (resolver, router) {
+      //       if (AuthManager.checkValidAccessToken()) {
+      //         resolver.next(true);
+      //       } else {
+      //         router.replaceAll([
+      //           const SignInRoute(),
+      //         ]);
       //       }
       //     },
       //   )

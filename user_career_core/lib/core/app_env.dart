@@ -10,10 +10,10 @@ class DevEnv extends Env {
   }
 
   @override
-  String get apiVersion => '';
+  String get apiVersion => '/api';
 
   @override
-  String get baseUrl => '';
+  String get baseUrl => 'http://192.168.5.242:3000';
 
   @override
   String get fileBaseUrl => '';

@@ -19,6 +19,118 @@ class $AssetsIconsGen {
   /// File path: assets/icons/.icon
   String get aIcon => 'packages/user_career_core/assets/icons/.icon';
 
+  /// File path: assets/icons/ic.bell.svg
+  SvgGenImage get icBell => const SvgGenImage('assets/icons/ic.bell.svg');
+
+  /// File path: assets/icons/ic_angle_small_left.svg
+  SvgGenImage get icAngleSmallLeft =>
+      const SvgGenImage('assets/icons/ic_angle_small_left.svg');
+
+  /// File path: assets/icons/ic_angle_small_right.svg
+  SvgGenImage get icAngleSmallRight =>
+      const SvgGenImage('assets/icons/ic_angle_small_right.svg');
+
+  /// File path: assets/icons/ic_avatar.svg
+  SvgGenImage get icAvatar => const SvgGenImage('assets/icons/ic_avatar.svg');
+
+  /// File path: assets/icons/ic_avatar_default.svg
+  SvgGenImage get icAvatarDefault =>
+      const SvgGenImage('assets/icons/ic_avatar_default.svg');
+
+  /// File path: assets/icons/ic_barcode.svg
+  SvgGenImage get icBarcode => const SvgGenImage('assets/icons/ic_barcode.svg');
+
+  /// File path: assets/icons/ic_calendar_bottom_home.svg
+  SvgGenImage get icCalendarBottomHome =>
+      const SvgGenImage('assets/icons/ic_calendar_bottom_home.svg');
+
+  /// File path: assets/icons/ic_camera.svg
+  SvgGenImage get icCamera => const SvgGenImage('assets/icons/ic_camera.svg');
+
+  /// File path: assets/icons/ic_default_img_good.svg
+  SvgGenImage get icDefaultImgGood =>
+      const SvgGenImage('assets/icons/ic_default_img_good.svg');
+
+  /// File path: assets/icons/ic_default_store.svg
+  SvgGenImage get icDefaultStore =>
+      const SvgGenImage('assets/icons/ic_default_store.svg');
+
+  /// File path: assets/icons/ic_down.svg
+  SvgGenImage get icDown => const SvgGenImage('assets/icons/ic_down.svg');
+
+  /// File path: assets/icons/ic_expand_2.svg
+  SvgGenImage get icExpand2 =>
+      const SvgGenImage('assets/icons/ic_expand_2.svg');
+
+  /// File path: assets/icons/ic_eye.svg
+  SvgGenImage get icEye => const SvgGenImage('assets/icons/ic_eye.svg');
+
+  /// File path: assets/icons/ic_logo_kmad.svg
+  SvgGenImage get icLogoKmad =>
+      const SvgGenImage('assets/icons/ic_logo_kmad.svg');
+
+  /// File path: assets/icons/ic_logo_status_notification.svg
+  SvgGenImage get icLogoStatusNotification =>
+      const SvgGenImage('assets/icons/ic_logo_status_notification.svg');
+
+  /// File path: assets/icons/ic_logo_xweb_home.svg
+  SvgGenImage get icLogoXwebHome =>
+      const SvgGenImage('assets/icons/ic_logo_xweb_home.svg');
+
+  /// File path: assets/icons/ic_logout_icon.svg
+  SvgGenImage get icLogoutIcon =>
+      const SvgGenImage('assets/icons/ic_logout_icon.svg');
+
+  /// File path: assets/icons/ic_map_marker.svg
+  SvgGenImage get icMapMarker =>
+      const SvgGenImage('assets/icons/ic_map_marker.svg');
+
+  /// File path: assets/icons/ic_more_avatar.svg
+  SvgGenImage get icMoreAvatar =>
+      const SvgGenImage('assets/icons/ic_more_avatar.svg');
+
+  /// File path: assets/icons/ic_no_permission.svg
+  SvgGenImage get icNoPermission =>
+      const SvgGenImage('assets/icons/ic_no_permission.svg');
+
+  /// File path: assets/icons/ic_non_eye.svg
+  SvgGenImage get icNonEye => const SvgGenImage('assets/icons/ic_non_eye.svg');
+
+  /// File path: assets/icons/ic_notification_logo.svg
+  SvgGenImage get icNotificationLogo =>
+      const SvgGenImage('assets/icons/ic_notification_logo.svg');
+
+  /// File path: assets/icons/ic_phone.svg
+  SvgGenImage get icPhone => const SvgGenImage('assets/icons/ic_phone.svg');
+
+  /// File path: assets/icons/ic_picture.svg
+  SvgGenImage get icPicture => const SvgGenImage('assets/icons/ic_picture.svg');
+
+  /// File path: assets/icons/ic_plus.svg
+  SvgGenImage get icPlus => const SvgGenImage('assets/icons/ic_plus.svg');
+
+  /// File path: assets/icons/ic_read_all_notifications.svg
+  SvgGenImage get icReadAllNotifications =>
+      const SvgGenImage('assets/icons/ic_read_all_notifications.svg');
+
+  /// File path: assets/icons/ic_search.svg
+  SvgGenImage get icSearch => const SvgGenImage('assets/icons/ic_search.svg');
+
+  /// File path: assets/icons/ic_sign_in_logo.svg
+  SvgGenImage get icSignInLogo =>
+      const SvgGenImage('assets/icons/ic_sign_in_logo.svg');
+
+  /// File path: assets/icons/ic_sorting.svg
+  SvgGenImage get icSorting => const SvgGenImage('assets/icons/ic_sorting.svg');
+
+  /// File path: assets/icons/ic_sorting_2.svg
+  SvgGenImage get icSorting2 =>
+      const SvgGenImage('assets/icons/ic_sorting_2.svg');
+
+  /// File path: assets/icons/ic_successful.svg
+  SvgGenImage get icSuccessful =>
+      const SvgGenImage('assets/icons/ic_successful.svg');
+
   /// File path: assets/icons/ic_tabbar_home.svg
   SvgGenImage get icTabbarHome =>
       const SvgGenImage('assets/icons/ic_tabbar_home.svg');
@@ -51,9 +163,59 @@ class $AssetsIconsGen {
   SvgGenImage get icTabbarUser =>
       const SvgGenImage('assets/icons/ic_tabbar_user.svg');
 
+  /// File path: assets/icons/ic_trash.svg
+  SvgGenImage get icTrash => const SvgGenImage('assets/icons/ic_trash.svg');
+
+  /// File path: assets/icons/ic_unread_status_notification.svg
+  SvgGenImage get icUnreadStatusNotification =>
+      const SvgGenImage('assets/icons/ic_unread_status_notification.svg');
+
+  /// File path: assets/icons/ic_white_xweb_logo.svg
+  SvgGenImage get icWhiteXwebLogo =>
+      const SvgGenImage('assets/icons/ic_white_xweb_logo.svg');
+
+  /// File path: assets/icons/ic_xweb_logo.svg
+  SvgGenImage get icXwebLogo =>
+      const SvgGenImage('assets/icons/ic_xweb_logo.svg');
+
+  /// File path: assets/icons/ic_xweb_top.svg
+  SvgGenImage get icXwebTop =>
+      const SvgGenImage('assets/icons/ic_xweb_top.svg');
+
   /// List of all assets
   List<dynamic> get values => [
         aIcon,
+        icBell,
+        icAngleSmallLeft,
+        icAngleSmallRight,
+        icAvatar,
+        icAvatarDefault,
+        icBarcode,
+        icCalendarBottomHome,
+        icCamera,
+        icDefaultImgGood,
+        icDefaultStore,
+        icDown,
+        icExpand2,
+        icEye,
+        icLogoKmad,
+        icLogoStatusNotification,
+        icLogoXwebHome,
+        icLogoutIcon,
+        icMapMarker,
+        icMoreAvatar,
+        icNoPermission,
+        icNonEye,
+        icNotificationLogo,
+        icPhone,
+        icPicture,
+        icPlus,
+        icReadAllNotifications,
+        icSearch,
+        icSignInLogo,
+        icSorting,
+        icSorting2,
+        icSuccessful,
         icTabbarHome,
         icTabbarMessage,
         icTabbarRequest,
@@ -61,7 +223,12 @@ class $AssetsIconsGen {
         icTabbarUnselectedMessage,
         icTabbarUnselectedRequest,
         icTabbarUnselectedUser,
-        icTabbarUser
+        icTabbarUser,
+        icTrash,
+        icUnreadStatusNotification,
+        icWhiteXwebLogo,
+        icXwebLogo,
+        icXwebTop
       ];
 }
 

@@ -1,6 +1,8 @@
 import 'package:user_career/router/app_router.dart';
 import 'package:user_career_auth/core/module.dart';
 import 'package:user_career_core/user_career_core.dart';
+import 'package:user_career_core/utils/app_refresh_token_request_detector.dart';
+import 'package:user_career_core/utils/app_refresh_token_service.dart';
 import 'package:user_career_home/core/module.dart';
 import 'package:user_career_message/core/module.dart';
 import 'package:user_career_more/core/module.dart';
@@ -22,7 +24,7 @@ void createApp(Env env) {
   ];
 
   App(
-      name: "KMAD User CAREER App",
+      name: "KMAD User Career App",
       module: UserCareerMainModule(env, subModules: [
         ...pageModules,
         CoreModule(env),
@@ -32,9 +34,9 @@ void createApp(Env env) {
       ]),
       dependencies: AppDependencies(() async {
         get.registerSingleton<RootStackRouter>(AppRouter());
-        // get.registerSingleton<RefreshTokenRequestDetector>(
-        //     AppRefreshTokenRequestDetector());
-        // get.registerSingleton<IRefreshTokenService>(AppRefreshTokenService());
+        get.registerSingleton<RefreshTokenRequestDetector>(
+            AppRefreshTokenRequestDetector());
+        get.registerSingleton<IRefreshTokenService>(AppRefreshTokenService());
         get.registerSingleton<ServiceUnavailableHandler>(
             AppServiceUnavailableHandler());
         get.registerSingleton<CommonErrorTransformable>(

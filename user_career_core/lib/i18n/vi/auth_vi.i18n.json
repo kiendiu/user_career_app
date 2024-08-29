@@ -1,0 +1,47 @@
+{
+  "name_app": "KMAD User Career",
+
+  "text_field_id_title": "ID cửa hàng",
+  "text_field_id_hint": "demo.ommani.net",
+  "text_help_sign_in_id_page": " Hỗ trợ ",
+  "text_phone_number_help_sign_in_id_page": "0981 009 299",
+
+  "text_title_id" : "ID cửa hàng",
+  "text_field_email_title": "Email",
+  "text_field_email_hint": "Vui lòng nhập",
+  "text_field_password_title": "Mật khẩu",
+  "text_field_password_hint": "Vui lòng nhập",
+  "text_button_forgot_password_text": "Quên mật khẩu?",
+  "text_button_back_to_sign_in_id_text": "Quay lại chọn cửa hàng",
+  "button_sign_in_text": "Đăng nhập",
+
+  "text_page_title_reset_password_page": "Quên mật khẩu",
+  "text_page_content_reset_password_page": "Nhập email để đặt lại mật khẩu",
+
+  "text_field_new_password_title": "Mật khẩu mới",
+  "text_field_new_password_hint": "Vui lòng nhập",
+  "text_field_confirm_password_title": "Nhập lại mật khẩu này",
+  "text_field_confirm_password_hint": "Vui lòng nhập",
+  "button_reset_password_text": "Đặt lại mật khẩu",
+
+  "text_page_title_verify_page": "Nhập mã xác thực",
+  "text_page_content_verify_page": "Mã xác thực 6 số đã được gửi tới ",
+  "text_page_content_time_verify_page": "Mã có hiệu lực trong 5 phút.",
+  "text_question_confirm_email": "Chưa nhận được email?",
+  "text_button_resend_email_text": "Gửi lại email",
+  "button_confirm_text": "Xác nhận",
+
+  "text_page_title_update_password_page": "Đặt lại mật khẩu mới",
+  "text_page_content_update_password_page": "Đặt mật khẩu mới. Đảm bảo mật khẩu mới khác với mật khẩu trước đó",
+  "button_update_password_text": "Cập nhật mật khẩu",
+
+  "text_page_title_successful_page": "Thành công",
+  "text_page_content_successful_page": "Thành công! Mật khẩu đã được thay đổi.\nClick “Tiếp tục\" để đăng nhập.",
+  "button_next_text": "Tiếp tục",
+
+  "sign_in_successful_text": "Đăng nhập thành công",
+  "sign_in_id_successful_text": "Cập nhật ID cửa hàng thành công",
+  "send_mail_verify_successful_text": "Gửi mã xác thực thành công",
+  "send_verify_code_successful_text": "Xác thực thành công",
+  "reset_password_successful_text": "Đặt lại mật khẩu thành công"
+}
