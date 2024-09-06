@@ -6,5 +6,11 @@ class MoreRouterModule extends $MoreRouterModule {
 
   static List<AutoRoute> routes = [
     AutoRoute(page: MoreRoute.page),
+    AutoRoute(page: CalendarRoute.page),
+    AutoRoute(page: InformationRoute.page),
+    AutoRoute(page: ExpectRoute.page),
+    AutoRoute(page: ServiceRoute.page),
+    AutoRoute(page: WalletRoute.page),
+    AutoRoute(page: ChangePasswordRoute.page)
   ];
 }

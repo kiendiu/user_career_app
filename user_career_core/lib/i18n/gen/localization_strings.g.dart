@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 54
+/// Strings: 80
 ///
-/// Built on 2024-08-28 at 07:03 UTC
+/// Built on 2024-09-06 at 02:57 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -149,6 +149,7 @@ class Translations implements BaseTranslations<AppLocale, Translations> {
 	// Translations
 	late final _LocalizationStringsAuthVi auth = _LocalizationStringsAuthVi._(_root);
 	late final _LocalizationStringsCommonVi common = _LocalizationStringsCommonVi._(_root);
+	late final _LocalizationStringsMoreVi more = _LocalizationStringsMoreVi._(_root);
 }
 
 // Path: auth
@@ -159,17 +160,11 @@ class _LocalizationStringsAuthVi {
 
 	// Translations
 	String get nameApp => 'KMAD User Career';
-	String get textFieldIdTitle => 'ID cửa hàng';
-	String get textFieldIdHint => 'demo.ommani.net';
-	String get textHelpSignInIdPage => ' Hỗ trợ ';
-	String get textPhoneNumberHelpSignInIdPage => '0981 009 299';
-	String get textTitleId => 'ID cửa hàng';
 	String get textFieldEmailTitle => 'Email';
 	String get textFieldEmailHint => 'Vui lòng nhập';
 	String get textFieldPasswordTitle => 'Mật khẩu';
 	String get textFieldPasswordHint => 'Vui lòng nhập';
 	String get textButtonForgotPasswordText => 'Quên mật khẩu?';
-	String get textButtonBackToSignInIdText => 'Quay lại chọn cửa hàng';
 	String get buttonSignInText => 'Đăng nhập';
 	String get textPageTitleResetPasswordPage => 'Quên mật khẩu';
 	String get textPageContentResetPasswordPage => 'Nhập email để đặt lại mật khẩu';
@@ -195,6 +190,8 @@ class _LocalizationStringsAuthVi {
 	String get sendMailVerifySuccessfulText => 'Gửi mã xác thực thành công';
 	String get sendVerifyCodeSuccessfulText => 'Xác thực thành công';
 	String get resetPasswordSuccessfulText => 'Đặt lại mật khẩu thành công';
+	String get textMessageRegister => 'Bạn chưa có tài khoản?';
+	String get textButtonRegister => 'Đăng ký';
 }
 
 // Path: common
@@ -216,6 +213,45 @@ class _LocalizationStringsCommonVi {
 	String get refreshText => 'Làm mới';
 	String get titleSelectBranch => 'Chọn chi nhánh';
 	String get emptyNotification => 'Bạn chưa có thông báo nào';
+}
+
+// Path: more
+class _LocalizationStringsMoreVi {
+	_LocalizationStringsMoreVi._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get bottomSheetTitle => 'Thời gian';
+	String get bottomSheetToday => 'Hôm nay';
+	String get bottomSheetYesterday => 'Hôm qua';
+	String get bottomSheetLastSevenDays => '7 ngày qua';
+	String get bottomSheetThisMonth => 'Tháng này';
+	String get bottomSheetLastMonth => 'Tháng trước';
+	String get bottomSheetCustomDay => 'Tùy chỉnh';
+	String get bottomSheetCalanderStartdate => 'Từ ngày';
+	String get bottomSheetCalanderEnddate => 'Đến ngày';
+	String get bottomSheetCalanderButtonReturn => 'Quay lại';
+	String get bottomSheetCalanderButtonApply => 'Áp dụng';
+	String get statusServiceWaiting => 'Chờ xác nhận';
+	String get statusServiceConfirmed => 'Đã xác nhận';
+	String get statusServiceHappened => 'Đã diễn ra';
+	String get statusServiceDone => 'Hoàn chỉnh';
+	String get changePassword => 'Đổi mật khẩu';
+	String get logout => 'Đăng xuất';
+	String get cancel => 'Hủy';
+	String get youDefinitelyWantToSignOut => ' Bạn chắc chắn muốn đăng xuất';
+	String get changePasswordTitle => 'Đổi mật khẩu';
+	String get changePasswordHintText => 'Vui lòng nhập';
+	String get changePasswordOld => 'Mật khẩu cũ';
+	String get changePasswordNew => 'Mật khẩu mới';
+	String get changePasswordEnter => 'Nhập lại mật khẩu';
+	String get changePasswordButton => 'Cập nhật mật khẩu';
+	String get messageChangeSuccessful => 'Cập nhật thành công';
+	String get errorEmpty => 'Nhập đủ thông tin';
+	String get errorIsOldpassword => 'Trùng mật khẩu cũ';
+	String get errorIsNewpassword => 'Không giống mật khẩu mới';
+	String get errorIsStrongpassword => 'Mật khẩu yếu';
 }
 
 // Path: common.tabBar
@@ -250,17 +286,11 @@ extension on Translations {
 	dynamic _flatMapFunction(String path) {
 		switch (path) {
 			case 'auth.nameApp': return 'KMAD User Career';
-			case 'auth.textFieldIdTitle': return 'ID cửa hàng';
-			case 'auth.textFieldIdHint': return 'demo.ommani.net';
-			case 'auth.textHelpSignInIdPage': return ' Hỗ trợ ';
-			case 'auth.textPhoneNumberHelpSignInIdPage': return '0981 009 299';
-			case 'auth.textTitleId': return 'ID cửa hàng';
 			case 'auth.textFieldEmailTitle': return 'Email';
 			case 'auth.textFieldEmailHint': return 'Vui lòng nhập';
 			case 'auth.textFieldPasswordTitle': return 'Mật khẩu';
 			case 'auth.textFieldPasswordHint': return 'Vui lòng nhập';
 			case 'auth.textButtonForgotPasswordText': return 'Quên mật khẩu?';
-			case 'auth.textButtonBackToSignInIdText': return 'Quay lại chọn cửa hàng';
 			case 'auth.buttonSignInText': return 'Đăng nhập';
 			case 'auth.textPageTitleResetPasswordPage': return 'Quên mật khẩu';
 			case 'auth.textPageContentResetPasswordPage': return 'Nhập email để đặt lại mật khẩu';
@@ -286,6 +316,8 @@ extension on Translations {
 			case 'auth.sendMailVerifySuccessfulText': return 'Gửi mã xác thực thành công';
 			case 'auth.sendVerifyCodeSuccessfulText': return 'Xác thực thành công';
 			case 'auth.resetPasswordSuccessfulText': return 'Đặt lại mật khẩu thành công';
+			case 'auth.textMessageRegister': return 'Bạn chưa có tài khoản?';
+			case 'auth.textButtonRegister': return 'Đăng ký';
 			case 'common.tabBar.home': return 'Trang chủ';
 			case 'common.tabBar.request': return 'Yêu cầu';
 			case 'common.tabBar.message': return 'Tin nhắn';
@@ -303,6 +335,36 @@ extension on Translations {
 			case 'common.refreshText': return 'Làm mới';
 			case 'common.titleSelectBranch': return 'Chọn chi nhánh';
 			case 'common.emptyNotification': return 'Bạn chưa có thông báo nào';
+			case 'more.bottomSheetTitle': return 'Thời gian';
+			case 'more.bottomSheetToday': return 'Hôm nay';
+			case 'more.bottomSheetYesterday': return 'Hôm qua';
+			case 'more.bottomSheetLastSevenDays': return '7 ngày qua';
+			case 'more.bottomSheetThisMonth': return 'Tháng này';
+			case 'more.bottomSheetLastMonth': return 'Tháng trước';
+			case 'more.bottomSheetCustomDay': return 'Tùy chỉnh';
+			case 'more.bottomSheetCalanderStartdate': return 'Từ ngày';
+			case 'more.bottomSheetCalanderEnddate': return 'Đến ngày';
+			case 'more.bottomSheetCalanderButtonReturn': return 'Quay lại';
+			case 'more.bottomSheetCalanderButtonApply': return 'Áp dụng';
+			case 'more.statusServiceWaiting': return 'Chờ xác nhận';
+			case 'more.statusServiceConfirmed': return 'Đã xác nhận';
+			case 'more.statusServiceHappened': return 'Đã diễn ra';
+			case 'more.statusServiceDone': return 'Hoàn chỉnh';
+			case 'more.changePassword': return 'Đổi mật khẩu';
+			case 'more.logout': return 'Đăng xuất';
+			case 'more.cancel': return 'Hủy';
+			case 'more.youDefinitelyWantToSignOut': return ' Bạn chắc chắn muốn đăng xuất';
+			case 'more.changePasswordTitle': return 'Đổi mật khẩu';
+			case 'more.changePasswordHintText': return 'Vui lòng nhập';
+			case 'more.changePasswordOld': return 'Mật khẩu cũ';
+			case 'more.changePasswordNew': return 'Mật khẩu mới';
+			case 'more.changePasswordEnter': return 'Nhập lại mật khẩu';
+			case 'more.changePasswordButton': return 'Cập nhật mật khẩu';
+			case 'more.messageChangeSuccessful': return 'Cập nhật thành công';
+			case 'more.errorEmpty': return 'Nhập đủ thông tin';
+			case 'more.errorIsOldpassword': return 'Trùng mật khẩu cũ';
+			case 'more.errorIsNewpassword': return 'Không giống mật khẩu mới';
+			case 'more.errorIsStrongpassword': return 'Mật khẩu yếu';
 			default: return null;
 		}
 	}

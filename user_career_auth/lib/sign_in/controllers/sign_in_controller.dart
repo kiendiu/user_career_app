@@ -1,7 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_auth/sign_in/models/sign_in_request.dart';
 import 'package:user_career_auth/sign_in/repositories/sign_in_repository.dart';
+import 'package:user_career_core/common/career_storage_key.dart';
 import 'package:user_career_core/user_career_core.dart';
+import 'package:user_career_user/user/repositories/user_repository.dart';
 
 class SignInController extends AutoDisposeNotifier<SignInRequest>
     with AlertMixin {
@@ -21,15 +23,15 @@ class SignInController extends AutoDisposeNotifier<SignInRequest>
         .showErrorBy(this)
         .onSuccess((value) async {
       AuthManager.saveJWTToken(value.accessToken, value.refreshToken);
-      // var user = await ref
-      //     .read(userRepositoryProvider)
-      //     .getUserInfo()
-      //     .mapToValue()
-      //     .asFuture();
-      //
-      // if (user != null) {
-      //   Storage.save(POSStorageKey.userId, user.id);
-      // }
+      var user = await ref
+          .read(userRepositoryProvider)
+          .getUserInfo()
+          .mapToValue()
+          .asFuture();
+
+      if (user != null) {
+        Storage.save(POSStorageKey.userId, user.id);
+      }
     })
         .hideLoadingBy(this)
         .isSuccess();
@@ -42,11 +44,6 @@ class SignInController extends AutoDisposeNotifier<SignInRequest>
   void updatePassword(String password) {
     state = state.copyWith(password: password);
   }
-
-  // void onTapComeBack() {
-  //   Storage.clean();
-  //   ref.invalidate(signInIdControllerProvider);
-  // }
 }
 
 final signInControllerProvider =

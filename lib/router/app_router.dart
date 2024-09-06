@@ -1,4 +1,5 @@
 import 'package:user_career_auth/core/router.dart';
+import 'package:user_career_auth/core/router.gm.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_home/core/router.dart';
 import 'package:user_career_home/core/router.gm.dart';
@@ -22,12 +23,12 @@ import 'app_router.gr.dart';
 ])
 class AppRouter extends $AppRouter {
   @override
-  // TODO: implement routes
   List<AutoRoute> get routes => [
     ApplicationMainRoute(
       tabs: [
         TabRoute(
-            tabRouterPage: HomeTabRouter.page, firstPage: HomeRoute.page),
+            tabRouterPage: HomeTabRouter.page,
+            firstPage: HomeRoute.page),
         TabRoute(
             tabRouterPage: RequestTabRouter.page,
             firstPage: RequestRoute.page),
@@ -35,37 +36,22 @@ class AppRouter extends $AppRouter {
             tabRouterPage: MessageTabRouter.page,
             firstPage: MessageRoute.page),
         TabRoute(
-            tabRouterPage: MoreTabRouter.page, firstPage: MoreRoute.page),
+            tabRouterPage: MoreTabRouter.page,
+            firstPage: MoreRoute.page),
       ],
-      // guards: [
-      //   AutoRouteGuardCallback(
-      //         (resolver, router) {
-      //       if (AuthManager.checkValidAccessToken()) {
-      //         resolver.next(true);
-      //       } else if (Storage.get(POSStorageKey.domainKey) != null) {
-      //         router.replaceAll([
-      //           SignInIdRoute(),
-      //           SignInRoute(),
-      //         ]);
-      //       } else {
-      //         router.replaceAll([SignInIdRoute()]);
-      //       }
-      //     },
-      //   )
-      // ]
-      // guards: [
-      //   AutoRouteGuardCallback(
-      //         (resolver, router) {
-      //       if (AuthManager.checkValidAccessToken()) {
-      //         resolver.next(true);
-      //       } else {
-      //         router.replaceAll([
-      //           const SignInRoute(),
-      //         ]);
-      //       }
-      //     },
-      //   )
-      // ]
+      guards: [
+        AutoRouteGuardCallback(
+              (resolver, router) {
+            if (AuthManager.checkValidAccessToken()) {
+              resolver.next(true);
+            } else {
+              router.replaceAll([
+                const SignInRoute(),
+              ]);
+            }
+          },
+        )
+      ]
     ),
     ...MobileFrameworkRouterModule.routes,
     ...AuthRouterModule.routes,

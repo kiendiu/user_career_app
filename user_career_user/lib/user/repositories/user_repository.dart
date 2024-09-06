@@ -12,7 +12,7 @@ class UserRepository extends UserBaseRepository implements IUserRepository {
   ResultFuture<User> getUserInfo() {
     return make
         .request(path: "/users/profile", body: {}, decoder: UserModel())
-        .post();
+        .get();
   }
 }
 

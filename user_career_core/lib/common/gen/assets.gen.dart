@@ -30,9 +30,6 @@ class $AssetsIconsGen {
   SvgGenImage get icAngleSmallRight =>
       const SvgGenImage('assets/icons/ic_angle_small_right.svg');
 
-  /// File path: assets/icons/ic_avatar.svg
-  SvgGenImage get icAvatar => const SvgGenImage('assets/icons/ic_avatar.svg');
-
   /// File path: assets/icons/ic_avatar_default.svg
   SvgGenImage get icAvatarDefault =>
       const SvgGenImage('assets/icons/ic_avatar_default.svg');
@@ -51,9 +48,9 @@ class $AssetsIconsGen {
   SvgGenImage get icDefaultImgGood =>
       const SvgGenImage('assets/icons/ic_default_img_good.svg');
 
-  /// File path: assets/icons/ic_default_store.svg
-  SvgGenImage get icDefaultStore =>
-      const SvgGenImage('assets/icons/ic_default_store.svg');
+  /// File path: assets/icons/ic_delete_user.svg
+  SvgGenImage get icDeleteUser =>
+      const SvgGenImage('assets/icons/ic_delete_user.svg');
 
   /// File path: assets/icons/ic_down.svg
   SvgGenImage get icDown => const SvgGenImage('assets/icons/ic_down.svg');
@@ -65,17 +62,9 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_eye.svg
   SvgGenImage get icEye => const SvgGenImage('assets/icons/ic_eye.svg');
 
-  /// File path: assets/icons/ic_logo_kmad.svg
-  SvgGenImage get icLogoKmad =>
-      const SvgGenImage('assets/icons/ic_logo_kmad.svg');
-
   /// File path: assets/icons/ic_logo_status_notification.svg
   SvgGenImage get icLogoStatusNotification =>
       const SvgGenImage('assets/icons/ic_logo_status_notification.svg');
-
-  /// File path: assets/icons/ic_logo_xweb_home.svg
-  SvgGenImage get icLogoXwebHome =>
-      const SvgGenImage('assets/icons/ic_logo_xweb_home.svg');
 
   /// File path: assets/icons/ic_logout_icon.svg
   SvgGenImage get icLogoutIcon =>
@@ -84,10 +73,6 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_map_marker.svg
   SvgGenImage get icMapMarker =>
       const SvgGenImage('assets/icons/ic_map_marker.svg');
-
-  /// File path: assets/icons/ic_more_avatar.svg
-  SvgGenImage get icMoreAvatar =>
-      const SvgGenImage('assets/icons/ic_more_avatar.svg');
 
   /// File path: assets/icons/ic_no_permission.svg
   SvgGenImage get icNoPermission =>
@@ -188,22 +173,18 @@ class $AssetsIconsGen {
         icBell,
         icAngleSmallLeft,
         icAngleSmallRight,
-        icAvatar,
         icAvatarDefault,
         icBarcode,
         icCalendarBottomHome,
         icCamera,
         icDefaultImgGood,
-        icDefaultStore,
+        icDeleteUser,
         icDown,
         icExpand2,
         icEye,
-        icLogoKmad,
         icLogoStatusNotification,
-        icLogoXwebHome,
         icLogoutIcon,
         icMapMarker,
-        icMoreAvatar,
         icNoPermission,
         icNonEye,
         icNotificationLogo,

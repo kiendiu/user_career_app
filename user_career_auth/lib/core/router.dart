@@ -15,6 +15,7 @@ class AuthRouterModule extends $AuthRouterModule {
         );
       },
     ),
+    AutoRoute(page: RegisterRoute.page),
     AutoRoute(page: SendMailVerifyRoute.page),
     AutoRoute(page: MailVerifyCodeRoute.page),
     AutoRoute(page: SuccessfulRoute.page),

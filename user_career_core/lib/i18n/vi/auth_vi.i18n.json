@@ -1,18 +1,11 @@
 {
   "name_app": "KMAD User Career",
 
-  "text_field_id_title": "ID cửa hàng",
-  "text_field_id_hint": "demo.ommani.net",
-  "text_help_sign_in_id_page": " Hỗ trợ ",
-  "text_phone_number_help_sign_in_id_page": "0981 009 299",
-
-  "text_title_id" : "ID cửa hàng",
   "text_field_email_title": "Email",
   "text_field_email_hint": "Vui lòng nhập",
   "text_field_password_title": "Mật khẩu",
   "text_field_password_hint": "Vui lòng nhập",
   "text_button_forgot_password_text": "Quên mật khẩu?",
-  "text_button_back_to_sign_in_id_text": "Quay lại chọn cửa hàng",
   "button_sign_in_text": "Đăng nhập",
 
   "text_page_title_reset_password_page": "Quên mật khẩu",
@@ -43,5 +36,8 @@
   "sign_in_id_successful_text": "Cập nhật ID cửa hàng thành công",
   "send_mail_verify_successful_text": "Gửi mã xác thực thành công",
   "send_verify_code_successful_text": "Xác thực thành công",
-  "reset_password_successful_text": "Đặt lại mật khẩu thành công"
+  "reset_password_successful_text": "Đặt lại mật khẩu thành công",
+
+  "text_message_register": "Bạn chưa có tài khoản?",
+  "text_button_register": "Đăng ký"
 }

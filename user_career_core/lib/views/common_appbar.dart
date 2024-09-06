@@ -11,6 +11,7 @@ class CommonAppBar extends AppBar {
       double maxHeight = 56.0,
       Widget? title,
       Widget? leading,
+      Color? backgroundColor,
       List<Widget>? rightActions})
       : super(
           title: title ??

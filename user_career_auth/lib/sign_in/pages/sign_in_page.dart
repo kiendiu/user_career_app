@@ -1,10 +1,10 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_auth/core/router.gm.dart';
 import 'package:user_career_auth/sign_in/controllers/sign_in_controller.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/app_button.dart';
 
 @RoutePage()
 class SignInPage extends ConsumerStatefulWidget {
@@ -25,39 +25,17 @@ class _SignInPageState extends ConsumerState<SignInPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            _buildAppLogo(),
             _buildTextFieldEmail(),
             _buildTextFieldPassword(),
             _buildTextButtonForgotPassword(),
             _buildButtonSignIn(),
-            // buildTextButtonComeBack(),
+            _buildTextButtonRegister(),
           ],
         ),
       ).center().paddingSymmetric(horizontal: 20.0),
     );
   }
 
-  Widget _buildAppLogo() {
-    return Column(
-      children: [
-        // Assets.icons.icLogoKmad
-        //     .svg(height: 80)
-        //     .marginOnly(bottom: 10),
-        Container(
-          decoration: BoxDecoration(
-            color: const Color(0xffECF4FF),
-            borderRadius: BorderRadius.circular(8),
-          ),
-          child: Text(
-            L.auth.nameApp,
-            style: ref
-                .theme.smallTextStyle
-                .textColor(const Color(0xff1170FF)),
-          ).paddingAll(6.0),
-        ),
-      ],
-    ).marginOnly(bottom: 34);
-  }
   Widget _buildTextFieldEmail() {
     return TextFieldView.outsideBorder(
       isRequired: true,
@@ -104,19 +82,29 @@ class _SignInPageState extends ConsumerState<SignInPage> {
       ).marginOnly(bottom: 10);
     });
   }
-  // Widget buildTextButtonComeBack() {
-  //   return TextButton.icon(
-  //     onPressed: () {
-  //       ref.read(signInControllerProvider.notifier).onTapComeBack();
-  //       context.router.replaceAll(const [SignInIdRoute()]);
-  //     },
-  //     icon: const Icon(Icons.arrow_back, color: AppColors.main1Color),
-  //     label: Text(
-  //       L.auth.textButtonBackToSignInIdText,
-  //       style: ref.theme.itemTextStyle.textColor(AppColors.main1Color),
-  //     ),
-  //   );
-  // }
+  Widget _buildTextButtonRegister() {
+    return RichText(
+        text: TextSpan(
+          children: [
+            TextSpan(
+              text: L.auth.textMessageRegister,
+              style: ref.theme.defaultTextStyle,
+            ),
+            TextSpan(
+              text: L.auth.textButtonRegister,
+              style: ref
+                  .theme
+                  .defaultTextStyle
+                  .textColor(AppColors.main1Color),
+              recognizer: TapGestureRecognizer()
+                ..onTap = () {
+                  context.router.replaceAll(const [RegisterRoute()]);
+                },
+            ),
+          ],
+        )
+    ).paddingOnly(top: 60);
+  }
 
   void _login() {
     ref.read(signInControllerProvider.notifier).signIn().then((value) {
