@@ -147,7 +147,7 @@ class _MorePageState extends ConsumerState<MorePage> {
           ListTile(
             leading: const Icon(Icons.account_circle_outlined),
             title: const Text('Thông tin cá nhân'),
-            onTap: () { context.router.push(const InformationRoute());},
+            onTap: () { context.router.push(const UpdateInformationRoute());},
           ),
           ListTile(
             leading: const Icon(Icons.file_present_outlined),
@@ -155,9 +155,9 @@ class _MorePageState extends ConsumerState<MorePage> {
             onTap: () {context.router.push(const ExpectRoute());},
           ),
           ListTile(
-            leading: const Icon(Icons.file_present_outlined),
+            leading: const Icon(Icons.password_rounded),
             title: const Text('Thay đổi mật khẩu'),
-            onTap: () {context.router.push(const ExpectRoute());},
+            onTap: () {context.router.push(const ChangePasswordRoute());},
           ),
           ListTile(
             leading: Assets.icons.icLogoutIcon.svg(height: 20, width: 20),

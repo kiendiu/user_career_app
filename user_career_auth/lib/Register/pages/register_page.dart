@@ -21,26 +21,43 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
     return BaseScaffold(
       backgroundColor: Colors.white,
       noAppBar: true,
-      resizeToAvoidBottomInset: false,
-      body: Column(
-        children: [
-          SingleChildScrollView(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                _buildTextFieldUserName(),
-                _buildTextFieldEmail(),
-                _buildTextFieldPassword(),
-                _buildButtonSignIn(),
-                _buildXWebLogo()
-              ],
-            ),
-          ).center().expand(),
-
-        ],
-      ).paddingSymmetric(horizontal: 20.0),
+      //resizeToAvoidBottomInset: false,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            _buildAppLogo(),
+            _buildTextFieldUserName(),
+            _buildTextFieldEmail(),
+            _buildTextFieldPassword(),
+            _buildButtonRegister(),
+            _buildXWebLogo()
+          ],
+        ),
+      ).center().expand().paddingSymmetric(horizontal: 20.0),
     );
+  }
+
+  Widget _buildAppLogo() {
+    return Column(
+      children: [
+        Assets.icons.icLogoKmad.svg(height: 80).marginOnly(bottom: 10),
+        Container(
+          decoration: BoxDecoration(
+            color: const Color(0xffECF4FF),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Text(
+            L.auth.nameApp,
+            style: ref.theme.defaultTextStyle
+                .size(12)
+                .weight(FontWeight.w600)
+                .textColor(const Color(0xff1170FF)),
+          ).paddingAll(6.0),
+        ),
+      ],
+    ).marginOnly(bottom: 32);
   }
 
   Widget _buildTextFieldUserName() {
@@ -83,12 +100,12 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
       validator: (text) => ref.read(registerControllerProvider).isPasswordValid,
     ).marginOnly(bottom: 20);
   }
-  Widget _buildButtonSignIn() {
+  Widget _buildButtonRegister() {
     return Consumer(
       builder: (context, ref, child) {
         return AppButton(
           isEnabled: ref.watch(registerControllerProvider).canRegister,
-          title: L.auth.buttonSignInText,
+          title: "Đăng ký",
           color: AppColors.main1Color,
           onPressed: () => _register(),
         );
@@ -124,9 +141,10 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   }
 
   void _register() async =>
-      ref.read(registerControllerProvider.notifier).signInId().then((success) {
-        if (success) {
-          context.router.replaceAll(const [SignInRoute()]);
-        }
-      });
+    ref.read(registerControllerProvider.notifier).signInId().then((success) {
+      if (success) {
+        context.router.replaceAll(const [SignInRoute()]);
+      }
+    }
+  );
 }

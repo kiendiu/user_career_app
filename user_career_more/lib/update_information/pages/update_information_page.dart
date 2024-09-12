@@ -1,29 +1,27 @@
-import 'dart:io';
-
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_core/views/common_appbar.dart';
-import 'package:user_career_more/more/controllers/information_controller.dart';
 import 'package:user_career_more/more/controllers/more_controller.dart';
+import 'package:user_career_more/update_information/controllers/update_information_controller.dart';
 
 @RoutePage()
-class InformationPage extends ConsumerStatefulWidget {
-  const InformationPage({super.key});
+class UpdateInformationPage extends ConsumerStatefulWidget {
+  const UpdateInformationPage({super.key});
 
   @override
-  ConsumerState createState() => _InformationPageState();
+  ConsumerState createState() => _UpdateInformationPageState();
 }
 
-class _InformationPageState extends ConsumerState<InformationPage>
+class _UpdateInformationPageState extends ConsumerState<UpdateInformationPage>
   with ImagesPickerCompatible,
       PickerSettings,
       ImageSourceCompatible,
       FilesPickerCompatible {
   @override
   Widget build(BuildContext context) {
-    final informationState = ref.watch(informationControllerProvider);
+    final informationState = ref.watch(updateInformationControllerProvider);
     return BaseScaffold(
       resizeToAvoidBottomInset: false,
       customAppBar: CommonAppBar(
@@ -38,25 +36,13 @@ class _InformationPageState extends ConsumerState<InformationPage>
             mainAxisAlignment: MainAxisAlignment.start,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // Container(
-              //   decoration: BoxDecoration(
-              //     border: Border.all(color: AppColors.white4Color),
-              //     borderRadius: 50.0.borderAll(),
-              //   ),
-              //   child: ImageView(
-              //     url: '',
-              //     radius: 50,
-              //     placeholder: Assets.icons.icAvatarDefault
-              //         .svg(height: 100, width: 100),
-              //   ).box(h: 100, w: 100),
-              // ).paddingSymmetric(vertical: 10.0),
-              _buildAvatar(informationState.informationRequest.avatar ?? "")
+              _buildAvatar(informationState.updateInformationRequest.avatar ?? "")
                   .makeColor(AppColors.white1Color)
                   .paddingSymmetric(vertical: 12),
               TextFieldView.outsideBorder(
-                initialText: informationState.informationRequest.username,
+                initialText: informationState.updateInformationRequest.username,
                 textFieldDidChange: (textName) {
-                  ref.read(informationControllerProvider.notifier)
+                  ref.read(updateInformationControllerProvider.notifier)
                       .setName(textName!);
                 },
                 title: "Tên",
@@ -64,9 +50,9 @@ class _InformationPageState extends ConsumerState<InformationPage>
                 padding: const EdgeInsets.only(left: 14, right: 14),
               ).paddingOnly(bottom: 10.0),
               TextFieldView.outsideBorder(
-                initialText: informationState.informationRequest.email,
+                initialText: informationState.updateInformationRequest.email,
                 textFieldDidChange: (textName) {
-                  ref.read(informationControllerProvider.notifier)
+                  ref.read(updateInformationControllerProvider.notifier)
                       .setEmail(textName!);
                 },
                 title: "Email",
@@ -74,9 +60,9 @@ class _InformationPageState extends ConsumerState<InformationPage>
                 padding: const EdgeInsets.only(left: 14, right: 14),
               ).paddingOnly(bottom: 10.0),
               TextFieldView.outsideBorder(
-                initialText: informationState.informationRequest.phone,
+                initialText: informationState.updateInformationRequest.phone,
                 textFieldDidChange: (textName) {
-                  ref.read(informationControllerProvider.notifier)
+                  ref.read(updateInformationControllerProvider.notifier)
                       .setPhone(textName!);
                 },
                 title: "Số điện thoại ",
@@ -84,9 +70,9 @@ class _InformationPageState extends ConsumerState<InformationPage>
                 padding: const EdgeInsets.only(left: 14, right: 14),
               ).paddingOnly(bottom: 10.0),
               TextFieldView.outsideBorder(
-                initialText: informationState.informationRequest.address,
+                initialText: informationState.updateInformationRequest.address,
                 textFieldDidChange: (textName) {
-                  ref.read(informationControllerProvider.notifier)
+                  ref.read(updateInformationControllerProvider.notifier)
                       .setAddress(textName!);
                 },
                 title: "Nơi ở",
@@ -103,7 +89,7 @@ class _InformationPageState extends ConsumerState<InformationPage>
               title: "Cập nhật thông tin",
               onPressed: () {
                 ref
-                    .read(informationControllerProvider.notifier)
+                    .read(updateInformationControllerProvider.notifier)
                     .updateInfo()
                     .then((value) => {
                   if (value == true)
@@ -120,8 +106,6 @@ class _InformationPageState extends ConsumerState<InformationPage>
   }
 
   Widget _buildAvatar(String urlAvatar) {
-    final updateInformationState =
-    ref.watch(informationControllerProvider);
     return InkWell(
         onTap: () {
           context.showFixedListInteractiveSheet([
@@ -130,18 +114,14 @@ class _InformationPageState extends ConsumerState<InformationPage>
               title: L.common.baseUploadAvatarView.capture,
               onPressed: () async {
                 final image = await singlePickFromCamera();
-
                 if (image.isNull) return;
-                ref
-                    .read(informationControllerProvider.notifier)
-                    .setAvatar(noDeleteAvatar: true, avatarPath: "");
-
-                ref
-                    .read(informationControllerProvider.notifier)
-                    .updateAvatar(image!);
-                ref
-                    .read(informationControllerProvider.notifier)
-                    .uploadFile(image);
+                // ref.read(informationControllerProvider.notifier)
+                //     .setAvatar(noDeleteAvatar: true, avatarPath: "");
+                //
+                // ref.read(informationControllerProvider.notifier)
+                //     .updateAvatar(image!);
+                // ref.read(informationControllerProvider.notifier)
+                //     .uploadFile(image);
               },
             ),
             InteractiveListItem.icon(
@@ -151,29 +131,23 @@ class _InformationPageState extends ConsumerState<InformationPage>
                 final image = await singlePickFromGallery(
                   requestType: RequestType.image,
                 );
-
                 if (image.isNull) return;
-
-                ref
-                    .read(informationControllerProvider.notifier)
-                    .setAvatar(noDeleteAvatar: true, avatarPath: "");
-
-                ref
-                    .read(informationControllerProvider.notifier)
-                    .updateAvatar(image!);
-                ref
-                    .read(informationControllerProvider.notifier)
-                    .uploadFile(image);
+                // ref.read(informationControllerProvider.notifier)
+                //     .setAvatar(noDeleteAvatar: true, avatarPath: "");
+                //
+                // ref.read(informationControllerProvider.notifier)
+                //     .updateAvatar(image!);
+                // ref.read(informationControllerProvider.notifier)
+                //     .uploadFile(image);
               },
             ),
             InteractiveListItem.icon(
               icon: Assets.icons.icTrash.svg(width: 24, height: 24),
               title: L.common.baseUploadAvatarView.delete,
               onPressed: () {
-                ref.invalidate(informationControllerProvider);
-                ref
-                    .read(informationControllerProvider.notifier)
-                    .setAvatar(noDeleteAvatar: false, avatarPath: "");
+                // ref.invalidate(informationControllerProvider);
+                // ref.read(informationControllerProvider.notifier)
+                //     .setAvatar(noDeleteAvatar: false, avatarPath: "");
               },
             ),
           ], itemBuilder: (_, item) {
@@ -198,19 +172,17 @@ class _InformationPageState extends ConsumerState<InformationPage>
         child: Stack(
           children: [
             Container(
-                decoration: BoxDecoration(
-                  border: Border.all(color: AppColors.white3Color),
-                  borderRadius: 50.0.borderAll(),
-                ),
-                child: updateInformationState.noDeleteAvatar == true
-                    ? ImageView(
-                    url: urlAvatar,
-                    fit: BoxFit.cover,
-                    radius: 50,
-                    placeholder: Assets.icons.icAvatarDefault
-                        .svg(height: 100, width: 100))
-                    .box(h: 100, w: 100)
-                    : _buildNewAvatar),
+              decoration: BoxDecoration(
+                border: Border.all(color: AppColors.white4Color),
+                borderRadius: 50.0.borderAll(),
+              ),
+              child: ImageView(
+                url: urlAvatar,
+                radius: 50,
+                placeholder: Assets.icons.icAvatarDefault
+                    .svg(height: 100, width: 100),
+              ).box(h: 100, w: 100),
+            ).paddingSymmetric(vertical: 10.0),
             Positioned(
                 right: 0,
                 bottom: 0,
@@ -229,23 +201,5 @@ class _InformationPageState extends ConsumerState<InformationPage>
                 ))
           ],
         ));
-  }
-  Widget get _buildNewAvatar {
-    final newAvatar = ref.watch(informationControllerProvider).newAvatar;
-    return ClipRRect(
-      borderRadius: BorderRadius.circular(100),
-      child: AnimatedCrossFade(
-        firstChild: Assets.icons.icAvatarDefault.svg(height: 100, width: 100),
-        secondChild: Visibility(
-          visible: newAvatar?.isLocalFile == true,
-          replacement: ImageView(url: newAvatar?.fullUrl ?? ''),
-          child: Image.file(newAvatar?.file ?? File(''), fit: BoxFit.cover),
-        ).squareBox(edgeSize: 100),
-        duration: kThemeAnimationDuration,
-        crossFadeState: newAvatar?.file == null
-            ? CrossFadeState.showFirst
-            : CrossFadeState.showSecond,
-      ),
-    );
   }
 }

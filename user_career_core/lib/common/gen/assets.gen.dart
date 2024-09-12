@@ -22,6 +22,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic.bell.svg
   SvgGenImage get icBell => const SvgGenImage('assets/icons/ic.bell.svg');
 
+  /// File path: assets/icons/ic_Logo_Kmad.svg
+  SvgGenImage get icLogoKmad =>
+      const SvgGenImage('assets/icons/ic_Logo_Kmad.svg');
+
   /// File path: assets/icons/ic_angle_small_left.svg
   SvgGenImage get icAngleSmallLeft =>
       const SvgGenImage('assets/icons/ic_angle_small_left.svg');
@@ -61,6 +65,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/ic_eye.svg
   SvgGenImage get icEye => const SvgGenImage('assets/icons/ic_eye.svg');
+
+  /// File path: assets/icons/ic_logo.svg
+  SvgGenImage get icLogo => const SvgGenImage('assets/icons/ic_logo.svg');
 
   /// File path: assets/icons/ic_logo_status_notification.svg
   SvgGenImage get icLogoStatusNotification =>
@@ -171,6 +178,7 @@ class $AssetsIconsGen {
   List<dynamic> get values => [
         aIcon,
         icBell,
+        icLogoKmad,
         icAngleSmallLeft,
         icAngleSmallRight,
         icAvatarDefault,
@@ -182,6 +190,7 @@ class $AssetsIconsGen {
         icDown,
         icExpand2,
         icEye,
+        icLogo,
         icLogoStatusNotification,
         icLogoutIcon,
         icMapMarker,

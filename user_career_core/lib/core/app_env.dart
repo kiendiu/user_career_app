@@ -1,3 +1,7 @@
+import 'dart:async';
+import 'dart:io';
+
+import 'package:flutter/material.dart';
 import 'package:mobile_framework/packages/env/environment.dart';
 
 enum AppEnvKey implements EnvExtraKey {
@@ -13,7 +17,7 @@ class DevEnv extends Env {
   String get apiVersion => '/api';
 
   @override
-  String get baseUrl => 'http://192.168.5.242:3000';
+  String get baseUrl => 'http://172.20.10.5:3000';
 
   @override
   String get fileBaseUrl => '';
@@ -23,4 +27,20 @@ class DevEnv extends Env {
 
   @override
   EnvType get type => EnvType.dev;
+
+  Future<String?> getIpAddress() async {
+    try {
+      List<NetworkInterface> interfaces = await NetworkInterface.list();
+      for (var interface in interfaces) {
+        for (var address in interface.addresses) {
+          if (address.type == InternetAddressType.IPv4) {
+            return address.address;
+          }
+        }
+      }
+    } catch (e) {
+      debugPrint(e.toString());
+    }
+    return null;
+  }
 }

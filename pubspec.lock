@@ -1668,8 +1668,8 @@ packages:
     dependency: transitive
     description:
       path: mobile_framework
-      ref: "riverpod-1.55.11"
-      resolved-ref: "96c4716d805714a93207ac757fbae9255530fd23"
+      ref: "riverpod-1.56.1"
+      resolved-ref: bed7d4718bd7f77548ac3f4848d0372e9ccdbae1
       url: "git@gitlab.ommani.vn:mobile-ommani/common/ommanisoft_mobile_framework.git"
     source: git
     version: "1.5.2"

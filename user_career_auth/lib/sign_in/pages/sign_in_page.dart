@@ -25,6 +25,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            _buildAppLogo(),
             _buildTextFieldEmail(),
             _buildTextFieldPassword(),
             _buildTextButtonForgotPassword(),
@@ -34,6 +35,28 @@ class _SignInPageState extends ConsumerState<SignInPage> {
         ),
       ).center().paddingSymmetric(horizontal: 20.0),
     );
+  }
+
+  Widget _buildAppLogo() {
+    return Column(
+      children: [
+        Assets.icons.icLogoKmad
+            .svg(height: 80)
+            .marginOnly(bottom: 10),
+        Container(
+          decoration: BoxDecoration(
+            color: const Color(0xffECF4FF),
+            borderRadius: BorderRadius.circular(8),
+          ),
+          child: Text(
+            "KMAD",
+            style: ref
+                .theme.smallTextStyle
+                .textColor(const Color(0xff1170FF)),
+          ).paddingAll(6.0),
+        ),
+      ],
+    ).marginOnly(bottom: 34);
   }
 
   Widget _buildTextFieldEmail() {

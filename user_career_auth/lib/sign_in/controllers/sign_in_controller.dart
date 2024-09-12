@@ -31,6 +31,7 @@ class SignInController extends AutoDisposeNotifier<SignInRequest>
 
       if (user != null) {
         Storage.save(POSStorageKey.userId, user.id);
+        return true;
       }
     })
         .hideLoadingBy(this)

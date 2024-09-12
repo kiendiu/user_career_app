@@ -33,7 +33,6 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
           SizedBox(height: 20),
 
-          // Các buổi tư vấn sắp tới
           Text(
             'Các buổi tư vấn sắp tới',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -55,8 +54,6 @@ class _HomePageState extends ConsumerState<HomePage> {
             ),
           ),
           SizedBox(height: 20),
-
-          // Danh mục (scroll ngang)
           Text(
             'Danh mục',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -66,7 +63,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             height: 100,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              itemCount: 5, // Số lượng danh mục
+              itemCount: 5,
               itemBuilder: (context, index) {
                 return Container(
                   width: 120,
@@ -87,8 +84,6 @@ class _HomePageState extends ConsumerState<HomePage> {
             ),
           ),
           SizedBox(height: 20),
-
-          // Danh sách chuyên gia hot tháng
           Text(
             'Chuyên gia hot tháng',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
@@ -97,7 +92,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           Expanded(
             flex: 3,
             child: ListView.builder(
-              itemCount: 5, // Số lượng chuyên gia
+              itemCount: 5,
               itemBuilder: (context, index) {
                 return Card(
                   child: ListTile(

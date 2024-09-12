@@ -11,13 +11,14 @@
 import 'package:auto_route/auto_route.dart' as _i9;
 import 'package:user_career_more/change_password/pages/change_password_page.dart'
     as _i2;
-import 'package:user_career_more/core/tab_router.dart' as _i6;
+import 'package:user_career_more/core/tab_router.dart' as _i5;
 import 'package:user_career_more/more/pages/calendar_page.dart' as _i1;
 import 'package:user_career_more/more/pages/expect_page.dart' as _i3;
-import 'package:user_career_more/more/pages/information_page.dart' as _i4;
-import 'package:user_career_more/more/pages/more_page.dart' as _i5;
-import 'package:user_career_more/more/pages/service_page.dart' as _i7;
+import 'package:user_career_more/more/pages/more_page.dart' as _i4;
+import 'package:user_career_more/more/pages/service_page.dart' as _i6;
 import 'package:user_career_more/more/pages/wallet_page.dart' as _i8;
+import 'package:user_career_more/update_information/pages/update_information_page.dart'
+    as _i7;
 
 abstract class $MoreRouterModule extends _i9.AutoRouterModule {
   @override
@@ -40,28 +41,28 @@ abstract class $MoreRouterModule extends _i9.AutoRouterModule {
         child: const _i3.ExpectPage(),
       );
     },
-    InformationRoute.name: (routeData) {
-      return _i9.AutoRoutePage<dynamic>(
-        routeData: routeData,
-        child: const _i4.InformationPage(),
-      );
-    },
     MoreRoute.name: (routeData) {
       return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i5.MorePage(),
+        child: const _i4.MorePage(),
       );
     },
     MoreTabRouter.name: (routeData) {
       return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.MoreTabRouter(),
+        child: const _i5.MoreTabRouter(),
       );
     },
     ServiceRoute.name: (routeData) {
       return _i9.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.ServicePage(),
+        child: const _i6.ServicePage(),
+      );
+    },
+    UpdateInformationRoute.name: (routeData) {
+      return _i9.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i7.UpdateInformationPage(),
       );
     },
     WalletRoute.name: (routeData) {
@@ -116,21 +117,7 @@ class ExpectRoute extends _i9.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i4.InformationPage]
-class InformationRoute extends _i9.PageRouteInfo<void> {
-  const InformationRoute({List<_i9.PageRouteInfo>? children})
-      : super(
-          InformationRoute.name,
-          initialChildren: children,
-        );
-
-  static const String name = 'InformationRoute';
-
-  static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
-}
-
-/// generated route for
-/// [_i5.MorePage]
+/// [_i4.MorePage]
 class MoreRoute extends _i9.PageRouteInfo<void> {
   const MoreRoute({List<_i9.PageRouteInfo>? children})
       : super(
@@ -144,7 +131,7 @@ class MoreRoute extends _i9.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i6.MoreTabRouter]
+/// [_i5.MoreTabRouter]
 class MoreTabRouter extends _i9.PageRouteInfo<void> {
   const MoreTabRouter({List<_i9.PageRouteInfo>? children})
       : super(
@@ -158,7 +145,7 @@ class MoreTabRouter extends _i9.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i7.ServicePage]
+/// [_i6.ServicePage]
 class ServiceRoute extends _i9.PageRouteInfo<void> {
   const ServiceRoute({List<_i9.PageRouteInfo>? children})
       : super(
@@ -167,6 +154,20 @@ class ServiceRoute extends _i9.PageRouteInfo<void> {
         );
 
   static const String name = 'ServiceRoute';
+
+  static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i7.UpdateInformationPage]
+class UpdateInformationRoute extends _i9.PageRouteInfo<void> {
+  const UpdateInformationRoute({List<_i9.PageRouteInfo>? children})
+      : super(
+          UpdateInformationRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'UpdateInformationRoute';
 
   static const _i9.PageInfo<void> page = _i9.PageInfo<void>(name);
 }

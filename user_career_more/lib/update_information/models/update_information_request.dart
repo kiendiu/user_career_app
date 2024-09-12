@@ -1,17 +1,19 @@
 import 'package:user_career_core/user_career_core.dart';
 
-class InformationRequest implements Encodable {
+class UpdateInformationRequest implements Encodable {
+  String? fullName;
   String? avatar;
   String? username;
   String? email;
   String? phone;
   String? address;
 
-  InformationRequest({this.username, this.email, this.avatar, this.phone, this.address});
+  UpdateInformationRequest({this.fullName, this.username, this.email, this.avatar, this.phone, this.address});
 
   @override
   Map<String, dynamic> encode() {
     return {
+      "full_name": fullName,
       "username": username,
       "email": email,
       "phone": phone,
@@ -19,8 +21,8 @@ class InformationRequest implements Encodable {
     };
   }
 
-  InformationRequest copyWith({String? username, String? email, String? avatar, String? phone, String? address}) {
-    return InformationRequest(
+  UpdateInformationRequest copyWith({String? username, String? email, String? avatar, String? phone, String? address}) {
+    return UpdateInformationRequest(
         username: username ?? this.username,
         email: email ?? this.email,
         avatar: avatar ?? this.avatar,

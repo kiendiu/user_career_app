@@ -15,7 +15,7 @@ dependencies:
   mobile_framework:
     git:
       url: 'git@gitlab.ommani.vn:mobile-ommani/common/ommanisoft_mobile_framework.git'
-      ref: riverpod-1.55.11
+      ref: riverpod-1.56.1
       path: mobile_framework/
   onesignal_flutter: ^5.2.2
   recase: ^4.1.0
