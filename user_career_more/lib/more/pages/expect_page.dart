@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_core/views/common_appbar.dart';
+import 'package:user_career_more/more/controllers/expect_controller.dart';
 
 @RoutePage()
 class ExpectPage extends ConsumerStatefulWidget {
@@ -15,10 +16,19 @@ class ExpectPage extends ConsumerStatefulWidget {
 class _ExpectPageState extends ConsumerState<ExpectPage> {
   @override
   Widget build(BuildContext context) {
+    final expectInformationState = ref.watch(expectInformationControllerProvider);
+    final expectInformationController  = ref.watch(expectControllerProvider.notifier);
+
     return BaseScaffold(
       customAppBar: CommonAppBar(
         centerTitle: true,
-        titleText: "Chuyên Gia",
+        titleText: L.more.expectTitle,
+        rightActions: [
+          Text(L.more.expectTextButton).onTapWidget(() {
+            expectInformationController.updateExpectInformation();
+            ref.invalidate(expectInformationControllerProvider);
+          }).paddingOnly(right: 14.0)
+        ],
       ),
       backgroundColor: AppColors.white1Color,
       body: SingleChildScrollView(
@@ -26,63 +36,50 @@ class _ExpectPageState extends ConsumerState<ExpectPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'Bạn có thể nói được ngôn ngữ nào?',
+              L.more.expectAskCommunicate,
               style: ref.theme.bigTextStyle.weight(FontWeight.bold),
             ).paddingOnly(top: 14, bottom: 10),
-            TextField(
-              readOnly: true,
-              enabled: true,
-              decoration: InputDecoration(
-                hintText: 'Ngôn ngữ',
-                hintStyle: ref.theme.defaultTextStyle,
-                suffixIcon: IconButton(
-                  onPressed: () => {},
-                  icon: const Icon(Icons.arrow_drop_down_circle_outlined), // Đổi icon cho phù hợp
-                ),
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0), // Bo góc
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                    width: 0.5,
-                  ),
-                ),
+            TextFieldView.outsideBorder(
+              initialText: expectInformationState.maybeWhen(
+                data: (data) => data.languages?.map((lang) => lang.nameLanguage).join(', ') ?? '',
+                orElse: () => L.more.expectAskCommunicateHint,
               ),
-            ),
-            const SizedBox(height: 14),
+              suffixIcons: [
+                const Icon(
+                  Icons.arrow_drop_down_outlined,
+                  color: AppColors.black1Color,
+                ).onTapWidget((){})
+              ],
+            ).paddingOnly(bottom: 14.0),
             Text(
-              'Số năm kinh nghiệm?',
+              L.more.expectAskYearOfExperience,
               style: ref.theme.bigTextStyle.weight(FontWeight.bold),
             ).paddingOnly(bottom: 10),
-            TextField(
-              keyboardType: TextInputType.number, // Đặt bàn phím số
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                    width: 0.5,
-                  ),
-                ),
+            TextFieldView.outsideBorder(
+              initialText: expectInformationState.maybeWhen(
+                data: (data) => data.experienceYears.toString(),
+                orElse: () => '',
               ),
-            ),
-            const SizedBox(height: 14),
+              textFieldDidChange: (value) {
+                ref.read(expectControllerProvider.notifier)
+                    .setExperienceYears(int.tryParse(value ?? ''));
+              },
+              borderRadius: 10.0,
+            ).paddingOnly(bottom: 14.0),
             Text(
-              'Giới thiệu về kinh nghiệm và kỹ năng?',
+              L.more.expectAskSkill,
               style: ref.theme.bigTextStyle.weight(FontWeight.bold),
             ).paddingOnly(bottom: 10),
-            TextField(
-              maxLines: 5,
-              decoration: InputDecoration(
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0), // Bo góc
-                  borderSide: const BorderSide(
-                    color: Colors.grey,
-                    width: 0.5,
-                  ),
-                ),
+            TextFieldView.outsideBorder(
+              initialText: expectInformationState.maybeWhen(
+                data: (data) => data.skillDescription,
+                orElse: () => '',
               ),
-            ),
-            const SizedBox(height: 6),
+              textFieldDidChange: (value) {
+                ref.read(expectControllerProvider.notifier).setSkillDescription(value);
+              },
+              borderRadius: 10.0,
+            ).paddingOnly(bottom: 6.0),
             const Divider(),
             Container(
               color: Colors.white,
@@ -90,25 +87,25 @@ class _ExpectPageState extends ConsumerState<ExpectPage> {
                 children: [
                   ListTile(
                     leading: const Icon(Icons.work_outline),
-                    title: const Text('Kinh nghiệm'),
+                    title: Text(L.more.expectListTileExperiences),
                     onTap: () {},
                   ),
                   const Divider(),
                   ListTile(
                     leading: const Icon(Icons.build_outlined),
-                    title: const Text('Kỹ năng'),
+                    title: Text(L.more.expectListTileSkills),
                     onTap: () {},
                   ),
                   const Divider(),
                   ListTile(
                     leading: const Icon(Icons.school_outlined),
-                    title: const Text('Bằng cấp'),
+                    title: Text(L.more.expectListTileCertificates),
                     onTap: () {},
                   ),
                   const Divider(),
                   ListTile(
                     leading: const Icon(Icons.attach_money_outlined),
-                    title: const Text('Giá dịch vụ tư vấn'),
+                    title: Text(L.more.expectListTilePrice),
                     onTap: () {},
                   ),
                   const Divider(),
