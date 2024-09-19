@@ -10,10 +10,12 @@
   "bottom_sheet_calander_enddate": "Đến ngày",
   "bottom_sheet_calander_button_return": "Quay lại",
   "bottom_sheet_calander_button_apply": "Áp dụng",
+
   "status_service_waiting": "Chờ xác nhận",
   "status_service_confirmed": "Đã xác nhận",
   "status_service_happened": "Đã diễn ra",
   "status_service_done": "Hoàn chỉnh",
+
   "change_Password": "Đổi mật khẩu",
   "logout": "Đăng xuất",
   "cancel": "Hủy",
@@ -28,5 +30,27 @@
   "error_empty": "Nhập đủ thông tin",
   "error_is_oldpassword": "Trùng mật khẩu cũ",
   "error_is_newpassword": "Không giống mật khẩu mới",
-  "error_is_strongpassword": "Mật khẩu yếu"
+  "error_is_strongpassword": "Mật khẩu yếu",
+
+  "expect_title": "Chuyên Gia",
+  "expect_text_button": "Lưu",
+  "expect_ask_communicate": "Bạn có thể nói được ngôn ngữ nào?",
+  "expect_ask_communicate_hint": "Ngôn ngữ",
+  "expect_ask_year_of_experience": "Số năm kinh nghiệm?",
+  "expect_ask_skill": "Giới thiệu về kinh nghiệm và kỹ năng?",
+  "expect_list_tile_experiences": "Kinh nghiệm",
+  "expect_list_tile_skills": "Kỹ năng",
+  "expect_list-tile_certificates": "Bằng cấp",
+  "expect_list_tile_price": "Giá dịch vụ tư vấn",
+
+  "infor_title": "Thông tin cá nhân",
+  "infor_text_field_title_name": "Tên",
+  "infor_text_field_title_email": "Email",
+  "infor_text_field_title_phone": "Số điện thoại",
+  "infor_text_field_title_address": "Nơi ở",
+  "infor_text_field_placeholder_name": "Họ và tên",
+  "infor_text_field_placeholder_email": "Tài khoản Email",
+  "infor_text_field_placeholder_address": "Địa chỉ",
+  "infor_text_button": "Cập nhật thông tin",
+  "infor_message_success": "Cập nhật thành công!"
 }

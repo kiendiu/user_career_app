@@ -28,7 +28,11 @@ class MoreController
     Storage.save(POSStorageKey.infoAvatarPath, result.avatar);
     Storage.save(POSStorageKey.infoPhoneKey, result.phone);
     Storage.save(POSStorageKey.infoAdressKey, result.address);
-    ref.invalidate(updateInformationControllerProvider);
+    if (!ref
+        .read(updateInformationControllerProvider.notifier)
+        .checkNewAvatar()) {
+      ref.invalidate(updateInformationControllerProvider);
+    }
     return result;
   }
 

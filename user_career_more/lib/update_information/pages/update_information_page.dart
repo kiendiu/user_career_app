@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -26,7 +28,7 @@ class _UpdateInformationPageState extends ConsumerState<UpdateInformationPage>
       resizeToAvoidBottomInset: false,
       customAppBar: CommonAppBar(
         centerTitle: true,
-        titleText: "Thông tin cá nhân",
+        titleText: L.more.inforTitle,
       ),
       backgroundColor: AppColors.white3Color,
       body: Column(
@@ -45,8 +47,8 @@ class _UpdateInformationPageState extends ConsumerState<UpdateInformationPage>
                   ref.read(updateInformationControllerProvider.notifier)
                       .setName(textName!);
                 },
-                title: "Tên",
-                placeholder: "Họ và tên",
+                title: L.more.inforTextFieldTitleName,
+                placeholder: L.more.inforTextFieldPlaceholderName,
                 padding: const EdgeInsets.only(left: 14, right: 14),
               ).paddingOnly(bottom: 10.0),
               TextFieldView.outsideBorder(
@@ -55,8 +57,8 @@ class _UpdateInformationPageState extends ConsumerState<UpdateInformationPage>
                   ref.read(updateInformationControllerProvider.notifier)
                       .setEmail(textName!);
                 },
-                title: "Email",
-                placeholder: "Tài khoản email",
+                title: L.more.inforTextFieldTitleEmail,
+                placeholder: L.more.inforTextFieldPlaceholderEmail,
                 padding: const EdgeInsets.only(left: 14, right: 14),
               ).paddingOnly(bottom: 10.0),
               TextFieldView.outsideBorder(
@@ -65,8 +67,8 @@ class _UpdateInformationPageState extends ConsumerState<UpdateInformationPage>
                   ref.read(updateInformationControllerProvider.notifier)
                       .setPhone(textName!);
                 },
-                title: "Số điện thoại ",
-                placeholder: "Số điện",
+                title: L.more.inforTextFieldTitlePhone,
+                placeholder: L.more.inforTextFieldTitlePhone,
                 padding: const EdgeInsets.only(left: 14, right: 14),
               ).paddingOnly(bottom: 10.0),
               TextFieldView.outsideBorder(
@@ -75,8 +77,8 @@ class _UpdateInformationPageState extends ConsumerState<UpdateInformationPage>
                   ref.read(updateInformationControllerProvider.notifier)
                       .setAddress(textName!);
                 },
-                title: "Nơi ở",
-                placeholder: "Địa chỉ",
+                title: L.more.inforTextFieldTitleAddress,
+                placeholder: L.more.inforTextFieldPlaceholderAddress,
                 padding: const EdgeInsets.only(left: 14, right: 14),
               ).paddingOnly(bottom: 10.0),
             ],
@@ -86,14 +88,14 @@ class _UpdateInformationPageState extends ConsumerState<UpdateInformationPage>
             color: AppColors.white1Color,
             child: AppButton(
               isEnabled: true,
-              title: "Cập nhật thông tin",
+              title: L.more.inforTextButton,
               onPressed: () {
-                ref
-                    .read(updateInformationControllerProvider.notifier)
+                ref.read(updateInformationControllerProvider.notifier)
                     .updateInfo()
                     .then((value) => {
                   if (value == true)
                     {
+                      context.showSuccess(L.more.inforMessageSuccess),
                       ref.invalidate(moreControllerProvider),
                     }
                 });
@@ -106,6 +108,9 @@ class _UpdateInformationPageState extends ConsumerState<UpdateInformationPage>
   }
 
   Widget _buildAvatar(String urlAvatar) {
+    final updateInformationState =
+    ref.watch(updateInformationControllerProvider);
+
     return InkWell(
         onTap: () {
           context.showFixedListInteractiveSheet([
@@ -115,13 +120,12 @@ class _UpdateInformationPageState extends ConsumerState<UpdateInformationPage>
               onPressed: () async {
                 final image = await singlePickFromCamera();
                 if (image.isNull) return;
-                // ref.read(informationControllerProvider.notifier)
-                //     .setAvatar(noDeleteAvatar: true, avatarPath: "");
-                //
-                // ref.read(informationControllerProvider.notifier)
-                //     .updateAvatar(image!);
-                // ref.read(informationControllerProvider.notifier)
-                //     .uploadFile(image);
+                ref.read(updateInformationControllerProvider.notifier)
+                    .setAvatar(noDeleteAvatar: true, avatarPath: "");
+                ref.read(updateInformationControllerProvider.notifier)
+                    .updateAvatar(image!);
+                ref.read(updateInformationControllerProvider.notifier)
+                    .uploadFile(image);
               },
             ),
             InteractiveListItem.icon(
@@ -132,22 +136,22 @@ class _UpdateInformationPageState extends ConsumerState<UpdateInformationPage>
                   requestType: RequestType.image,
                 );
                 if (image.isNull) return;
-                // ref.read(informationControllerProvider.notifier)
-                //     .setAvatar(noDeleteAvatar: true, avatarPath: "");
-                //
-                // ref.read(informationControllerProvider.notifier)
-                //     .updateAvatar(image!);
-                // ref.read(informationControllerProvider.notifier)
-                //     .uploadFile(image);
+                ref.read(updateInformationControllerProvider.notifier)
+                    .setAvatar(noDeleteAvatar: true, avatarPath: "");
+
+                ref.read(updateInformationControllerProvider.notifier)
+                    .updateAvatar(image!);
+                ref.read(updateInformationControllerProvider.notifier)
+                    .uploadFile(image);
               },
             ),
             InteractiveListItem.icon(
               icon: Assets.icons.icTrash.svg(width: 24, height: 24),
               title: L.common.baseUploadAvatarView.delete,
               onPressed: () {
-                // ref.invalidate(informationControllerProvider);
-                // ref.read(informationControllerProvider.notifier)
-                //     .setAvatar(noDeleteAvatar: false, avatarPath: "");
+                ref.invalidate(updateInformationControllerProvider);
+                ref.read(updateInformationControllerProvider.notifier)
+                    .setAvatar(noDeleteAvatar: false, avatarPath: "");
               },
             ),
           ], itemBuilder: (_, item) {
@@ -176,13 +180,19 @@ class _UpdateInformationPageState extends ConsumerState<UpdateInformationPage>
                 border: Border.all(color: AppColors.white4Color),
                 borderRadius: 50.0.borderAll(),
               ),
-              child: ImageView(
-                url: urlAvatar,
-                radius: 50,
-                placeholder: Assets.icons.icAvatarDefault
-                    .svg(height: 100, width: 100),
-              ).box(h: 100, w: 100),
-            ).paddingSymmetric(vertical: 10.0),
+                child: updateInformationState.noDeleteAvatar == true
+                    ? ref
+                    .read(updateInformationControllerProvider.notifier)
+                    .checkNewAvatar()
+                    ? _buildNewAvatar
+                    : ImageView(
+                    url: urlAvatar,
+                    fit: BoxFit.cover,
+                    radius: 50,
+                    placeholder: Assets.icons.icAvatarDefault
+                        .svg(height: 100, width: 100))
+                    .box(h: 100, w: 100)
+                    : _buildNewAvatar),
             Positioned(
                 right: 0,
                 bottom: 0,
@@ -201,5 +211,23 @@ class _UpdateInformationPageState extends ConsumerState<UpdateInformationPage>
                 ))
           ],
         ));
+  }
+  Widget get _buildNewAvatar {
+    final newAvatar = ref.watch(updateInformationControllerProvider).newAvatar;
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(100),
+      child: AnimatedCrossFade(
+        firstChild: Assets.icons.icAvatarDefault.svg(height: 100, width: 100),
+        secondChild: Visibility(
+          visible: newAvatar?.isLocalFile == true,
+          replacement: ImageView(url: newAvatar?.fullUrl ?? ''),
+          child: Image.file(newAvatar?.file ?? File(''), fit: BoxFit.cover),
+        ).squareBox(edgeSize: 100),
+        duration: kThemeAnimationDuration,
+        crossFadeState: newAvatar?.file == null
+            ? CrossFadeState.showFirst
+            : CrossFadeState.showSecond,
+      ),
+    );
   }
 }

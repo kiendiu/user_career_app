@@ -15,6 +15,9 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   Widget build(BuildContext context) {
     return BaseScaffold(
+      customAppBar: AppBar(
+
+      ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -31,13 +34,12 @@ class _HomePageState extends ConsumerState<HomePage> {
               filled: true,
             ),
           ),
-          SizedBox(height: 20),
-
-          Text(
+          const SizedBox(height: 20),
+          const Text(
             'Các buổi tư vấn sắp tới',
             style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Expanded(
             flex: 2,
             child: ListView.builder(
@@ -108,7 +110,7 @@ class _HomePageState extends ConsumerState<HomePage> {
             ),
           ),
         ],
-      ),
+      ).paddingSymmetric(horizontal: 14),
     );
   }
 }

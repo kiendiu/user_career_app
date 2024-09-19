@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 80
+/// Strings: 100
 ///
-/// Built on 2024-09-06 at 02:57 UTC
+/// Built on 2024-09-19 at 03:56 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -252,6 +252,26 @@ class _LocalizationStringsMoreVi {
 	String get errorIsOldpassword => 'Trùng mật khẩu cũ';
 	String get errorIsNewpassword => 'Không giống mật khẩu mới';
 	String get errorIsStrongpassword => 'Mật khẩu yếu';
+	String get expectTitle => 'Chuyên Gia';
+	String get expectTextButton => 'Lưu';
+	String get expectAskCommunicate => 'Bạn có thể nói được ngôn ngữ nào?';
+	String get expectAskCommunicateHint => 'Ngôn ngữ';
+	String get expectAskYearOfExperience => 'Số năm kinh nghiệm?';
+	String get expectAskSkill => 'Giới thiệu về kinh nghiệm và kỹ năng?';
+	String get expectListTileExperiences => 'Kinh nghiệm';
+	String get expectListTileSkills => 'Kỹ năng';
+	String get expectListTileCertificates => 'Bằng cấp';
+	String get expectListTilePrice => 'Giá dịch vụ tư vấn';
+	String get inforTitle => 'Thông tin cá nhân';
+	String get inforTextFieldTitleName => 'Tên';
+	String get inforTextFieldTitleEmail => 'Email';
+	String get inforTextFieldTitlePhone => 'Số điện thoại';
+	String get inforTextFieldTitleAddress => 'Nơi ở';
+	String get inforTextFieldPlaceholderName => 'Họ và tên';
+	String get inforTextFieldPlaceholderEmail => 'Tài khoản Email';
+	String get inforTextFieldPlaceholderAddress => 'Địa chỉ';
+	String get inforTextButton => 'Cập nhật thông tin';
+	String get inforMessageSuccess => 'Cập nhật thành công!';
 }
 
 // Path: common.tabBar
@@ -365,6 +385,26 @@ extension on Translations {
 			case 'more.errorIsOldpassword': return 'Trùng mật khẩu cũ';
 			case 'more.errorIsNewpassword': return 'Không giống mật khẩu mới';
 			case 'more.errorIsStrongpassword': return 'Mật khẩu yếu';
+			case 'more.expectTitle': return 'Chuyên Gia';
+			case 'more.expectTextButton': return 'Lưu';
+			case 'more.expectAskCommunicate': return 'Bạn có thể nói được ngôn ngữ nào?';
+			case 'more.expectAskCommunicateHint': return 'Ngôn ngữ';
+			case 'more.expectAskYearOfExperience': return 'Số năm kinh nghiệm?';
+			case 'more.expectAskSkill': return 'Giới thiệu về kinh nghiệm và kỹ năng?';
+			case 'more.expectListTileExperiences': return 'Kinh nghiệm';
+			case 'more.expectListTileSkills': return 'Kỹ năng';
+			case 'more.expectListTileCertificates': return 'Bằng cấp';
+			case 'more.expectListTilePrice': return 'Giá dịch vụ tư vấn';
+			case 'more.inforTitle': return 'Thông tin cá nhân';
+			case 'more.inforTextFieldTitleName': return 'Tên';
+			case 'more.inforTextFieldTitleEmail': return 'Email';
+			case 'more.inforTextFieldTitlePhone': return 'Số điện thoại';
+			case 'more.inforTextFieldTitleAddress': return 'Nơi ở';
+			case 'more.inforTextFieldPlaceholderName': return 'Họ và tên';
+			case 'more.inforTextFieldPlaceholderEmail': return 'Tài khoản Email';
+			case 'more.inforTextFieldPlaceholderAddress': return 'Địa chỉ';
+			case 'more.inforTextButton': return 'Cập nhật thông tin';
+			case 'more.inforMessageSuccess': return 'Cập nhật thành công!';
 			default: return null;
 		}
 	}

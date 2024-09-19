@@ -17,12 +17,14 @@ class UpdateInformationRequest implements Encodable {
       "username": username,
       "email": email,
       "phone": phone,
-      "address": address
+      "address": address,
+      "avatar": avatar
     };
   }
 
-  UpdateInformationRequest copyWith({String? username, String? email, String? avatar, String? phone, String? address}) {
+  UpdateInformationRequest copyWith({String? username, String? email, String? avatar, String? phone, String? address, String? fullName}) {
     return UpdateInformationRequest(
+        fullName: fullName ?? this.fullName,
         username: username ?? this.username,
         email: email ?? this.email,
         avatar: avatar ?? this.avatar,
