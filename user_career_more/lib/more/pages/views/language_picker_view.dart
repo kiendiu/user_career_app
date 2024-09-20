@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
+import 'package:user_career_more/more/controllers/expect_controller.dart';
 import 'package:user_career_more/more/models/language_model.dart';
 
 class LanguagePickerView extends ConsumerStatefulWidget {
@@ -56,6 +57,7 @@ class _LanguagePickerViewState extends ConsumerState<LanguagePickerView>{
               title: "Hủy bỏ",
               onPressed: () {
                 widget.onSelectionChanged({});
+                ref.invalidate(expectControllerProvider);
                 context.maybePop();
               },
               titleTextStyle: const TextStyle(
