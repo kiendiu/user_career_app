@@ -1,9 +1,13 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_core/views/common_appbar.dart';
+import 'package:user_career_core/views/custom_text_field.dart';
+import 'package:user_career_more/core/router.gm.dart';
 import 'package:user_career_more/more/controllers/expect_controller.dart';
+import 'package:user_career_more/more/models/language_model.dart';
+import 'package:user_career_more/more/pages/views/language_picker_view.dart';
 
 @RoutePage()
 class ExpectPage extends ConsumerStatefulWidget {
@@ -14,10 +18,12 @@ class ExpectPage extends ConsumerStatefulWidget {
 }
 
 class _ExpectPageState extends ConsumerState<ExpectPage> {
+  Set<LanguageModel> languagesLocal = {};
+
   @override
   Widget build(BuildContext context) {
-    final expectInformationState = ref.watch(expectInformationControllerProvider);
-    final expectInformationController  = ref.watch(expectControllerProvider.notifier);
+    final expectState = ref.watch(expectControllerProvider);
+    final expectController  = ref.read(expectControllerProvider.notifier);
 
     return BaseScaffold(
       customAppBar: CommonAppBar(
@@ -25,8 +31,7 @@ class _ExpectPageState extends ConsumerState<ExpectPage> {
         titleText: L.more.expectTitle,
         rightActions: [
           Text(L.more.expectTextButton).onTapWidget(() {
-            expectInformationController.updateExpectInformation();
-            ref.invalidate(expectInformationControllerProvider);
+            expectController.updateExpectInformation();
           }).paddingOnly(right: 14.0)
         ],
       ),
@@ -39,46 +44,67 @@ class _ExpectPageState extends ConsumerState<ExpectPage> {
               L.more.expectAskCommunicate,
               style: ref.theme.bigTextStyle.weight(FontWeight.bold),
             ).paddingOnly(top: 14, bottom: 10),
-            TextFieldView.outsideBorder(
-              initialText: expectInformationState.maybeWhen(
-                data: (data) => data.languages?.map((lang) => lang.nameLanguage).join(', ') ?? '',
-                orElse: () => L.more.expectAskCommunicateHint,
+            TextField(
+              controller: TextEditingController(
+                text: expectState.languagesLocal?.map((lang) => lang.nameLanguage).join(', ') ?? '',
               ),
-              suffixIcons: [
-                const Icon(
+              readOnly: true,
+              enabled: true,
+              decoration: InputDecoration(
+                suffixIcon: const Icon(
                   Icons.arrow_drop_down_outlined,
                   color: AppColors.black1Color,
-                ).onTapWidget((){})
-              ],
+                ).onTapWidget(() {
+                  _showListCheckBoxLanguage(expectController);
+                }),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: AppColors.black4Color,
+                    width: 2.0,
+                  ),
+                ),
+              ),
             ).paddingOnly(bottom: 14.0),
             Text(
               L.more.expectAskYearOfExperience,
               style: ref.theme.bigTextStyle.weight(FontWeight.bold),
             ).paddingOnly(bottom: 10),
-            TextFieldView.outsideBorder(
-              initialText: expectInformationState.maybeWhen(
-                data: (data) => data.experienceYears.toString(),
-                orElse: () => '',
+            CustomTextFieldView(
+                initialText: expectState.experienceYears?.toString() ?? '',
+                textFieldDidChange: (value) {
+                  ref.read(expectControllerProvider.notifier)
+                      .setExperienceYears(int.tryParse(value ?? ''));
+                },
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: AppColors.black4Color,
+                    width: 2.0,
+                  ),
+                ),
               ),
-              textFieldDidChange: (value) {
-                ref.read(expectControllerProvider.notifier)
-                    .setExperienceYears(int.tryParse(value ?? ''));
-              },
-              borderRadius: 10.0,
             ).paddingOnly(bottom: 14.0),
             Text(
               L.more.expectAskSkill,
               style: ref.theme.bigTextStyle.weight(FontWeight.bold),
             ).paddingOnly(bottom: 10),
-            TextFieldView.outsideBorder(
-              initialText: expectInformationState.maybeWhen(
-                data: (data) => data.skillDescription,
-                orElse: () => '',
-              ),
+            CustomTextFieldView(
+              initialText: expectState.skillDescription ?? '',
               textFieldDidChange: (value) {
                 ref.read(expectControllerProvider.notifier).setSkillDescription(value);
               },
-              borderRadius: 10.0,
+              decoration: InputDecoration(
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: AppColors.black4Color,
+                    width: 2.0,
+                  ),
+                ),
+              ),
+              maxLines: 5,
             ).paddingOnly(bottom: 6.0),
             const Divider(),
             Container(
@@ -88,25 +114,25 @@ class _ExpectPageState extends ConsumerState<ExpectPage> {
                   ListTile(
                     leading: const Icon(Icons.work_outline),
                     title: Text(L.more.expectListTileExperiences),
-                    onTap: () {},
+                    onTap: () {context.router.push(const ExpectExperiencesRoute());},
                   ),
                   const Divider(),
                   ListTile(
                     leading: const Icon(Icons.build_outlined),
                     title: Text(L.more.expectListTileSkills),
-                    onTap: () {},
+                    onTap: () {context.router.push(const ExpectSkillsRoute());},
                   ),
                   const Divider(),
                   ListTile(
                     leading: const Icon(Icons.school_outlined),
                     title: Text(L.more.expectListTileCertificates),
-                    onTap: () {},
+                    onTap: () {context.router.push(const ExpectCertificatesRoute());},
                   ),
                   const Divider(),
                   ListTile(
                     leading: const Icon(Icons.attach_money_outlined),
                     title: Text(L.more.expectListTilePrice),
-                    onTap: () {},
+                    onTap: () {context.router.push(const ExpectPriceServiceRoute());},
                   ),
                   const Divider(),
                 ],
@@ -116,5 +142,25 @@ class _ExpectPageState extends ConsumerState<ExpectPage> {
         ).paddingSymmetric(horizontal: 14.0),
       ),
     );
+  }
+
+  void _showListCheckBoxLanguage(ExpectController controller) async {
+    final languages = (await controller.getLanguages()).toSet();
+
+    InteractiveSheet.fixedContent(
+      LanguagePickerView(
+        languages: languages,
+        languagesLocal: languagesLocal,
+        onSelectionChanged: (newSelectedLanguages) {
+          setState(() {
+            languagesLocal = newSelectedLanguages;
+            controller.setLanguagesLocal(languagesLocal);
+            controller.setLanguages(newSelectedLanguages.map((lang) => lang.id).cast<int>().toList());
+          });
+        },
+      ),
+      isFloating: false,
+      canShowIndicator: false,
+    ).show();
   }
 }

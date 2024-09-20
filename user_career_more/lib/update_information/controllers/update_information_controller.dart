@@ -46,7 +46,7 @@ class UpdateInformationController
       username: Storage.get(POSStorageKey.infoUserNameKey),
       avatar: Storage.get(POSStorageKey.infoAvatarPath),
       phone: Storage.get(POSStorageKey.infoPhoneKey),
-      address: Storage.get(POSStorageKey.infoAdressKey),
+      address: Storage.get(POSStorageKey.infoAddressKey),
     );
     return UpdateInfoControllerState(
       updateInformationRequest: updateInformationRequest,

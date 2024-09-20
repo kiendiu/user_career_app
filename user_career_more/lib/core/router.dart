@@ -11,6 +11,10 @@ class MoreRouterModule extends $MoreRouterModule {
     AutoRoute(page: ExpectRoute.page),
     AutoRoute(page: ServiceRoute.page),
     AutoRoute(page: WalletRoute.page),
-    AutoRoute(page: ChangePasswordRoute.page)
+    AutoRoute(page: ChangePasswordRoute.page),
+    AutoRoute(page: ExpectExperiencesRoute.page),
+    AutoRoute(page: ExpectSkillsRoute.page),
+    AutoRoute(page: ExpectCertificatesRoute.page),
+    AutoRoute(page: ExpectPriceServiceRoute.page)
   ];
 }

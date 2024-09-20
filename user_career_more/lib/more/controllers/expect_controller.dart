@@ -22,14 +22,26 @@ class ExpectInformationController extends AutoDisposeAsyncNotifier<ExpectInforma
   }
 }
 
-final expectInformationControllerProvider = AsyncNotifierProvider.autoDispose<ExpectInformationController, ExpectInformationResponse>(() {
+final expectInformationControllerProvider =
+AsyncNotifierProvider.autoDispose<ExpectInformationController, ExpectInformationResponse>(() {
   return ExpectInformationController();
 });
 
 class ExpectController extends AutoDisposeNotifier<ExpectInformationRequest> with AlertMixin{
   @override
   ExpectInformationRequest build() {
-    return ExpectInformationRequest();
+    final expectInformation = ref.watch(expectInformationControllerProvider);
+    return expectInformation.maybeWhen(
+      data: (data) {
+        return ExpectInformationRequest(
+          experienceYears: data.experienceYears,
+          skillDescription: data.skillDescription,
+          languages: data.languages!.map((e) => e.id).cast<int>().toList(),
+          languagesLocal: data.languages?.toSet(),
+        );
+      },
+      orElse: () => ExpectInformationRequest(),
+    );
   }
 
   Future<bool> updateExpectInformation() async {
@@ -62,6 +74,10 @@ class ExpectController extends AutoDisposeNotifier<ExpectInformationRequest> wit
 
   void setLanguages(List<int>? languages){
     state = state.copyWith(languages: languages);
+  }
+
+  void setLanguagesLocal(Set<LanguageModel>? languagesLocal){
+    state = state.copyWith(languagesLocal: languagesLocal);
   }
 }
 

@@ -11,7 +11,7 @@ enum POSStorageKey implements StorageKey {
   infoFullNameKey,
   infoAvatarPath,
   infoPhoneKey,
-  infoAdressKey;
+  infoAddressKey;
 
   @override
   String get rawKey => name;

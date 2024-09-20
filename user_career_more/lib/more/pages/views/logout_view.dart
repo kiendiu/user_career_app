@@ -72,7 +72,7 @@ class _LogoutPopupState extends ConsumerState<LogoutView> with AlertMixin {
                 Storage.removeOn(POSStorageKey.infoUserNameKey);
                 Storage.removeOn(POSStorageKey.infoEmailKey);
                 Storage.removeOn(POSStorageKey.infoPhoneKey);
-                Storage.removeOn(POSStorageKey.infoAdressKey);
+                Storage.removeOn(POSStorageKey.infoAddressKey);
                 AuthManager.logout();
                 hideLoading();
                 NotificationCenter()
