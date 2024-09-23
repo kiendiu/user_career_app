@@ -11,6 +11,8 @@ abstract interface class IExpectRepository {
   ResultFuture<bool> updateExpectInformation(ExpectInformationRequest request);
 
   ResultFuture<ExpectInformationResponse> getExpectInformation();
+
+
 }
 
 class ExpectRepository extends MoreBaseRepository implements IExpectRepository {
@@ -39,6 +41,7 @@ class ExpectRepository extends MoreBaseRepository implements IExpectRepository {
       decoder: ExpectInformationResponse(),
     ).get();
   }
+
 }
 
 final expectRepositoryProvider = Provider.autoDispose<IExpectRepository>((ref) {

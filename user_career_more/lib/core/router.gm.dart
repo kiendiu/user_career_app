@@ -8,107 +8,136 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i13;
+import 'package:auto_route/auto_route.dart' as _i15;
 import 'package:user_career_more/change_password/pages/change_password_page.dart'
-    as _i2;
-import 'package:user_career_more/core/tab_router.dart' as _i9;
-import 'package:user_career_more/more/pages/calendar_page.dart' as _i1;
-import 'package:user_career_more/more/pages/expect_certificates_page.dart'
     as _i3;
-import 'package:user_career_more/more/pages/expect_experiences_page.dart'
+import 'package:user_career_more/core/tab_router.dart' as _i11;
+import 'package:user_career_more/filter_goods/pages/filter_goods_page.dart'
+    as _i9;
+import 'package:user_career_more/more/pages/add_experience_page.dart' as _i1;
+import 'package:user_career_more/more/pages/calendar_page.dart' as _i2;
+import 'package:user_career_more/more/pages/expect_certificates_page.dart'
     as _i4;
-import 'package:user_career_more/more/pages/expect_page.dart' as _i5;
+import 'package:user_career_more/more/pages/expect_experiences_page.dart'
+    as _i5;
+import 'package:user_career_more/more/pages/expect_page.dart' as _i6;
 import 'package:user_career_more/more/pages/expect_price_service_page.dart'
-    as _i6;
-import 'package:user_career_more/more/pages/expect_skills_page.dart' as _i7;
-import 'package:user_career_more/more/pages/more_page.dart' as _i8;
-import 'package:user_career_more/more/pages/service_page.dart' as _i10;
-import 'package:user_career_more/more/pages/wallet_page.dart' as _i12;
+    as _i7;
+import 'package:user_career_more/more/pages/expect_skills_page.dart' as _i8;
+import 'package:user_career_more/more/pages/more_page.dart' as _i10;
+import 'package:user_career_more/more/pages/service_page.dart' as _i12;
+import 'package:user_career_more/more/pages/wallet_page.dart' as _i14;
 import 'package:user_career_more/update_information/pages/update_information_page.dart'
-    as _i11;
+    as _i13;
 
-abstract class $MoreRouterModule extends _i13.AutoRouterModule {
+abstract class $MoreRouterModule extends _i15.AutoRouterModule {
   @override
-  final Map<String, _i13.PageFactory> pagesMap = {
-    CalendarRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+  final Map<String, _i15.PageFactory> pagesMap = {
+    AddExperienceRoute.name: (routeData) {
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.CalendarPage(),
+        child: const _i1.AddExperiencePage(),
+      );
+    },
+    CalendarRoute.name: (routeData) {
+      return _i15.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i2.CalendarPage(),
       );
     },
     ChangePasswordRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.ChangePasswordPage(),
+        child: const _i3.ChangePasswordPage(),
       );
     },
     ExpectCertificatesRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i3.ExpectCertificatesPage(),
+        child: const _i4.ExpectCertificatesPage(),
       );
     },
     ExpectExperiencesRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.ExpectExperiencesPage(),
+        child: const _i5.ExpectExperiencesPage(),
       );
     },
     ExpectRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i5.ExpectPage(),
+        child: const _i6.ExpectPage(),
       );
     },
     ExpectPriceServiceRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i6.ExpectPriceServicePage(),
+        child: const _i7.ExpectPriceServicePage(),
       );
     },
     ExpectSkillsRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.ExpectSkillsPage(),
+        child: const _i8.ExpectSkillsPage(),
+      );
+    },
+    FilterGoodsRoute.name: (routeData) {
+      return _i15.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i9.FilterGoodsPage(),
       );
     },
     MoreRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.MorePage(),
+        child: const _i10.MorePage(),
       );
     },
     MoreTabRouter.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.MoreTabRouter(),
+        child: const _i11.MoreTabRouter(),
       );
     },
     ServiceRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i10.ServicePage(),
+        child: const _i12.ServicePage(),
       );
     },
     UpdateInformationRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i11.UpdateInformationPage(),
+        child: const _i13.UpdateInformationPage(),
       );
     },
     WalletRoute.name: (routeData) {
-      return _i13.AutoRoutePage<dynamic>(
+      return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i12.WalletPage(),
+        child: const _i14.WalletPage(),
       );
     },
   };
 }
 
 /// generated route for
-/// [_i1.CalendarPage]
-class CalendarRoute extends _i13.PageRouteInfo<void> {
-  const CalendarRoute({List<_i13.PageRouteInfo>? children})
+/// [_i1.AddExperiencePage]
+class AddExperienceRoute extends _i15.PageRouteInfo<void> {
+  const AddExperienceRoute({List<_i15.PageRouteInfo>? children})
+      : super(
+          AddExperienceRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AddExperienceRoute';
+
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i2.CalendarPage]
+class CalendarRoute extends _i15.PageRouteInfo<void> {
+  const CalendarRoute({List<_i15.PageRouteInfo>? children})
       : super(
           CalendarRoute.name,
           initialChildren: children,
@@ -116,13 +145,13 @@ class CalendarRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'CalendarRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i2.ChangePasswordPage]
-class ChangePasswordRoute extends _i13.PageRouteInfo<void> {
-  const ChangePasswordRoute({List<_i13.PageRouteInfo>? children})
+/// [_i3.ChangePasswordPage]
+class ChangePasswordRoute extends _i15.PageRouteInfo<void> {
+  const ChangePasswordRoute({List<_i15.PageRouteInfo>? children})
       : super(
           ChangePasswordRoute.name,
           initialChildren: children,
@@ -130,13 +159,13 @@ class ChangePasswordRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'ChangePasswordRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i3.ExpectCertificatesPage]
-class ExpectCertificatesRoute extends _i13.PageRouteInfo<void> {
-  const ExpectCertificatesRoute({List<_i13.PageRouteInfo>? children})
+/// [_i4.ExpectCertificatesPage]
+class ExpectCertificatesRoute extends _i15.PageRouteInfo<void> {
+  const ExpectCertificatesRoute({List<_i15.PageRouteInfo>? children})
       : super(
           ExpectCertificatesRoute.name,
           initialChildren: children,
@@ -144,13 +173,13 @@ class ExpectCertificatesRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'ExpectCertificatesRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i4.ExpectExperiencesPage]
-class ExpectExperiencesRoute extends _i13.PageRouteInfo<void> {
-  const ExpectExperiencesRoute({List<_i13.PageRouteInfo>? children})
+/// [_i5.ExpectExperiencesPage]
+class ExpectExperiencesRoute extends _i15.PageRouteInfo<void> {
+  const ExpectExperiencesRoute({List<_i15.PageRouteInfo>? children})
       : super(
           ExpectExperiencesRoute.name,
           initialChildren: children,
@@ -158,13 +187,13 @@ class ExpectExperiencesRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'ExpectExperiencesRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i5.ExpectPage]
-class ExpectRoute extends _i13.PageRouteInfo<void> {
-  const ExpectRoute({List<_i13.PageRouteInfo>? children})
+/// [_i6.ExpectPage]
+class ExpectRoute extends _i15.PageRouteInfo<void> {
+  const ExpectRoute({List<_i15.PageRouteInfo>? children})
       : super(
           ExpectRoute.name,
           initialChildren: children,
@@ -172,13 +201,13 @@ class ExpectRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'ExpectRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i6.ExpectPriceServicePage]
-class ExpectPriceServiceRoute extends _i13.PageRouteInfo<void> {
-  const ExpectPriceServiceRoute({List<_i13.PageRouteInfo>? children})
+/// [_i7.ExpectPriceServicePage]
+class ExpectPriceServiceRoute extends _i15.PageRouteInfo<void> {
+  const ExpectPriceServiceRoute({List<_i15.PageRouteInfo>? children})
       : super(
           ExpectPriceServiceRoute.name,
           initialChildren: children,
@@ -186,13 +215,13 @@ class ExpectPriceServiceRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'ExpectPriceServiceRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i7.ExpectSkillsPage]
-class ExpectSkillsRoute extends _i13.PageRouteInfo<void> {
-  const ExpectSkillsRoute({List<_i13.PageRouteInfo>? children})
+/// [_i8.ExpectSkillsPage]
+class ExpectSkillsRoute extends _i15.PageRouteInfo<void> {
+  const ExpectSkillsRoute({List<_i15.PageRouteInfo>? children})
       : super(
           ExpectSkillsRoute.name,
           initialChildren: children,
@@ -200,13 +229,27 @@ class ExpectSkillsRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'ExpectSkillsRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i8.MorePage]
-class MoreRoute extends _i13.PageRouteInfo<void> {
-  const MoreRoute({List<_i13.PageRouteInfo>? children})
+/// [_i9.FilterGoodsPage]
+class FilterGoodsRoute extends _i15.PageRouteInfo<void> {
+  const FilterGoodsRoute({List<_i15.PageRouteInfo>? children})
+      : super(
+          FilterGoodsRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'FilterGoodsRoute';
+
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i10.MorePage]
+class MoreRoute extends _i15.PageRouteInfo<void> {
+  const MoreRoute({List<_i15.PageRouteInfo>? children})
       : super(
           MoreRoute.name,
           initialChildren: children,
@@ -214,13 +257,13 @@ class MoreRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'MoreRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i9.MoreTabRouter]
-class MoreTabRouter extends _i13.PageRouteInfo<void> {
-  const MoreTabRouter({List<_i13.PageRouteInfo>? children})
+/// [_i11.MoreTabRouter]
+class MoreTabRouter extends _i15.PageRouteInfo<void> {
+  const MoreTabRouter({List<_i15.PageRouteInfo>? children})
       : super(
           MoreTabRouter.name,
           initialChildren: children,
@@ -228,13 +271,13 @@ class MoreTabRouter extends _i13.PageRouteInfo<void> {
 
   static const String name = 'MoreTabRouter';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i10.ServicePage]
-class ServiceRoute extends _i13.PageRouteInfo<void> {
-  const ServiceRoute({List<_i13.PageRouteInfo>? children})
+/// [_i12.ServicePage]
+class ServiceRoute extends _i15.PageRouteInfo<void> {
+  const ServiceRoute({List<_i15.PageRouteInfo>? children})
       : super(
           ServiceRoute.name,
           initialChildren: children,
@@ -242,13 +285,13 @@ class ServiceRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'ServiceRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i11.UpdateInformationPage]
-class UpdateInformationRoute extends _i13.PageRouteInfo<void> {
-  const UpdateInformationRoute({List<_i13.PageRouteInfo>? children})
+/// [_i13.UpdateInformationPage]
+class UpdateInformationRoute extends _i15.PageRouteInfo<void> {
+  const UpdateInformationRoute({List<_i15.PageRouteInfo>? children})
       : super(
           UpdateInformationRoute.name,
           initialChildren: children,
@@ -256,13 +299,13 @@ class UpdateInformationRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'UpdateInformationRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i12.WalletPage]
-class WalletRoute extends _i13.PageRouteInfo<void> {
-  const WalletRoute({List<_i13.PageRouteInfo>? children})
+/// [_i14.WalletPage]
+class WalletRoute extends _i15.PageRouteInfo<void> {
+  const WalletRoute({List<_i15.PageRouteInfo>? children})
       : super(
           WalletRoute.name,
           initialChildren: children,
@@ -270,5 +313,5 @@ class WalletRoute extends _i13.PageRouteInfo<void> {
 
   static const String name = 'WalletRoute';
 
-  static const _i13.PageInfo<void> page = _i13.PageInfo<void>(name);
+  static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }

@@ -1,20 +1,24 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_more/core/router.gm.dart';
+import 'package:user_career_more/more/pages/add_experience_page.dart';
 
 @AutoRouterConfig.module()
 class MoreRouterModule extends $MoreRouterModule {
 
   static List<AutoRoute> routes = [
     AutoRoute(page: MoreRoute.page),
-    AutoRoute(page: CalendarRoute.page),
-    AutoRoute(page: UpdateInformationRoute.page),
-    AutoRoute(page: ExpectRoute.page),
-    AutoRoute(page: ServiceRoute.page),
-    AutoRoute(page: WalletRoute.page),
-    AutoRoute(page: ChangePasswordRoute.page),
-    AutoRoute(page: ExpectExperiencesRoute.page),
-    AutoRoute(page: ExpectSkillsRoute.page),
-    AutoRoute(page: ExpectCertificatesRoute.page),
-    AutoRoute(page: ExpectPriceServiceRoute.page)
+    PresentedRoute(page: CalendarRoute.page),
+    PresentedRoute(page: UpdateInformationRoute.page),
+    PresentedRoute(page: ExpectRoute.page),
+    PresentedRoute(page: ServiceRoute.page),
+    PresentedRoute(page: WalletRoute.page),
+    PresentedRoute(page: ChangePasswordRoute.page),
+    PresentedRoute(page: ExpectExperiencesRoute.page),
+    PresentedRoute(page: ExpectSkillsRoute.page),
+    PresentedRoute(page: ExpectCertificatesRoute.page),
+    PresentedRoute(page: ExpectPriceServiceRoute.page),
+    PresentedRoute(page: FilterGoodsRoute.page),
+    PresentedRoute(page: AddExperienceRoute.page)
   ];
 }

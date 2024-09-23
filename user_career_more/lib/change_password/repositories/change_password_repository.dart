@@ -14,7 +14,7 @@ class ChangePasswordRepository extends MoreBaseRepository implements IChangePass
         path: "/users/changePassword",
         decoder: const EmptyResponse(),
         body: request.encode(),
-    ).put().map(onValue: (value) => true );
+    ).post().map(onValue: (value) => true );
   }
 }
 
