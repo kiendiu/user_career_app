@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/common/career_storage_key.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_more/common/models/get_information_response.dart';
+import 'package:user_career_more/more/models/get_information_response.dart';
 import 'package:user_career_more/more/controllers/more_controller.dart';
 import 'package:user_career_more/update_information/models/update_information_request.dart';
 import 'package:user_career_more/update_information/models/update_media_request.dart';

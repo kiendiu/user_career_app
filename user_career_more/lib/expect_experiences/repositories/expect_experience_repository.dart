@@ -1,8 +1,8 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_more/core/repository.dart';
-import 'package:user_career_more/more/models/request/expect_experience_request.dart';
-import 'package:user_career_more/more/models/response/expect_experience_response.dart';
+import 'package:user_career_more/expect_experiences/models/expect_experience_request.dart';
+import 'package:user_career_more/expect_experiences/models/expect_experience_response.dart';
 
 abstract interface class IExpectExperienceRepository {
   ResultFuture<BaseListResponse<ExpectExperienceResponse>> getExpectExperiences(BaseParams params);

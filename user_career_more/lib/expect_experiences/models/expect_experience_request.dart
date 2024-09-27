@@ -5,6 +5,7 @@ class ExpectExperienceRequest implements Encodable{
   int? userId;
   String? company;
   int? categoryId;
+  String? nameCategory;
   String? startTime;
   String? endTime;
   bool? currentlyWorking;
@@ -15,6 +16,7 @@ class ExpectExperienceRequest implements Encodable{
    this.userId,
    this.company,
    this.categoryId,
+   this.nameCategory,
    this.startTime,
    this.endTime,
    this.currentlyWorking,
@@ -40,6 +42,7 @@ class ExpectExperienceRequest implements Encodable{
     int? userId,
     String? company,
     int? categoryId,
+    String? nameCategory,
     String? startTime,
     String? endTime,
     bool? currentlyWorking,
@@ -50,6 +53,7 @@ class ExpectExperienceRequest implements Encodable{
       userId: userId ?? this.userId,
       company: company ?? this.company,
       categoryId: categoryId ?? this.categoryId,
+      nameCategory: nameCategory ?? this.nameCategory,
       startTime: startTime ?? this.startTime,
       endTime: endTime ?? this.endTime,
       currentlyWorking: currentlyWorking ?? this.currentlyWorking,
@@ -57,4 +61,22 @@ class ExpectExperienceRequest implements Encodable{
       position: position ?? this.position,
     );
   }
+
+  bool get isCurrentlyWorking => currentlyWorking ?? false;
+
+  bool get isEmptyCompany => company == null;
+
+  bool get isEmptyCategory => categoryId == null;
+
+  bool get isEmptyPosition => position == null;
+
+  bool get isEmptyStartTime => startTime == null;
+
+  bool get isEmptyEndTime => endTime == null;
+
+  bool get canAddExperience => !isEmptyCompany
+      && !isEmptyCategory
+      && !isEmptyPosition
+      && !isEmptyStartTime
+      && !isEmptyEndTime;
 }

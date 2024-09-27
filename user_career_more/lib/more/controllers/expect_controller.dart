@@ -79,6 +79,8 @@ class ExpectController extends AutoDisposeNotifier<ExpectInformationRequest> wit
   void setLanguagesLocal(Set<LanguageModel>? languagesLocal){
     state = state.copyWith(languagesLocal: languagesLocal);
   }
+
+
 }
 
 final expectControllerProvider = NotifierProvider.autoDispose<ExpectController, ExpectInformationRequest>(() {

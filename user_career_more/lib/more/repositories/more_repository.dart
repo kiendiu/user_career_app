@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_more/common/models/get_information_request.dart';
+import 'package:user_career_more/more/models/get_information_request.dart';
 import 'package:user_career_more/core/repository.dart';
-import 'package:user_career_more/common/models/get_information_response.dart';
+import 'package:user_career_more/more/models/get_information_response.dart';
 
 abstract interface class IMoreRepository {
   ResultFuture<GetInformationResponse> getUserInfo();

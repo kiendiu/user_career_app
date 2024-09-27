@@ -3,25 +3,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_core/views/common_appbar.dart';
-import 'package:user_career_more/filter_goods/controllers/filter_goods_controller.dart';
-import 'package:user_career_more/filter_goods/pages/views/expansion_tile_category.dart';
+import 'package:user_career_more/expect_experiences/controllers/filter_categories_controller.dart';
+import 'package:user_career_more/expect_experiences/pages/views/expansion_tile_category.dart';
+import 'package:user_career_more/expect_experiences/controllers/expect_experiences_controller.dart';
 
 @RoutePage()
-class FilterGoodsPage extends ConsumerStatefulWidget {
-  const FilterGoodsPage({super.key});
+class FilterCategoriesPage extends ConsumerStatefulWidget {
+  const FilterCategoriesPage({super.key});
 
   @override
-  ConsumerState<FilterGoodsPage> createState() => _FilterGoodsPageState();
+  ConsumerState<FilterCategoriesPage> createState() => _FilterCategoriesPageState();
 }
 
-class _FilterGoodsPageState extends ConsumerState<FilterGoodsPage> {
+class _FilterCategoriesPageState extends ConsumerState<FilterCategoriesPage> {
   @override
   Widget build(BuildContext context) {
-    final filterState = ref.watch(filterGoodsControllerProvider);
+    final filterState = ref.watch(filterCategoriesControllerProvider);
     return BaseScaffold(
       backgroundColor: AppColors.white3Color,
       onRefresh: () async {
-        ref.invalidate(filterGoodsControllerProvider);
+        ref.invalidate(filterCategoriesControllerProvider);
       },
       customAppBar: CommonAppBar(
         titleSpacing: 0.0,
@@ -30,7 +31,7 @@ class _FilterGoodsPageState extends ConsumerState<FilterGoodsPage> {
           icon: const Icon(Icons.close_rounded, color: AppColors.black1Color),
           color: AppColors.black1Color,
           onPressed: () {
-            context.router.maybePop();
+            context.maybePop();
           },
         ),
       ),
@@ -64,16 +65,16 @@ class _FilterGoodsPageState extends ConsumerState<FilterGoodsPage> {
   }
 
   Widget _buildButtonApply() {
-    // final goodsController = ref.watch(goodsControllerProvider.notifier);
-    // final filterState = ref.watch(filterGoodsControllerProvider);
+    final expectExperienceController = ref.watch(expectExperiencesControllerProvider.notifier);
+    final filterState = ref.watch(filterCategoriesControllerProvider);
     return Container(
       color: AppColors.white1Color,
       child: AppButton(
         isEnabled: true,
         title: L.more.bottomSheetCalanderButtonApply,
         onPressed: () {
-          // goodsController.updateCategory(
-          //     filterState.value?.parentId, filterState.value?.categoryName);
+          expectExperienceController.setExpectCategory(
+              filterState.value?.categoryId, filterState.value?.categoryName);
           context.router.maybePop();
         },
       ).paddingSymmetric(horizontal: 16).paddingOnly(top: 12, bottom: 40),

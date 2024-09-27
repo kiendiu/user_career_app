@@ -52,5 +52,16 @@
   "infor_text_field_placeholder_email": "Tài khoản Email",
   "infor_text_field_placeholder_address": "Địa chỉ",
   "infor_text_button": "Cập nhật thông tin",
-  "infor_message_success": "Cập nhật thành công!"
+  "infor_message_success": "Cập nhật thành công!",
+
+  "add_experience_title": "Thêm kinh nghiệm",
+  "add_experience_text_button": "Lưu",
+  "add_experience_text_field_company": "Công ty",
+  "add_experience_text_field_position": "Chức vụ",
+  "add_experience_text_field_start_date": "Ngày bắt đầu",
+  "add_experience_text_field_end_date": "Ngày kết thúc",
+  "add_experience_text_field_description": "Mô tả công việc",
+  "add_experience_text_field_category": "Chuyên ngành",
+  "add_experience_ask_work_here": "Bạn có đang làm việc tại đây không?"
+
 }

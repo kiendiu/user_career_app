@@ -9,26 +9,28 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i15;
+import 'package:user_career_more/calendar/pages/calendar_page.dart' as _i2;
 import 'package:user_career_more/change_password/pages/change_password_page.dart'
     as _i3;
 import 'package:user_career_more/core/tab_router.dart' as _i11;
-import 'package:user_career_more/filter_goods/pages/filter_goods_page.dart'
-    as _i9;
-import 'package:user_career_more/more/pages/add_experience_page.dart' as _i1;
-import 'package:user_career_more/more/pages/calendar_page.dart' as _i2;
-import 'package:user_career_more/more/pages/expect_certificates_page.dart'
+import 'package:user_career_more/expect_certificates/pages/expect_certificates_page.dart'
     as _i4;
-import 'package:user_career_more/more/pages/expect_experiences_page.dart'
+import 'package:user_career_more/expect_experiences/pages/add_experience_page.dart'
+    as _i1;
+import 'package:user_career_more/expect_experiences/pages/expect_experiences_page.dart'
     as _i5;
-import 'package:user_career_more/more/pages/expect_page.dart' as _i6;
-import 'package:user_career_more/more/pages/expect_price_service_page.dart'
+import 'package:user_career_more/expect_experiences/pages/filter_categories_page.dart'
+    as _i9;
+import 'package:user_career_more/expect_price_service/pages/expect_price_service_page.dart'
     as _i7;
-import 'package:user_career_more/more/pages/expect_skills_page.dart' as _i8;
+import 'package:user_career_more/expect_skills/pages/expect_skills_page.dart'
+    as _i8;
+import 'package:user_career_more/more/pages/expect_page.dart' as _i6;
 import 'package:user_career_more/more/pages/more_page.dart' as _i10;
-import 'package:user_career_more/more/pages/service_page.dart' as _i12;
-import 'package:user_career_more/more/pages/wallet_page.dart' as _i14;
+import 'package:user_career_more/service/pages/service_page.dart' as _i12;
 import 'package:user_career_more/update_information/pages/update_information_page.dart'
     as _i13;
+import 'package:user_career_more/wallet/pages/wallet_page.dart' as _i14;
 
 abstract class $MoreRouterModule extends _i15.AutoRouterModule {
   @override
@@ -81,10 +83,10 @@ abstract class $MoreRouterModule extends _i15.AutoRouterModule {
         child: const _i8.ExpectSkillsPage(),
       );
     },
-    FilterGoodsRoute.name: (routeData) {
+    FilterCategoriesRoute.name: (routeData) {
       return _i15.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.FilterGoodsPage(),
+        child: const _i9.FilterCategoriesPage(),
       );
     },
     MoreRoute.name: (routeData) {
@@ -233,15 +235,15 @@ class ExpectSkillsRoute extends _i15.PageRouteInfo<void> {
 }
 
 /// generated route for
-/// [_i9.FilterGoodsPage]
-class FilterGoodsRoute extends _i15.PageRouteInfo<void> {
-  const FilterGoodsRoute({List<_i15.PageRouteInfo>? children})
+/// [_i9.FilterCategoriesPage]
+class FilterCategoriesRoute extends _i15.PageRouteInfo<void> {
+  const FilterCategoriesRoute({List<_i15.PageRouteInfo>? children})
       : super(
-          FilterGoodsRoute.name,
+          FilterCategoriesRoute.name,
           initialChildren: children,
         );
 
-  static const String name = 'FilterGoodsRoute';
+  static const String name = 'FilterCategoriesRoute';
 
   static const _i15.PageInfo<void> page = _i15.PageInfo<void>(name);
 }

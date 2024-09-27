@@ -1,7 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_more/core/router.gm.dart';
-import 'package:user_career_more/more/pages/add_experience_page.dart';
 
 @AutoRouterConfig.module()
 class MoreRouterModule extends $MoreRouterModule {
@@ -18,7 +17,7 @@ class MoreRouterModule extends $MoreRouterModule {
     PresentedRoute(page: ExpectSkillsRoute.page),
     PresentedRoute(page: ExpectCertificatesRoute.page),
     PresentedRoute(page: ExpectPriceServiceRoute.page),
-    PresentedRoute(page: FilterGoodsRoute.page),
+    PresentedRoute(page: FilterCategoriesRoute.page),
     PresentedRoute(page: AddExperienceRoute.page)
   ];
 }

@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 100
+/// Strings: 109
 ///
-/// Built on 2024-09-19 at 03:56 UTC
+/// Built on 2024-09-27 at 01:16 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -272,6 +272,15 @@ class _LocalizationStringsMoreVi {
 	String get inforTextFieldPlaceholderAddress => 'Địa chỉ';
 	String get inforTextButton => 'Cập nhật thông tin';
 	String get inforMessageSuccess => 'Cập nhật thành công!';
+	String get addExperienceTitle => 'Thêm kinh nghiệm';
+	String get addExperienceTextButton => 'Lưu';
+	String get addExperienceTextFieldCompany => 'Công ty';
+	String get addExperienceTextFieldPosition => 'Chức vụ';
+	String get addExperienceTextFieldStartDate => 'Ngày bắt đầu';
+	String get addExperienceTextFieldEndDate => 'Ngày kết thúc';
+	String get addExperienceTextFieldDescription => 'Mô tả công việc';
+	String get addExperienceTextFieldCategory => 'Chuyên ngành';
+	String get addExperienceAskWorkHere => 'Bạn có đang làm việc tại đây không?';
 }
 
 // Path: common.tabBar
@@ -405,6 +414,15 @@ extension on Translations {
 			case 'more.inforTextFieldPlaceholderAddress': return 'Địa chỉ';
 			case 'more.inforTextButton': return 'Cập nhật thông tin';
 			case 'more.inforMessageSuccess': return 'Cập nhật thành công!';
+			case 'more.addExperienceTitle': return 'Thêm kinh nghiệm';
+			case 'more.addExperienceTextButton': return 'Lưu';
+			case 'more.addExperienceTextFieldCompany': return 'Công ty';
+			case 'more.addExperienceTextFieldPosition': return 'Chức vụ';
+			case 'more.addExperienceTextFieldStartDate': return 'Ngày bắt đầu';
+			case 'more.addExperienceTextFieldEndDate': return 'Ngày kết thúc';
+			case 'more.addExperienceTextFieldDescription': return 'Mô tả công việc';
+			case 'more.addExperienceTextFieldCategory': return 'Chuyên ngành';
+			case 'more.addExperienceAskWorkHere': return 'Bạn có đang làm việc tại đây không?';
 			default: return null;
 		}
 	}

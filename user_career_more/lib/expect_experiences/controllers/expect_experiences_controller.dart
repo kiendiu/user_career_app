@@ -1,9 +1,9 @@
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_more/more/models/request/expect_experience_request.dart';
-import 'package:user_career_more/more/models/response/expect_experience_response.dart';
-import 'package:user_career_more/more/repositories/expect_experience_repository.dart';
+import 'package:user_career_more/expect_experiences/models/expect_experience_request.dart';
+import 'package:user_career_more/expect_experiences/models/expect_experience_response.dart';
+import 'package:user_career_more/expect_experiences/repositories/expect_experience_repository.dart';
 
 class ExpectExperiencesController extends AutoDisposeNotifier<ExpectExperienceRequest>
     with AlertMixin, MetadataUpdater{
@@ -26,10 +26,10 @@ class ExpectExperiencesController extends AutoDisposeNotifier<ExpectExperienceRe
     }
   }
 
-  Future<bool> createExpectExperiences(ExpectExperienceRequest request) async {
+  Future<bool> createExpectExperiences() async {
     final result = await ref
         .read(expectExperienceRepositoryProvider)
-        .addExpectExperience(request)
+        .addExpectExperience(state)
         .showErrorBy(this)
         .mapToValueOr(defaultValue: true)
         .asFuture();
@@ -46,10 +46,10 @@ class ExpectExperiencesController extends AutoDisposeNotifier<ExpectExperienceRe
     return result;
   }
 
-  Future<bool> deleteExpectExperiences(int id) async {
+  Future<bool> deleteExpectExperiences(int? id) async {
     final result = await ref
         .read(expectExperienceRepositoryProvider)
-        .deleteExpectExperience(id)
+        .deleteExpectExperience(id ?? 0)
         .showErrorBy(this)
         .mapToValueOr(defaultValue: true)
         .asFuture();
@@ -60,8 +60,8 @@ class ExpectExperiencesController extends AutoDisposeNotifier<ExpectExperienceRe
     state =  state.copyWith(company: value);
   }
 
-  void setExpectCategory(int? value) {
-    state =  state.copyWith(categoryId: value);
+  void setExpectCategory(int? value, String? text){
+    state =  state.copyWith(categoryId: value, nameCategory: text);
   }
 
   void setExpectPosition(String? value) {
@@ -82,6 +82,10 @@ class ExpectExperiencesController extends AutoDisposeNotifier<ExpectExperienceRe
 
   void setExpectCurrentlyWorking(bool? value) {
     state =  state.copyWith(currentlyWorking: value);
+  }
+
+  void clearExpectExperience() {
+    state = ExpectExperienceRequest();
   }
 }
 

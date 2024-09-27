@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_more/filter_goods/controllers/filter_goods_controller.dart';
-import 'package:user_career_more/filter_goods/models/filter_goods_response.dart';
+import 'package:user_career_more/expect_experiences/controllers/filter_categories_controller.dart';
+import 'package:user_career_more/expect_experiences/models/filter_categories_response.dart';
 
 import 'custom_expansion_tile.dart';
 
@@ -20,7 +20,7 @@ class _ExpansionTileCategoryState extends ConsumerState<ExpansionTileCategory> {
   @override
   Widget build(BuildContext context) {
     final filterGoodsController =
-        ref.watch(filterGoodsControllerProvider.notifier);
+        ref.watch(filterCategoriesControllerProvider.notifier);
     return Column(
       children: [
         _buildSelectedAll(),
@@ -43,7 +43,7 @@ class _ExpansionTileCategoryState extends ConsumerState<ExpansionTileCategory> {
       ),
       trailing: _buildRadioButton(
         ref
-                .watch(filterGoodsControllerProvider.notifier)
+                .watch(filterCategoriesControllerProvider.notifier)
                 .checkedSelectedCategory(optionAllCategoriesId)
             ? true
             : false,
@@ -52,17 +52,17 @@ class _ExpansionTileCategoryState extends ConsumerState<ExpansionTileCategory> {
       leading: const SizedBox.shrink(),
       onExpansionChanged: (value) {
         ref
-            .read(filterGoodsControllerProvider.notifier)
+            .read(filterCategoriesControllerProvider.notifier)
             .setCategory(optionAllCategoriesId, "Tất cả");
       },
     ).makeColor(AppColors.white1Color);
   }
 
-  Widget _buildCategory(FilterGoodsResponse category,
+  Widget _buildCategory(FilterCategoriesResponse category,
       {double leftPadding = 24, int currentLevel = 1}) {
     final filterGoodsController =
-        ref.watch(filterGoodsControllerProvider.notifier);
-    ref.watch(filterGoodsControllerProvider);
+        ref.watch(filterCategoriesControllerProvider.notifier);
+    ref.watch(filterCategoriesControllerProvider);
     List<Widget> buildSubCategories(int? parentId, int level) {
       return filterGoodsController
           .getSubCategories(parentId)
@@ -113,9 +113,9 @@ class _ExpansionTileCategoryState extends ConsumerState<ExpansionTileCategory> {
         : _buildNonSubCategory(category, currentLevel);
   }
 
-  Widget _buildNonSubCategory(FilterGoodsResponse category, int currentLevel) {
+  Widget _buildNonSubCategory(FilterCategoriesResponse category, int currentLevel) {
     final filterGoodsController =
-        ref.read(filterGoodsControllerProvider.notifier);
+        ref.read(filterCategoriesControllerProvider.notifier);
     return Column(
       children: [
         _builtBottomLine(currentLevel),
@@ -178,7 +178,7 @@ class _ExpansionTileCategoryState extends ConsumerState<ExpansionTileCategory> {
       ).makeColor(AppColors.white3Color).marginOnly(
           right: 24,
           left: ref
-                  .read(filterGoodsControllerProvider.notifier)
+                  .read(filterCategoriesControllerProvider.notifier)
                   .checkedLevelSubCategory(currentLevel, 2)
               ? 24
               : 0),

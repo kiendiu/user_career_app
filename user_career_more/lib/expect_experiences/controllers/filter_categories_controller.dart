@@ -1,26 +1,26 @@
 import 'dart:async';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_more/filter_goods/models/filter_goods_controller_state.dart';
-import 'package:user_career_more/filter_goods/models/filter_goods_response.dart';
-import 'package:user_career_more/filter_goods/repositories/filter_goods_repository.dart';
+import 'package:user_career_more/expect_experiences/models/filter_categories_controller_state.dart';
+import 'package:user_career_more/expect_experiences/models/filter_categories_response.dart';
+import 'package:user_career_more/expect_experiences/repositories/filter_categories_repository.dart';
 
-class FilterGoodsController
-    extends AutoDisposeAsyncNotifier<FilterGoodsControllerState>
+class FilterCategoriesController
+    extends AutoDisposeAsyncNotifier<FilterCategoriesControllerState>
     with AlertMixin, MetadataUpdater {
   @override
-  FutureOr<FilterGoodsControllerState> build() async {
+  FutureOr<FilterCategoriesControllerState> build() async {
     final result = await getProductCategories();
-    return FilterGoodsControllerState(
-        filterableGood: result,
+    return FilterCategoriesControllerState(
+        filterableCategory: result,
         categoryId: 0,
     );
   }
 
-  Future<List<FilterGoodsResponse>> getProductCategories() async {
+  Future<List<FilterCategoriesResponse>> getProductCategories() async {
     try {
       final result = await ref
-          .read(filterGoodsRepositoryProvider)
+          .read(filterCategoriesRepositoryProvider)
           .getFilterGoods()
           .updateMetadataBy(this)
           .showErrorBy(this)
@@ -31,22 +31,22 @@ class FilterGoodsController
     }
   }
 
-  List<FilterGoodsResponse> getSubCategories(int? parentId) {
-    return state.value?.filterableGood
+  List<FilterCategoriesResponse> getSubCategories(int? parentId) {
+    return state.value?.filterableCategory
             ?.where((category) => category.parentId == parentId)
             .toList() ??
         [];
   }
 
-  List<FilterGoodsResponse> getCategories() {
-    return state.value?.filterableGood
+  List<FilterCategoriesResponse> getCategories() {
+    return state.value?.filterableCategory
             ?.where((category) => category.parentId == null)
             .toList() ??
         [];
   }
 
   bool isSubCategory(int? subCategoryId) {
-    return state.value?.filterableGood
+    return state.value?.filterableCategory
             ?.where((category) => category.parentId == subCategoryId)
             .toList()
             .isNotEmpty ??
@@ -68,7 +68,7 @@ class FilterGoodsController
   int nextLevel(int currentLevel) => currentLevel + 1;
 }
 
-final filterGoodsControllerProvider = AsyncNotifierProvider.autoDispose<
-    FilterGoodsController, FilterGoodsControllerState>(() {
-  return FilterGoodsController();
+final filterCategoriesControllerProvider = AsyncNotifierProvider.autoDispose<
+    FilterCategoriesController, FilterCategoriesControllerState>(() {
+  return FilterCategoriesController();
 });

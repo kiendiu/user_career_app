@@ -1,11 +1,11 @@
-import 'package:auto_route/annotations.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_core/views/common_empty_list_view.dart';
-import 'package:user_career_more/more/controllers/expect_experiences_controller.dart';
-import 'package:user_career_more/more/models/response/expect_experience_response.dart';
+import 'package:user_career_more/core/router.gm.dart';
+import 'package:user_career_more/expect_experiences/controllers/expect_experiences_controller.dart';
+import 'package:user_career_more/expect_experiences/models/expect_experience_response.dart';
 
 @RoutePage()
 class ExpectExperiencesPage extends ConsumerStatefulWidget {
@@ -30,12 +30,12 @@ class _ExpectExperiencesPageState extends ConsumerState<ExpectExperiencesPage> {
       backgroundColor: AppColors.white3Color,
       customAppBar: AppBar(
         title: Text(
-            L.more.expectListTileExperiences,
-            style: const TextStyle(
-              color: AppColors.white1Color,
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
+          L.more.expectListTileExperiences,
+          style: const TextStyle(
+            color: AppColors.white1Color,
+            fontSize: 18,
+            fontWeight: FontWeight.w500,
+          ),
         ),
         centerTitle: true,
         backgroundColor: AppColors.mainColor,
@@ -43,7 +43,9 @@ class _ExpectExperiencesPageState extends ConsumerState<ExpectExperiencesPage> {
       ),
       fab: FloatingActionButton(
         backgroundColor: AppColors.mainColor,
-        onPressed: () {},
+        onPressed: () {
+          context.router.push(const AddExperienceRoute());
+        },
         child: const Icon(Icons.add, color: AppColors.white1Color,),
       ),
       body: ExtendedListView<ExpectExperienceResponse>(
@@ -91,12 +93,12 @@ class _ExpectExperiencesPageState extends ConsumerState<ExpectExperiencesPage> {
                         maxLines: 2,
                       ).paddingOnly(bottom: 5),
                       Text(
-                        experience.company ?? "",
-                        style: ref.theme.defaultTextStyle
+                          experience.company ?? "",
+                          style: ref.theme.defaultTextStyle
                       ).paddingOnly(bottom: 5),
                       Text(
-                        experience.takeWorkingTime ?? "",
-                        style: ref.theme.smallTextStyle.weight(FontWeight.w400)
+                          experience.takeWorkingTime ?? "",
+                          style: ref.theme.smallTextStyle.weight(FontWeight.w400)
                       ),
                     ],
                   ).paddingOnly(left: 10.0).expand(),
@@ -113,21 +115,29 @@ class _ExpectExperiencesPageState extends ConsumerState<ExpectExperiencesPage> {
                               ],
                             )
                         ),
-                        const CupertinoMenuItem(
-                            child: Row(
-                              children: [
-                                Icon(Icons.delete, color: Colors.red),
-                                SizedBox(width: 10),
-                                Text("Xóa"),
-                              ],
-                            )
+                        CupertinoMenuItem(
+                          onTap: () {
+                            ref.read(expectExperiencesControllerProvider.notifier)
+                                .deleteExpectExperiences(experience.experienceId).then((value) {
+                                  if(value == true){
+                                    _controller.refresh();
+                                  }
+                            });
+                          },
+                          child: const Row(
+                            children: [
+                              Icon(Icons.delete, color: Colors.red),
+                              SizedBox(width: 10),
+                              Text("Xóa"),
+                            ],
+                          )
                         ),
                       ];
                     },
                   ).paddingOnly(right: 10.0),
                 ],
               ).marginSymmetric(horizontal: 5, vertical: 5),
-            );
+            ).paddingOnly(bottom: 12);
           }
       ).paddingSymmetric(horizontal: 10.0)
           .paddingOnly(top: 10.0),
