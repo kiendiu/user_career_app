@@ -40,7 +40,7 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
       bottomView: Container(
         color: AppColors.white1Color,
         child: AppButton(
-          isEnabled: true,
+          isEnabled: expectExperienceState.canAddExperience,
           title: L.more.addExperienceTextButton,
           onPressed: () {
             expectExperienceController
@@ -50,6 +50,8 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
               {
                 context.showSuccess(L.more.inforMessageSuccess),
                 expectExperienceController.clearExpectExperience(),
+                NotificationCenter()
+                    .postNotification(RawStringNotificationName('reloadListExperience')),
                 context.maybePop(),
               }
             });
@@ -63,6 +65,8 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
               title: L.more.addExperienceTextFieldCompany,
               placeholder: L.more.addExperienceTextFieldCompany,
               isRequired: true,
+              validator: (_) => expectExperienceState.isEmptyCompany,
+              errorText: () => L.more.errorEmpty,
               padding: const EdgeInsets.only(left: 14, right: 14),
               textFieldDidChange: (text){
                 expectExperienceController.setExpectCompany(text);
@@ -76,6 +80,8 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
                 title: L.more.addExperienceTextFieldCategory,
                 placeholder: L.more.addExperienceTextFieldCategory,
                 isRequired: true,
+                validator: (_) => (expectExperienceState.isEmptyCategory),
+                errorText: () => L.more.errorEmpty,
                 initialText: expectExperienceState.nameCategory ?? "",
               ).paddingOnly(top: 10),
             ),
@@ -83,6 +89,8 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
               title: L.more.addExperienceTextFieldPosition,
               placeholder: L.more.addExperienceTextFieldPosition,
               isRequired: true,
+              validator: (_) => (expectExperienceState.isEmptyPosition),
+              errorText: () => L.more.errorEmpty,
               padding: const EdgeInsets.only(left: 14, right: 14),
               textFieldDidChange: (text){
                 expectExperienceController.setExpectPosition(text);
@@ -112,6 +120,8 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
               title: L.more.addExperienceTextFieldEndDate,
               isDisabled: expectExperienceState.currentlyWorking ?? false,
               padding: const EdgeInsets.only(left: 14, right: 14),
+              validator: (_) => (expectExperienceState.isValidateTimeRange),
+              errorText: () => "Thời gian không hợp lệ !",
               onConfirmSelectTime: (date) {
                 expectExperienceController.setExpectEndTime(date);
               }
@@ -122,6 +132,8 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
               placeholder: L.more.addExperienceTextFieldDescription,
               isRequired: true,
               lengthLimiter: CharacterLengthLimiter(length: 100),
+              validator: (_) => (expectExperienceState.isEmptyJobDescription),
+              errorText: () => L.more.errorEmpty,
               textFieldDidChange: (text){
                 expectExperienceController.setExpectDescription(text);
               },

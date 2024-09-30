@@ -25,6 +25,15 @@ class _ExpectExperiencesPageState extends ConsumerState<ExpectExperiencesPage> {
   );
 
   @override
+  void initState() {
+    super.initState();
+    NotificationCenter().addObserver(
+        RawStringNotificationName('reloadListExperience'), callback: (_) {
+      _controller.refresh();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BaseScaffold(
       backgroundColor: AppColors.white3Color,
@@ -106,14 +115,17 @@ class _ExpectExperiencesPageState extends ConsumerState<ExpectExperiencesPage> {
                     child: const Icon(Icons.menu),
                     itemsBuilder: (BuildContext context) {
                       return [
-                        const CupertinoMenuItem(
-                            child: Row(
-                              children: [
-                                Icon(Icons.edit),
-                                SizedBox(width: 10),
-                                Text("Chỉnh sửa"),
-                              ],
-                            )
+                        CupertinoMenuItem(
+                          onTap: (){
+                            context.pushRoute(EditExperienceRoute(expectExperienceResponse: experience));
+                          },
+                          child: const Row(
+                            children: [
+                              Icon(Icons.edit),
+                              SizedBox(width: 10),
+                              Text("Chỉnh sửa"),
+                            ],
+                          )
                         ),
                         CupertinoMenuItem(
                           onTap: () {

@@ -18,6 +18,8 @@ class MoreRouterModule extends $MoreRouterModule {
     PresentedRoute(page: ExpectCertificatesRoute.page),
     PresentedRoute(page: ExpectPriceServiceRoute.page),
     PresentedRoute(page: FilterCategoriesRoute.page),
-    PresentedRoute(page: AddExperienceRoute.page)
+    PresentedRoute(page: AddExperienceRoute.page),
+    PresentedRoute(page: EditExperienceRoute.page),
+    PresentedRoute(page: FilterEditCategoryRoute.page)
   ];
 }

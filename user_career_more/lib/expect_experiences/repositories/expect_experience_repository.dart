@@ -13,6 +13,8 @@ abstract interface class IExpectExperienceRepository {
 
   ResultFuture<bool> deleteExpectExperience(int experienceId);
 
+  // ResultFuture<ExpectExperienceResponse> getDetaiExpectExperience(int experience)
+
 }
 
 class ExpectExperienceRepository extends MoreBaseRepository implements IExpectExperienceRepository {
@@ -48,7 +50,7 @@ class ExpectExperienceRepository extends MoreBaseRepository implements IExpectEx
       path: "/expects/experience",
       body: request.encode(),
       decoder: const EmptyResponse(),
-    ).patch().map(onValue: (value) => true);
+    ).put().map(onValue: (value) => true);
   }
 
 }

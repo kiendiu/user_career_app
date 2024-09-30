@@ -3,6 +3,7 @@ import 'package:user_career_core/user_career_core.dart';
 
 class ExpectExperienceRequest implements Encodable{
   int? userId;
+  int? experienceId;
   String? company;
   int? categoryId;
   String? nameCategory;
@@ -22,12 +23,13 @@ class ExpectExperienceRequest implements Encodable{
    this.currentlyWorking,
    this.jobDescription,
    this.position,
+   this.experienceId,
   });
-
   @override
   Map<String, dynamic> encode() {
     return {
     "user_id": Storage.get(POSStorageKey.userId),
+    "experience_id": experienceId,
     "company": company,
     "category_id": categoryId,
     "start_time": startTime,
@@ -41,6 +43,7 @@ class ExpectExperienceRequest implements Encodable{
   ExpectExperienceRequest copyWith({
     int? userId,
     String? company,
+    int? experienceId,
     int? categoryId,
     String? nameCategory,
     String? startTime,
@@ -51,6 +54,7 @@ class ExpectExperienceRequest implements Encodable{
   }) {
     return ExpectExperienceRequest(
       userId: userId ?? this.userId,
+      experienceId: experienceId ?? this.experienceId,
       company: company ?? this.company,
       categoryId: categoryId ?? this.categoryId,
       nameCategory: nameCategory ?? this.nameCategory,
@@ -64,19 +68,24 @@ class ExpectExperienceRequest implements Encodable{
 
   bool get isCurrentlyWorking => currentlyWorking ?? false;
 
-  bool get isEmptyCompany => company == null;
+  bool get isEmptyCompany => company != null && company!.isNotEmpty;
 
-  bool get isEmptyCategory => categoryId == null;
+  bool get isEmptyCategory => categoryId != null && categoryId! > 0;
 
-  bool get isEmptyPosition => position == null;
+  bool get isEmptyPosition => position != null && position!.isNotEmpty;
 
-  bool get isEmptyStartTime => startTime == null;
+  bool get isEmptyStartTime => startTime != null && startTime!.isNotEmpty;
 
-  bool get isEmptyEndTime => endTime == null;
+  bool get isEmptyEndTime => endTime != null && endTime!.isNotEmpty;
 
-  bool get canAddExperience => !isEmptyCompany
-      && !isEmptyCategory
-      && !isEmptyPosition
-      && !isEmptyStartTime
-      && !isEmptyEndTime;
+  bool get isEmptyJobDescription => jobDescription != null && jobDescription!.isNotEmpty;
+
+  bool get isValidateTimeRange => DateTime.parse(endTime!).isBefore(DateTime.parse(startTime!));
+
+  bool get canAddExperience => isEmptyCompany
+      && isEmptyCategory
+      && isEmptyPosition
+      && isEmptyStartTime
+      && isEmptyEndTime
+      && isEmptyJobDescription;
 }

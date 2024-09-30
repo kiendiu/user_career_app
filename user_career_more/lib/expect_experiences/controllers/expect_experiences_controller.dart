@@ -5,6 +5,8 @@ import 'package:user_career_more/expect_experiences/models/expect_experience_req
 import 'package:user_career_more/expect_experiences/models/expect_experience_response.dart';
 import 'package:user_career_more/expect_experiences/repositories/expect_experience_repository.dart';
 
+import 'experience_item_controller.dart';
+
 class ExpectExperiencesController extends AutoDisposeNotifier<ExpectExperienceRequest>
     with AlertMixin, MetadataUpdater{
   @override
@@ -20,6 +22,10 @@ class ExpectExperiencesController extends AutoDisposeNotifier<ExpectExperienceRe
           .updateMetadataBy(this)
           .showErrorBy(this)
           .getItems();
+      for(var item in result){
+        ref.read(experienceItemControllerProvider(item.experienceId)
+            .notifier).state = item;
+      }
       return result;
     } catch (e) {
       return [];
