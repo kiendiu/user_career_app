@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 109
+/// Strings: 120
 ///
-/// Built on 2024-09-27 at 01:16 UTC
+/// Built on 2024-10-08 at 03:38 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -281,6 +281,7 @@ class _LocalizationStringsMoreVi {
 	String get addExperienceTextFieldDescription => 'Mô tả công việc';
 	String get addExperienceTextFieldCategory => 'Chuyên ngành';
 	String get addExperienceAskWorkHere => 'Bạn có đang làm việc tại đây không?';
+	late final _LocalizationStringsMorePriceServiceVi priceService = _LocalizationStringsMorePriceServiceVi._(_root);
 }
 
 // Path: common.tabBar
@@ -306,6 +307,26 @@ class _LocalizationStringsCommonBaseUploadAvatarViewVi {
 	String get delete => 'Xóa';
 	String get capture => 'Camera';
 	String get pickImage => 'Thư viện';
+}
+
+// Path: more.priceService
+class _LocalizationStringsMorePriceServiceVi {
+	_LocalizationStringsMorePriceServiceVi._(this._root);
+
+	final Translations _root; // ignore: unused_field
+
+	// Translations
+	String get serviceCallPrice => 'Giá dịch vụ gọi điện :';
+	String get call => 'Gọi điện';
+	String get callPrice => 'Giá gọi điện';
+	String get serviceDirectPrice => 'Giá dịch vụ trực tiếp :';
+	String get direct => 'Trực tiếp';
+	String get directPrice => 'Giá trực tiếp';
+	String get minute => 'Phút';
+	String get currencyVnd => 'VND';
+	String get consultationTime => 'Thời gian tư vấn';
+	String get dayOfWeek => 'Thứ :';
+	String get timeFrame => 'Khung giờ :';
 }
 
 /// Flat map(s) containing all translations.
@@ -423,6 +444,17 @@ extension on Translations {
 			case 'more.addExperienceTextFieldDescription': return 'Mô tả công việc';
 			case 'more.addExperienceTextFieldCategory': return 'Chuyên ngành';
 			case 'more.addExperienceAskWorkHere': return 'Bạn có đang làm việc tại đây không?';
+			case 'more.priceService.serviceCallPrice': return 'Giá dịch vụ gọi điện :';
+			case 'more.priceService.call': return 'Gọi điện';
+			case 'more.priceService.callPrice': return 'Giá gọi điện';
+			case 'more.priceService.serviceDirectPrice': return 'Giá dịch vụ trực tiếp :';
+			case 'more.priceService.direct': return 'Trực tiếp';
+			case 'more.priceService.directPrice': return 'Giá trực tiếp';
+			case 'more.priceService.minute': return 'Phút';
+			case 'more.priceService.currencyVnd': return 'VND';
+			case 'more.priceService.consultationTime': return 'Thời gian tư vấn';
+			case 'more.priceService.dayOfWeek': return 'Thứ :';
+			case 'more.priceService.timeFrame': return 'Khung giờ :';
 			default: return null;
 		}
 	}

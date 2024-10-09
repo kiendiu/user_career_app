@@ -40,7 +40,6 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
       bottomView: Container(
         color: AppColors.white1Color,
         child: AppButton(
-          isEnabled: expectExperienceState.canAddExperience,
           title: L.more.addExperienceTextButton,
           onPressed: () {
             expectExperienceController
@@ -74,7 +73,7 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
             ).paddingOnly(top: 12),
             GestureDetector(
               onTap: () {
-                context.pushRoute(const FilterCategoriesRoute());
+                context.pushRoute(const FilterExperienceCategoriesRoute());
               },
               child: TextFieldView.outsideBorder(
                 title: L.more.addExperienceTextFieldCategory,

@@ -8,14 +8,14 @@ import 'package:user_career_more/expect_experiences/pages/views/expansion_tile_c
 import 'package:user_career_more/expect_experiences/controllers/expect_experiences_controller.dart';
 
 @RoutePage()
-class FilterCategoriesPage extends ConsumerStatefulWidget {
-  const FilterCategoriesPage({super.key});
+class FilterExperienceCategoriesPage extends ConsumerStatefulWidget {
+  const FilterExperienceCategoriesPage({super.key});
 
   @override
-  ConsumerState<FilterCategoriesPage> createState() => _FilterCategoriesPageState();
+  ConsumerState<FilterExperienceCategoriesPage> createState() => _FilterExperienceCategoriesPageState();
 }
 
-class _FilterCategoriesPageState extends ConsumerState<FilterCategoriesPage> {
+class _FilterExperienceCategoriesPageState extends ConsumerState<FilterExperienceCategoriesPage> {
   @override
   Widget build(BuildContext context) {
     final filterState = ref.watch(filterCategoriesControllerProvider);

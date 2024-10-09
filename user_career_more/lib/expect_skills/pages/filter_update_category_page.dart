@@ -14,10 +14,10 @@ class FilterUpdateCategoryPage extends ConsumerStatefulWidget {
   const FilterUpdateCategoryPage({super.key, required this.skillResponse});
 
   @override
-  ConsumerState<FilterUpdateCategoryPage> createState() => _FilterEditCategoriesPageState();
+  ConsumerState<FilterUpdateCategoryPage> createState() => _FilterUpdateCategoriesPageState();
 }
 
-class _FilterEditCategoriesPageState extends ConsumerState<FilterUpdateCategoryPage> {
+class _FilterUpdateCategoriesPageState extends ConsumerState<FilterUpdateCategoryPage> {
   @override
   Widget build(BuildContext context) {
     final filterState = ref.watch(filterCategoriesControllerProvider);

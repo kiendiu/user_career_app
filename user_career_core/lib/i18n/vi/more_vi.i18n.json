@@ -62,6 +62,19 @@
   "add_experience_text_field_end_date": "Ngày kết thúc",
   "add_experience_text_field_description": "Mô tả công việc",
   "add_experience_text_field_category": "Chuyên ngành",
-  "add_experience_ask_work_here": "Bạn có đang làm việc tại đây không?"
+  "add_experience_ask_work_here": "Bạn có đang làm việc tại đây không?",
 
+  "price_service": {
+    "service_call_price": "Giá dịch vụ gọi điện :",
+    "call": "Gọi điện",
+    "call_price": "Giá gọi điện",
+    "service_direct_price": "Giá dịch vụ trực tiếp :",
+    "direct": "Trực tiếp",
+    "direct_price": "Giá trực tiếp",
+    "minute": "Phút",
+    "currency_vnd": "VND",
+    "consultation_time": "Thời gian tư vấn",
+    "day_of_week": "Thứ :",
+    "time_frame": "Khung giờ :"
+  }
 }
