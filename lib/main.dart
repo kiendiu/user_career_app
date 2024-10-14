@@ -19,7 +19,7 @@ void createApp(Env env) {
   var pageModules = <AutoRoutePageModule>[
     HomeModule(env),
     RequestModule(env),
-    MessageModule(env),
+    //MessageModule(env),
     MoreModule(env),
   ];
 

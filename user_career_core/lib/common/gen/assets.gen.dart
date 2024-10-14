@@ -34,6 +34,14 @@ class $AssetsIconsGen {
   SvgGenImage get icAngleSmallRight =>
       const SvgGenImage('assets/icons/ic_angle_small_right.svg');
 
+  /// File path: assets/icons/ic_app_bar_back.svg
+  SvgGenImage get icAppBarBack =>
+      const SvgGenImage('assets/icons/ic_app_bar_back.svg');
+
+  /// File path: assets/icons/ic_app_bar_exit.svg
+  SvgGenImage get icAppBarExit =>
+      const SvgGenImage('assets/icons/ic_app_bar_exit.svg');
+
   /// File path: assets/icons/ic_avatar_default.svg
   SvgGenImage get icAvatarDefault =>
       const SvgGenImage('assets/icons/ic_avatar_default.svg');
@@ -65,6 +73,9 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/ic_eye.svg
   SvgGenImage get icEye => const SvgGenImage('assets/icons/ic_eye.svg');
+
+  /// File path: assets/icons/ic_filter.svg
+  SvgGenImage get icFilter => const SvgGenImage('assets/icons/ic_filter.svg');
 
   /// File path: assets/icons/ic_logo.svg
   SvgGenImage get icLogo => const SvgGenImage('assets/icons/ic_logo.svg');
@@ -181,6 +192,8 @@ class $AssetsIconsGen {
         icLogoKmad,
         icAngleSmallLeft,
         icAngleSmallRight,
+        icAppBarBack,
+        icAppBarExit,
         icAvatarDefault,
         icBarcode,
         icCalendarBottomHome,
@@ -190,6 +203,7 @@ class $AssetsIconsGen {
         icDown,
         icExpand2,
         icEye,
+        icFilter,
         icLogo,
         icLogoStatusNotification,
         icLogoutIcon,

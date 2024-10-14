@@ -16,7 +16,7 @@ import 'app_router.gr.dart';
 @AutoRouterConfig(modules: [
   HomeRouterModule,
   RequestRouterModule,
-  MessageRouterModule,
+  //MessageRouterModule,
   MoreRouterModule,
   AuthRouterModule,
   MobileFrameworkRouterModule,
@@ -32,9 +32,9 @@ class AppRouter extends $AppRouter {
         TabRoute(
             tabRouterPage: RequestTabRouter.page,
             firstPage: RequestRoute.page),
-        TabRoute(
-            tabRouterPage: MessageTabRouter.page,
-            firstPage: MessageRoute.page),
+        // TabRoute(
+        //     tabRouterPage: MessageTabRouter.page,
+        //     firstPage: MessageRoute.page),
         TabRoute(
             tabRouterPage: MoreTabRouter.page,
             firstPage: MoreRoute.page),
@@ -58,6 +58,6 @@ class AppRouter extends $AppRouter {
     ...RequestRouterModule.routes,
     ...HomeRouterModule.routes,
     ...MoreRouterModule.routes,
-    ...MessageRouterModule.routes,
+    //...MessageRouterModule.routes,
   ];
 }
