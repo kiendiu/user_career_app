@@ -56,6 +56,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_camera.svg
   SvgGenImage get icCamera => const SvgGenImage('assets/icons/ic_camera.svg');
 
+  /// File path: assets/icons/ic_check_box.svg
+  SvgGenImage get icCheckBox =>
+      const SvgGenImage('assets/icons/ic_check_box.svg');
+
   /// File path: assets/icons/ic_default_img_good.svg
   SvgGenImage get icDefaultImgGood =>
       const SvgGenImage('assets/icons/ic_default_img_good.svg');
@@ -198,6 +202,7 @@ class $AssetsIconsGen {
         icBarcode,
         icCalendarBottomHome,
         icCamera,
+        icCheckBox,
         icDefaultImgGood,
         icDeleteUser,
         icDown,

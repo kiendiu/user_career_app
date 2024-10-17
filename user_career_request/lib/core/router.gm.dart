@@ -8,61 +8,82 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i6;
-import 'package:flutter/material.dart' as _i7;
-import 'package:user_career_request/core/tab_router.dart' as _i5;
-import 'package:user_career_request/request/models/request_model.dart' as _i8;
+import 'package:auto_route/auto_route.dart' as _i7;
+import 'package:flutter/material.dart' as _i8;
+import 'package:user_career_request/core/tab_router.dart' as _i6;
+import 'package:user_career_request/request/models/request_model.dart' as _i9;
+import 'package:user_career_request/request/pages/add_request_page.dart' as _i1;
 import 'package:user_career_request/request/pages/request_detail_page.dart'
-    as _i3;
-import 'package:user_career_request/request/pages/request_page.dart' as _i4;
+    as _i4;
+import 'package:user_career_request/request/pages/request_page.dart' as _i5;
 import 'package:user_career_request/request/pages/views/general_view.dart'
-    as _i1;
-import 'package:user_career_request/request/pages/views/mine_view.dart' as _i2;
+    as _i2;
+import 'package:user_career_request/request/pages/views/mine_view.dart' as _i3;
 
-abstract class $RequestRouterModule extends _i6.AutoRouterModule {
+abstract class $RequestRouterModule extends _i7.AutoRouterModule {
   @override
-  final Map<String, _i6.PageFactory> pagesMap = {
-    GeneralRoute.name: (routeData) {
-      return _i6.AutoRoutePage<dynamic>(
+  final Map<String, _i7.PageFactory> pagesMap = {
+    AddRequestRoute.name: (routeData) {
+      return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i1.GeneralPage(),
+        child: const _i1.AddRequestPage(),
+      );
+    },
+    GeneralRoute.name: (routeData) {
+      return _i7.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i2.GeneralPage(),
       );
     },
     MineRoute.name: (routeData) {
-      return _i6.AutoRoutePage<dynamic>(
+      return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i2.MinePage(),
+        child: const _i3.MinePage(),
       );
     },
     RequestDetailRoute.name: (routeData) {
       final args = routeData.argsAs<RequestDetailRouteArgs>();
-      return _i6.AutoRoutePage<dynamic>(
+      return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i3.RequestDetailPage(
+        child: _i4.RequestDetailPage(
           key: args.key,
           request: args.request,
         ),
       );
     },
     RequestRoute.name: (routeData) {
-      return _i6.AutoRoutePage<dynamic>(
+      return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i4.RequestPage(),
+        child: const _i5.RequestPage(),
       );
     },
     RequestTabRouter.name: (routeData) {
-      return _i6.AutoRoutePage<dynamic>(
+      return _i7.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i5.RequestTabRouter(),
+        child: const _i6.RequestTabRouter(),
       );
     },
   };
 }
 
 /// generated route for
-/// [_i1.GeneralPage]
-class GeneralRoute extends _i6.PageRouteInfo<void> {
-  const GeneralRoute({List<_i6.PageRouteInfo>? children})
+/// [_i1.AddRequestPage]
+class AddRequestRoute extends _i7.PageRouteInfo<void> {
+  const AddRequestRoute({List<_i7.PageRouteInfo>? children})
+      : super(
+          AddRequestRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'AddRequestRoute';
+
+  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i2.GeneralPage]
+class GeneralRoute extends _i7.PageRouteInfo<void> {
+  const GeneralRoute({List<_i7.PageRouteInfo>? children})
       : super(
           GeneralRoute.name,
           initialChildren: children,
@@ -70,13 +91,13 @@ class GeneralRoute extends _i6.PageRouteInfo<void> {
 
   static const String name = 'GeneralRoute';
 
-  static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
+  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i2.MinePage]
-class MineRoute extends _i6.PageRouteInfo<void> {
-  const MineRoute({List<_i6.PageRouteInfo>? children})
+/// [_i3.MinePage]
+class MineRoute extends _i7.PageRouteInfo<void> {
+  const MineRoute({List<_i7.PageRouteInfo>? children})
       : super(
           MineRoute.name,
           initialChildren: children,
@@ -84,16 +105,16 @@ class MineRoute extends _i6.PageRouteInfo<void> {
 
   static const String name = 'MineRoute';
 
-  static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
+  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i3.RequestDetailPage]
-class RequestDetailRoute extends _i6.PageRouteInfo<RequestDetailRouteArgs> {
+/// [_i4.RequestDetailPage]
+class RequestDetailRoute extends _i7.PageRouteInfo<RequestDetailRouteArgs> {
   RequestDetailRoute({
-    _i7.Key? key,
-    required _i8.RequestModel request,
-    List<_i6.PageRouteInfo>? children,
+    _i8.Key? key,
+    required _i9.RequestModel request,
+    List<_i7.PageRouteInfo>? children,
   }) : super(
           RequestDetailRoute.name,
           args: RequestDetailRouteArgs(
@@ -105,8 +126,8 @@ class RequestDetailRoute extends _i6.PageRouteInfo<RequestDetailRouteArgs> {
 
   static const String name = 'RequestDetailRoute';
 
-  static const _i6.PageInfo<RequestDetailRouteArgs> page =
-      _i6.PageInfo<RequestDetailRouteArgs>(name);
+  static const _i7.PageInfo<RequestDetailRouteArgs> page =
+      _i7.PageInfo<RequestDetailRouteArgs>(name);
 }
 
 class RequestDetailRouteArgs {
@@ -115,9 +136,9 @@ class RequestDetailRouteArgs {
     required this.request,
   });
 
-  final _i7.Key? key;
+  final _i8.Key? key;
 
-  final _i8.RequestModel request;
+  final _i9.RequestModel request;
 
   @override
   String toString() {
@@ -126,9 +147,9 @@ class RequestDetailRouteArgs {
 }
 
 /// generated route for
-/// [_i4.RequestPage]
-class RequestRoute extends _i6.PageRouteInfo<void> {
-  const RequestRoute({List<_i6.PageRouteInfo>? children})
+/// [_i5.RequestPage]
+class RequestRoute extends _i7.PageRouteInfo<void> {
+  const RequestRoute({List<_i7.PageRouteInfo>? children})
       : super(
           RequestRoute.name,
           initialChildren: children,
@@ -136,13 +157,13 @@ class RequestRoute extends _i6.PageRouteInfo<void> {
 
   static const String name = 'RequestRoute';
 
-  static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
+  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i5.RequestTabRouter]
-class RequestTabRouter extends _i6.PageRouteInfo<void> {
-  const RequestTabRouter({List<_i6.PageRouteInfo>? children})
+/// [_i6.RequestTabRouter]
+class RequestTabRouter extends _i7.PageRouteInfo<void> {
+  const RequestTabRouter({List<_i7.PageRouteInfo>? children})
       : super(
           RequestTabRouter.name,
           initialChildren: children,
@@ -150,5 +171,5 @@ class RequestTabRouter extends _i6.PageRouteInfo<void> {
 
   static const String name = 'RequestTabRouter';
 
-  static const _i6.PageInfo<void> page = _i6.PageInfo<void>(name);
+  static const _i7.PageInfo<void> page = _i7.PageInfo<void>(name);
 }

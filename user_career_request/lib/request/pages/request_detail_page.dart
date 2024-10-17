@@ -1,8 +1,8 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/base_app_bar_view.dart';
+import 'package:user_career_request/request/controllers/add_request_controller.dart';
 import 'package:user_career_request/request/models/enums/bid_status_enum.dart';
 import 'package:user_career_request/request/models/request_model.dart';
 import 'package:user_career_request/request/pages/views/status_container_view.dart';
@@ -21,6 +21,8 @@ class _RequestDetailPageState extends ConsumerState<RequestDetailPage> {
 
   @override
   Widget build(BuildContext context) {
+    final controller = ref.read(addRequestControllerProvider.notifier);
+
     return BaseScaffold(
       customAppBar: BaseAppBarView(
         title: "Chi tiết yêu cầu",
@@ -68,6 +70,26 @@ class _RequestDetailPageState extends ConsumerState<RequestDetailPage> {
                 ],
               ).paddingOnly(bottom: 5.0).paddingSymmetric(horizontal: 10.0).makeColor(AppColors.white1Color),
               const Gap(5),
+              widget.request.status == "closed"
+                ? const SizedBox()
+                : Container(
+                color: AppColors.white1Color,
+                child: AppButton(
+                  title: "Hủy yêu cầu",
+                  onPressed: () {
+                    controller.cancelRequest(widget.request.requestId!)
+                        .then((value) => {
+                      if (value == true)
+                        {
+                          context.showSuccess(L.more.inforMessageSuccess),
+                          NotificationCenter()
+                              .postNotification(RawStringNotificationName('reloadMine')),
+                          context.maybePop(),
+                        }
+                    });
+                  },
+                ).paddingSymmetric(horizontal: 10, vertical: 10.0),
+              ).paddingOnly(bottom: 5.0),
               widget.request.expectBids.isNotNull
                 ? ListView(
                     shrinkWrap: true,
@@ -75,10 +97,6 @@ class _RequestDetailPageState extends ConsumerState<RequestDetailPage> {
                       mainAxisAlignment: MainAxisAlignment.start,
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Text(
-                        //   e.requestTitle ?? "",
-                        //   style: ref.theme.defaultTextStyle.weight(FontWeight.bold),
-                        // ).paddingOnly(bottom: 5),
                         Row(
                           children: [
                             const Icon(Icons.monetization_on_outlined, color: AppColors.mainColor),
@@ -120,10 +138,15 @@ class _RequestDetailPageState extends ConsumerState<RequestDetailPage> {
                     ).paddingSymmetric(horizontal: 10.0, vertical: 10.0).makeColor(AppColors.white1Color)
                     ).toList() ?? [],
                   )
-                : Text(
-                    "Chưa có chào giá nào",
-                    style: ref.theme.mediumTextStyle.weight(FontWeight.bold),
-                  ).paddingOnly(top: 10.0),
+                : SizedBox(
+                  width: double.infinity,
+                  child: Center(
+                    child: Text(
+                        "Chưa có chào giá nào",
+                        style: ref.theme.mediumTextStyle.weight(FontWeight.bold),
+                      ).paddingSymmetric(vertical: 10.0),
+                  ),
+                ).makeColor(AppColors.white1Color),
             ],
           ).paddingSymmetric(vertical: 5.0),
       ),

@@ -1,8 +1,9 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_core/views/common_empty_list_view.dart';
+import 'package:user_career_request/core/router.gm.dart';
 import 'package:user_career_request/request/controllers/general_controller.dart';
 import 'package:user_career_request/request/models/request_model.dart';
 
@@ -100,7 +101,9 @@ class _GeneralPageState extends ConsumerState<GeneralPage> {
                 )
               ],
             ).paddingAll(10.0),
-          ).paddingOnly(bottom: 12);
+          ).paddingOnly(bottom: 12).onTapWidget((){
+            context.pushRoute(RequestDetailRoute(request: request));
+          });
         }
     ).paddingSymmetric(horizontal: 10.0)
         .paddingOnly(top: 10.0);

@@ -26,6 +26,10 @@ class _MinePageState extends ConsumerState<MinePage> with SingleTickerProviderSt
   void initState() {
     super.initState();
     _tabController = TabController(length: 3, vsync: this);
+    NotificationCenter().addObserver(
+        RawStringNotificationName('reloadMine'), callback: (_) {
+      _controller.refresh();
+    });
   }
 
   @override

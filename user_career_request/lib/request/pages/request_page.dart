@@ -5,6 +5,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_core/views/base_app_bar_view.dart';
 import 'package:user_career_core/views/base_tab_bar_view.dart';
+import 'package:user_career_request/core/router.gm.dart';
 import 'package:user_career_request/request/pages/views/bid_view.dart';
 import 'package:user_career_request/request/pages/views/mine_view.dart';
 
@@ -29,6 +30,13 @@ class _RequestPageState extends ConsumerState<RequestPage> with SingleTickerProv
         title: "Yêu cầu",
         controller: _appBarController,
         shouldShowLeading: false,
+      ),
+      fab: FloatingActionButton(
+        backgroundColor: AppColors.mainColor,
+        onPressed: () {
+          context.pushRoute(const AddRequestRoute());
+        },
+        child: const Icon(Icons.add, color: AppColors.white1Color,),
       ),
       body: BaseTabBarView(
         data: [
