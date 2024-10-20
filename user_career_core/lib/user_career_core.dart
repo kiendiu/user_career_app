@@ -16,4 +16,5 @@ export 'package:user_career_core/views/base_search_bar_view.dart';
 export 'package:user_career_core/views/base_selectable_item_view.dart';
 export 'package:user_career_core/views/base_selectable_view.dart';
 export 'package:user_career_core/views/base_tab_bar_view.dart';
+export 'package:user_career_core/views/base_confirm_popup_view.dart';
 export 'package:mobile_framework/mobile_framework.dart';

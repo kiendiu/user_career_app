@@ -7,6 +7,7 @@ class ExpectDetailResponse implements Decodable {
   String? avatar;
   String? skillName;
   String? nameCategory;
+  int? serviceId;
   int? priceOnline;
   int? priceOffline;
   int? timeOnline;
@@ -23,6 +24,7 @@ class ExpectDetailResponse implements Decodable {
     this.avatar,
     this.skillName,
     this.nameCategory,
+    this.serviceId,
     this.priceOnline,
     this.priceOffline,
     this.timeOnline,
@@ -40,6 +42,7 @@ class ExpectDetailResponse implements Decodable {
     String? avatar,
     String? skillName,
     String? nameCategory,
+    int? serviceId,
     int? priceOnline,
     int? priceOffline,
     int? timeOnline,
@@ -56,6 +59,7 @@ class ExpectDetailResponse implements Decodable {
       avatar: avatar ?? this.avatar,
       skillName: skillName ?? this.skillName,
       nameCategory: nameCategory ?? this.nameCategory,
+      serviceId: serviceId ?? this.serviceId,
       priceOnline: priceOnline ?? this.priceOnline,
       priceOffline: priceOffline ?? this.priceOffline,
       timeOnline: timeOnline ?? this.timeOnline,
@@ -75,6 +79,7 @@ class ExpectDetailResponse implements Decodable {
     avatar = json['avatar'];
     skillName = json['skill_name'];
     nameCategory = json['name_category'];
+    serviceId = json['service_id'];
     priceOnline = json['price_online'];
     priceOffline = json['price_offline'];
     timeOnline = json['time_online'];
@@ -139,7 +144,9 @@ class Information implements Decodable{
 }
 
 class Skill implements Decodable {
+  int? expertId;
   String? avatar;
+  int? serviceId;
   String? skillName;
   String? nameCategory;
   int? priceOnline;
@@ -149,7 +156,9 @@ class Skill implements Decodable {
   double? averageRating;
 
   Skill({
+    this.expertId,
     this.avatar,
+    this.serviceId,
     this.skillName,
     this.nameCategory,
     this.priceOnline,
@@ -160,7 +169,9 @@ class Skill implements Decodable {
   });
   
   Skill copyWith({
+    int? expertId,
     String? avatar,
+    int? serviceId,
     String? skillName,
     String? nameCategory,
     int? priceOnline,
@@ -170,7 +181,9 @@ class Skill implements Decodable {
     double? averageRating,
   }) {
     return Skill(
+      expertId: expertId ?? this.expertId,
       avatar: avatar ?? this.avatar,
+      serviceId: serviceId ?? this.serviceId,
       skillName: skillName ?? this.skillName,
       nameCategory: nameCategory ?? this.nameCategory,
       priceOnline: priceOnline ?? this.priceOnline,
@@ -183,7 +196,9 @@ class Skill implements Decodable {
 
   @override
   void decode(json) {
+    expertId = json['user_id'];
     avatar = json['avatar'];
+    serviceId = json['service_id'];
     skillName = json['skill_name'];
     nameCategory = json['name_category'];
     priceOnline = json['price_online'];

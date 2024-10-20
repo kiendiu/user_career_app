@@ -1,10 +1,12 @@
-import 'package:auto_route/annotations.dart';
+import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/base_tab_bar_view.dart';
+import 'package:user_career_home/core/router.gm.dart';
 import 'package:user_career_home/home/controllers/expect_detail_controller.dart';
 import 'package:user_career_home/home/models/expect_detail_response.dart';
+import 'package:user_career_home/home/models/info_service_model.dart';
+import 'package:user_career_home/home/pages/views/contact_method_view.dart';
 import 'package:user_career_home/home/pages/views/evaluates_view.dart';
 import 'package:user_career_home/home/pages/views/experiences_view.dart';
 import 'package:user_career_home/home/pages/views/infor_view.dart';
@@ -44,6 +46,20 @@ class _ExpectDetailPageState extends ConsumerState<ExpectDetailPage> {
         child: AppButton(
           title: "Đặt lịch ngay",
           onPressed: () {
+            state.maybeWhen(
+              orElse: () => null,
+              data: (data) {
+                context.showOverlay(ContactMethodView(expectDetailResponse: InfoServiceModel(
+                  serviceId: data.serviceId,
+                  expertId: data.userId,
+                  priceOnline: data.priceOnline,
+                  timeOnline: data.timeOnline,
+                  priceOffline: data.priceOffline,
+                  timeOffline: data.timeOffline,
+                )));
+              }
+            );
+            //context.pushRoute(const BookingRoute());
           },
         ).paddingSymmetric(horizontal: 16).paddingOnly(top: 12, bottom: 40),
       ),
@@ -139,7 +155,7 @@ class _ExpectDetailPageState extends ConsumerState<ExpectDetailPage> {
                       body: ExperiencesView(experience: data.experience ?? [],)),
                   TabBarViewData.normal(
                       title: "Kỹ năng",
-                      body: SkillsView(skill: data.skill ?? [])),
+                      body: SkillsView(expectDetailResponse: data, skill: data.skill ?? [])),
                   TabBarViewData.normal(
                       title: "Đánh giá",
                       body: EvaluatesView(review: data.review ?? Review(),)),

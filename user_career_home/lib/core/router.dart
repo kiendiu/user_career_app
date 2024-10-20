@@ -9,5 +9,6 @@ class HomeRouterModule extends $HomeRouterModule {
     AutoRoute(page: HomeRoute.page),
     PresentedRoute(page: FilterRoute.page),
     PresentedRoute(page: ExpectDetailRoute.page),
+    PresentedRoute(page: BookingRoute.page),
   ];
 }

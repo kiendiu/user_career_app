@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as dtp;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/base_selectable_item_view.dart';
-import 'package:user_career_core/views/base_selectable_view.dart';
 import 'package:user_career_more/expect_price_service/controllers/price_service_controller.dart';
 import 'package:user_career_more/expect_price_service/models/service_user_response.dart';
 import 'package:user_career_more/expect_price_service/models/skill_response.dart';
@@ -153,7 +151,7 @@ class _ExpectPriceServicePageState extends ConsumerState<ExpectPriceServicePage>
                 onAddNewItems: (items) {
                   state.skill?.clear();
                   state.skill?.addAll(items);
-                  controller.setSkillId(items.first.data.skillId ?? 0);
+                  controller.setSkillId(items.first.data.skillId!);
                 },
                 onRemoveItem: (item) {
                   state.skill?.remove(item);

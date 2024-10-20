@@ -1,6 +1,5 @@
 import 'package:user_career_core/common/career_storage_key.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/base_selectable_item_view.dart';
 import 'package:user_career_more/expect_price_service/models/skill_response.dart';
 
 class ServiceUserRequest implements Encodable{

@@ -67,6 +67,7 @@ class PriceServiceController extends AutoDisposeNotifier<ServiceUserRequest> wit
     final result = await ref
         .read(priceServiceRepositoryProvider)
         .addServiceGeneral(AddServiceUserRequest(
+          skillId: state.skillId,
           timeOnline: state.timeOnline,
           priceOnline: state.priceOnline,
           timeOffline: state.timeOffline,

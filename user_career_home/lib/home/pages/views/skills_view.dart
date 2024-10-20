@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_home/home/models/expect_detail_response.dart';
+import 'package:user_career_home/home/models/info_service_model.dart';
 import 'package:user_career_home/home/pages/views/star_rating_view.dart';
 
+import 'contact_method_view.dart';
+
 class SkillsView extends ConsumerStatefulWidget {
+  final ExpectDetailResponse expectDetailResponse;
   final List<Skill> skill;
-  const SkillsView({super.key, required this.skill});
+  const SkillsView({super.key,required this.expectDetailResponse, required this.skill});
 
   @override
   ConsumerState createState() => _SkillsViewState();
@@ -87,7 +91,16 @@ class _SkillsViewState extends ConsumerState<SkillsView> {
                       ],
                     ).expand(),
                     AppButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        context.showOverlay(ContactMethodView(expectDetailResponse: InfoServiceModel(
+                          serviceId: e.serviceId,
+                          expertId: e.expertId,
+                          priceOnline: e.priceOnline,
+                          timeOnline: e.timeOnline,
+                          priceOffline: e.priceOffline,
+                          timeOffline: e.timeOffline,
+                        )));
+                      },
                       title: 'Đặt lịch hẹn',
                     ).box(h: 50, w: 100).paddingOnly(right: 10),
                   ]

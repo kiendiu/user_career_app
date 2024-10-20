@@ -26,6 +26,18 @@ class $AssetsIconsGen {
   SvgGenImage get icLogoKmad =>
       const SvgGenImage('assets/icons/ic_Logo_Kmad.svg');
 
+  /// File path: assets/icons/ic_alert_dialog_error.svg
+  SvgGenImage get icAlertDialogError =>
+      const SvgGenImage('assets/icons/ic_alert_dialog_error.svg');
+
+  /// File path: assets/icons/ic_alert_dialog_success.svg
+  SvgGenImage get icAlertDialogSuccess =>
+      const SvgGenImage('assets/icons/ic_alert_dialog_success.svg');
+
+  /// File path: assets/icons/ic_alert_dialog_warning.svg
+  SvgGenImage get icAlertDialogWarning =>
+      const SvgGenImage('assets/icons/ic_alert_dialog_warning.svg');
+
   /// File path: assets/icons/ic_angle_small_left.svg
   SvgGenImage get icAngleSmallLeft =>
       const SvgGenImage('assets/icons/ic_angle_small_left.svg');
@@ -194,6 +206,9 @@ class $AssetsIconsGen {
         aIcon,
         icBell,
         icLogoKmad,
+        icAlertDialogError,
+        icAlertDialogSuccess,
+        icAlertDialogWarning,
         icAngleSmallLeft,
         icAngleSmallRight,
         icAppBarBack,
