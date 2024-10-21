@@ -24,18 +24,8 @@ class _ExpectPriceServicePageState extends ConsumerState<ExpectPriceServicePage>
 
     return BaseScaffold(
       backgroundColor: AppColors.white1Color,
-      customAppBar: AppBar(
-        title: Text(
-          L.more.expectListTilePrice,
-          style: const TextStyle(
-            color: AppColors.white1Color,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-          ),
-        ).paddingOnly(top: 12),
-        centerTitle: true,
-        backgroundColor: AppColors.mainColor,
-        leading: const BackButton(color: AppColors.white1Color),
+      customAppBar: BaseAppBarView(
+        title: L.more.expectListTilePrice,
       ),
       bottomView: Container(
         color: AppColors.white1Color,
@@ -80,6 +70,8 @@ class _ExpectPriceServicePageState extends ConsumerState<ExpectPriceServicePage>
                       isRequired: true,
                       padding: const EdgeInsets.only(left: 14, right: 14),
                       inputType: TextInputType.number,
+                      validator: (_) => (state.isEmptyTimeOnline),
+                      errorText: () => L.more.errorInvalidMessage,
                       initialText: ( state.timeOnline ?? '').toString(),
                       textFieldDidChange: (text) {
                         int number = int.parse(text!);
@@ -93,6 +85,8 @@ class _ExpectPriceServicePageState extends ConsumerState<ExpectPriceServicePage>
                       title: L.more.priceService.callPrice,
                       placeholder: L.more.priceService.currencyVnd,
                       isRequired: true,
+                      validator: (_) => (state.isEmptyPriceOnline),
+                      errorText: () => L.more.errorInvalidMessage,
                       padding: const EdgeInsets.only(left: 14, right: 14),
                       inputType: TextInputType.number,
                       initialText: ( state.priceOnline ?? '' ).toString(),
@@ -115,6 +109,8 @@ class _ExpectPriceServicePageState extends ConsumerState<ExpectPriceServicePage>
                       title: L.more.priceService.direct,
                       placeholder: L.more.priceService.minute,
                       isRequired: true,
+                      validator: (_) => (state.isEmptyTimeOffline),
+                      errorText: () => L.more.errorInvalidMessage,
                       padding: const EdgeInsets.only(left: 14, right: 14),
                       inputType: TextInputType.number,
                       initialText: (state.timeOffline ?? '').toString(),
@@ -130,6 +126,8 @@ class _ExpectPriceServicePageState extends ConsumerState<ExpectPriceServicePage>
                       title: L.more.priceService.directPrice,
                       placeholder: L.more.priceService.currencyVnd,
                       isRequired: true,
+                      validator: (_) => (state.isEmptyPriceOffline),
+                      errorText: () => L.more.errorInvalidMessage,
                       padding: const EdgeInsets.only(left: 14, right: 14),
                       inputType: TextInputType.number,
                       initialText: (state.priceOffline ?? '').toString(),
@@ -271,7 +269,7 @@ class _ExpectPriceServicePageState extends ConsumerState<ExpectPriceServicePage>
                                         .weight(FontWeight.w600),
                                     itemStyle: ref.theme.mediumTextStyle,
                                   ),
-                                  currentTime: DateTime.now(),
+                                  currentTime: DateTime.now().copyWith(hour: 8, minute: 0, second: 0),
                                   onConfirm: (time) {
                                     final formattedTime = time.clock();
                                     controller.setStartTime(frames, formattedTime!);
@@ -314,7 +312,7 @@ class _ExpectPriceServicePageState extends ConsumerState<ExpectPriceServicePage>
                                         .weight(FontWeight.w600),
                                     itemStyle: ref.theme.mediumTextStyle,
                                   ),
-                                  currentTime: DateTime.now(),
+                                  currentTime: DateTime.now().copyWith(hour: 12, minute: 0, second: 0),
                                   onConfirm: (time) {
                                     final formattedTime = time.clock();
                                     controller.setEndTime(frames, formattedTime!);

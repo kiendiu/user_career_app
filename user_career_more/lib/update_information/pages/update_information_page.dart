@@ -21,14 +21,17 @@ class _UpdateInformationPageState extends ConsumerState<UpdateInformationPage>
       PickerSettings,
       ImageSourceCompatible,
       FilesPickerCompatible {
+  final _appBarController = BaseAppBarController();
+
   @override
   Widget build(BuildContext context) {
     final informationState = ref.watch(updateInformationControllerProvider);
     return BaseScaffold(
       resizeToAvoidBottomInset: false,
-      customAppBar: CommonAppBar(
-        centerTitle: true,
-        titleText: L.more.inforTitle,
+      customAppBar: BaseAppBarView(
+        title: L.more.inforTitle,
+        controller: _appBarController,
+        shouldShowLeading: true,
       ),
       backgroundColor: AppColors.white3Color,
       body: Column(

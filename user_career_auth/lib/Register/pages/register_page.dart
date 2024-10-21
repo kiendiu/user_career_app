@@ -66,6 +66,8 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
       title: 'Tên tài khoản',
       placeholder: L.auth.textFieldEmailHint,
       padding: const EdgeInsets.only(left: 10, right: 10),
+      validator: (text) => ref.read(registerControllerProvider).isUsernameValid,
+      errorText: () => L.auth.textErrorEmptyData,
       textFieldDidChange: (text) => ref
             .read(registerControllerProvider.notifier)
             .updateUsername(text?.trim() ?? ""),
@@ -143,6 +145,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
   void _register() async =>
     ref.read(registerControllerProvider.notifier).signInId().then((success) {
       if (success) {
+        context.showSuccess(L.auth.textRegisterSuccessful);
         context.router.replaceAll(const [SignInRoute()]);
       }
     }

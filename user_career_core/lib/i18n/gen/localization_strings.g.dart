@@ -4,9 +4,9 @@
 /// To regenerate, run: `dart run slang`
 ///
 /// Locales: 1
-/// Strings: 120
+/// Strings: 134
 ///
-/// Built on 2024-10-08 at 03:38 UTC
+/// Built on 2024-10-21 at 05:32 UTC
 
 // coverage:ignore-file
 // ignore_for_file: type=lint
@@ -192,6 +192,8 @@ class _LocalizationStringsAuthVi {
 	String get resetPasswordSuccessfulText => 'Đặt lại mật khẩu thành công';
 	String get textMessageRegister => 'Bạn chưa có tài khoản?';
 	String get textButtonRegister => 'Đăng ký';
+	String get textErrorEmptyData => 'Nhập đủ thông tin';
+	String get textRegisterSuccessful => 'Đăng ký thành công';
 }
 
 // Path: common
@@ -241,7 +243,7 @@ class _LocalizationStringsMoreVi {
 	String get logout => 'Đăng xuất';
 	String get cancel => 'Hủy';
 	String get youDefinitelyWantToSignOut => ' Bạn chắc chắn muốn đăng xuất';
-	String get changePasswordTitle => 'Đổi mật khẩu';
+	String get changePasswordTitle => 'Thay đổi mật khẩu';
 	String get changePasswordHintText => 'Vui lòng nhập';
 	String get changePasswordOld => 'Mật khẩu cũ';
 	String get changePasswordNew => 'Mật khẩu mới';
@@ -249,10 +251,10 @@ class _LocalizationStringsMoreVi {
 	String get changePasswordButton => 'Cập nhật mật khẩu';
 	String get messageChangeSuccessful => 'Cập nhật thành công';
 	String get errorEmpty => 'Nhập đủ thông tin';
-	String get errorIsOldpassword => 'Trùng mật khẩu cũ';
-	String get errorIsNewpassword => 'Không giống mật khẩu mới';
-	String get errorIsStrongpassword => 'Mật khẩu yếu';
-	String get expectTitle => 'Chuyên Gia';
+	String get errorIsOldPassword => 'Trùng mật khẩu cũ';
+	String get errorIsNewPassword => 'Không giống mật khẩu mới';
+	String get errorIsStrongPassword => 'Mật khẩu yếu';
+	String get expectTitle => 'Hồ sơ chuyên gia';
 	String get expectTextButton => 'Lưu';
 	String get expectAskCommunicate => 'Bạn có thể nói được ngôn ngữ nào?';
 	String get expectAskCommunicateHint => 'Ngôn ngữ';
@@ -281,7 +283,19 @@ class _LocalizationStringsMoreVi {
 	String get addExperienceTextFieldDescription => 'Mô tả công việc';
 	String get addExperienceTextFieldCategory => 'Chuyên ngành';
 	String get addExperienceAskWorkHere => 'Bạn có đang làm việc tại đây không?';
+	String get addExperienceSuccess => 'Thêm kinh nghiệm thành công';
+	String get editExperienceTitle => 'Chỉnh sửa kinh nghiệm';
 	late final _LocalizationStringsMorePriceServiceVi priceService = _LocalizationStringsMorePriceServiceVi._(_root);
+	String get textMyCalendar => 'Lịch tư vấn';
+	String get textMyWallet => 'Ví của tôi';
+	String get manageServiceTitle => 'Quản lý dịch vụ';
+	String get manageServiceSeeAll => 'Xem tất cả';
+	String get manageServiceStatusWaiting => 'Chờ xác nhận';
+	String get manageServiceStatusConfirmed => 'Đã xác nhận';
+	String get manageServiceStatusHappened => 'Đã diễn ra';
+	String get manageServiceStatusDone => 'Hoàn thành';
+	String get manageServiceStatusCancel => 'Hủy';
+	String get errorInvalidMessage => 'Không hợp lệ!';
 }
 
 // Path: common.tabBar
@@ -368,6 +382,8 @@ extension on Translations {
 			case 'auth.resetPasswordSuccessfulText': return 'Đặt lại mật khẩu thành công';
 			case 'auth.textMessageRegister': return 'Bạn chưa có tài khoản?';
 			case 'auth.textButtonRegister': return 'Đăng ký';
+			case 'auth.textErrorEmptyData': return 'Nhập đủ thông tin';
+			case 'auth.textRegisterSuccessful': return 'Đăng ký thành công';
 			case 'common.tabBar.home': return 'Trang chủ';
 			case 'common.tabBar.request': return 'Yêu cầu';
 			case 'common.tabBar.message': return 'Tin nhắn';
@@ -404,7 +420,7 @@ extension on Translations {
 			case 'more.logout': return 'Đăng xuất';
 			case 'more.cancel': return 'Hủy';
 			case 'more.youDefinitelyWantToSignOut': return ' Bạn chắc chắn muốn đăng xuất';
-			case 'more.changePasswordTitle': return 'Đổi mật khẩu';
+			case 'more.changePasswordTitle': return 'Thay đổi mật khẩu';
 			case 'more.changePasswordHintText': return 'Vui lòng nhập';
 			case 'more.changePasswordOld': return 'Mật khẩu cũ';
 			case 'more.changePasswordNew': return 'Mật khẩu mới';
@@ -412,10 +428,10 @@ extension on Translations {
 			case 'more.changePasswordButton': return 'Cập nhật mật khẩu';
 			case 'more.messageChangeSuccessful': return 'Cập nhật thành công';
 			case 'more.errorEmpty': return 'Nhập đủ thông tin';
-			case 'more.errorIsOldpassword': return 'Trùng mật khẩu cũ';
-			case 'more.errorIsNewpassword': return 'Không giống mật khẩu mới';
-			case 'more.errorIsStrongpassword': return 'Mật khẩu yếu';
-			case 'more.expectTitle': return 'Chuyên Gia';
+			case 'more.errorIsOldPassword': return 'Trùng mật khẩu cũ';
+			case 'more.errorIsNewPassword': return 'Không giống mật khẩu mới';
+			case 'more.errorIsStrongPassword': return 'Mật khẩu yếu';
+			case 'more.expectTitle': return 'Hồ sơ chuyên gia';
 			case 'more.expectTextButton': return 'Lưu';
 			case 'more.expectAskCommunicate': return 'Bạn có thể nói được ngôn ngữ nào?';
 			case 'more.expectAskCommunicateHint': return 'Ngôn ngữ';
@@ -444,6 +460,8 @@ extension on Translations {
 			case 'more.addExperienceTextFieldDescription': return 'Mô tả công việc';
 			case 'more.addExperienceTextFieldCategory': return 'Chuyên ngành';
 			case 'more.addExperienceAskWorkHere': return 'Bạn có đang làm việc tại đây không?';
+			case 'more.addExperienceSuccess': return 'Thêm kinh nghiệm thành công';
+			case 'more.editExperienceTitle': return 'Chỉnh sửa kinh nghiệm';
 			case 'more.priceService.serviceCallPrice': return 'Giá dịch vụ gọi điện :';
 			case 'more.priceService.call': return 'Gọi điện';
 			case 'more.priceService.callPrice': return 'Giá gọi điện';
@@ -455,6 +473,16 @@ extension on Translations {
 			case 'more.priceService.consultationTime': return 'Thời gian tư vấn';
 			case 'more.priceService.dayOfWeek': return 'Thứ :';
 			case 'more.priceService.timeFrame': return 'Khung giờ :';
+			case 'more.textMyCalendar': return 'Lịch tư vấn';
+			case 'more.textMyWallet': return 'Ví của tôi';
+			case 'more.manageServiceTitle': return 'Quản lý dịch vụ';
+			case 'more.manageServiceSeeAll': return 'Xem tất cả';
+			case 'more.manageServiceStatusWaiting': return 'Chờ xác nhận';
+			case 'more.manageServiceStatusConfirmed': return 'Đã xác nhận';
+			case 'more.manageServiceStatusHappened': return 'Đã diễn ra';
+			case 'more.manageServiceStatusDone': return 'Hoàn thành';
+			case 'more.manageServiceStatusCancel': return 'Hủy';
+			case 'more.errorInvalidMessage': return 'Không hợp lệ!';
 			default: return null;
 		}
 	}

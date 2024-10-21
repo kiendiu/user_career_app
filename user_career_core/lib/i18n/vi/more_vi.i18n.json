@@ -20,7 +20,7 @@
   "logout": "Đăng xuất",
   "cancel": "Hủy",
   "you_definitely_want_to_sign_out": " Bạn chắc chắn muốn đăng xuất",
-  "change_password_title": "Đổi mật khẩu",
+  "change_password_title": "Thay đổi mật khẩu",
   "change_password_hint_text": "Vui lòng nhập",
   "change_password_old": "Mật khẩu cũ",
   "change_password_new": "Mật khẩu mới",
@@ -28,11 +28,11 @@
   "change_password_button": "Cập nhật mật khẩu",
   "message_change_successful": "Cập nhật thành công",
   "error_empty": "Nhập đủ thông tin",
-  "error_is_oldpassword": "Trùng mật khẩu cũ",
-  "error_is_newpassword": "Không giống mật khẩu mới",
-  "error_is_strongpassword": "Mật khẩu yếu",
+  "error_is_old_password": "Trùng mật khẩu cũ",
+  "error_is_new_password": "Không giống mật khẩu mới",
+  "error_is_strong_password": "Mật khẩu yếu",
 
-  "expect_title": "Chuyên Gia",
+  "expect_title": "Hồ sơ chuyên gia",
   "expect_text_button": "Lưu",
   "expect_ask_communicate": "Bạn có thể nói được ngôn ngữ nào?",
   "expect_ask_communicate_hint": "Ngôn ngữ",
@@ -63,6 +63,8 @@
   "add_experience_text_field_description": "Mô tả công việc",
   "add_experience_text_field_category": "Chuyên ngành",
   "add_experience_ask_work_here": "Bạn có đang làm việc tại đây không?",
+  "add_experience_success": "Thêm kinh nghiệm thành công",
+  "edit_experience_title": "Chỉnh sửa kinh nghiệm",
 
   "price_service": {
     "service_call_price": "Giá dịch vụ gọi điện :",
@@ -76,5 +78,17 @@
     "consultation_time": "Thời gian tư vấn",
     "day_of_week": "Thứ :",
     "time_frame": "Khung giờ :"
-  }
+  },
+
+  "text_my_calendar": "Lịch tư vấn",
+  "text_my_wallet": "Ví của tôi",
+  "manage_service_title": "Quản lý dịch vụ",
+  "manage_service_see_all": "Xem tất cả",
+  "manage_service_status_waiting": "Chờ xác nhận",
+  "manage_service_status_confirmed": "Đã xác nhận",
+  "manage_service_status_happened": "Đã diễn ra",
+  "manage_service_status_done": "Hoàn thành",
+  "manage_service_status_cancel": "Hủy",
+
+  "error_invalid_message": "Không hợp lệ!"
 }

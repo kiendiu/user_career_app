@@ -62,6 +62,14 @@ class ServiceUserRequest implements Encodable{
       'frames': frames?.map((e) => e.encode()).toList(),
     };
   }
+
+  bool get isEmptyTimeOnline => timeOnline != null && timeOnline! > 0 && timeOnline! % 15 == 0;
+
+  bool get isEmptyPriceOnline => priceOnline != null && priceOnline! >= 10000;
+
+  bool get isEmptyTimeOffline => timeOffline != null && timeOffline! > 0  && timeOffline! % 15 == 0;
+
+  bool get isEmptyPriceOffline => priceOffline != null && priceOffline! >= 10000;
 }
 
 class ServiceFrameRequest implements Encodable {

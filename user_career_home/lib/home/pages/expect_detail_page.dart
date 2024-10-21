@@ -28,18 +28,8 @@ class _ExpectDetailPageState extends ConsumerState<ExpectDetailPage> {
     final state = ref.watch(expectDetailControllerProvider(widget.expectId));
     return BaseScaffold(
       backgroundColor: AppColors.white3Color,
-      customAppBar: AppBar(
-        title: const Text(
-          "Thông tin chuyên gia",
-          style: TextStyle(
-            color: AppColors.white1Color,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: AppColors.mainColor,
-        leading: const BackButton(color: AppColors.white1Color),
+      customAppBar: BaseAppBarView(
+        title: "Thông tin chuyên gia",
       ),
       bottomView: Container(
         color: AppColors.white1Color,

@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/common_text_field_view.dart';
 import 'package:user_career_more/core/router.gm.dart';
 import 'package:user_career_more/expect_experiences/controllers/expect_experiences_controller.dart';
 
@@ -22,32 +21,27 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
   Widget build(BuildContext context) {
     final expectExperienceState = ref.watch(expectExperiencesControllerProvider);
     final expectExperienceController = ref.read(expectExperiencesControllerProvider.notifier);
+    final appBarController = BaseAppBarController();
 
     return BaseScaffold(
-      customAppBar: AppBar(
-        title: Text(
-          L.more.addExperienceTitle,
-          style: const TextStyle(
-            color: AppColors.white1Color,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: AppColors.mainColor,
-        leading: const BackButton(color: AppColors.white1Color),
+      backgroundColor: AppColors.white3Color,
+      customAppBar: BaseAppBarView(
+        title: L.more.addExperienceTitle,
+        controller: appBarController,
+        shouldShowLeading: true,
       ),
       bottomView: Container(
         color: AppColors.white1Color,
         child: AppButton(
           title: L.more.addExperienceTextButton,
+          isEnabled: expectExperienceState.canAddExperience,
           onPressed: () {
             expectExperienceController
                 .createExpectExperiences()
                 .then((value) => {
               if (value == true)
               {
-                context.showSuccess(L.more.inforMessageSuccess),
+                context.showSuccess(L.more.addExperienceSuccess),
                 expectExperienceController.clearExpectExperience(),
                 NotificationCenter()
                     .postNotification(RawStringNotificationName('reloadListExperience')),
@@ -105,6 +99,7 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
             Row(
               children: [
                 Checkbox(
+                  activeColor: AppColors.mainColor,
                   value: isWorkingHere,
                   onChanged: (bool? newValue) {
                     isWorkingHere = newValue ?? false;
@@ -136,9 +131,9 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
               textFieldDidChange: (text){
                 expectExperienceController.setExpectDescription(text);
               },
-            ).paddingOnly(top: 12),
+            ).paddingOnly(top: 12,bottom: 12),
           ],
-        ).paddingSymmetric(horizontal: 12)
+        ).paddingSymmetric(horizontal: 12).makeColor(AppColors.white1Color)
       )
     );
   }

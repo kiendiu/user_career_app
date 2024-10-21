@@ -32,18 +32,8 @@ class _ExpectCertificatesPageState
   Widget build(BuildContext context) {
     return BaseScaffold(
       backgroundColor: AppColors.white3Color,
-      customAppBar: AppBar(
-        title: const Text(
-          "Thêm chứng chỉ",
-          style: TextStyle(
-            color: AppColors.white1Color,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: AppColors.mainColor,
-        leading: const BackButton(color: AppColors.white1Color),
+      customAppBar: BaseAppBarView(
+        title: "Bằng cấp",
       ),
       fab: FloatingActionButton(
         backgroundColor: AppColors.mainColor,

@@ -1,10 +1,7 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/common_text_field_view.dart';
 import 'package:user_career_more/expect_certificates/controllers/update_certificate_controller.dart';
 import 'package:user_career_more/expect_certificates/models/certificate_response.dart';
 
@@ -28,18 +25,8 @@ class _UpdateCertificatePageState extends ConsumerState<UpdateCertificatePage>
     final controller = ref.watch(updateCertificateControllerProvider(widget.certificateResponse).notifier);
     final controllerUpload = ref.read(updateCertificateControllerProvider(widget.certificateResponse).notifier);
     return BaseScaffold(
-        customAppBar: AppBar(
-          title: Text(
-            L.more.addExperienceTitle,
-            style: const TextStyle(
-              color: AppColors.white1Color,
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          centerTitle: true,
-          backgroundColor: AppColors.mainColor,
-          leading: const BackButton(color: AppColors.white1Color),
+        customAppBar: BaseAppBarView(
+          title: "Chỉnh sửa bằng cấp",
         ),
         bottomView: Container(
           color: AppColors.white1Color,

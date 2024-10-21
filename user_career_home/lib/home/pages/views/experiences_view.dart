@@ -14,7 +14,8 @@ class ExperiencesView extends ConsumerStatefulWidget {
 class _ExperiencesViewState extends ConsumerState<ExperiencesView> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return widget.experience.isNotEmpty
+      ? ListView(
       shrinkWrap: true,
       children: widget.experience
           .map((e) => Container(
@@ -22,37 +23,100 @@ class _ExperiencesViewState extends ConsumerState<ExperiencesView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
-                  e.company ?? '',
-                  style: const TextStyle(
-                    fontSize: 16.0,
-                    fontWeight: FontWeight.bold,
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text('Công ty: ',
+                      style: ref.theme.defaultTextStyle,
+                    ).paddingOnly(right: 10.0),
+                    Expanded(
+                      child: Text(
+                        e.company ?? '',
+                        style: ref.theme.defaultTextStyle.weight(FontWeight.w600),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 4),
-                Text(
-                  e.categoryName ?? '',
-                  style: TextStyle(fontSize: 14.0, color: Colors.grey[700]),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text('Lĩnh vực: ',
+                      style: ref.theme.defaultTextStyle,
+                    ).paddingOnly(right: 10.0),
+                    Expanded(
+                      child: Text(
+                        e.categoryName ?? '',
+                        style: ref.theme.defaultTextStyle.weight(FontWeight.w600),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 4),
-                Text(
-                  e.position ?? '',
-                  style: TextStyle(fontSize: 14.0, color: Colors.grey[700]),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text('Chức vụ: ',
+                      style: ref.theme.defaultTextStyle,
+                    ).paddingOnly(right: 10.0),
+                    Expanded(
+                      child: Text(
+                        e.position ?? '',
+                        style: ref.theme.defaultTextStyle,
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 4),
-                Text(
-                  e.timeText,
-                  style: TextStyle(fontSize: 14.0, color: Colors.grey[600]),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text('Thời gian: ',
+                      style: ref.theme.mediumTextStyle,
+                    ).paddingOnly(right: 10.0),
+                    Expanded(
+                      child: Text(
+                        e.timeText,
+                        style: ref.theme.mediumTextStyle.copyWith(color: Colors.grey),
+                      ),
+                    ),
+                  ],
                 ),
-                const SizedBox(height: 8),
-                Text(
-                  e.jobDescription ?? '',
-                  style: const TextStyle(fontSize: 14.0, fontWeight: FontWeight.w500),
+                const SizedBox(height: 4),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text('Mô tả: ',
+                      style: ref.theme.mediumTextStyle,
+                    ).paddingOnly(right: 10.0),
+                    Expanded(
+                      child: Text(
+                        e.jobDescription ?? '',
+                        style: ref.theme.mediumTextStyle.copyWith(color: Colors.grey),
+                      ),
+                    ),
+                  ],
                 ),
               ],
-            ).paddingSymmetric(vertical: 10, horizontal: 10),
+            ).paddingSymmetric(vertical: 12, horizontal: 12),
           ).paddingOnly(top: 5),
       ).toList(),
-    );
+    )
+    : Builder(builder: (context) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Assets.icons.icNoPermission.svg(),
+          const Text(
+            "Không có kinh nghiệm nào khác!",
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: Color(0xff242133),
+            ),
+          ).marginOnly(top: 16),
+        ],
+      );
+    });
   }
 }

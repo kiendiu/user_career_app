@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_core/views/common_empty_list_view.dart';
 import 'package:user_career_more/core/router.gm.dart';
@@ -36,18 +37,8 @@ class _ExpectSkillsPageState extends ConsumerState<ExpectSkillsPage> {
   Widget build(BuildContext context) {
     return BaseScaffold(
       backgroundColor: AppColors.white3Color,
-      customAppBar: AppBar(
-        title: const Text(
-          "Kỹ năng",
-          style: TextStyle(
-            color: AppColors.white1Color,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: AppColors.mainColor,
-        leading: const BackButton(color: AppColors.white1Color),
+      customAppBar: BaseAppBarView(
+        title: "Kỹ năng",
       ),
       fab: FloatingActionButton(
         backgroundColor: AppColors.mainColor,
@@ -105,11 +96,11 @@ class _ExpectSkillsPageState extends ConsumerState<ExpectSkillsPage> {
                           style: ref.theme.defaultTextStyle
                       ).paddingOnly(bottom: 5),
                       Text(
-                          "Online: ${experience.priceOnline}đ / ${experience.timeOnline} phút",
+                          "Online: ${NumberFormat("#,###").format(experience.priceOnline)}đ / ${experience.timeOnline} phút",
                           style: ref.theme.smallTextStyle.weight(FontWeight.w400)
                       ),
                       Text(
-                          "Offline: ${experience.priceOffline}đ / ${experience.timeOffline} phút",
+                          "Offline: ${NumberFormat("#,###").format(experience.priceOffline)}đ / ${experience.timeOffline} phút",
                           style: ref.theme.smallTextStyle.weight(FontWeight.w400)
                       )
                     ],

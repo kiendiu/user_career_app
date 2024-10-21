@@ -10,9 +10,9 @@ class SkillRequest implements Encodable {
   int? experienceYear;
   String? skillDescription;
   int? timeOnline;
-  double? priceOnline;
+  int? priceOnline;
   int? timeOffline;
-  double? priceOffline;
+  int? priceOffline;
 
   SkillRequest({
     this.skillId,
@@ -53,9 +53,9 @@ class SkillRequest implements Encodable {
     int? experienceYear,
     String? skillDescription,
     int? timeOnline,
-    double? priceOnline,
+    int? priceOnline,
     int? timeOffline,
-    double? priceOffline,
+    int? priceOffline,
   }) {
     return SkillRequest(
       skillId: skillId ?? this.skillId,
@@ -80,13 +80,13 @@ class SkillRequest implements Encodable {
 
   bool get isEmptySkillDescription => skillDescription != null && skillDescription!.isNotEmpty;
 
-  bool get isEmptyTimeOnline => timeOnline != null && timeOnline! > 0;
+  bool get isEmptyTimeOnline => timeOnline != null && timeOnline! > 0 && timeOnline! % 15 == 0;
 
-  bool get isEmptyPriceOnline => priceOnline != null && priceOnline! > 0;
+  bool get isEmptyPriceOnline => priceOnline != null && priceOnline! >= 10000;
 
-  bool get isEmptyTimeOffline => timeOffline != null && timeOffline! > 0;
+  bool get isEmptyTimeOffline => timeOffline != null && timeOffline! > 0  && timeOffline! % 15 == 0;
 
-  bool get isEmptyPriceOffline => priceOffline != null && priceOffline! > 0;
+  bool get isEmptyPriceOffline => priceOffline != null && priceOffline! >= 10000;
 
   bool get canAddSkill => isEmptyNameSkill
       && isEmptyCategory

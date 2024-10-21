@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/common_text_field_view.dart';
 import 'package:user_career_more/core/router.gm.dart';
 import 'package:user_career_more/expect_experiences/controllers/edit_experience_controller.dart';
 import 'package:user_career_more/expect_experiences/models/expect_experience_response.dart';
@@ -30,20 +29,14 @@ class _EditExperiencePageState extends ConsumerState<EditExperiencePage> {
   Widget build(BuildContext context) {
     final state = ref.watch(editExperienceControllerProvider(widget.expectExperienceResponse));
     final controller = ref.watch(editExperienceControllerProvider(widget.expectExperienceResponse).notifier);
+    final appBarController = BaseAppBarController();
 
     return BaseScaffold(
-        customAppBar: AppBar(
-          title: const Text(
-            "Chỉnh sửa kinh nghiệm",
-            style: const TextStyle(
-              color: AppColors.white1Color,
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          centerTitle: true,
-          backgroundColor: AppColors.mainColor,
-          leading: const BackButton(color: AppColors.white1Color),
+      backgroundColor: AppColors.white3Color,
+        customAppBar: BaseAppBarView(
+          title: L.more.editExperienceTitle,
+          controller: appBarController,
+          shouldShowLeading: true,
         ),
         bottomView: Container(
           color: AppColors.white1Color,
@@ -112,6 +105,7 @@ class _EditExperiencePageState extends ConsumerState<EditExperiencePage> {
                   children: [
                     Checkbox(
                       value: isWorkingHere,
+                      activeColor: AppColors.mainColor,
                       onChanged: (bool? newValue) {
                         isWorkingHere = newValue ?? false;
                         controller.setExpectCurrentlyWorking(isWorkingHere);
@@ -141,9 +135,9 @@ class _EditExperiencePageState extends ConsumerState<EditExperiencePage> {
                   textFieldDidChange: (text){
                     controller.setExpectDescription(text);
                   },
-                ).paddingOnly(top: 12),
+                ).paddingOnly(top: 12, bottom: 12),
               ],
-            ).paddingSymmetric(horizontal: 12)
+            ).paddingSymmetric(horizontal: 12).makeColor(AppColors.white1Color)
         )
     );
   }

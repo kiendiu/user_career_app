@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
+import 'package:user_career_core/views/common_empty_list_view.dart';
 import 'package:user_career_home/home/models/expect_detail_response.dart';
 import 'package:user_career_home/home/models/info_service_model.dart';
 import 'package:user_career_home/home/pages/views/star_rating_view.dart';
@@ -19,7 +20,8 @@ class SkillsView extends ConsumerStatefulWidget {
 class _SkillsViewState extends ConsumerState<SkillsView> {
   @override
   Widget build(BuildContext context) {
-    return ListView(
+    return widget.skill.isNotEmpty
+      ? ListView(
       shrinkWrap: true,
       children: widget.skill
           .map((e) => Container(
@@ -111,6 +113,22 @@ class _SkillsViewState extends ConsumerState<SkillsView> {
         ),
       ).paddingOnly(top: 5),
       ).toList(),
-    );
+    )
+    : Builder(builder: (context) {
+      return Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Assets.icons.icNoPermission.svg(),
+          const Text(
+            "Không có kỹ năng nào khác!",
+            style: const TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+              color: Color(0xff242133),
+            ),
+          ).marginOnly(top: 16),
+        ],
+      );
+    });
   }
 }

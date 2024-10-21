@@ -53,7 +53,7 @@ class AppButton extends ConsumerWidget {
               duration: 300.milliseconds,
               child: Container(
                 decoration: ShapeDecoration(
-                    color: color ?? AppColors.main1Color,
+                    color: color ?? AppColors.mainColor,
                     shape: RoundedRectangleBorder(
                       borderRadius: borderRadius ?? 8.0.borderAll(),
                     )),

@@ -1,8 +1,9 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/common_text_field_view.dart';
 import 'package:user_career_more/core/router.gm.dart';
 import 'package:user_career_more/expect_skills/controllers/skill_controller.dart';
 
@@ -22,18 +23,9 @@ class _AddSkillPageState extends ConsumerState<AddSkillPage> {
     final skillController = ref.read(skillControllerProvider.notifier);
 
     return BaseScaffold(
-        customAppBar: AppBar(
-          title: const Text(
-            "Thêm kỹ năng",
-            style: const TextStyle(
-              color: AppColors.white1Color,
-              fontSize: 18,
-              fontWeight: FontWeight.w500,
-            ),
-          ),
-          centerTitle: true,
-          backgroundColor: AppColors.mainColor,
-          leading: const BackButton(color: AppColors.white1Color),
+        backgroundColor: AppColors.white3Color,
+        customAppBar: BaseAppBarView(
+          title: "Thêm kỹ năng",
         ),
         bottomView: Container(
           color: AppColors.white1Color,
@@ -58,6 +50,8 @@ class _AddSkillPageState extends ConsumerState<AddSkillPage> {
         ),
         body: SingleChildScrollView(
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 GestureDetector(
                   onTap: () {
@@ -108,6 +102,12 @@ class _AddSkillPageState extends ConsumerState<AddSkillPage> {
                     skillController.setSkillDescription(text);
                   },
                 ).paddingOnly(top: 12),
+                Text(
+                  "Lưu ý:\n    +Thời lượng tư vấn là bội số của 15\n    +Giá tư vấn tối thiểu là 10,000đ",
+                  style: ref.theme.mediumTextStyle.copyWith(
+                    color: Colors.grey,
+                  )
+                ).paddingOnly(top: 12),
                 Row(
                   children: [
                     Expanded(
@@ -116,7 +116,7 @@ class _AddSkillPageState extends ConsumerState<AddSkillPage> {
                         placeholder: "phút",
                         isRequired: true,
                         validator: (_) => (skillState.isEmptyTimeOffline),
-                        errorText: () => L.more.errorEmpty,
+                        errorText: () => L.more.errorInvalidMessage,
                         padding: const EdgeInsets.only(left: 14, right: 14),
                         inputType: TextInputType.number,
                         textFieldDidChange: (text){
@@ -132,11 +132,11 @@ class _AddSkillPageState extends ConsumerState<AddSkillPage> {
                         placeholder: "VND",
                         isRequired: true,
                         validator: (_) => (skillState.isEmptyPriceOffline),
-                        errorText: () => L.more.errorEmpty,
+                        errorText: () => L.more.errorInvalidMessage,
                         padding: const EdgeInsets.only(left: 14, right: 14),
                         inputType: TextInputType.number,
                         textFieldDidChange: (text){
-                          double number = double.parse(text!);
+                          int number = int.parse(text!);
                           skillController.setPriceOffline(number);
                         },
                       ).paddingOnly(top: 12),
@@ -151,7 +151,7 @@ class _AddSkillPageState extends ConsumerState<AddSkillPage> {
                         placeholder: "phút",
                         isRequired: true,
                         validator: (_) => (skillState.isEmptyTimeOnline),
-                        errorText: () => L.more.errorEmpty,
+                        errorText: () => L.more.errorInvalidMessage,
                         padding: const EdgeInsets.only(left: 14, right: 14),
                         inputType: TextInputType.number,
                         textFieldDidChange: (text){
@@ -167,19 +167,19 @@ class _AddSkillPageState extends ConsumerState<AddSkillPage> {
                         placeholder: "VND",
                         isRequired: true,
                         validator: (_) => (skillState.isEmptyPriceOnline),
-                        errorText: () => L.more.errorEmpty,
+                        errorText: () => L.more.errorInvalidMessage,
                         padding: const EdgeInsets.only(left: 14, right: 14),
                         inputType: TextInputType.number,
                         textFieldDidChange: (text){
-                          double number = double.parse(text!);
+                          int number = int.parse(text!);
                           skillController.setPriceOnline(number);
                         },
                       ).paddingOnly(top: 12),
                     ),
                   ],
-                ),
+                ).paddingOnly(bottom: 12),
               ],
-            ).paddingSymmetric(horizontal: 12)
+            ).paddingSymmetric(horizontal: 12).makeColor(AppColors.white1Color)
         )
     );
   }

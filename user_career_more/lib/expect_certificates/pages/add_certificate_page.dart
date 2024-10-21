@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/common_text_field_view.dart';
 import 'package:user_career_more/expect_certificates/controllers/certificate_controller.dart';
 
 @RoutePage()
@@ -23,18 +22,9 @@ class _AddCertificatePageState extends ConsumerState<AddCertificatePage>
     final state = ref.watch(certificateControllerProvider);
     final controller = ref.watch(certificateControllerProvider.notifier);
     return BaseScaffold(
-      customAppBar: AppBar(
-        title: Text(
-          L.more.addExperienceTitle,
-          style: const TextStyle(
-            color: AppColors.white1Color,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: AppColors.mainColor,
-        leading: const BackButton(color: AppColors.white1Color),
+      backgroundColor: AppColors.white3Color,
+      customAppBar: BaseAppBarView(
+        title: "Thêm bằng cấp",
       ),
       bottomView: Container(
         color: AppColors.white1Color,
@@ -85,7 +75,7 @@ class _AddCertificatePageState extends ConsumerState<AddCertificatePage>
               title: "Đường dẫn chứng chỉ",
               placeholder: "Đường dẫn chứng chỉ",
               isRequired: true,
-              initialText: state.certificateRequest.linkUrl ?? "Dường dẫn chứng chỉ",
+              initialText: state.certificateRequest.linkUrl,
               validator: (_) => state.certificateRequest.isLinkUrlEmpty,
               errorText: () => L.more.errorEmpty,
               padding: const EdgeInsets.only(left: 14, right: 14),
@@ -172,7 +162,7 @@ class _AddCertificatePageState extends ConsumerState<AddCertificatePage>
               )
             )
           ],
-        ).paddingSymmetric(horizontal: 12)
+        ).paddingSymmetric(horizontal: 12).makeColor(AppColors.white1Color),
       )
     );
   }

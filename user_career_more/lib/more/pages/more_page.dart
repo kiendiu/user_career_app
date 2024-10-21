@@ -24,45 +24,31 @@ class _MorePageState extends ConsumerState<MorePage> {
       body: Column(
         children: [
           Container(
-            color: const Color(0xff196CCD),
+            color: AppColors.mainColor,
             child: Column(
               children: [
                 Row(
-                    children: [
-                      Row(
-                        children: [
-                          Container(
-                              decoration: BoxDecoration(
-                                border: Border.all(color: AppColors.white4Color),
-                                borderRadius: 50.0.borderAll(),
-                              ),
-                              child: ImageView(
-                                  url: Storage.get(POSStorageKey.infoAvatarPath) ?? "",
-                                  fit: BoxFit.cover,
-                                  radius: 50,
-                                  placeholder: Assets.icons.icAvatarDefault
-                                      .svg(height: 70, width: 70)
-                              ).box(h: 70, w: 70)
-                          ).paddingOnly(right: 8.0),
-                          Text(
-                            Storage.get(POSStorageKey.infoUserNameKey) ?? "",
-                            style: ref.theme.bigTextStyle
-                                .copyWith(color:AppColors.white1Color,
-                                fontWeight: FontWeight.bold),
-                          ),
-                        ],
-                      ).expand(),
-                      Stack(children: [
-                        ClipOval(
-                          child: Assets.icons.icBell
-                              .svg(height: 24, width: 24)
-                              .onTapWidget(() {
-                            NotificationCenter().postNotification(
-                                RawStringNotificationName("notifications"));
-                          }),
-                        ),
-                      ])
-                    ]
+                  children: [
+                    Container(
+                      decoration: BoxDecoration(
+                        border: Border.all(color: AppColors.white4Color),
+                        borderRadius: 50.0.borderAll(),
+                      ),
+                      child: ImageView(
+                        url: Storage.get(POSStorageKey.infoAvatarPath) ?? "",
+                        fit: BoxFit.cover,
+                        radius: 50,
+                        placeholder: Assets.icons.icAvatarDefault
+                            .svg(height: 70, width: 70)
+                      ).box(h: 70, w: 70)
+                    ).paddingOnly(right: 8.0),
+                    Text(
+                      Storage.get(POSStorageKey.infoUserNameKey) ?? "",
+                      style: ref.theme.bigTextStyle
+                          .copyWith(color:AppColors.white1Color,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  ],
                 ),
                 Container(
                     decoration: BoxDecoration(
@@ -76,18 +62,18 @@ class _MorePageState extends ConsumerState<MorePage> {
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(Icons.calendar_today, color: AppColors.main1Color).box(w: 24, h: 24),
+                            const Icon(Icons.calendar_today, color: AppColors.mainColor).box(w: 24, h: 24),
                             const SizedBox(height: 8.0),
-                            Text('Lịch tư vấn' ,style: ref.theme.defaultTextStyle),
+                            Text(L.more.textMyCalendar ,style: ref.theme.defaultTextStyle),
                           ],
                         ).paddingSymmetric(vertical: 10, horizontal: 10)
                             .onTapWidget(() => context.router.push(const CalendarRoute())),
                         Column(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            const Icon(Icons.account_balance_wallet_outlined, color: AppColors.main1Color).box(w: 24, h: 24),
+                            const Icon(Icons.account_balance_wallet_outlined, color: AppColors.mainColor).box(w: 24, h: 24),
                             const SizedBox(height: 8.0),
-                            Text('Ví của tôi' ,style: ref.theme.defaultTextStyle),
+                            Text(L.more.textMyWallet ,style: ref.theme.defaultTextStyle),
                           ],
                         ).paddingSymmetric(vertical: 10, horizontal: 10)
                             .onTapWidget(() => context.router.push(const WalletRoute())),
@@ -111,25 +97,25 @@ class _MorePageState extends ConsumerState<MorePage> {
         children: [
           ListTile(
             title: Text(
-              'Quản lý dịch vụ',
+              L.more.manageServiceTitle,
               style: ref.theme.bigTextStyle.copyWith(
                   fontWeight: FontWeight.bold,
-                  color: AppColors.main1Color),
+                  color: AppColors.mainColor),
             ),
             trailing: TextButton(
               onPressed: () { context.router.push(const ServiceRoute());},
-              child: Text('Xem tất cả',
-                style: ref.theme.mediumTextStyle,
+              child: Text(L.more.manageServiceSeeAll,
+                style: ref.theme.mediumTextStyle.copyWith(color: AppColors.mainColor),
               ),
             ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildServiceStatusButton(Icons.access_time, 'Chờ xác nhận'),
-              _buildServiceStatusButton(Icons.check_circle_outline, 'Đã xác nhận'),
-              _buildServiceStatusButton(Icons.speaker_notes_outlined, 'Đã diễn ra'),
-              _buildServiceStatusButton(Icons.elevator_outlined, 'Hoàn thành'),
+              _buildServiceStatusButton(Icons.access_time, L.more.manageServiceStatusWaiting),
+              _buildServiceStatusButton(Icons.check_circle_outline, L.more.manageServiceStatusConfirmed),
+              _buildServiceStatusButton(Icons.speaker_notes_outlined, L.more.manageServiceStatusHappened),
+              _buildServiceStatusButton(Icons.elevator_outlined, L.more.manageServiceStatusDone),
             ],
           ),
         ],
@@ -146,22 +132,22 @@ class _MorePageState extends ConsumerState<MorePage> {
         children: [
           ListTile(
             leading: const Icon(Icons.account_circle_outlined),
-            title: const Text('Thông tin cá nhân'),
+            title: Text(L.more.inforTitle),
             onTap: () { context.router.push(const UpdateInformationRoute());},
           ),
           ListTile(
             leading: const Icon(Icons.file_present_outlined),
-            title: const Text('Hồ sơ chuyên gia'),
+            title: Text(L.more.expectTitle),
             onTap: () {context.router.push(const ExpectRoute());},
           ),
           ListTile(
             leading: const Icon(Icons.password_rounded),
-            title: const Text('Thay đổi mật khẩu'),
+            title: Text(L.more.changePasswordTitle),
             onTap: () {context.router.push(const ChangePasswordRoute());},
           ),
           ListTile(
             leading: Assets.icons.icLogoutIcon.svg(height: 20, width: 20),
-            title: const Text('Đăng xuất'),
+            title: Text(L.more.logout),
             onTap: () {
               context.showOverlay(const LogoutView());
             },
@@ -174,7 +160,7 @@ class _MorePageState extends ConsumerState<MorePage> {
   Widget _buildServiceStatusButton(IconData icon, String text) {
     return Column(
       children: [
-        Icon(icon, color: AppColors.main1Color).box(w: 20, h: 20),
+        Icon(icon, color: AppColors.mainColor).box(w: 20, h: 20),
         const SizedBox(height: 8),
         Text(text,style: ref.theme.smallTextStyle),
       ],

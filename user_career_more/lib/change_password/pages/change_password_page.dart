@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/common_appbar.dart';
 import 'package:user_career_more/change_password/controllers/change_password_controller.dart';
 
 @RoutePage()
@@ -18,13 +17,14 @@ class _ChangePasswordPageState extends ConsumerState<ChangePasswordPage> {
   Widget build(BuildContext context) {
     final controller = ref.read(changePasswordControllerProvider.notifier);
     final state = ref.watch(changePasswordControllerProvider);
+    final appBarController = BaseAppBarController();
     return BaseScaffold(
       backgroundColor: AppColors.white3Color,
       onBack: () => context.maybePop(),
-      customAppBar: CommonAppBar(
-        centerTitle: true,
-        titleText: "Thay đổi mật khẩu",
-        titleSpacing: 0,
+      customAppBar: BaseAppBarView(
+        title: L.more.changePasswordTitle,
+        controller: appBarController,
+        shouldShowLeading: true,
       ),
       body: Column(
         children: [

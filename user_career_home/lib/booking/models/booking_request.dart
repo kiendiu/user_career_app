@@ -64,4 +64,9 @@ class BookingRequest implements Encodable{
     };
   }
 
+  bool get isEmptyMessage => noteMessage != null && noteMessage!.isNotEmpty;
+
+  bool get isEmptyLocation => locationName != null && locationName!.isNotEmpty;
+
+  bool get isEmptyAddress => address != null && address!.isNotEmpty;
 }

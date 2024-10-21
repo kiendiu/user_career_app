@@ -33,5 +33,7 @@ class RegisterRequest implements Encodable {
           email!.isValidEmail();
 
   bool get isPasswordValid => password != null && password!.trim().isNotEmpty;
+
+  bool get isUsernameValid => username != null && username!.trim().isNotEmpty;
   String? idName;
 }

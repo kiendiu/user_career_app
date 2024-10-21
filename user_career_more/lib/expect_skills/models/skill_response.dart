@@ -9,9 +9,9 @@ class SkillResponse implements Decodable {
   String? skillDescription;
   String? nameCategory;
   int? timeOnline;
-  double? priceOnline;
+  int? priceOnline;
   int? timeOffline;
-  double? priceOffline;
+  int? priceOffline;
 
   SkillResponse({
     this.skillId,
@@ -37,9 +37,9 @@ class SkillResponse implements Decodable {
     skillDescription = json['skill_description'];
     nameCategory = json['name_category'];
     timeOnline = json['time_online'];
-    priceOnline = (json['price_online'] as num?)?.toDouble();
+    priceOnline = (json['price_online'] as num?)?.toInt();
     timeOffline = json['time_offline'];
-    priceOffline = (json['price_offline'] as num?)?.toDouble();
+    priceOffline = (json['price_offline'] as num?)?.toInt();
   }
 
   bool get isSkillOnlineAvailable => timeOnline != null && timeOnline! > 0 && priceOnline != null && priceOnline! > 0;

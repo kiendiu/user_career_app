@@ -4,6 +4,7 @@ import 'package:calendar_date_picker2/calendar_date_picker2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:user_career_core/common/career_storage_key.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_home/booking/models/info_booking_model.dart';
@@ -80,6 +81,15 @@ class _BookingPageState extends ConsumerState<BookingPage> {
           AppButton.custom(
             title: "Quay lại",
             onPressed: () {
+              if(_currentIndex == 2 && bookId != 0){
+                bookingController.deleteBooking(bookId).then((value) {
+                  if(value){
+                    setState(() {
+                      bookId = 0;
+                    });
+                  }
+                });
+              }
               _onPrevious();
             },
             titleTextStyle: const TextStyle(
@@ -203,50 +213,68 @@ class _BookingPageState extends ConsumerState<BookingPage> {
               children: [
                 SingleChildScrollView(
                   child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      TextFieldView.insideBorder(
+                      Text(
+                        "Thông tin liên hệ (*)",
+                        style: ref.theme.defaultTextStyle.weight(FontWeight.w600)
+                      ).paddingSymmetric(vertical: 12),
+                      TextFieldView.outsideBorder(
                         title: "Họ tên",
                         initialText: Storage.get(POSStorageKey.infoUserNameKey),
                         isDisabled: true,
-                      ),
-                      TextFieldView.insideBorder(
+                      ).paddingOnly(bottom: 12),
+                      TextFieldView.outsideBorder(
                         title: "Số điện thoại",
                         initialText: Storage.get(POSStorageKey.infoPhoneKey),
                         isDisabled: true,
-                      ),
-                      TextFieldView.insideBorder(
+                      ).paddingOnly(bottom: 12),
+                      TextFieldView.outsideBorder(
                         title: "Giá dịch vụ",
-                        initialText: "${widget.infoBookingModel?.price}",
+                        initialText: "${NumberFormat("###,###").format(widget.infoBookingModel?.price)}đ",
                         isDisabled: true,
-                      ),
-                      TextFieldView.insideBorder(
+                      ).paddingOnly(bottom: 12),
+                      TextFieldView.outsideBorder(
                         isRequired: true,
                         title: "Lời nhắn",
                         placeholder: "Nhập lời nhắn",
+                        validator: (_) => bookingState.isEmptyMessage,
+                        errorText: () => L.more.errorEmpty,
                         textFieldDidChange: (text) {
                           bookingController.updateNoteMessage(text!);
                         },
-                      ),
-                      const Divider(color: Colors.grey, thickness: 1,),
+                      ).paddingOnly(bottom: 12),
                       widget.infoBookingModel?.contactMethod == "offline"
                         ? Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            TextFieldView.insideBorder(
+                            const Divider(color: Colors.black26, thickness: 1),
+                            Text(
+                              "Thông tin địa điểm (*)",
+                              style: ref.theme.defaultTextStyle.weight(FontWeight.w600)
+                            ).paddingSymmetric(vertical: 12),
+                            TextFieldView.outsideBorder(
                               isRequired: true,
                               title: "Tên địa điểm",
                               placeholder: "Nhập tên địa điểm",
+                              validator: (_) => bookingState.isEmptyLocation,
+                              errorText: () => L.more.errorEmpty,
                               textFieldDidChange: (text) {
                                 bookingController.updateLocationName(text!);
                               },
-                            ),
-                            TextFieldView.insideBorder(
+                            ).paddingOnly(bottom: 12),
+                            TextFieldView.outsideBorder(
                               isRequired: true,
                               title: "Địa chỉ",
                               placeholder: "Nhập địa chỉ",
+                              validator: (_) => bookingState.isEmptyAddress,
+                              errorText: () => L.more.errorEmpty,
                               textFieldDidChange: (text) {
                                 bookingController.updateAddress(text!);
                               },
-                            ),
+                            ).paddingOnly(bottom: 12),
                           ],
                         )
                         : const SizedBox(),
@@ -330,7 +358,7 @@ class _BookingPageState extends ConsumerState<BookingPage> {
                                             .weight(FontWeight.w600),
                                         itemStyle: ref.theme.mediumTextStyle,
                                       ),
-                                      currentTime: DateTime.now(),
+                                      currentTime: DateTime.now().copyWith(hour: 8, minute: 0, second: 0),
                                       onConfirm: (time) {
                                         final formattedTime = time.clock();
                                         setState(() {

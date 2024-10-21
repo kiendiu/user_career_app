@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/common_appbar.dart';
 import 'package:user_career_core/views/custom_text_field.dart';
 import 'package:user_career_more/core/router.gm.dart';
 import 'package:user_career_more/more/controllers/expect_controller.dart';
@@ -24,15 +23,26 @@ class _ExpectPageState extends ConsumerState<ExpectPage> {
   Widget build(BuildContext context) {
     final expectState = ref.watch(expectControllerProvider);
     final expectController  = ref.read(expectControllerProvider.notifier);
+    final appBarController = BaseAppBarController();
 
     return BaseScaffold(
-      customAppBar: CommonAppBar(
-        centerTitle: true,
-        titleText: L.more.expectTitle,
-        rightActions: [
-          Text(L.more.expectTextButton).onTapWidget(() {
-            expectController.updateExpectInformation();
-          }).paddingOnly(right: 14.0)
+      customAppBar: BaseAppBarView(
+        title: L.more.expectTitle,
+        controller: appBarController,
+        shouldShowLeading: true,
+        actions: [
+          AppBarActionButton(
+            child: Text(
+              L.more.expectTextButton,
+              style: ref.theme.bigTextStyle.copyWith(
+                color: AppColors.white1Color
+              )
+            ),
+            onTap: () {
+              expectController.updateExpectInformation().then((value) {
+                context.showSuccess(L.more.messageChangeSuccessful);
+              });
+            }),
         ],
       ),
       backgroundColor: AppColors.white1Color,
@@ -64,6 +74,13 @@ class _ExpectPageState extends ConsumerState<ExpectPage> {
                     width: 2.0,
                   ),
                 ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: AppColors.mainColor,
+                    width: 2.0,
+                  ),
+                ),
               ),
             ).paddingOnly(bottom: 14.0),
             Text(
@@ -74,13 +91,22 @@ class _ExpectPageState extends ConsumerState<ExpectPage> {
                 initialText: expectState.experienceYears?.toString() ?? '',
                 textFieldDidChange: (value) {
                   ref.read(expectControllerProvider.notifier)
-                      .setExperienceYears(int.tryParse(value ?? ''));
+                      .setExperienceYears(int.tryParse(
+                      value ?? (expectState.experienceYears?.toString() ?? '')
+                  ));
                 },
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
                     color: AppColors.black4Color,
+                    width: 2.0,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: AppColors.mainColor,
                     width: 2.0,
                   ),
                 ),
@@ -93,13 +119,22 @@ class _ExpectPageState extends ConsumerState<ExpectPage> {
             CustomTextFieldView(
               initialText: expectState.skillDescription ?? '',
               textFieldDidChange: (value) {
-                ref.read(expectControllerProvider.notifier).setSkillDescription(value);
+                ref.read(expectControllerProvider.notifier).setSkillDescription(
+                    value ?? expectState.skillDescription ?? ''
+                );
               },
               decoration: InputDecoration(
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(8.0),
                   borderSide: const BorderSide(
                     color: AppColors.black4Color,
+                    width: 2.0,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(8.0),
+                  borderSide: const BorderSide(
+                    color: AppColors.mainColor,
                     width: 2.0,
                   ),
                 ),

@@ -39,5 +39,8 @@
   "reset_password_successful_text": "Đặt lại mật khẩu thành công",
 
   "text_message_register": "Bạn chưa có tài khoản?",
-  "text_button_register": "Đăng ký"
+  "text_button_register": "Đăng ký",
+
+  "text_error_empty_data": "Nhập đủ thông tin",
+  "text_register_successful": "Đăng ký thành công"
 }

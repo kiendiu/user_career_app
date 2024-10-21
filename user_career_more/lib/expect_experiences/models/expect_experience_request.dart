@@ -86,6 +86,5 @@ class ExpectExperienceRequest implements Encodable{
       && isEmptyCategory
       && isEmptyPosition
       && isEmptyStartTime
-      && isEmptyEndTime
       && isEmptyJobDescription;
 }

@@ -53,7 +53,7 @@ class UpdateSkillController extends AutoDisposeFamilyNotifier<SkillRequest, Skil
     state =  state.copyWith(timeOnline: value);
   }
 
-  void setPriceOnline(double? value) {
+  void setPriceOnline(int? value) {
     state =  state.copyWith(priceOnline: value);
   }
 
@@ -61,7 +61,7 @@ class UpdateSkillController extends AutoDisposeFamilyNotifier<SkillRequest, Skil
     state =  state.copyWith(timeOffline: value);
   }
 
-  void setPriceOffline(double? value) {
+  void setPriceOffline(int? value) {
     state =  state.copyWith(priceOffline: value);
   }
 

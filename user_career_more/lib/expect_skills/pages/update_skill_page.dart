@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/common_text_field_view.dart';
 import 'package:user_career_more/core/router.gm.dart';
 import 'package:user_career_more/expect_skills/controllers/update_skill_controller.dart';
 import 'package:user_career_more/expect_skills/models/skill_response.dart';
@@ -139,7 +138,7 @@ class _UpdateSkillPageState extends ConsumerState<UpdateSkillPage> {
                         padding: const EdgeInsets.only(left: 14, right: 14),
                         // inputType: TextInputType.number,
                         textFieldDidChange: (text){
-                          skillController.setPriceOffline(double.parse(text!));
+                          skillController.setPriceOffline(int.parse(text!));
                         },
                       ).paddingOnly(top: 12),
                     ),
@@ -174,7 +173,7 @@ class _UpdateSkillPageState extends ConsumerState<UpdateSkillPage> {
                         padding: const EdgeInsets.only(left: 14, right: 14),
                         // inputType: TextInputType.number,
                         textFieldDidChange: (text){
-                          skillController.setPriceOnline(double.parse(text!));
+                          skillController.setPriceOnline(int.parse(text!));
                         },
                       ).paddingOnly(top: 12),
                     ),

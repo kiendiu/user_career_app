@@ -35,6 +35,7 @@ class _LanguagePickerViewState extends ConsumerState<LanguagePickerView>{
               return CheckboxListTile(
                 title: Text(language.nameLanguage ?? ''),
                 value: widget.languagesLocal.contains(language),
+                activeColor: AppColors.mainColor,
                 onChanged: (bool? value) {
                   setState(() {
                     if (value == true) {

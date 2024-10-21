@@ -35,20 +35,14 @@ class _ExpectExperiencesPageState extends ConsumerState<ExpectExperiencesPage> {
 
   @override
   Widget build(BuildContext context) {
+    final appBarController = BaseAppBarController();
+
     return BaseScaffold(
       backgroundColor: AppColors.white3Color,
-      customAppBar: AppBar(
-        title: Text(
-          L.more.expectListTileExperiences,
-          style: const TextStyle(
-            color: AppColors.white1Color,
-            fontSize: 18,
-            fontWeight: FontWeight.w500,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: AppColors.mainColor,
-        leading: const BackButton(color: AppColors.white1Color),
+      customAppBar: BaseAppBarView(
+        title: L.more.expectListTileExperiences,
+        controller: appBarController,
+        shouldShowLeading: true,
       ),
       fab: FloatingActionButton(
         backgroundColor: AppColors.mainColor,

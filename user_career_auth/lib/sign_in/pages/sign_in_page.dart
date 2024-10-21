@@ -40,23 +40,22 @@ class _SignInPageState extends ConsumerState<SignInPage> {
   Widget _buildAppLogo() {
     return Column(
       children: [
-        Assets.icons.icLogoKmad
-            .svg(height: 80)
-            .marginOnly(bottom: 10),
+        Assets.icons.icLogoKmad.svg(height: 80).marginOnly(bottom: 10),
         Container(
           decoration: BoxDecoration(
             color: const Color(0xffECF4FF),
             borderRadius: BorderRadius.circular(8),
           ),
           child: Text(
-            "KMAD",
-            style: ref
-                .theme.smallTextStyle
+            L.auth.nameApp,
+            style: ref.theme.defaultTextStyle
+                .size(12)
+                .weight(FontWeight.w600)
                 .textColor(const Color(0xff1170FF)),
           ).paddingAll(6.0),
         ),
       ],
-    ).marginOnly(bottom: 34);
+    ).marginOnly(bottom: 32);
   }
 
   Widget _buildTextFieldEmail() {
@@ -114,6 +113,10 @@ class _SignInPageState extends ConsumerState<SignInPage> {
               style: ref.theme.defaultTextStyle,
             ),
             TextSpan(
+              text: " ",
+              style: ref.theme.defaultTextStyle,
+            ),
+            TextSpan(
               text: L.auth.textButtonRegister,
               style: ref
                   .theme
@@ -132,6 +135,7 @@ class _SignInPageState extends ConsumerState<SignInPage> {
   void _login() {
     ref.read(signInControllerProvider.notifier).signIn().then((value) {
       if (value) {
+        context.showSuccess(L.auth.signInSuccessfulText);
         NotificationCenter().postNotification(RawStringNotificationName("open_main_route"));
       }
     });
