@@ -8,6 +8,7 @@ class RequestRouterModule extends $RequestRouterModule {
   static List<AutoRoute> routes = [
     AutoRoute(page: RequestRoute.page),
     PresentedRoute(page: RequestDetailRoute.page),
-    PresentedRoute(page: AddRequestRoute.page)
+    PresentedRoute(page: AddRequestRoute.page),
+    PresentedRoute(page: BidRequestRoute.page),
   ];
 }

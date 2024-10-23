@@ -1,10 +1,7 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/base_app_bar_view.dart';
-import 'package:user_career_core/views/base_tab_bar_view.dart';
 import 'package:user_career_request/core/router.gm.dart';
 import 'package:user_career_request/request/pages/views/bid_view.dart';
 import 'package:user_career_request/request/pages/views/mine_view.dart';
@@ -41,14 +38,14 @@ class _RequestPageState extends ConsumerState<RequestPage> with SingleTickerProv
       body: BaseTabBarView(
         data: [
           TabBarViewData.normal(
-              title: "Dịch vụ",
+              title: "Yêu cầu dịch vụ",
               body: const GeneralPage()),
           TabBarViewData.normal(
-              title: "Của tôi",
+              title: "Yêu cầu của tôi",
               body: const MinePage()),
-          TabBarViewData.normal(
-              title: "Chào giá",
-              body: const BidPage()),
+          // TabBarViewData.normal(
+          //     title: "Chào giá",
+          //     body: const BidPage()),
         ],
       ),
     );

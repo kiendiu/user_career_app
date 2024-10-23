@@ -1,6 +1,7 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_core/views/common_empty_list_view.dart';
 import 'package:user_career_request/core/router.gm.dart';
@@ -65,28 +66,23 @@ class _GeneralPageState extends ConsumerState<GeneralPage> {
                   )
                 ).paddingOnly(bottom: 5.0),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      children: [
-                        const Icon(Icons.monetization_on_outlined, color: AppColors.mainColor),
-                        Text(
-                          "Ngân sách: ${request.budget ?? 0}",
-                          style: ref.theme.defaultTextStyle,
-                        ),
-                      ],
+                    const Icon(Icons.monetization_on_outlined, color: AppColors.mainColor),
+                    Text(
+                      "Ngân sách: ${NumberFormat('#,###').format(request.budget ?? 0)}đ",
+                      style: ref.theme.defaultTextStyle,
                     ),
-                    Row(
-                      children: [
-                        const Icon(Icons.calendar_month_outlined, color: AppColors.mainColor),
-                        Text(
-                          "Thời hạn: ${request.biddingEndDate.ddMMyyyy2()}",
-                          style: ref.theme.defaultTextStyle,
-                        ),
-                      ],
-                    )
                   ],
-                ).paddingOnly(bottom: 5.0),
+                ).paddingOnly(bottom: 12.0),
+                Row(
+                  children: [
+                    const Icon(Icons.calendar_month_outlined, color: AppColors.mainColor),
+                    Text(
+                      "Thời hạn: ${request.biddingEndDate.ddMMyyyy2()}",
+                      style: ref.theme.defaultTextStyle,
+                    ),
+                  ],
+                ).paddingOnly(bottom: 12.0),
                 Row(
                   children: [
                     const Icon(
@@ -98,11 +94,17 @@ class _GeneralPageState extends ConsumerState<GeneralPage> {
                       style: ref.theme.defaultTextStyle,
                     ),
                   ],
-                )
+                ).paddingOnly(bottom: 12.0),
+                Text(
+                  request.description ?? "",
+                  style: ref.theme.defaultTextStyle.copyWith(
+                    color: Colors.grey,
+                  ),
+                ),
               ],
-            ).paddingAll(10.0),
+            ).paddingAll(12.0),
           ).paddingOnly(bottom: 12).onTapWidget((){
-            context.pushRoute(RequestDetailRoute(request: request));
+            context.pushRoute(RequestDetailRoute(request: request, isMine: false));
           });
         }
     ).paddingSymmetric(horizontal: 10.0)

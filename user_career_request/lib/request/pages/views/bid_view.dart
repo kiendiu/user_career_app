@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_core/views/common_empty_list_view.dart';
 import 'package:user_career_request/request/controllers/bid_controller.dart';
+import 'package:user_career_request/request/models/bid_controller_state.dart';
 import 'package:user_career_request/request/models/bid_model.dart';
 import 'package:user_career_request/request/models/enums/bid_status_enum.dart';
-import 'package:user_career_request/request/models/mine_controller_state.dart';
 import 'package:user_career_request/request/pages/views/status_container_view.dart';
 
 class BidPage extends ConsumerStatefulWidget {
@@ -47,11 +48,11 @@ class _BidPageState extends ConsumerState<BidPage> with SingleTickerProviderStat
                     _isOngoing = index == 0;
                     if (_isOngoing) {
                       ref.watch(bidControllerProvider.notifier)
-                          .setSelected(StatusEnum.open);
+                          .setSelected(RoleStatusEnum.expert);
                       _controller.refresh();
                     } else {
                       ref.watch(bidControllerProvider.notifier)
-                          .setSelected(StatusEnum.closed);
+                          .setSelected(RoleStatusEnum.customer);
                       _controller.refresh();
                     }
                   });
@@ -66,11 +67,11 @@ class _BidPageState extends ConsumerState<BidPage> with SingleTickerProviderStat
               children: const [
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text('Đang diễn ra'),
+                  child: Text('Chuyên gia'),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text('Đã kết thúc'),
+                  child: Text('Người dùng'),
                 ),
               ],
             ),
@@ -122,7 +123,7 @@ class _BidPageState extends ConsumerState<BidPage> with SingleTickerProviderStat
                     children: [
                       const Icon(Icons.monetization_on_outlined, color: AppColors.mainColor),
                       Text(
-                        "Giá: ${bid.price ?? 0}",
+                        "Giá: ${NumberFormat("###,#").format(bid.price ?? 0)}",
                         style: ref.theme.defaultTextStyle,
                       ).paddingOnly(left: 5.0),
                     ],

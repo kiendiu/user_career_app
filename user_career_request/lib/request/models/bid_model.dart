@@ -8,6 +8,7 @@ class BidModel implements Decodable{
   int? requestId;
   int? price;
   String? description;
+  String? changeReason;
   DateTime? createdAt;
   BidStatusEnum? status;
   String? requestTitle;
@@ -20,6 +21,7 @@ class BidModel implements Decodable{
     this.requestId,
     this.price,
     this.description,
+    this.changeReason,
     this.createdAt,
     this.status,
     this.requestTitle,
@@ -33,6 +35,7 @@ class BidModel implements Decodable{
     int? requestId,
     int? price,
     String? description,
+    String? changeReason,
     DateTime? createdAt,
     BidStatusEnum? status,
     String? requestTitle,
@@ -59,6 +62,7 @@ class BidModel implements Decodable{
     requestId = json['request_id'];
     price = json['price'];
     description = json['description'];
+    changeReason = json['change_reason'];
     createdAt = DateTime.parse(json['created_at']);
     status = BidStatusEnum.values.firstWhere((element) => element.rawValue == json['status']);
     requestTitle = json['request_title'];

@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_request/core/repository.dart';
 import 'package:user_career_request/request/models/bid_model.dart';
+import 'package:user_career_request/request/models/bid_request.dart';
 import 'package:user_career_request/request/models/categories_response.dart';
 import 'package:user_career_request/request/models/request.dart';
 import 'package:user_career_request/request/models/request_model.dart';
@@ -18,6 +19,8 @@ abstract interface class IRequestRepository {
   ResultFuture<bool> addRequest(Request request);
 
   ResultFuture<bool> cancelRequest(int id);
+
+  ResultFuture<bool> addBidRequest(BidRequest request);
 }
 
 class RequestRepository extends RequestBaseRepository implements IRequestRepository {
@@ -71,6 +74,15 @@ class RequestRepository extends RequestBaseRepository implements IRequestReposit
     return make.request(
       path: "/requests/cancelRequest/$id",
       decoder: const EmptyResponse(),
+    ).post().map(onValue: (value) => true);
+  }
+
+  @override
+  ResultFuture<bool> addBidRequest(BidRequest request) {
+    return make.request(
+      path: "/requests/addBid",
+      decoder: const EmptyResponse(),
+      body: request.encode()
     ).post().map(onValue: (value) => true);
   }
 

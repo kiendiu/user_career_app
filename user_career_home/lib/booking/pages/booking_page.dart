@@ -155,10 +155,10 @@ class _BookingPageState extends ConsumerState<BookingPage> {
                               bookingController.deleteBooking(bookId).then((value) {
                                 if(value){
                                   context.showSuccess("Hủy lịch hẹn thành công");
+                                  context.router.popUntil(
+                                          (route) => route.settings.name != BookingRoute.name);
                                 }
                               });
-                              context.router.popUntil(
-                                      (route) => route.settings.name != BookingRoute.name);
                             },
                           ),
                         ],

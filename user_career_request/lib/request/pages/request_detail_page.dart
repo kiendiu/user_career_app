@@ -1,16 +1,19 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_request/request/controllers/add_request_controller.dart';
 import 'package:user_career_request/request/models/enums/bid_status_enum.dart';
 import 'package:user_career_request/request/models/request_model.dart';
+import 'package:user_career_request/request/pages/bid_request_page.dart';
 import 'package:user_career_request/request/pages/views/status_container_view.dart';
 
 @RoutePage()
 class RequestDetailPage extends ConsumerStatefulWidget {
+  final bool isMine;
   final RequestModel request;
-  const RequestDetailPage({super.key, required this.request});
+  const RequestDetailPage({super.key, required this.request, required this.isMine});
 
   @override
   ConsumerState createState() => _RequestDetailPageState();
@@ -42,51 +45,57 @@ class _RequestDetailPageState extends ConsumerState<RequestDetailPage> {
                   Text(
                     widget.request.title ?? "",
                     style: ref.theme.bigTextStyle.weight(FontWeight.bold),
-                  ).paddingOnly(bottom: 5.0),
+                  ).paddingOnly(top: 12, bottom: 12.0),
                   Text(
                     "Lĩnh vực: ${widget.request.nameCategory ?? ""}",
-                    style: ref.theme.defaultTextStyle.weight(FontWeight.w400),
-                  ).paddingOnly(bottom: 5.0),
+                    style: ref.theme.defaultTextStyle,
+                  ).paddingOnly(bottom: 12.0),
                   Text(
                     "Ngày tạo: ${widget.request.createdAt.ddMMyyyy2() ?? ""}",
-                    style: ref.theme.defaultTextStyle.weight(FontWeight.w400),
-                  ).paddingOnly(bottom: 5.0),
+                    style: ref.theme.defaultTextStyle,
+                  ).paddingOnly(bottom: 12.0),
                   const Divider(thickness: 1, color: Colors.grey,),
                   Text(
                     "Ngày hết hạn: ${widget.request.biddingEndDate.ddMMyyyy2() ?? ""}",
                     style: ref.theme.defaultTextStyle,
-                  ).paddingOnly(bottom: 5.0),
+                  ).paddingOnly(bottom: 12.0),
                   Text(
                     "Hình thức: ${widget.request.contactMethod == "offline" ? "Gặp mặt" : "Gọi điện"}",
                     style: ref.theme.defaultTextStyle,
-                  ).paddingOnly(bottom: 5.0),
+                  ).paddingOnly(bottom: 12.0),
                   widget.request.contactMethod == "offline" ? Text(
                     "Địa chỉ: ${widget.request.address ?? ""}",
                     style: ref.theme.defaultTextStyle,
-                  ).paddingOnly(bottom: 5.0) : const SizedBox(),
+                  ).paddingOnly(bottom: 12.0) : const SizedBox(),
                   Text(
-                    "Ngân sách: ${widget.request.budget ?? 0}",
-                  ).paddingOnly(bottom: 5.0)
+                    "Ngân sách: ${NumberFormat('#,###').format(widget.request.budget ?? 0)}đ",
+                    style: ref.theme.defaultTextStyle
+                  ).paddingOnly(bottom: 12.0)
                 ],
-              ).paddingOnly(bottom: 5.0).paddingSymmetric(horizontal: 10.0).makeColor(AppColors.white1Color),
+              ).paddingSymmetric(horizontal: 12.0).makeColor(AppColors.white1Color),
               const Gap(5),
               widget.request.status == "closed"
                 ? const SizedBox()
                 : Container(
                 color: AppColors.white1Color,
                 child: AppButton(
-                  title: "Hủy yêu cầu",
+                  title: widget.isMine ? "Hủy yêu cầu" : "Chào giá ngay",
                   onPressed: () {
-                    controller.cancelRequest(widget.request.requestId!)
-                        .then((value) => {
-                      if (value == true)
-                        {
-                          context.showSuccess(L.more.inforMessageSuccess),
-                          NotificationCenter()
-                              .postNotification(RawStringNotificationName('reloadMine')),
-                          context.maybePop(),
-                        }
-                    });
+                    if(widget.isMine){
+                      controller.cancelRequest(widget.request.requestId!)
+                          .then((value) => {
+                        if (value == true)
+                          {
+                            context.showSuccess(L.more.inforMessageSuccess),
+                            NotificationCenter()
+                                .postNotification(RawStringNotificationName('reloadMine')),
+                            context.maybePop(),
+                          }
+                      });
+                    }else{
+                      context.showOverlay(BidRequestPage(request: widget.request));
+                      //context.pushRoute(BidRequestRoute(request: widget.request));
+                    }
                   },
                 ).paddingSymmetric(horizontal: 10, vertical: 10.0),
               ).paddingOnly(bottom: 5.0),
@@ -101,11 +110,11 @@ class _RequestDetailPageState extends ConsumerState<RequestDetailPage> {
                           children: [
                             const Icon(Icons.monetization_on_outlined, color: AppColors.mainColor),
                             Text(
-                              "Giá: ${e.price ?? 0}",
+                              "Chào giá: ${NumberFormat('#,###').format(e.price ?? 0)}đ",
                               style: ref.theme.defaultTextStyle,
                             ).paddingOnly(left: 5.0),
                           ],
-                        ).paddingOnly(bottom: 5.0),
+                        ).paddingOnly(bottom: 12.0),
                         Row(
                           children: [
                             const Icon(Icons.note_alt_outlined, color: AppColors.mainColor),
@@ -114,13 +123,24 @@ class _RequestDetailPageState extends ConsumerState<RequestDetailPage> {
                               style: ref.theme.defaultTextStyle,
                             ).paddingOnly(left: 5.0),
                           ],
-                        ).paddingOnly(bottom: 5.0),
+                        ).paddingOnly(bottom: 12.0),
+                        widget.request.budget == e.price
+                          ? const SizedBox()
+                          : Row(
+                          children: [
+                            const Icon(Icons.help_outline_outlined, color: AppColors.mainColor),
+                            Text(
+                              "Lý do: ${e.changeReason ?? ""}",
+                              style: ref.theme.defaultTextStyle,
+                            ).paddingOnly(left: 5.0),
+                          ],
+                        ).paddingOnly(bottom: 12.0),
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             StatusBidContainerView(e.status ?? BidStatusEnum.pending),
                             const Text(
-                              "Xem thông tin chuyên gia",
+                              "Thông tin chuyên gia >>",
                               style: TextStyle(
                                 color: AppColors.mainColor,
                                 fontWeight: FontWeight.w500,
@@ -135,7 +155,7 @@ class _RequestDetailPageState extends ConsumerState<RequestDetailPage> {
                           ],
                         ),
                       ],
-                    ).paddingSymmetric(horizontal: 10.0, vertical: 10.0).makeColor(AppColors.white1Color)
+                    ).paddingSymmetric(horizontal: 12.0, vertical: 12.0).makeColor(AppColors.white1Color)
                     ).toList() ?? [],
                   )
                 : SizedBox(

@@ -63,7 +63,7 @@ class _AddRequestPageState extends ConsumerState<AddRequestPage> {
                   textFieldDidChange: (text){
                     controller.updateTitle(text!);
                   },
-                ).paddingOnly(bottom: 5.0),
+                ).paddingSymmetric(vertical: 12.0),
                 CommonTextFieldView(
                   borderRadius: 18,
                   title: "Chi tiết yêu cầu",
@@ -73,7 +73,7 @@ class _AddRequestPageState extends ConsumerState<AddRequestPage> {
                   textFieldDidChange: (text){
                     controller.updateDescription(text!);
                   },
-                ).paddingOnly(bottom: 5.0),
+                ).paddingOnly(bottom: 12.0),
                 BaseWrapItemsSelectableView<BaseSelectableItemModel<CategoriesResponse>>(
                     title: "Lĩnh vực",
                     itemPickerTitle: "Lĩnh vực",
@@ -94,14 +94,15 @@ class _AddRequestPageState extends ConsumerState<AddRequestPage> {
                     getItems: (int page) async {
                       return controller.getCategories();
                     }
-                ).paddingOnly(bottom: 5.0),
+                ).paddingOnly(bottom: 12.0),
                 DatePickerTextFieldView(
                     title: "Ngày kết thúc",
+                    minDate: () => DateTime.now(),
                     padding: const EdgeInsets.only(left: 14, right: 14),
                     onConfirmSelectTime: (date) {
                       controller.updateBiddingEndDate(date!);
                     }
-                ).paddingOnly(bottom: 5.0),
+                ).paddingOnly(bottom: 12.0),
                 TextFieldView.outsideBorder(
                   title: "Ngân sách",
                   placeholder: "Giá",
@@ -112,7 +113,7 @@ class _AddRequestPageState extends ConsumerState<AddRequestPage> {
                     var number = int.parse(text!);
                     controller.updateBudget(number);
                   },
-                ).paddingOnly(bottom: 5.0),
+                ).paddingOnly(bottom: 12.0),
                 ...ContactMethodEnum.values.map((type) {
                   return Column(
                     children: [
@@ -127,7 +128,7 @@ class _AddRequestPageState extends ConsumerState<AddRequestPage> {
                         },
                         rightWidget: Text(type.localizedValue,
                             style: ref.theme.mediumTextStyle),
-                      ).paddingSymmetric(vertical: 12),
+                      ).paddingOnly(bottom: 12),
                     ],
                   );
                 }),
@@ -139,11 +140,10 @@ class _AddRequestPageState extends ConsumerState<AddRequestPage> {
                         placeholder: "Tên địa điểm",
                         isRequired: true,
                         padding: const EdgeInsets.only(left: 14, right: 14),
-                        inputType: TextInputType.number,
                         textFieldDidChange: (text){
                           controller.updateLocationName(text!);
                         },
-                      ).paddingOnly(bottom: 5.0),
+                      ).paddingOnly(bottom: 12.0),
                       TextFieldView.outsideBorder(
                         title: "Địa chỉ",
                         placeholder: "Địa chỉ",
@@ -152,13 +152,13 @@ class _AddRequestPageState extends ConsumerState<AddRequestPage> {
                         textFieldDidChange: (text){
                           controller.updateAddress(text!);
                         },
-                      ).paddingOnly(bottom: 5.0),
+                      ).paddingOnly(bottom: 12.0),
                     ],
                   )
                   : const SizedBox(),
         
               ],
-            ).paddingSymmetric(horizontal: 10).makeColor(AppColors.white1Color),
+            ).paddingSymmetric(horizontal: 12).makeColor(AppColors.white1Color),
           ],
         ),
       )

@@ -71,7 +71,7 @@ class _SelectableMembersViewState<T extends BaseSelectableItem>
         decoration: ShapeDecoration(
             color: widget.isEnable ? Colors.white : Colors.grey.shade200,
             shape: RoundedRectangleBorder(
-                borderRadius: 8.0.borderAll(),
+                borderRadius: 20.0.borderAll(),
                 side: const BorderSide(color: Color(0xFFD0D6E5)))),
         child: LayoutBuilder(builder: (context, constraints) {
           return Stack(

@@ -1,17 +1,15 @@
 import 'package:user_career_core/common/career_storage_key.dart';
 import 'package:user_career_core/user_career_core.dart';
 
-import 'mine_controller_state.dart';
-
 class BidControllerState {
-  StatusEnum? selected;
+  RoleStatusEnum? selected;
 
   BidControllerState({
     this.selected
   });
 
   BidControllerState copyWith({
-    StatusEnum? selected,
+    RoleStatusEnum? selected,
   }){
     return BidControllerState(
         selected: selected ?? this.selected
@@ -42,4 +40,19 @@ class BidParams extends BaseParams{
         "exclude_user_id": excludeUserId
       });
   }
+}
+
+enum RoleStatusEnum {
+  expert,
+  customer;
+
+  String get localizedValue => switch (this) {
+    RoleStatusEnum.expert => "Chuyên gia",
+    RoleStatusEnum.customer => "Người dùng",
+  };
+
+  String get rawValue => switch (this) {
+    RoleStatusEnum.expert => "expert",
+    RoleStatusEnum.customer => "customer",
+  };
 }

@@ -1,7 +1,7 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_core/views/common_empty_list_view.dart';
 import 'package:user_career_request/core/router.gm.dart';
@@ -79,8 +79,8 @@ class _MinePageState extends ConsumerState<MinePage> with SingleTickerProviderSt
                 ),
               ],
             ),
-          ).paddingSymmetric(vertical: 8.0).makeColor(AppColors.white1Color),
-        ).paddingSymmetric(vertical: 5.0),
+          ).paddingSymmetric(vertical: 5.0).makeColor(AppColors.white1Color),
+        ).paddingOnly(top: 5.0),
         ExtendedListView<RequestModel>(
           emptyDataSource: InfiniteListViewEmptyDataSourceBuilder(
               customEmptyViewBuilder: () => CommonEmptyListView(
@@ -124,30 +124,25 @@ class _MinePageState extends ConsumerState<MinePage> with SingleTickerProviderSt
                       style: ref.theme.defaultTextStyle.copyWith(
                         fontWeight: FontWeight.bold,
                       )
-                  ).paddingOnly(bottom: 5.0),
+                  ).paddingOnly(bottom: 12.0),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Row(
-                        children: [
-                          const Icon(Icons.monetization_on_outlined, color: AppColors.mainColor),
-                          Text(
-                            "Ngân sách: ${request.budget ?? 0}",
-                            style: ref.theme.defaultTextStyle,
-                          ),
-                        ],
+                      const Icon(Icons.monetization_on_outlined, color: AppColors.mainColor),
+                      Text(
+                        "Ngân sách: ${NumberFormat('#,###').format(request.budget ?? 0)}đ",
+                        style: ref.theme.defaultTextStyle,
                       ),
-                      Row(
-                        children: [
-                          const Icon(Icons.calendar_month_outlined, color: AppColors.mainColor),
-                          Text(
-                            "Thời hạn: ${request.biddingEndDate.ddMMyyyy2()}",
-                            style: ref.theme.defaultTextStyle,
-                          ),
-                        ],
-                      )
                     ],
-                  ).paddingOnly(bottom: 5.0),
+                  ).paddingOnly(bottom: 12),
+                  Row(
+                    children: [
+                      const Icon(Icons.calendar_month_outlined, color: AppColors.mainColor),
+                      Text(
+                        "Thời hạn: ${request.biddingEndDate.ddMMyyyy2()}",
+                        style: ref.theme.defaultTextStyle,
+                      ),
+                    ],
+                  ).paddingOnly(bottom: 12),
                   Row(
                     children: [
                       const Icon(
@@ -159,7 +154,7 @@ class _MinePageState extends ConsumerState<MinePage> with SingleTickerProviderSt
                         style: ref.theme.defaultTextStyle,
                       ),
                     ],
-                  ).paddingOnly(bottom: 5.0),
+                  ).paddingOnly(bottom: 12.0),
                   Text(
                     request.description ?? "",
                     style: ref.theme.defaultTextStyle.copyWith(
@@ -167,13 +162,13 @@ class _MinePageState extends ConsumerState<MinePage> with SingleTickerProviderSt
                     ),
                   ),
                 ],
-              ).paddingAll(10.0),
+              ).paddingAll(12.0),
             ).paddingOnly(bottom: 12).onTapWidget((){
-              context.pushRoute(RequestDetailRoute(request: request));
+              context.pushRoute(RequestDetailRoute(request: request, isMine: true));
             });
           }
-        ).paddingSymmetric(horizontal: 10.0)
-          .paddingOnly(top: 10.0).expand()
+        ).paddingSymmetric(horizontal: 12.0)
+          .paddingOnly(top: 5.0).expand()
       ],
     );
   }
