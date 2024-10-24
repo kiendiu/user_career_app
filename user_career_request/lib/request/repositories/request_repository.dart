@@ -3,6 +3,8 @@ import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_request/core/repository.dart';
 import 'package:user_career_request/request/models/bid_model.dart';
 import 'package:user_career_request/request/models/bid_request.dart';
+import 'package:user_career_request/request/models/booking_request.dart';
+import 'package:user_career_request/request/models/booking_response.dart';
 import 'package:user_career_request/request/models/categories_response.dart';
 import 'package:user_career_request/request/models/request.dart';
 import 'package:user_career_request/request/models/request_model.dart';
@@ -21,6 +23,12 @@ abstract interface class IRequestRepository {
   ResultFuture<bool> cancelRequest(int id);
 
   ResultFuture<bool> addBidRequest(BidRequest request);
+
+  ResultFuture<bool> updateStatusBid(int id, String status);
+
+  ResultFuture<BookingResponse> createBooking(BookingRequest request);
+
+  ResultFuture<bool> createPayment(PaymentRequest request);
 }
 
 class RequestRepository extends RequestBaseRepository implements IRequestRepository {
@@ -86,6 +94,35 @@ class RequestRepository extends RequestBaseRepository implements IRequestReposit
     ).post().map(onValue: (value) => true);
   }
 
+  @override
+  ResultFuture<BookingResponse> createBooking(BookingRequest request) {
+    return make.request(
+      path: "/requests/booking",
+      body: request.encode(),
+      decoder: BookingResponse(),
+    ).post();
+  }
+
+  @override
+  ResultFuture<bool> updateStatusBid(int id, String status) {
+    return make.request(
+      path: "/requests//updateStatusBid/$id/$status",
+      decoder: const EmptyResponse(),
+    ).put().map(onValue: (value) => true);
+  }
+
+  @override
+  ResultFuture<bool> createPayment(PaymentRequest request) {
+    return make.request(
+      path: "/requests/payment",
+      body: request.encode(),
+      decoder: const EmptyResponse(),
+    ).post().map(
+      onValue: (value) {
+        return true;
+      },
+    );
+  }
 
 }
 

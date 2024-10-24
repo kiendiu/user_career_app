@@ -10,5 +10,6 @@ class RequestRouterModule extends $RequestRouterModule {
     PresentedRoute(page: RequestDetailRoute.page),
     PresentedRoute(page: AddRequestRoute.page),
     PresentedRoute(page: BidRequestRoute.page),
+    PresentedRoute(page: BookingBidRoute.page),
   ];
 }

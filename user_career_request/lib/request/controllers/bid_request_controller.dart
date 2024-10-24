@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_request/request/models/Bid_controller_state.dart';
 import 'package:user_career_request/request/models/bid_request.dart';
 import 'package:user_career_request/request/repositories/request_repository.dart';
 
@@ -20,6 +19,21 @@ class BidRequestController extends AutoDisposeNotifier<BidRequest>
         .asFuture();
     return result;
   }
+
+  Future<bool> updateStatusBid(int id, String status) async {
+    try {
+      final result = await ref
+          .read(requestRepositoryProvider)
+          .updateStatusBid(id, status)
+          .showErrorBy(this)
+          .map(onValue: (value) => value ?? false)
+          .mapToValueOr(defaultValue: false).asFuture();
+      return result;
+    } catch (e) {
+      return false;
+    }
+  }
+
 
   void setRequestId(int requestId){
     state = state.copyWith(requestId: requestId);

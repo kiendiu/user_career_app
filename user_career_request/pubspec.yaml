@@ -17,6 +17,8 @@ dependencies:
   flutter_riverpod: ^2.5.1
   intl: ^0.19.0
   flutter_svg: ^2.0.10
+  calendar_date_picker2: ^1.1.5
+  flutter_datetime_picker_plus: ^2.2.0
   riverpod_annotation: ^2.3.5
 
 dev_dependencies:

@@ -3,8 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:user_career_core/user_career_core.dart';
+import 'package:user_career_request/core/router.gm.dart';
 import 'package:user_career_request/request/controllers/add_request_controller.dart';
+import 'package:user_career_request/request/controllers/bid_item_controller.dart';
+import 'package:user_career_request/request/controllers/bid_request_controller.dart';
+import 'package:user_career_request/request/models/bid_model.dart';
 import 'package:user_career_request/request/models/enums/bid_status_enum.dart';
+import 'package:user_career_request/request/models/info_booking_bid_model.dart';
 import 'package:user_career_request/request/models/request_model.dart';
 import 'package:user_career_request/request/pages/bid_request_page.dart';
 import 'package:user_career_request/request/pages/views/status_container_view.dart';
@@ -94,7 +99,6 @@ class _RequestDetailPageState extends ConsumerState<RequestDetailPage> {
                       });
                     }else{
                       context.showOverlay(BidRequestPage(request: widget.request));
-                      //context.pushRoute(BidRequestRoute(request: widget.request));
                     }
                   },
                 ).paddingSymmetric(horizontal: 10, vertical: 10.0),
@@ -102,60 +106,98 @@ class _RequestDetailPageState extends ConsumerState<RequestDetailPage> {
               widget.request.expectBids.isNotNull
                 ? ListView(
                     shrinkWrap: true,
-                    children: widget.request.expectBids?.map((e) => Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          children: [
-                            const Icon(Icons.monetization_on_outlined, color: AppColors.mainColor),
-                            Text(
-                              "Chào giá: ${NumberFormat('#,###').format(e.price ?? 0)}đ",
-                              style: ref.theme.defaultTextStyle,
-                            ).paddingOnly(left: 5.0),
-                          ],
-                        ).paddingOnly(bottom: 12.0),
-                        Row(
-                          children: [
-                            const Icon(Icons.note_alt_outlined, color: AppColors.mainColor),
-                            Text(
-                              "Mô tả: ${e.description ?? ""}",
-                              style: ref.theme.defaultTextStyle,
-                            ).paddingOnly(left: 5.0),
-                          ],
-                        ).paddingOnly(bottom: 12.0),
-                        widget.request.budget == e.price
-                          ? const SizedBox()
-                          : Row(
-                          children: [
-                            const Icon(Icons.help_outline_outlined, color: AppColors.mainColor),
-                            Text(
-                              "Lý do: ${e.changeReason ?? ""}",
-                              style: ref.theme.defaultTextStyle,
-                            ).paddingOnly(left: 5.0),
-                          ],
-                        ).paddingOnly(bottom: 12.0),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            StatusBidContainerView(e.status ?? BidStatusEnum.pending),
-                            const Text(
-                              "Thông tin chuyên gia >>",
-                              style: TextStyle(
-                                color: AppColors.mainColor,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ).onTapWidget((){
-                              NotificationCenter()
-                                  .postNotification(openNotification, {
-                                    "type": "request",
-                                    "expert_id": e.expertId
-                              });
-                            }),
-                          ],
-                        ),
-                      ],
-                    ).paddingSymmetric(horizontal: 12.0, vertical: 12.0).makeColor(AppColors.white1Color)
+                    children: widget.request.expectBids?.map((e) =>
+                        Consumer(
+                          builder: (context, ref, child) {
+                            var item = ref.watch(bidItemControllerProvider(e.status));
+                            return Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    const Icon(Icons.monetization_on_outlined, color: AppColors.mainColor),
+                                    Text(
+                                      "Chào giá: ${NumberFormat('#,###').format(e.price ?? 0)}đ",
+                                      style: ref.theme.defaultTextStyle,
+                                    ).paddingOnly(left: 5.0).expand(),
+                                    item?.status == BidStatusEnum.rejected || item?.status == BidStatusEnum.accepted
+                                      ? const SizedBox()
+                                      : CupertinoMenuButton(
+                                      buttonPadding: const EdgeInsets.all(8),
+                                      child: const Icon(Icons.menu_outlined),
+                                      itemsBuilder: (_) => [
+                                        CupertinoMenuItem(
+                                          trailing: const Icon(Icons.check_circle_outline, color: Colors.green),
+                                          child: Text(
+                                            "Chấp nhận",
+                                            style: ref.theme.defaultTextStyle.copyWith(
+                                              color: Colors.green,
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            _showPopupBid(action: 'accepted', bid: item ?? BidModel());
+                                          },
+                                        ),
+                                        CupertinoMenuItem(
+                                          trailing: const Icon(Icons.cancel_outlined, color: Colors.red),
+                                          child: Text(
+                                            "Từ chối",
+                                            style: ref.theme.defaultTextStyle.copyWith(
+                                              color: Colors.red,
+                                            ),
+                                          ),
+                                          onTap: () {
+                                            _showPopupBid(action: 'rejected', bid: item ?? BidModel());
+                                          },
+                                        ),
+                                      ],
+                                    ).paddingOnly(right: 8),
+                                  ],
+                                ).paddingOnly(bottom: 12.0),
+                                Row(
+                                  children: [
+                                    const Icon(Icons.note_alt_outlined, color: AppColors.mainColor),
+                                    Text(
+                                      "Mô tả: ${e.description ?? ""}",
+                                      style: ref.theme.defaultTextStyle,
+                                    ).paddingOnly(left: 5.0),
+                                  ],
+                                ).paddingOnly(bottom: 12.0),
+                                widget.request.budget == e.price
+                                    ? const SizedBox()
+                                    : Row(
+                                  children: [
+                                    const Icon(Icons.help_outline_outlined, color: AppColors.mainColor),
+                                    Text(
+                                      "Lý do: ${e.changeReason ?? ""}",
+                                      style: ref.theme.defaultTextStyle,
+                                    ).paddingOnly(left: 5.0),
+                                  ],
+                                ).paddingOnly(bottom: 12.0),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  children: [
+                                    StatusBidContainerView(item?.status ?? BidStatusEnum.pending),
+                                    const Text(
+                                      "Thông tin chuyên gia >>",
+                                      style: TextStyle(
+                                        color: AppColors.mainColor,
+                                        fontWeight: FontWeight.w500,
+                                      ),
+                                    ).onTapWidget((){
+                                      NotificationCenter()
+                                          .postNotification(openNotification, {
+                                        "type": "request",
+                                        "expert_id": e.expertId
+                                      });
+                                    }),
+                                  ],
+                                ),
+                              ],
+                            ).paddingSymmetric(horizontal: 12.0, vertical: 12.0).makeColor(AppColors.white1Color);
+                          }
+                        )
                     ).toList() ?? [],
                   )
                 : SizedBox(
@@ -171,5 +213,79 @@ class _RequestDetailPageState extends ConsumerState<RequestDetailPage> {
           ).paddingSymmetric(vertical: 5.0),
       ),
     );
+  }
+
+  void _showPopupBid({
+    required String action, required BidModel bid
+  }) {
+    context.showOverlay(
+        BaseConfirmPopupView.custom(
+          width: context.width * 0.9,
+          messageWidget: Column(
+            children: [
+              action == "rejected"
+                  ? Assets.icons.icAlertDialogError.svg()
+                  : Assets.icons.icAlertDialogSuccess.svg(),
+              const Gap(16),
+              Text(
+                action == "rejected"
+                    ? "Từ chối yêu cầu"
+                    : "Chấp nhận yêu cầu",
+                style:
+                const TextStyle(fontWeight: FontWeight.w400, fontSize: 16),
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
+          title: "Xác nhận",
+          buttons: [
+            ConfirmPopupViewButton(
+              title: "Hủy",
+              titleColor: AppColors.black1Color,
+              background: AppColors.white4Color,
+              callback: () => appRouter.maybePop(),
+            ),
+            ConfirmPopupViewButton(
+              title: action == "rejected" ? "Từ chối" : "Chấp nhận",
+              titleColor: Colors.white,
+              background: action == "rejected"
+                  ? Colors.redAccent
+                  : Colors.green,
+              callback: () {
+                action == "rejected"
+                  ? ref.read(bidRequestControllerProvider.notifier)
+                    .updateStatusBid(bid.bidId ?? 0, action).then((value) {
+                      if(value == true){
+                        ref.read(bidItemControllerProvider(bid.status).notifier)
+                            .state = bid.copyWith(status: BidStatusEnum.rejected);
+                        NotificationCenter().postNotification(RawStringNotificationName('reloadMine'));
+                        context.showSuccess("Từ chối thành công");
+                        context.maybePop();
+                      }
+                    })
+                  : ref.read(bidRequestControllerProvider.notifier)
+                  .updateStatusBid(bid.bidId ?? 0, action).then((value) {
+                    if(value == true){
+                      context.pushRoute(BookingBidRoute(infoBookingBidModel: InfoBookingBidModel(
+                          expertId: bid.expertId,
+                          requestId: bid.requestId,
+                          contactMethod: widget.request.contactMethod,
+                          locationName: widget.request.address,
+                          address: widget.request.address,
+                          price: bid.price,
+                          description: bid.description
+                      )));
+                      ref.read(bidItemControllerProvider(bid.status).notifier)
+                          .state = bid.copyWith(status: BidStatusEnum.accepted);
+                      NotificationCenter().postNotification(RawStringNotificationName('reloadMine'));
+                      context.showSuccess("Chấp nhận thành công");
+                      context.maybePop();
+                    }
+                  });
+              },
+            ),
+          ],
+        ),
+        dismissible: false);
   }
 }

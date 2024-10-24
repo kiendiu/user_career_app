@@ -35,6 +35,9 @@ class HomeModule extends AutoRoutePageModule with NotificationTypeMixin<Notifica
       case NotificationType.requestDetail:
         appRouter.push(ExpectDetailRoute(expectId: expertId));
         break;
+      case NotificationType.booking:
+        appRouter.push(BookingRoute());
+        break;
       case NotificationType.none:
       // TODO: Handle this case.
     }
