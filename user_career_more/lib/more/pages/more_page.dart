@@ -5,7 +5,9 @@ import 'package:user_career_core/common/career_storage_key.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_more/core/router.gm.dart';
 import 'package:user_career_more/more/controllers/more_controller.dart';
+import 'package:user_career_more/more/controllers/total_controller.dart';
 import 'package:user_career_more/more/pages/views/logout_view.dart';
+import 'package:user_career_more/service/models/status_service_enum.dart';
 @RoutePage()
 class MorePage extends ConsumerStatefulWidget {
   const MorePage({super.key});
@@ -103,7 +105,7 @@ class _MorePageState extends ConsumerState<MorePage> {
                   color: AppColors.mainColor),
             ),
             trailing: TextButton(
-              onPressed: () { context.router.push(const ServiceRoute());},
+              onPressed: () { context.router.push(ServiceRoute());},
               child: Text(L.more.manageServiceSeeAll,
                 style: ref.theme.mediumTextStyle.copyWith(color: AppColors.mainColor),
               ),
@@ -112,10 +114,10 @@ class _MorePageState extends ConsumerState<MorePage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              _buildServiceStatusButton(Icons.access_time, L.more.manageServiceStatusWaiting),
-              _buildServiceStatusButton(Icons.check_circle_outline, L.more.manageServiceStatusConfirmed),
-              _buildServiceStatusButton(Icons.speaker_notes_outlined, L.more.manageServiceStatusHappened),
-              _buildServiceStatusButton(Icons.elevator_outlined, L.more.manageServiceStatusDone),
+              _buildServiceStatusButton(StatusServiceEnum.pending),
+              _buildServiceStatusButton(StatusServiceEnum.confirmed),
+              _buildServiceStatusButton(StatusServiceEnum.inProgress),
+              _buildServiceStatusButton(StatusServiceEnum.completed),
             ],
           ),
         ],
@@ -157,13 +159,57 @@ class _MorePageState extends ConsumerState<MorePage> {
     ).paddingOnly(top: 10);
   }
 
-  Widget _buildServiceStatusButton(IconData icon, String text) {
+  Widget _buildServiceStatusButton(StatusServiceEnum status) {
+    NotificationCenter().addObserver(
+        RawStringNotificationName("update_notification"), callback: (_) {
+      ref.invalidate(totalControllerProvider);
+    });
+    ref.watch(totalControllerProvider);
+    ref.watch(commonQtyControllerProvider);
+    final total = ref.watch(commonQtyControllerProvider.notifier);
     return Column(
       children: [
-        Icon(icon, color: AppColors.mainColor).box(w: 20, h: 20),
+        Stack(children: [
+          ClipOval(
+            child: Icon(status.icon, color: AppColors.mainColor)
+                .marginOnly(right: 2)
+                .paddingOnly(top: 16)
+                .paddingSymmetric(horizontal: 16)
+                .onTapWidget(() {
+              NotificationCenter().postNotification(
+                  RawStringNotificationName("notifications"));
+            }),
+          ),
+          total.checkQty(status.rawValue)
+              ? Positioned(
+            right: 14,
+            top: 12,
+            child: Container(
+              height: 16,
+              width: 16,
+              decoration: BoxDecoration(
+                color: Colors.red,
+                borderRadius: 100.0.borderAll(),
+              ),
+              child: Center(
+                child: Text(
+                  total.getQty(status.rawValue),
+                  style: ref.theme.smallTextStyle.copyWith(
+                      color: Colors.white,
+                      fontSize: 8,
+                      fontWeight: FontWeight.w700),
+                ),
+              ),
+            ),
+          )
+              : const SizedBox(),
+        ]),
+        //Icon(icon, color: AppColors.mainColor).box(w: 20, h: 20),
         const SizedBox(height: 8),
-        Text(text,style: ref.theme.smallTextStyle),
+        Text(status.localizedValue,style: ref.theme.smallTextStyle),
       ],
-    ).paddingOnly(bottom: 15);
+    ).paddingOnly(bottom: 15).onTapWidget((){
+      context.pushRoute(ServiceRoute(selectedStatusOption: status));
+    });
   }
 }

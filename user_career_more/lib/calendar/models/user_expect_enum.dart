@@ -7,9 +7,9 @@ enum UserExpectEnum {
     UserExpectEnum.user => 'Người dùng',
   };
 
-  int get rawValue => switch (this) {
-    UserExpectEnum.allType => 0,
-    UserExpectEnum.expect => 1,
-    UserExpectEnum.user => 2,
+  String get rawValue => switch (this) {
+    UserExpectEnum.allType => 'all',
+    UserExpectEnum.expect => 'expert',
+    UserExpectEnum.user => 'user',
   };
 }

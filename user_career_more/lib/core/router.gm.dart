@@ -9,7 +9,6 @@
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
 import 'package:auto_route/auto_route.dart' as _i23;
-import 'package:flutter/cupertino.dart' as _i27;
 import 'package:flutter/material.dart' as _i24;
 import 'package:user_career_more/calendar/pages/calendar_page.dart' as _i4;
 import 'package:user_career_more/change_password/pages/change_password_page.dart'
@@ -51,6 +50,8 @@ import 'package:user_career_more/expect_skills/pages/update_skill_page.dart'
     as _i21;
 import 'package:user_career_more/more/pages/expect_page.dart' as _i9;
 import 'package:user_career_more/more/pages/more_page.dart' as _i16;
+import 'package:user_career_more/service/models/status_service_enum.dart'
+    as _i27;
 import 'package:user_career_more/service/pages/service_page.dart' as _i18;
 import 'package:user_career_more/update_information/pages/update_information_page.dart'
     as _i20;
@@ -174,9 +175,14 @@ abstract class $MoreRouterModule extends _i23.AutoRouterModule {
       );
     },
     ServiceRoute.name: (routeData) {
+      final args = routeData.argsAs<ServiceRouteArgs>(
+          orElse: () => const ServiceRouteArgs());
       return _i23.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i18.ServicePage(),
+        child: _i18.ServicePage(
+          key: args.key,
+          selectedStatusOption: args.selectedStatusOption,
+        ),
       );
     },
     UpdateCertificateRoute.name: (routeData) {
@@ -528,16 +534,40 @@ class MoreTabRouter extends _i23.PageRouteInfo<void> {
 
 /// generated route for
 /// [_i18.ServicePage]
-class ServiceRoute extends _i23.PageRouteInfo<void> {
-  const ServiceRoute({List<_i23.PageRouteInfo>? children})
-      : super(
+class ServiceRoute extends _i23.PageRouteInfo<ServiceRouteArgs> {
+  ServiceRoute({
+    _i24.Key? key,
+    _i27.StatusServiceEnum? selectedStatusOption,
+    List<_i23.PageRouteInfo>? children,
+  }) : super(
           ServiceRoute.name,
+          args: ServiceRouteArgs(
+            key: key,
+            selectedStatusOption: selectedStatusOption,
+          ),
           initialChildren: children,
         );
 
   static const String name = 'ServiceRoute';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i23.PageInfo<ServiceRouteArgs> page =
+      _i23.PageInfo<ServiceRouteArgs>(name);
+}
+
+class ServiceRouteArgs {
+  const ServiceRouteArgs({
+    this.key,
+    this.selectedStatusOption,
+  });
+
+  final _i24.Key? key;
+
+  final _i27.StatusServiceEnum? selectedStatusOption;
+
+  @override
+  String toString() {
+    return 'ServiceRouteArgs{key: $key, selectedStatusOption: $selectedStatusOption}';
+  }
 }
 
 /// generated route for
@@ -545,7 +575,7 @@ class ServiceRoute extends _i23.PageRouteInfo<void> {
 class UpdateCertificateRoute
     extends _i23.PageRouteInfo<UpdateCertificateRouteArgs> {
   UpdateCertificateRoute({
-    _i27.Key? key,
+    _i24.Key? key,
     required _i28.CertificateResponse certificateResponse,
     List<_i23.PageRouteInfo>? children,
   }) : super(
@@ -569,7 +599,7 @@ class UpdateCertificateRouteArgs {
     required this.certificateResponse,
   });
 
-  final _i27.Key? key;
+  final _i24.Key? key;
 
   final _i28.CertificateResponse certificateResponse;
 

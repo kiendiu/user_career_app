@@ -4,11 +4,14 @@ import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_more/more/models/get_information_request.dart';
 import 'package:user_career_more/core/repository.dart';
 import 'package:user_career_more/more/models/get_information_response.dart';
+import 'package:user_career_more/more/models/total_response.dart';
 
 abstract interface class IMoreRepository {
   ResultFuture<GetInformationResponse> getUserInfo();
 
   ResultFuture<bool> updateInformation(GetInformationRequest request);
+
+  ResultFuture<TotalResponse> getTotal();
 
 }
 
@@ -33,6 +36,14 @@ class MoreRepository extends MoreBaseRepository implements IMoreRepository {
           return true;
         },
       );
+  }
+
+  @override
+  ResultFuture<TotalResponse> getTotal() {
+    return make.request(
+      path: '/manages/booked_services',
+      decoder: TotalResponse(),
+    ).get();
   }
 }
 
