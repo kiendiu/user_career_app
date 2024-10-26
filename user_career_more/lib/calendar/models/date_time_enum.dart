@@ -11,7 +11,7 @@ enum DateTimeEnum {
   String get localizedValue => switch (this) {
     DateTimeEnum.today => L.more.bottomSheetToday,
     DateTimeEnum.yesterday => L.more.bottomSheetYesterday,
-    DateTimeEnum.lastSevenDays => L.more.bottomSheetLastSevenDays,
+    DateTimeEnum.lastSevenDays => "7 ngày tới",
     DateTimeEnum.thisMonth => L.more.bottomSheetThisMonth,
     DateTimeEnum.lastMonth => L.more.bottomSheetLastMonth,
     DateTimeEnum.customDay => L.more.bottomSheetCustomDay,
@@ -22,7 +22,7 @@ enum DateTimeEnum {
     DateTimeEnum.yesterday =>
         DateTime.now().subtract(const Duration(days: 1)),
     DateTimeEnum.lastSevenDays =>
-        DateTime.now().subtract(const Duration(days: 7)),
+        DateTime.now().add(const Duration(days: 7)),
     DateTimeEnum.thisMonth =>
         DateTime(DateTime.now().year, DateTime.now().month, 1),
     DateTimeEnum.lastMonth =>

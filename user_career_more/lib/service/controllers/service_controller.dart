@@ -50,6 +50,20 @@ class ServiceController extends AutoDisposeFamilyNotifier<ServiceControllerState
     }
   }
 
+  Future<bool> updateStatusService(int id, String status) async {
+    try {
+      final result = await ref
+          .read(serviceRepositoryProvider)
+          .updateStatusService(id, status)
+          .showErrorBy(this)
+          .map(onValue: (value) => value ?? false)
+          .mapToValueOr(defaultValue: false).asFuture();
+      return result;
+    } catch (e) {
+      return false;
+    }
+  }
+
   void updateTypeSelected(UserExpectEnum? typeSelected){
     state = state.copyWith(typeSelected: typeSelected);
   }

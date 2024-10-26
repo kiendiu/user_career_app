@@ -1,6 +1,8 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:user_career_core/common/career_storage_key.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_core/views/common_action_chip.dart';
 import 'package:user_career_core/views/common_empty_list_view.dart';
@@ -99,22 +101,96 @@ class _ServicePageState extends ConsumerState<ServicePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Text(
-                              item.serviceName ?? '',
-                              style: ref.theme.bigTextStyle.weight(FontWeight.w600),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  item.serviceName ?? '',
+                                  style: ref.theme.bigTextStyle.weight(FontWeight.w600),
+                                ),
+                                Storage.get(POSStorageKey.userId) != item.userId
+                                    ? const SizedBox()
+                                    : CupertinoMenuButton(
+                                  buttonPadding: const EdgeInsets.all(8),
+                                  child: const Icon(Icons.menu_outlined),
+                                  itemsBuilder: (_) {
+                                    final nextStatuses = getNextStatuses(StatusServiceEnum.values.firstWhere((e) => e.rawValue == item.status));
+                                    return nextStatuses.map((status) {
+                                      return CupertinoMenuItem(
+                                        trailing: Icon(status.icon, color: Colors.green),
+                                        child: Text(
+                                          status.localizedValue,
+                                          style: ref.theme.defaultTextStyle.copyWith(
+                                            color: Colors.green,
+                                          ),
+                                        ),
+                                        onTap: () {
+                                          serviceController.updateStatusService(item.bookId ?? 0, status.rawValue).then((value){
+                                            if(value){
+                                              switch (status) {
+                                                case StatusServiceEnum.pending:
+                                                  serviceController.updateStatusSelected(StatusServiceEnum.pending);
+                                                  break;
+                                                case StatusServiceEnum.inProgress:
+                                                  serviceController.updateStatusSelected(StatusServiceEnum.inProgress);
+                                                  break;
+                                                case StatusServiceEnum.confirmed:
+                                                  serviceController.updateStatusSelected(StatusServiceEnum.confirmed);
+                                                  break;
+                                                case StatusServiceEnum.completed:
+                                                  serviceController.updateStatusSelected(StatusServiceEnum.completed);
+                                                  break;
+                                                default:
+                                                  break;
+                                              }
+                                              context.showSuccess("Cập nhật trạng thái thành công!");
+                                            }
+                                          });
+                                          controller.refresh();
+                                        },
+                                      );
+                                    }).toList();
+                                  },
+                                ),
+                              ],
                             ),
-                            Text(
-                              "Chuyên gia: ${(item.expertName ?? '')}",
-                              style: ref.theme.defaultTextStyle.copyWith(
-                                color: AppColors.mainColor,
+                            Storage.get(POSStorageKey.userId) == item.userId
+                                ? RichText(
+                              text: TextSpan(
+                                text: 'Chuyên gia: ',
+                                style: ref.theme.defaultTextStyle,
+                                children: [
+                                  TextSpan(
+                                    text: item.expertName ?? '',
+                                    style: ref.theme.defaultTextStyle.copyWith(
+                                      color: AppColors.mainColor,
+                                    ),
+                                    recognizer: TapGestureRecognizer()
+                                      ..onTap = () {
+                                        NotificationCenter()
+                                            .postNotification(openNotification, {
+                                          "type": "request",
+                                          "expert_id": item.expertId
+                                        });
+                                      },
+                                  ),
+                                ],
                               ),
-                            ).onTapWidget((){
-                              NotificationCenter()
-                                  .postNotification(openNotification, {
-                                "type": "request",
-                                "expert_id": item.expertId
-                              });
-                            }),
+                            )
+                                : RichText(
+                              text: TextSpan(
+                                text: 'Khách hàng: ',
+                                style: ref.theme.defaultTextStyle,
+                                children: [
+                                  TextSpan(
+                                    text: item.userName ?? '',
+                                    style: ref.theme.defaultTextStyle.copyWith(
+                                      color: AppColors.mainColor,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ),
                             Text(
                               "Ngày hẹn: ${(item.scheduleTime.hhMMddyyyy2() ?? '')}",
                               style: ref.theme.defaultTextStyle,
@@ -154,6 +230,19 @@ class _ServicePageState extends ConsumerState<ServicePage> {
         ],
       ),
     );
+  }
+
+  List<StatusServiceEnum> getNextStatuses(StatusServiceEnum currentStatus) {
+    switch (currentStatus) {
+      case StatusServiceEnum.pending:
+        return [StatusServiceEnum.confirmed];
+      case StatusServiceEnum.confirmed:
+        return [StatusServiceEnum.inProgress];
+      case StatusServiceEnum.inProgress:
+        return [StatusServiceEnum.completed];
+      default:
+        return [];
+    }
   }
 
   void _showStatusOptions(){
