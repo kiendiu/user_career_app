@@ -8,178 +8,185 @@
 // coverage:ignore-file
 
 // ignore_for_file: no_leading_underscores_for_library_prefixes
-import 'package:auto_route/auto_route.dart' as _i23;
-import 'package:flutter/material.dart' as _i24;
+import 'package:auto_route/auto_route.dart' as _i24;
+import 'package:flutter/material.dart' as _i25;
 import 'package:user_career_more/calendar/pages/calendar_page.dart' as _i4;
 import 'package:user_career_more/change_password/pages/change_password_page.dart'
     as _i5;
-import 'package:user_career_more/core/tab_router.dart' as _i17;
+import 'package:user_career_more/core/tab_router.dart' as _i18;
 import 'package:user_career_more/expect_certificates/models/certificate_response.dart'
-    as _i28;
+    as _i29;
 import 'package:user_career_more/expect_certificates/pages/add_certificate_page.dart'
     as _i1;
 import 'package:user_career_more/expect_certificates/pages/expect_certificates_page.dart'
-    as _i7;
+    as _i8;
 import 'package:user_career_more/expect_certificates/pages/update_certificate_page.dart'
-    as _i19;
+    as _i20;
 import 'package:user_career_more/expect_experiences/models/expect_experience_response.dart'
-    as _i25;
+    as _i26;
 import 'package:user_career_more/expect_experiences/pages/add_experience_page.dart'
     as _i2;
 import 'package:user_career_more/expect_experiences/pages/edit_experience_page.dart'
-    as _i6;
+    as _i7;
 import 'package:user_career_more/expect_experiences/pages/expect_experiences_page.dart'
-    as _i8;
+    as _i9;
 import 'package:user_career_more/expect_experiences/pages/filter_edit_category_page.dart'
-    as _i13;
-import 'package:user_career_more/expect_experiences/pages/filter_experience_categories_page.dart'
     as _i14;
+import 'package:user_career_more/expect_experiences/pages/filter_experience_categories_page.dart'
+    as _i15;
 import 'package:user_career_more/expect_price_service/pages/expect_price_service_page.dart'
-    as _i10;
+    as _i11;
 import 'package:user_career_more/expect_skills/models/skill_response.dart'
-    as _i26;
+    as _i27;
 import 'package:user_career_more/expect_skills/pages/add_skill_page.dart'
     as _i3;
 import 'package:user_career_more/expect_skills/pages/expect_skills_page.dart'
-    as _i11;
-import 'package:user_career_more/expect_skills/pages/filter_categories_page.dart'
     as _i12;
+import 'package:user_career_more/expect_skills/pages/filter_categories_page.dart'
+    as _i13;
 import 'package:user_career_more/expect_skills/pages/filter_update_category_page.dart'
-    as _i15;
+    as _i16;
 import 'package:user_career_more/expect_skills/pages/update_skill_page.dart'
-    as _i21;
-import 'package:user_career_more/more/pages/expect_page.dart' as _i9;
-import 'package:user_career_more/more/pages/more_page.dart' as _i16;
+    as _i22;
+import 'package:user_career_more/more/pages/expect_page.dart' as _i10;
+import 'package:user_career_more/more/pages/more_page.dart' as _i17;
 import 'package:user_career_more/service/models/status_service_enum.dart'
-    as _i27;
-import 'package:user_career_more/service/pages/service_page.dart' as _i18;
+    as _i28;
+import 'package:user_career_more/service/pages/service_page.dart' as _i19;
 import 'package:user_career_more/update_information/pages/update_information_page.dart'
-    as _i20;
-import 'package:user_career_more/wallet/pages/wallet_page.dart' as _i22;
+    as _i21;
+import 'package:user_career_more/wallet/pages/deposit_wallet_page.dart' as _i6;
+import 'package:user_career_more/wallet/pages/wallet_page.dart' as _i23;
 
-abstract class $MoreRouterModule extends _i23.AutoRouterModule {
+abstract class $MoreRouterModule extends _i24.AutoRouterModule {
   @override
-  final Map<String, _i23.PageFactory> pagesMap = {
+  final Map<String, _i24.PageFactory> pagesMap = {
     AddCertificateRoute.name: (routeData) {
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i1.AddCertificatePage(),
       );
     },
     AddExperienceRoute.name: (routeData) {
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i2.AddExperiencePage(),
       );
     },
     AddSkillRoute.name: (routeData) {
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i3.AddSkillPage(),
       );
     },
     CalendarRoute.name: (routeData) {
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i4.CalendarPage(),
       );
     },
     ChangePasswordRoute.name: (routeData) {
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
         child: const _i5.ChangePasswordPage(),
       );
     },
+    DepositWalletRoute.name: (routeData) {
+      return _i24.AutoRoutePage<dynamic>(
+        routeData: routeData,
+        child: const _i6.DepositWalletPage(),
+      );
+    },
     EditExperienceRoute.name: (routeData) {
       final args = routeData.argsAs<EditExperienceRouteArgs>();
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i6.EditExperiencePage(
+        child: _i7.EditExperiencePage(
           key: args.key,
           expectExperienceResponse: args.expectExperienceResponse,
         ),
       );
     },
     ExpectCertificatesRoute.name: (routeData) {
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i7.ExpectCertificatesPage(),
+        child: const _i8.ExpectCertificatesPage(),
       );
     },
     ExpectExperiencesRoute.name: (routeData) {
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i8.ExpectExperiencesPage(),
+        child: const _i9.ExpectExperiencesPage(),
       );
     },
     ExpectRoute.name: (routeData) {
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i9.ExpectPage(),
+        child: const _i10.ExpectPage(),
       );
     },
     ExpectPriceServiceRoute.name: (routeData) {
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i10.ExpectPriceServicePage(),
+        child: const _i11.ExpectPriceServicePage(),
       );
     },
     ExpectSkillsRoute.name: (routeData) {
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i11.ExpectSkillsPage(),
+        child: const _i12.ExpectSkillsPage(),
       );
     },
     FilterCategoriesRoute.name: (routeData) {
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i12.FilterCategoriesPage(),
+        child: const _i13.FilterCategoriesPage(),
       );
     },
     FilterEditCategoryRoute.name: (routeData) {
       final args = routeData.argsAs<FilterEditCategoryRouteArgs>();
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i13.FilterEditCategoryPage(
+        child: _i14.FilterEditCategoryPage(
           key: args.key,
           expectExperienceResponse: args.expectExperienceResponse,
         ),
       );
     },
     FilterExperienceCategoriesRoute.name: (routeData) {
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i14.FilterExperienceCategoriesPage(),
+        child: const _i15.FilterExperienceCategoriesPage(),
       );
     },
     FilterUpdateCategoryRoute.name: (routeData) {
       final args = routeData.argsAs<FilterUpdateCategoryRouteArgs>();
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i15.FilterUpdateCategoryPage(
+        child: _i16.FilterUpdateCategoryPage(
           key: args.key,
           skillResponse: args.skillResponse,
         ),
       );
     },
     MoreRoute.name: (routeData) {
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i16.MorePage(),
+        child: const _i17.MorePage(),
       );
     },
     MoreTabRouter.name: (routeData) {
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i17.MoreTabRouter(),
+        child: const _i18.MoreTabRouter(),
       );
     },
     ServiceRoute.name: (routeData) {
       final args = routeData.argsAs<ServiceRouteArgs>(
           orElse: () => const ServiceRouteArgs());
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i18.ServicePage(
+        child: _i19.ServicePage(
           key: args.key,
           selectedStatusOption: args.selectedStatusOption,
         ),
@@ -187,34 +194,34 @@ abstract class $MoreRouterModule extends _i23.AutoRouterModule {
     },
     UpdateCertificateRoute.name: (routeData) {
       final args = routeData.argsAs<UpdateCertificateRouteArgs>();
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i19.UpdateCertificatePage(
+        child: _i20.UpdateCertificatePage(
           key: args.key,
           certificateResponse: args.certificateResponse,
         ),
       );
     },
     UpdateInformationRoute.name: (routeData) {
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i20.UpdateInformationPage(),
+        child: const _i21.UpdateInformationPage(),
       );
     },
     UpdateSkillRoute.name: (routeData) {
       final args = routeData.argsAs<UpdateSkillRouteArgs>();
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: _i21.UpdateSkillPage(
+        child: _i22.UpdateSkillPage(
           key: args.key,
           skillResponse: args.skillResponse,
         ),
       );
     },
     WalletRoute.name: (routeData) {
-      return _i23.AutoRoutePage<dynamic>(
+      return _i24.AutoRoutePage<dynamic>(
         routeData: routeData,
-        child: const _i22.WalletPage(),
+        child: const _i23.WalletPage(),
       );
     },
   };
@@ -222,8 +229,8 @@ abstract class $MoreRouterModule extends _i23.AutoRouterModule {
 
 /// generated route for
 /// [_i1.AddCertificatePage]
-class AddCertificateRoute extends _i23.PageRouteInfo<void> {
-  const AddCertificateRoute({List<_i23.PageRouteInfo>? children})
+class AddCertificateRoute extends _i24.PageRouteInfo<void> {
+  const AddCertificateRoute({List<_i24.PageRouteInfo>? children})
       : super(
           AddCertificateRoute.name,
           initialChildren: children,
@@ -231,13 +238,13 @@ class AddCertificateRoute extends _i23.PageRouteInfo<void> {
 
   static const String name = 'AddCertificateRoute';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i2.AddExperiencePage]
-class AddExperienceRoute extends _i23.PageRouteInfo<void> {
-  const AddExperienceRoute({List<_i23.PageRouteInfo>? children})
+class AddExperienceRoute extends _i24.PageRouteInfo<void> {
+  const AddExperienceRoute({List<_i24.PageRouteInfo>? children})
       : super(
           AddExperienceRoute.name,
           initialChildren: children,
@@ -245,13 +252,13 @@ class AddExperienceRoute extends _i23.PageRouteInfo<void> {
 
   static const String name = 'AddExperienceRoute';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i3.AddSkillPage]
-class AddSkillRoute extends _i23.PageRouteInfo<void> {
-  const AddSkillRoute({List<_i23.PageRouteInfo>? children})
+class AddSkillRoute extends _i24.PageRouteInfo<void> {
+  const AddSkillRoute({List<_i24.PageRouteInfo>? children})
       : super(
           AddSkillRoute.name,
           initialChildren: children,
@@ -259,13 +266,13 @@ class AddSkillRoute extends _i23.PageRouteInfo<void> {
 
   static const String name = 'AddSkillRoute';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i4.CalendarPage]
-class CalendarRoute extends _i23.PageRouteInfo<void> {
-  const CalendarRoute({List<_i23.PageRouteInfo>? children})
+class CalendarRoute extends _i24.PageRouteInfo<void> {
+  const CalendarRoute({List<_i24.PageRouteInfo>? children})
       : super(
           CalendarRoute.name,
           initialChildren: children,
@@ -273,13 +280,13 @@ class CalendarRoute extends _i23.PageRouteInfo<void> {
 
   static const String name = 'CalendarRoute';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
 }
 
 /// generated route for
 /// [_i5.ChangePasswordPage]
-class ChangePasswordRoute extends _i23.PageRouteInfo<void> {
-  const ChangePasswordRoute({List<_i23.PageRouteInfo>? children})
+class ChangePasswordRoute extends _i24.PageRouteInfo<void> {
+  const ChangePasswordRoute({List<_i24.PageRouteInfo>? children})
       : super(
           ChangePasswordRoute.name,
           initialChildren: children,
@@ -287,16 +294,30 @@ class ChangePasswordRoute extends _i23.PageRouteInfo<void> {
 
   static const String name = 'ChangePasswordRoute';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i6.EditExperiencePage]
-class EditExperienceRoute extends _i23.PageRouteInfo<EditExperienceRouteArgs> {
+/// [_i6.DepositWalletPage]
+class DepositWalletRoute extends _i24.PageRouteInfo<void> {
+  const DepositWalletRoute({List<_i24.PageRouteInfo>? children})
+      : super(
+          DepositWalletRoute.name,
+          initialChildren: children,
+        );
+
+  static const String name = 'DepositWalletRoute';
+
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
+}
+
+/// generated route for
+/// [_i7.EditExperiencePage]
+class EditExperienceRoute extends _i24.PageRouteInfo<EditExperienceRouteArgs> {
   EditExperienceRoute({
-    _i24.Key? key,
-    required _i25.ExpectExperienceResponse expectExperienceResponse,
-    List<_i23.PageRouteInfo>? children,
+    _i25.Key? key,
+    required _i26.ExpectExperienceResponse expectExperienceResponse,
+    List<_i24.PageRouteInfo>? children,
   }) : super(
           EditExperienceRoute.name,
           args: EditExperienceRouteArgs(
@@ -308,8 +329,8 @@ class EditExperienceRoute extends _i23.PageRouteInfo<EditExperienceRouteArgs> {
 
   static const String name = 'EditExperienceRoute';
 
-  static const _i23.PageInfo<EditExperienceRouteArgs> page =
-      _i23.PageInfo<EditExperienceRouteArgs>(name);
+  static const _i24.PageInfo<EditExperienceRouteArgs> page =
+      _i24.PageInfo<EditExperienceRouteArgs>(name);
 }
 
 class EditExperienceRouteArgs {
@@ -318,9 +339,9 @@ class EditExperienceRouteArgs {
     required this.expectExperienceResponse,
   });
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
-  final _i25.ExpectExperienceResponse expectExperienceResponse;
+  final _i26.ExpectExperienceResponse expectExperienceResponse;
 
   @override
   String toString() {
@@ -329,9 +350,9 @@ class EditExperienceRouteArgs {
 }
 
 /// generated route for
-/// [_i7.ExpectCertificatesPage]
-class ExpectCertificatesRoute extends _i23.PageRouteInfo<void> {
-  const ExpectCertificatesRoute({List<_i23.PageRouteInfo>? children})
+/// [_i8.ExpectCertificatesPage]
+class ExpectCertificatesRoute extends _i24.PageRouteInfo<void> {
+  const ExpectCertificatesRoute({List<_i24.PageRouteInfo>? children})
       : super(
           ExpectCertificatesRoute.name,
           initialChildren: children,
@@ -339,13 +360,13 @@ class ExpectCertificatesRoute extends _i23.PageRouteInfo<void> {
 
   static const String name = 'ExpectCertificatesRoute';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i8.ExpectExperiencesPage]
-class ExpectExperiencesRoute extends _i23.PageRouteInfo<void> {
-  const ExpectExperiencesRoute({List<_i23.PageRouteInfo>? children})
+/// [_i9.ExpectExperiencesPage]
+class ExpectExperiencesRoute extends _i24.PageRouteInfo<void> {
+  const ExpectExperiencesRoute({List<_i24.PageRouteInfo>? children})
       : super(
           ExpectExperiencesRoute.name,
           initialChildren: children,
@@ -353,13 +374,13 @@ class ExpectExperiencesRoute extends _i23.PageRouteInfo<void> {
 
   static const String name = 'ExpectExperiencesRoute';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i9.ExpectPage]
-class ExpectRoute extends _i23.PageRouteInfo<void> {
-  const ExpectRoute({List<_i23.PageRouteInfo>? children})
+/// [_i10.ExpectPage]
+class ExpectRoute extends _i24.PageRouteInfo<void> {
+  const ExpectRoute({List<_i24.PageRouteInfo>? children})
       : super(
           ExpectRoute.name,
           initialChildren: children,
@@ -367,13 +388,13 @@ class ExpectRoute extends _i23.PageRouteInfo<void> {
 
   static const String name = 'ExpectRoute';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i10.ExpectPriceServicePage]
-class ExpectPriceServiceRoute extends _i23.PageRouteInfo<void> {
-  const ExpectPriceServiceRoute({List<_i23.PageRouteInfo>? children})
+/// [_i11.ExpectPriceServicePage]
+class ExpectPriceServiceRoute extends _i24.PageRouteInfo<void> {
+  const ExpectPriceServiceRoute({List<_i24.PageRouteInfo>? children})
       : super(
           ExpectPriceServiceRoute.name,
           initialChildren: children,
@@ -381,13 +402,13 @@ class ExpectPriceServiceRoute extends _i23.PageRouteInfo<void> {
 
   static const String name = 'ExpectPriceServiceRoute';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i11.ExpectSkillsPage]
-class ExpectSkillsRoute extends _i23.PageRouteInfo<void> {
-  const ExpectSkillsRoute({List<_i23.PageRouteInfo>? children})
+/// [_i12.ExpectSkillsPage]
+class ExpectSkillsRoute extends _i24.PageRouteInfo<void> {
+  const ExpectSkillsRoute({List<_i24.PageRouteInfo>? children})
       : super(
           ExpectSkillsRoute.name,
           initialChildren: children,
@@ -395,13 +416,13 @@ class ExpectSkillsRoute extends _i23.PageRouteInfo<void> {
 
   static const String name = 'ExpectSkillsRoute';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i12.FilterCategoriesPage]
-class FilterCategoriesRoute extends _i23.PageRouteInfo<void> {
-  const FilterCategoriesRoute({List<_i23.PageRouteInfo>? children})
+/// [_i13.FilterCategoriesPage]
+class FilterCategoriesRoute extends _i24.PageRouteInfo<void> {
+  const FilterCategoriesRoute({List<_i24.PageRouteInfo>? children})
       : super(
           FilterCategoriesRoute.name,
           initialChildren: children,
@@ -409,17 +430,17 @@ class FilterCategoriesRoute extends _i23.PageRouteInfo<void> {
 
   static const String name = 'FilterCategoriesRoute';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i13.FilterEditCategoryPage]
+/// [_i14.FilterEditCategoryPage]
 class FilterEditCategoryRoute
-    extends _i23.PageRouteInfo<FilterEditCategoryRouteArgs> {
+    extends _i24.PageRouteInfo<FilterEditCategoryRouteArgs> {
   FilterEditCategoryRoute({
-    _i24.Key? key,
-    required _i25.ExpectExperienceResponse expectExperienceResponse,
-    List<_i23.PageRouteInfo>? children,
+    _i25.Key? key,
+    required _i26.ExpectExperienceResponse expectExperienceResponse,
+    List<_i24.PageRouteInfo>? children,
   }) : super(
           FilterEditCategoryRoute.name,
           args: FilterEditCategoryRouteArgs(
@@ -431,8 +452,8 @@ class FilterEditCategoryRoute
 
   static const String name = 'FilterEditCategoryRoute';
 
-  static const _i23.PageInfo<FilterEditCategoryRouteArgs> page =
-      _i23.PageInfo<FilterEditCategoryRouteArgs>(name);
+  static const _i24.PageInfo<FilterEditCategoryRouteArgs> page =
+      _i24.PageInfo<FilterEditCategoryRouteArgs>(name);
 }
 
 class FilterEditCategoryRouteArgs {
@@ -441,9 +462,9 @@ class FilterEditCategoryRouteArgs {
     required this.expectExperienceResponse,
   });
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
-  final _i25.ExpectExperienceResponse expectExperienceResponse;
+  final _i26.ExpectExperienceResponse expectExperienceResponse;
 
   @override
   String toString() {
@@ -452,9 +473,9 @@ class FilterEditCategoryRouteArgs {
 }
 
 /// generated route for
-/// [_i14.FilterExperienceCategoriesPage]
-class FilterExperienceCategoriesRoute extends _i23.PageRouteInfo<void> {
-  const FilterExperienceCategoriesRoute({List<_i23.PageRouteInfo>? children})
+/// [_i15.FilterExperienceCategoriesPage]
+class FilterExperienceCategoriesRoute extends _i24.PageRouteInfo<void> {
+  const FilterExperienceCategoriesRoute({List<_i24.PageRouteInfo>? children})
       : super(
           FilterExperienceCategoriesRoute.name,
           initialChildren: children,
@@ -462,17 +483,17 @@ class FilterExperienceCategoriesRoute extends _i23.PageRouteInfo<void> {
 
   static const String name = 'FilterExperienceCategoriesRoute';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i15.FilterUpdateCategoryPage]
+/// [_i16.FilterUpdateCategoryPage]
 class FilterUpdateCategoryRoute
-    extends _i23.PageRouteInfo<FilterUpdateCategoryRouteArgs> {
+    extends _i24.PageRouteInfo<FilterUpdateCategoryRouteArgs> {
   FilterUpdateCategoryRoute({
-    _i24.Key? key,
-    required _i26.SkillResponse skillResponse,
-    List<_i23.PageRouteInfo>? children,
+    _i25.Key? key,
+    required _i27.SkillResponse skillResponse,
+    List<_i24.PageRouteInfo>? children,
   }) : super(
           FilterUpdateCategoryRoute.name,
           args: FilterUpdateCategoryRouteArgs(
@@ -484,8 +505,8 @@ class FilterUpdateCategoryRoute
 
   static const String name = 'FilterUpdateCategoryRoute';
 
-  static const _i23.PageInfo<FilterUpdateCategoryRouteArgs> page =
-      _i23.PageInfo<FilterUpdateCategoryRouteArgs>(name);
+  static const _i24.PageInfo<FilterUpdateCategoryRouteArgs> page =
+      _i24.PageInfo<FilterUpdateCategoryRouteArgs>(name);
 }
 
 class FilterUpdateCategoryRouteArgs {
@@ -494,9 +515,9 @@ class FilterUpdateCategoryRouteArgs {
     required this.skillResponse,
   });
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
-  final _i26.SkillResponse skillResponse;
+  final _i27.SkillResponse skillResponse;
 
   @override
   String toString() {
@@ -505,9 +526,9 @@ class FilterUpdateCategoryRouteArgs {
 }
 
 /// generated route for
-/// [_i16.MorePage]
-class MoreRoute extends _i23.PageRouteInfo<void> {
-  const MoreRoute({List<_i23.PageRouteInfo>? children})
+/// [_i17.MorePage]
+class MoreRoute extends _i24.PageRouteInfo<void> {
+  const MoreRoute({List<_i24.PageRouteInfo>? children})
       : super(
           MoreRoute.name,
           initialChildren: children,
@@ -515,13 +536,13 @@ class MoreRoute extends _i23.PageRouteInfo<void> {
 
   static const String name = 'MoreRoute';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i17.MoreTabRouter]
-class MoreTabRouter extends _i23.PageRouteInfo<void> {
-  const MoreTabRouter({List<_i23.PageRouteInfo>? children})
+/// [_i18.MoreTabRouter]
+class MoreTabRouter extends _i24.PageRouteInfo<void> {
+  const MoreTabRouter({List<_i24.PageRouteInfo>? children})
       : super(
           MoreTabRouter.name,
           initialChildren: children,
@@ -529,16 +550,16 @@ class MoreTabRouter extends _i23.PageRouteInfo<void> {
 
   static const String name = 'MoreTabRouter';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i18.ServicePage]
-class ServiceRoute extends _i23.PageRouteInfo<ServiceRouteArgs> {
+/// [_i19.ServicePage]
+class ServiceRoute extends _i24.PageRouteInfo<ServiceRouteArgs> {
   ServiceRoute({
-    _i24.Key? key,
-    _i27.StatusServiceEnum? selectedStatusOption,
-    List<_i23.PageRouteInfo>? children,
+    _i25.Key? key,
+    _i28.StatusServiceEnum? selectedStatusOption,
+    List<_i24.PageRouteInfo>? children,
   }) : super(
           ServiceRoute.name,
           args: ServiceRouteArgs(
@@ -550,8 +571,8 @@ class ServiceRoute extends _i23.PageRouteInfo<ServiceRouteArgs> {
 
   static const String name = 'ServiceRoute';
 
-  static const _i23.PageInfo<ServiceRouteArgs> page =
-      _i23.PageInfo<ServiceRouteArgs>(name);
+  static const _i24.PageInfo<ServiceRouteArgs> page =
+      _i24.PageInfo<ServiceRouteArgs>(name);
 }
 
 class ServiceRouteArgs {
@@ -560,9 +581,9 @@ class ServiceRouteArgs {
     this.selectedStatusOption,
   });
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
-  final _i27.StatusServiceEnum? selectedStatusOption;
+  final _i28.StatusServiceEnum? selectedStatusOption;
 
   @override
   String toString() {
@@ -571,13 +592,13 @@ class ServiceRouteArgs {
 }
 
 /// generated route for
-/// [_i19.UpdateCertificatePage]
+/// [_i20.UpdateCertificatePage]
 class UpdateCertificateRoute
-    extends _i23.PageRouteInfo<UpdateCertificateRouteArgs> {
+    extends _i24.PageRouteInfo<UpdateCertificateRouteArgs> {
   UpdateCertificateRoute({
-    _i24.Key? key,
-    required _i28.CertificateResponse certificateResponse,
-    List<_i23.PageRouteInfo>? children,
+    _i25.Key? key,
+    required _i29.CertificateResponse certificateResponse,
+    List<_i24.PageRouteInfo>? children,
   }) : super(
           UpdateCertificateRoute.name,
           args: UpdateCertificateRouteArgs(
@@ -589,8 +610,8 @@ class UpdateCertificateRoute
 
   static const String name = 'UpdateCertificateRoute';
 
-  static const _i23.PageInfo<UpdateCertificateRouteArgs> page =
-      _i23.PageInfo<UpdateCertificateRouteArgs>(name);
+  static const _i24.PageInfo<UpdateCertificateRouteArgs> page =
+      _i24.PageInfo<UpdateCertificateRouteArgs>(name);
 }
 
 class UpdateCertificateRouteArgs {
@@ -599,9 +620,9 @@ class UpdateCertificateRouteArgs {
     required this.certificateResponse,
   });
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
-  final _i28.CertificateResponse certificateResponse;
+  final _i29.CertificateResponse certificateResponse;
 
   @override
   String toString() {
@@ -610,9 +631,9 @@ class UpdateCertificateRouteArgs {
 }
 
 /// generated route for
-/// [_i20.UpdateInformationPage]
-class UpdateInformationRoute extends _i23.PageRouteInfo<void> {
-  const UpdateInformationRoute({List<_i23.PageRouteInfo>? children})
+/// [_i21.UpdateInformationPage]
+class UpdateInformationRoute extends _i24.PageRouteInfo<void> {
+  const UpdateInformationRoute({List<_i24.PageRouteInfo>? children})
       : super(
           UpdateInformationRoute.name,
           initialChildren: children,
@@ -620,16 +641,16 @@ class UpdateInformationRoute extends _i23.PageRouteInfo<void> {
 
   static const String name = 'UpdateInformationRoute';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
 }
 
 /// generated route for
-/// [_i21.UpdateSkillPage]
-class UpdateSkillRoute extends _i23.PageRouteInfo<UpdateSkillRouteArgs> {
+/// [_i22.UpdateSkillPage]
+class UpdateSkillRoute extends _i24.PageRouteInfo<UpdateSkillRouteArgs> {
   UpdateSkillRoute({
-    _i24.Key? key,
-    required _i26.SkillResponse skillResponse,
-    List<_i23.PageRouteInfo>? children,
+    _i25.Key? key,
+    required _i27.SkillResponse skillResponse,
+    List<_i24.PageRouteInfo>? children,
   }) : super(
           UpdateSkillRoute.name,
           args: UpdateSkillRouteArgs(
@@ -641,8 +662,8 @@ class UpdateSkillRoute extends _i23.PageRouteInfo<UpdateSkillRouteArgs> {
 
   static const String name = 'UpdateSkillRoute';
 
-  static const _i23.PageInfo<UpdateSkillRouteArgs> page =
-      _i23.PageInfo<UpdateSkillRouteArgs>(name);
+  static const _i24.PageInfo<UpdateSkillRouteArgs> page =
+      _i24.PageInfo<UpdateSkillRouteArgs>(name);
 }
 
 class UpdateSkillRouteArgs {
@@ -651,9 +672,9 @@ class UpdateSkillRouteArgs {
     required this.skillResponse,
   });
 
-  final _i24.Key? key;
+  final _i25.Key? key;
 
-  final _i26.SkillResponse skillResponse;
+  final _i27.SkillResponse skillResponse;
 
   @override
   String toString() {
@@ -662,9 +683,9 @@ class UpdateSkillRouteArgs {
 }
 
 /// generated route for
-/// [_i22.WalletPage]
-class WalletRoute extends _i23.PageRouteInfo<void> {
-  const WalletRoute({List<_i23.PageRouteInfo>? children})
+/// [_i23.WalletPage]
+class WalletRoute extends _i24.PageRouteInfo<void> {
+  const WalletRoute({List<_i24.PageRouteInfo>? children})
       : super(
           WalletRoute.name,
           initialChildren: children,
@@ -672,5 +693,5 @@ class WalletRoute extends _i23.PageRouteInfo<void> {
 
   static const String name = 'WalletRoute';
 
-  static const _i23.PageInfo<void> page = _i23.PageInfo<void>(name);
+  static const _i24.PageInfo<void> page = _i24.PageInfo<void>(name);
 }

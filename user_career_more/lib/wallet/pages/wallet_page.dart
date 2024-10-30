@@ -1,11 +1,16 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:intl/intl.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_core/views/common_action_chip.dart';
-import 'package:user_career_core/views/common_appbar.dart';
+import 'package:user_career_core/views/common_empty_list_view.dart';
 import 'package:user_career_more/calendar/models/date_time_enum.dart';
+import 'package:user_career_more/core/router.gm.dart';
 import 'package:user_career_more/more/pages/views/datetime_picker_view.dart';
+import 'package:user_career_more/wallet/controllers/wallet_controller.dart';
+import 'package:user_career_more/wallet/models/balance_fluctuation_enum.dart';
+import 'package:user_career_more/wallet/models/history_response.dart';
 
 @RoutePage()
 class WalletPage extends ConsumerStatefulWidget {
@@ -17,15 +22,18 @@ class WalletPage extends ConsumerStatefulWidget {
 
 class _WalletPageState extends ConsumerState<WalletPage> {
 
-  DateTimeEnum _selectedTimeOption = DateTimeEnum.lastSevenDays;
-  final List<DateTimeEnum> _timeOptions = DateTimeEnum.values.toList();
+  final List<BalanceFluctuationEnum> _balanceOptions = BalanceFluctuationEnum.values.toList();
+
+  final controller = TableViewController();
 
   @override
   Widget build(BuildContext context) {
+    final walletBalanceState = ref.watch(walletBalanceControllerProvider);
+    final walletController = ref.watch(walletControllerProvider);
+
     return BaseScaffold(
-      customAppBar: CommonAppBar(
-        centerTitle: true,
-        titleText: " Ví của tôi",
+      customAppBar: BaseAppBarView(
+        title: "Ví của tôi",
       ),
       backgroundColor: AppColors.white3Color,
       body: Column(
@@ -36,9 +44,17 @@ class _WalletPageState extends ConsumerState<WalletPage> {
             children: [
               Container(
                 color: AppColors.white1Color,
-                child: const ListTile(
-                  title: Text('Số dư'),
-                  trailing: Text('0đ', style: TextStyle(fontSize: 16.0)),
+                child: ListTile(
+                  title: const Text('Số dư'),
+                  trailing: walletBalanceState.maybeWhen(
+                    data: (data) => Text(
+                      "${NumberFormat("###,###", "vi_VN").format(data.walletBalance ?? 0)} đ",
+                      style: ref.theme.defaultTextStyle.copyWith(
+                        color: AppColors.main1Color,
+                      ),
+                    ),
+                    orElse: () => const SizedBox(),
+                  ),
                 ),
               ).paddingSymmetric(vertical: 5.0),
 
@@ -48,95 +64,107 @@ class _WalletPageState extends ConsumerState<WalletPage> {
                   title: Text('Nạp tiền'),
                   trailing: Icon(Icons.chevron_right),
                 ),
-              ).paddingOnly(bottom: 5.0),
-
-              Container(
-                color: AppColors.white1Color,
-                child: const ListTile(
-                  title: Text('Thu nhập'),
-                  trailing: Icon(Icons.chevron_right),
-                ),
-              ).paddingOnly(bottom: 5.0),
+              ).paddingOnly(bottom: 5.0).onTapWidget(() {
+                context.router.push(const DepositWalletRoute());
+              }),
             ],
           ),
           Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  'Lịch sử giao dịch',
-                  style: ref.theme.bigTextStyle,
-                ),
-              ).paddingOnly(bottom: 5.0),
-              TextField(
-                decoration: InputDecoration(
-                  labelText: 'Tìm kiếm giao dịch',
-                  border: OutlineInputBorder(
-                    borderRadius: BorderRadius.circular(10.0),
-                  ),
-                  prefixIcon: const Icon(Icons.search),
-                ),
-              ),
               Row(
-                mainAxisAlignment: MainAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
+                  Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      'Biến động số dư',
+                      style: ref.theme.defaultTextStyle,
+                    ),
+                  ),
                   CommonActionChip(
-                    textTitle: 'Hôm nay',
-                    // textTitle: ref
-                    //     .watch(homeComponentControllerProvider)
-                    //     .formatHomeRepostDatetimePicker,
+                    textTitle: ref.watch(walletControllerProvider).type.localizedValue,
                     titleStyle: ref.theme.smallTextStyle.textColor(AppColors.main1Color),
                     backgroundColor: AppColors.white3Color,
                     iconTitle: Assets.icons.icDown.svg(color: AppColors.main1Color),
                     onTap: () {
-                      _showTimeOptions();
+                      _showTypeOptions();
                     },
-                  ).marginOnly(right: 8),
-                  ElevatedButton(
-                    onPressed: () {},
-                    style: ElevatedButton.styleFrom(
-                      foregroundColor: Colors.white,
-                      backgroundColor: AppColors.main1Color, // Màu chữ của nút
-                    ),
-                    child: const Text('Tìm kiếm'),
-                  ).box(h: 33.0)
+                  ).marginOnly(right: 8)
                 ],
-              ),
+              ).paddingOnly(bottom: 5.0),
             ],
-          ).paddingAll(12.0).makeColor(AppColors.white1Color),
+          ).paddingSymmetric(horizontal: 12.0).makeColor(AppColors.white1Color),
+          const Gap(5),
+          ExtendedListView<HistoryResponse>(
+              emptyDataSource: InfiniteListViewEmptyDataSourceBuilder(
+                  customEmptyViewBuilder: () => CommonEmptyListView(
+                    onRefresh: () {
+                      controller.refresh();
+                    },
+                  )
+              ),
+              initialRefresh: true,
+              controller: controller,
+              metadataUpdater: ref.watch(walletControllerProvider.notifier),
+              padding: EdgeInsets.zero,
+              onLoadItems: (page) async {
+                return ref
+                    .read(walletControllerProvider.notifier)
+                    .getHistory(page);
+              },
+              tableViewItemBuilder: (tableViewItem) {
+                final item = tableViewItem.item;
+                return Container(
+                  color: AppColors.white1Color,
+                  width: double.infinity,
+                  child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          item.content ?? '',
+                          style: ref.theme.mediumTextStyle.weight(FontWeight.w600),
+                        ).paddingOnly(bottom: 5.0),
+                        Text(
+                          item.createdAt.hhMMddyyyy1() ?? "",
+                          style: ref.theme.defaultTextStyle.copyWith(
+                            color: Colors.grey,
+                          ),
+                        ),
+                        Row(
+                          children:[
+                            (item.isAdd ?? false )
+                              ? const Icon(Icons.add, size: 12, color: Colors.green)
+                              : const Icon(Icons.remove, size: 12, color: Colors.red),
+                            Text(
+                              "${NumberFormat("###,###", "vi_VN").format(item.amount ?? 0)} đ",
+                              style: ref.theme.defaultTextStyle.copyWith(
+                                color: (item.isAdd ?? false) ? Colors.green : Colors.red,
+                              ),
+                            ),
+                          ]
+                        )
+                      ]
+                  ).paddingSymmetric(horizontal: 12, vertical: 8),
+                ).paddingOnly(bottom: 5.0);
+              }
+          ).expand()
         ],
       ),
     );
   }
 
-  void _showTimeOptions() {
-    final items = _timeOptions.map((option) {
+  void _showTypeOptions(){
+    final items = _balanceOptions.map((option) {
       return InteractiveListItem.normal(
-        isSelected: _selectedTimeOption == option,
+        isSelected: ref.watch(walletControllerProvider).type == option,
         title: option.localizedValue,
         onPressed: () {
-          if (option == DateTimeEnum.customDay) {
-            context.maybePop().then((value) {
-              if (value == true) {
-                InteractiveSheet.fixedContent(
-                  DatetimePickerView(onDateSelected: (applied, selectedDates) {
-                    if (applied) {
-                      _selectedTimeOption = option;
-                    }
-                  }),
-                  isFloating: false,
-                  canShowIndicator: false,
-                ).show();
-              }
-            });
-          } else {
-            _selectedTimeOption = option;
-            // ref
-            //     .read(homeComponentControllerProvider.notifier)
-            //     .updateSelectedSortOption(_selectedTimeOption);
-            context.maybePop();
-          }
+          ref.read(walletControllerProvider.notifier)
+              .setBalanceFluctuationType(option);
+          controller.refresh();
+          context.maybePop();
         },
       );
     }).toList();

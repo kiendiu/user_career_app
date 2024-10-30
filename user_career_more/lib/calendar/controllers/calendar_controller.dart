@@ -14,7 +14,7 @@ class CalendarController extends AutoDisposeNotifier<CalendarControllerState> {
     return CalendarControllerState(
       type: UserExpectEnum.allType,
       endDate: dateTimeNow,
-      startDate: dateTimeNow.subtract(const Duration(days: 7)),
+      startDate: dateTimeNow.add(const Duration(days: 7)),
       selectedTimeOption: DateTimeEnum.lastSevenDays,
     );
   }

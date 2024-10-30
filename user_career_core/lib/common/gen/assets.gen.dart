@@ -100,6 +100,10 @@ class $AssetsIconsGen {
   SvgGenImage get icLogoStatusNotification =>
       const SvgGenImage('assets/icons/ic_logo_status_notification.svg');
 
+  /// File path: assets/icons/ic_logo_vnpay.svg
+  SvgGenImage get icLogoVnpay =>
+      const SvgGenImage('assets/icons/ic_logo_vnpay.svg');
+
   /// File path: assets/icons/ic_logout_icon.svg
   SvgGenImage get icLogoutIcon =>
       const SvgGenImage('assets/icons/ic_logout_icon.svg');
@@ -226,6 +230,7 @@ class $AssetsIconsGen {
         icFilter,
         icLogo,
         icLogoStatusNotification,
+        icLogoVnpay,
         icLogoutIcon,
         icMapMarker,
         icNoPermission,

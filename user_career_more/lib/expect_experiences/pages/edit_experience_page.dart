@@ -124,18 +124,20 @@ class _EditExperiencePageState extends ConsumerState<EditExperiencePage> {
                       controller.setExpectEndTime(date);
                     }
                 ).paddingOnly(top: 12),
-                CommonTextFieldView(
-                  borderRadius: 18,
+                TextFieldView.outsideBorder(
                   title: L.more.addExperienceTextFieldDescription,
                   placeholder: L.more.addExperienceTextFieldDescription,
                   isRequired: true,
                   initialText: state.jobDescription,
+                  maxLength: 4,
+                  isExpanded: true,
                   lengthLimiter: CharacterLengthLimiter(length: 100),
                   errorText: () => L.more.errorEmpty,
+                  height: 50,
                   textFieldDidChange: (text){
                     controller.setExpectDescription(text);
                   },
-                ).paddingOnly(top: 12, bottom: 12),
+                ).paddingOnly(top: 12,bottom: 12),
               ],
             ).paddingSymmetric(horizontal: 12).makeColor(AppColors.white1Color)
         )

@@ -139,11 +139,14 @@ class _BookingPageState extends ConsumerState<BookingPage> {
                         buttons: [
                           ConfirmPopupViewButton(
                             title: "Đồng ý",
-                            titleColor: AppColors.black1Color,
-                            background: AppColors.white4Color,
+                            titleColor: AppColors.white1Color,
+                            background: AppColors.mainColor,
                             callback: () {
-                              context.router.popUntil(
-                                      (route) => route.settings.name != BookingRoute.name);
+                              context.maybePop().then((value) {
+                                context.router.popUntil(
+                                        (route) => route.settings.name != BookingRoute.name);
+                              });
+
                             },
                           ),
                           ConfirmPopupViewButton(

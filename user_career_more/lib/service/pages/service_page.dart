@@ -12,6 +12,8 @@ import 'package:user_career_more/service/models/service_model.dart';
 import 'package:user_career_more/service/models/status_service_enum.dart';
 import 'package:user_career_more/calendar/models/user_expect_enum.dart';
 import 'package:user_career_more/service/pages/payment_container_view.dart';
+import 'package:user_career_more/service/pages/payment_view.dart';
+import 'package:user_career_more/service/pages/review_view.dart';
 
 @RoutePage()
 class ServicePage extends ConsumerStatefulWidget {
@@ -213,7 +215,53 @@ class _ServicePageState extends ConsumerState<ServicePage> {
                                     style: ref.theme.defaultTextStyle
                                   )
                                 : const SizedBox.shrink(),
-                            StatusPaymentContainerView(PaymentStatusEnum.values.firstWhere((e) => e.rawValue == item.isPaid)),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Row(
+                                  children: [
+                                    StatusPaymentContainerView(PaymentStatusEnum.values.firstWhere((e) => e.rawValue == item.isPaid)),
+                                    item.isPaid == true
+                                        ? const SizedBox()
+                                        : Text(
+                                            "Thanh toán tại đây",
+                                            style: ref.theme.smallTextStyle.copyWith(
+                                              color: AppColors.mainColor,
+                                            ),
+                                          ),
+                                  ]
+                                ).onTapWidget(() => context.showOverlay(PaymentView(serviceModel: item))),
+                                serviceState.statusSelected == StatusServiceEnum.completed
+                                 ? item.isReviewed == false
+                                    ? Container(
+                                        padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
+                                        decoration: BoxDecoration(
+                                          color: AppColors.mainColor,
+                                          border: Border.all(width: 1, color: AppColors.mainColor),
+                                          borderRadius: BorderRadius.circular(4),
+                                        ),
+                                        child: child ??
+                                            const Text("Đánh giá",
+                                                style: TextStyle(
+                                                  fontSize: 12,
+                                                  fontWeight: FontWeight.w400,
+                                                  color: Colors.white,
+                                                )),
+                                      ).onTapWidget(() => context.showOverlay(ReviewView(bookId: item.bookId ?? 0)))
+                                    : Row(
+                                        children: [
+                                          const Icon(Icons.check, size: 20, color: AppColors.mainColor),
+                                          Text(
+                                            "Đã đánh giá",
+                                            style: ref.theme.defaultTextStyle.copyWith(
+                                              color: AppColors.mainColor,
+                                            ),
+                                          )
+                                        ],
+                                      )
+                                : const SizedBox.shrink(),
+                              ],
+                            ),
                           ]
                         ).paddingSymmetric(horizontal: 12, vertical: 8),
                       ),

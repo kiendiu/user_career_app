@@ -1,4 +1,5 @@
 import 'package:user_career_core/user_career_core.dart';
+import 'package:user_career_more/service/models/review_model.dart';
 
 class ListServiceData<ServiceModel> extends BaseListResponse<ServiceModel> {
   ServiceMetadata? serviceMetadata;
@@ -71,6 +72,9 @@ class ServiceModel implements Decodable{
   String? expertName;
   String? serviceName;
   bool? isPaid;
+  bool? isReviewed;
+  ReviewModel? review;
+
 
   ServiceModel({
     this.bookId,
@@ -90,7 +94,9 @@ class ServiceModel implements Decodable{
     this.userName,
     this.expertName,
     this.serviceName,
-    this.isPaid
+    this.isPaid,
+    this.isReviewed,
+    this.review
   });
 
   ServiceModel copyWith({
@@ -111,7 +117,9 @@ class ServiceModel implements Decodable{
     String? userName,
     String? expertName,
     String? serviceName,
-    bool? isPaid
+    bool? isPaid,
+    bool? isReviewed,
+    ReviewModel? review
   }) {
     return ServiceModel(
       bookId: bookId ?? this.bookId,
@@ -131,7 +139,9 @@ class ServiceModel implements Decodable{
       userName: userName ?? this.userName,
       expertName: expertName ?? this.expertName,
       serviceName: serviceName ?? this.serviceName,
-      isPaid: isPaid ?? this.isPaid
+      isPaid: isPaid ?? this.isPaid,
+      isReviewed: isReviewed ?? this.isReviewed,
+      review: review ?? this.review
     );
   }
 
@@ -155,5 +165,9 @@ class ServiceModel implements Decodable{
     expertName = json['expert_name'];
     serviceName = json['service_name'];
     isPaid = json['is_paid'] == 0 ? false : true;
+    isReviewed = json['is_reviewed'] == 0 ? false : true;
+    if(json['review'] != null){
+      review = ReviewModel()..decode(json['review']);
+    }
   }
 }

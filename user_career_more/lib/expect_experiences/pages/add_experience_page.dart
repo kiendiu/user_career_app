@@ -120,14 +120,16 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
                 expectExperienceController.setExpectEndTime(date);
               }
             ).paddingOnly(top: 12),
-            CommonTextFieldView(
-              borderRadius: 18,
+            TextFieldView.outsideBorder(
               title: L.more.addExperienceTextFieldDescription,
               placeholder: L.more.addExperienceTextFieldDescription,
               isRequired: true,
+              maxLength: 4,
+              isExpanded: true,
               lengthLimiter: CharacterLengthLimiter(length: 100),
               validator: (_) => (expectExperienceState.isEmptyJobDescription),
               errorText: () => L.more.errorEmpty,
+              height: 50,
               textFieldDidChange: (text){
                 expectExperienceController.setExpectDescription(text);
               },

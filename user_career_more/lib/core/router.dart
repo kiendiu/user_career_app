@@ -28,5 +28,6 @@ class MoreRouterModule extends $MoreRouterModule {
     PresentedRoute(page: AddSkillRoute.page),
     PresentedRoute(page: UpdateSkillRoute.page),
     PresentedRoute(page: FilterUpdateCategoryRoute.page),
+    PresentedRoute(page: DepositWalletRoute.page),
   ];
 }
