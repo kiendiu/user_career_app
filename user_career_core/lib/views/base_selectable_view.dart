@@ -84,7 +84,9 @@ class _SelectableMembersViewState<T extends BaseSelectableItem>
                   VSpace.v8,
                   EasyRichText(
                     widget.isRequired ? "${widget.title} *" : widget.title,
-                    defaultStyle: ref.theme.defaultTextStyle,
+                    defaultStyle: const TextStyle().textColor(const Color(0xFF181818)).size(14).weight(
+                      FontWeight.w600,
+                    ),
                     patternList: [
                       if (widget.isRequired)
                         EasyRichTextPattern(
@@ -99,7 +101,9 @@ class _SelectableMembersViewState<T extends BaseSelectableItem>
                   if (_items.isEmpty)
                     Text(
                       widget.textPlaceHolder ?? '',
-                      style: ref.theme.defaultTextStyle,
+                      style: const TextStyle().textColor(Colors.grey.shade600).size(14).weight(
+                        FontWeight.w600,
+                      ),
                     ).paddingOnly(left: 16, top: 0),
                   if (_items.isNotEmpty)
                     Wrap(

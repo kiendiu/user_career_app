@@ -69,4 +69,21 @@ class BookingRequest implements Encodable{
   bool get isEmptyLocation => locationName != null && locationName!.isNotEmpty;
 
   bool get isEmptyAddress => address != null && address!.isNotEmpty;
+
+  bool get isEmptyScheduleTime => scheduleTime != null;
+
+  bool get isEmptyDuration => duration != null;
+
+  bool canContinue(int value, String text){
+    if(value == 0){
+      if(text == "online"){
+        return isEmptyMessage;
+      }else{
+        return isEmptyMessage && isEmptyLocation && isEmptyAddress;
+      }
+    }else if(value == 1){
+      return isEmptyScheduleTime && isEmptyDuration;
+    }
+    return true;
+  }
 }

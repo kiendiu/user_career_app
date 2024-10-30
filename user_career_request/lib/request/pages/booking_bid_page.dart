@@ -50,9 +50,8 @@ class _BookingBidPageState extends ConsumerState<BookingBidPage> {
                     bookId = value.bookId ?? 0;
                   });
                   context.showSuccess("Đặt lịch thành công");
-                  context.router.popUntil((route) {
-                    return route.settings.name == BookingBidRoute.page;
-                  });
+                  context.router.popUntil(
+                          (route) => route.settings.name != BookingBidRoute.name);
                 }
               });
             },
@@ -182,44 +181,23 @@ class _BookingBidPageState extends ConsumerState<BookingBidPage> {
                       textAlign: TextAlign.center,
                       controller: timeEditingController,
                       decoration: InputDecoration(
-                        hintText: "Thời gian dự kiến",
+                        hintText: "Phút",
                         contentPadding: const EdgeInsets.symmetric(horizontal: 14),
                         border: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
-                          borderSide: BorderSide(color: Colors.grey.shade300),  // Set border color to red
+                          borderSide: BorderSide(color: Colors.grey.shade300),
                         ),
                         focusedBorder: OutlineInputBorder(
                           borderRadius: BorderRadius.circular(20.0),
                           borderSide: const BorderSide(color: Colors.blue),
                         ),
                       ),
-                      keyboardType: TextInputType.number,  // Set keyboard type to number
+                      keyboardType: TextInputType.number,
                       onChanged: (text){
                         int number = int.parse(text);
                         bookingBidController.updateDuration(number);
                       },
                     ).expand(),
-                    SizedBox(
-                      width: 80,
-                      child: TextField(
-                        textAlign: TextAlign.center,
-                        enabled: false,
-                        decoration: InputDecoration(
-                          hintText: "Phút",
-                          fillColor: Colors.grey.shade200,
-                          filled: true,
-                          hintStyle: ref.theme.mediumTextStyle.copyWith(
-                            color: Colors.grey.shade600,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          contentPadding: const EdgeInsets.symmetric(horizontal: 14),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(20.0),
-                            borderSide: BorderSide(color: Colors.grey.shade300),
-                          ),
-                        ),
-                      ),
-                    ).paddingOnly(left: 10)
                   ],
                 ).paddingOnly(bottom: 10)
               ],

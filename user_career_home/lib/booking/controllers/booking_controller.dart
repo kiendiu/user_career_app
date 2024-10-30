@@ -1,4 +1,3 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_home/booking/models/booking_request.dart';
@@ -27,17 +26,23 @@ class BookingController extends AutoDisposeNotifier<BookingRequest>
     }
   }
 
-  Future<bool> createPayment(PaymentRequest request) async {
-    try {
-      final result = await ref
-        .read(bookingRepositoryProvider)
-        .createPayment(request)
-        .showErrorBy(this)
-        .map(onValue: (value) => value ?? false)
-        .mapToValueOr(defaultValue: false).asFuture();
-      return result;
-    } catch (e) {
-      return false;
+  Future<void> createPayment(PaymentRequest request, Function() onSuccess, Function() onRemind) async {
+    final result = await ref
+      .read(bookingRepositoryProvider)
+      .createPayment(request)
+      .hideLoadingBy(this)
+      .asFuture();
+    switch(result){
+      case Success():
+        onSuccess();
+        break;
+      case Failure(error: final error):
+        if(error.errorCode == 400){
+          onRemind();
+        }else{
+          showError(error);
+        }
+        break;
     }
   }
 

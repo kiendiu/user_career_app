@@ -38,14 +38,14 @@ class _RequestPageState extends ConsumerState<RequestPage> with SingleTickerProv
       body: BaseTabBarView(
         data: [
           TabBarViewData.normal(
-              title: "Yêu cầu dịch vụ",
+              title: "Dịch vụ",
               body: const GeneralPage()),
           TabBarViewData.normal(
-              title: "Yêu cầu của tôi",
+              title: "Của tôi",
               body: const MinePage()),
-          // TabBarViewData.normal(
-          //     title: "Chào giá",
-          //     body: const BidPage()),
+          TabBarViewData.normal(
+              title: "Chào giá",
+              body: const BidPage()),
         ],
       ),
     );

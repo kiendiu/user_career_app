@@ -87,7 +87,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
 
               ],
             ).marginSymmetric(horizontal: 14.0),
-          ).paddingSymmetric(vertical: 5.0),
+          ),
           ExtendedListView<CalendarModel>(
               emptyDataSource: InfiniteListViewEmptyDataSourceBuilder(
                   customEmptyViewBuilder: () => CommonEmptyListView(

@@ -1,8 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:intl/intl.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_more/core/router.gm.dart';
 import 'package:user_career_more/expect_skills/controllers/skill_controller.dart';
@@ -59,7 +57,7 @@ class _AddSkillPageState extends ConsumerState<AddSkillPage> {
                   },
                   child: TextFieldView.outsideBorder(
                     title: "Lĩnh vực",
-                    placeholder: "Lĩnh vực",
+                    placeholder: "Vui lòng chọn",
                     isRequired: true,
                     validator: (_) => (skillState.isEmptyCategory),
                     errorText: () => L.more.errorEmpty,
@@ -68,7 +66,7 @@ class _AddSkillPageState extends ConsumerState<AddSkillPage> {
                 ),
                 TextFieldView.outsideBorder(
                   title: "Tên kỹ năng",
-                  placeholder: "Tên kỹ năng",
+                  placeholder: "Vui lòng nhập",
                   isRequired: true,
                   validator: (_) => skillState.isEmptyNameSkill,
                   errorText: () => L.more.errorEmpty,
@@ -79,7 +77,7 @@ class _AddSkillPageState extends ConsumerState<AddSkillPage> {
                 ).paddingOnly(top: 12),
                 TextFieldView.outsideBorder(
                   title: "Số năm kinh nghiệm",
-                  placeholder: "Số năm kinh nghiệm",
+                  placeholder: "Vui lòng nhập",
                   isRequired: true,
                   validator: (_) => (skillState.isEmptyExperienceYear),
                   errorText: () => L.more.errorEmpty,
@@ -90,11 +88,13 @@ class _AddSkillPageState extends ConsumerState<AddSkillPage> {
                     skillController.setExperienceYear(number);
                   },
                 ).paddingOnly(top: 12),
-                CommonTextFieldView(
-                  borderRadius: 18,
+                TextFieldView.outsideBorder(
                   title: "Mô tả kỹ năng",
-                  placeholder: "Mô tả kỹ năng",
+                  placeholder: "Vui lòng nhập",
                   isRequired: true,
+                  height: 50,
+                  maxLength: 4,
+                  isExpanded: true,
                   lengthLimiter: CharacterLengthLimiter(length: 100),
                   validator: (_) => (skillState.isEmptySkillDescription),
                   errorText: () => L.more.errorEmpty,

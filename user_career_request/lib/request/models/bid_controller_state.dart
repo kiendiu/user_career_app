@@ -43,16 +43,16 @@ class BidParams extends BaseParams{
 }
 
 enum RoleStatusEnum {
-  expert,
-  customer;
+  open,
+  closed;
 
   String get localizedValue => switch (this) {
-    RoleStatusEnum.expert => "Chuyên gia",
-    RoleStatusEnum.customer => "Người dùng",
+    RoleStatusEnum.open => "Chuyên gia",
+    RoleStatusEnum.closed => "Người dùng",
   };
 
   String get rawValue => switch (this) {
-    RoleStatusEnum.expert => "expert",
-    RoleStatusEnum.customer => "customer",
+    RoleStatusEnum.open => "open",
+    RoleStatusEnum.closed => "closed",
   };
 }

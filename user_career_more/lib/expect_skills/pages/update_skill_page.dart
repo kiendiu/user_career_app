@@ -64,7 +64,7 @@ class _UpdateSkillPageState extends ConsumerState<UpdateSkillPage> {
                   },
                   child: TextFieldView.outsideBorder(
                     title: "Lĩnh vực",
-                    placeholder: "Lĩnh vực",
+                    placeholder: "Vui lòng chọn",
                     isRequired: true,
                     validator: (_) => (skillState.isEmptyCategory),
                     errorText: () => L.more.errorEmpty,
@@ -73,7 +73,7 @@ class _UpdateSkillPageState extends ConsumerState<UpdateSkillPage> {
                 ),
                 TextFieldView.outsideBorder(
                   title: "Tên kỹ năng",
-                  placeholder: "Tên kỹ năng",
+                  placeholder: "Vui lòng nhập",
                   isRequired: true,
                   initialText: skillState.nameSkill,
                   validator: (_) => skillState.isEmptyNameSkill,
@@ -85,7 +85,7 @@ class _UpdateSkillPageState extends ConsumerState<UpdateSkillPage> {
                 ).paddingOnly(top: 12),
                 TextFieldView.outsideBorder(
                   title: "Số năm kinh nghiệm",
-                  placeholder: "Số năm kinh nghiệm",
+                  placeholder: "Vui lòng nhập",
                   validator: (_) => skillState.isEmptyExperienceYear,
                   errorText: () => L.more.errorEmpty,
                   isRequired: true,
@@ -96,12 +96,14 @@ class _UpdateSkillPageState extends ConsumerState<UpdateSkillPage> {
                     skillController.setExperienceYear(int.parse(text!));
                   },
                 ).paddingOnly(top: 12),
-                CommonTextFieldView(
-                  borderRadius: 18,
+                TextFieldView.outsideBorder(
                   title: "Mô tả kỹ năng",
-                  placeholder: "Mô tả kỹ năng",
+                  placeholder: "Vui lòng nhập",
                   isRequired: true,
+                  height: 50,
                   initialText: skillState.skillDescription,
+                  maxLength: 4,
+                  isExpanded: true,
                   lengthLimiter: CharacterLengthLimiter(length: 100),
                   validator: (_) => (skillState.isEmptySkillDescription),
                   errorText: () => L.more.errorEmpty,

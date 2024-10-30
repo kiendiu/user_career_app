@@ -2,6 +2,7 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
+import 'package:user_career_core/common/career_storage_key.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_request/core/router.gm.dart';
 import 'package:user_career_request/request/controllers/add_request_controller.dart';
@@ -38,6 +39,30 @@ class _RequestDetailPageState extends ConsumerState<RequestDetailPage> {
         shouldShowLeading: true,
       ),
       backgroundColor: AppColors.white3Color,
+      bottomView: widget.request.status == "closed"
+          ? const SizedBox()
+          : Container(
+        color: AppColors.white1Color,
+        child: AppButton(
+          title: widget.isMine ? "Hủy yêu cầu" : "Chào giá ngay",
+          onPressed: () {
+            if(widget.isMine){
+              controller.cancelRequest(widget.request.requestId!)
+                  .then((value) => {
+                if (value == true)
+                  {
+                    context.showSuccess(L.more.inforMessageSuccess),
+                    NotificationCenter()
+                        .postNotification(RawStringNotificationName('reloadMine')),
+                    context.maybePop(),
+                  }
+              });
+            }else{
+              context.showOverlay(BidRequestPage(request: widget.request));
+            }
+          },
+        ).paddingSymmetric(horizontal: 10, vertical: 10.0),
+      ).paddingOnly(bottom: 5.0),
       body: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -79,30 +104,6 @@ class _RequestDetailPageState extends ConsumerState<RequestDetailPage> {
                 ],
               ).paddingSymmetric(horizontal: 12.0).makeColor(AppColors.white1Color),
               const Gap(5),
-              widget.request.status == "closed"
-                ? const SizedBox()
-                : Container(
-                color: AppColors.white1Color,
-                child: AppButton(
-                  title: widget.isMine ? "Hủy yêu cầu" : "Chào giá ngay",
-                  onPressed: () {
-                    if(widget.isMine){
-                      controller.cancelRequest(widget.request.requestId!)
-                          .then((value) => {
-                        if (value == true)
-                          {
-                            context.showSuccess(L.more.inforMessageSuccess),
-                            NotificationCenter()
-                                .postNotification(RawStringNotificationName('reloadMine')),
-                            context.maybePop(),
-                          }
-                      });
-                    }else{
-                      context.showOverlay(BidRequestPage(request: widget.request));
-                    }
-                  },
-                ).paddingSymmetric(horizontal: 10, vertical: 10.0),
-              ).paddingOnly(bottom: 5.0),
               widget.request.expectBids.isNotNull
                 ? ListView(
                     shrinkWrap: true,
@@ -121,7 +122,7 @@ class _RequestDetailPageState extends ConsumerState<RequestDetailPage> {
                                       "Chào giá: ${NumberFormat('#,###').format(e.price ?? 0)}đ",
                                       style: ref.theme.defaultTextStyle,
                                     ).paddingOnly(left: 5.0).expand(),
-                                    item?.status == BidStatusEnum.rejected || item?.status == BidStatusEnum.accepted
+                                    widget.isMine == false || item?.status == BidStatusEnum.rejected || item?.status == BidStatusEnum.accepted
                                       ? const SizedBox()
                                       : CupertinoMenuButton(
                                       buttonPadding: const EdgeInsets.all(8),
@@ -200,15 +201,22 @@ class _RequestDetailPageState extends ConsumerState<RequestDetailPage> {
                         )
                     ).toList() ?? [],
                   )
-                : SizedBox(
-                  width: double.infinity,
-                  child: Center(
-                    child: Text(
-                        "Chưa có chào giá nào",
-                        style: ref.theme.mediumTextStyle.weight(FontWeight.bold),
-                      ).paddingSymmetric(vertical: 10.0),
-                  ),
-                ).makeColor(AppColors.white1Color),
+                : Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Assets.icons.icNoPermission.svg(),
+                    const Text(
+                      "Chưa có chào giá nào",
+                      style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        color: Color(0xff242133),
+                      ),
+                    ).marginOnly(top: 16),
+                  ],
+                )
+              ).paddingOnly(top: 60),
             ],
           ).paddingSymmetric(vertical: 5.0),
       ),

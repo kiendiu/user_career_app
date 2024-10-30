@@ -174,11 +174,7 @@ class _MorePageState extends ConsumerState<MorePage> {
             child: Icon(status.icon, color: AppColors.mainColor)
                 .marginOnly(right: 2)
                 .paddingOnly(top: 16)
-                .paddingSymmetric(horizontal: 16)
-                .onTapWidget(() {
-              NotificationCenter().postNotification(
-                  RawStringNotificationName("notifications"));
-            }),
+                .paddingSymmetric(horizontal: 16),
           ),
           total.checkQty(status.rawValue)
               ? Positioned(

@@ -102,7 +102,8 @@ class _WalletPageState extends ConsumerState<WalletPage> {
                     onRefresh: () {
                       controller.refresh();
                     },
-                  )
+                    emptyResultMessage: "Chưa có giao dịch nào!",
+                  ),
               ),
               initialRefresh: true,
               controller: controller,

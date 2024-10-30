@@ -20,6 +20,15 @@ class _GeneralPageState extends ConsumerState<GeneralPage> {
   final _controller = TableViewController();
 
   @override
+  void initState() {
+    super.initState();
+    NotificationCenter().addObserver(
+        RawStringNotificationName('reloadGeneral'), callback: (_) {
+      _controller.refresh();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return ExtendedListView<RequestModel>(
         emptyDataSource: InfiniteListViewEmptyDataSourceBuilder(

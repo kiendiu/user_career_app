@@ -48,11 +48,11 @@ class _BidPageState extends ConsumerState<BidPage> with SingleTickerProviderStat
                     _isOngoing = index == 0;
                     if (_isOngoing) {
                       ref.watch(bidControllerProvider.notifier)
-                          .setSelected(RoleStatusEnum.expert);
+                          .setSelected(RoleStatusEnum.open);
                       _controller.refresh();
                     } else {
                       ref.watch(bidControllerProvider.notifier)
-                          .setSelected(RoleStatusEnum.customer);
+                          .setSelected(RoleStatusEnum.closed);
                       _controller.refresh();
                     }
                   });
@@ -60,18 +60,18 @@ class _BidPageState extends ConsumerState<BidPage> with SingleTickerProviderStat
               },
               selectedColor: AppColors.white1Color,
               color: AppColors.black1Color,
-              fillColor: AppColors.main1Color,
-              borderColor: AppColors.main1Color,
+              fillColor: AppColors.mainColor,
+              borderColor: AppColors.mainColor,
               selectedBorderColor: AppColors.main1Color,
               borderRadius: BorderRadius.circular(8),
               children: const [
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text('Chuyên gia'),
+                  child: Text('Đang diễn ra'),
                 ),
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: Text('Người dùng'),
+                  child: Text('Đã kết thúc'),
                 ),
               ],
             ),

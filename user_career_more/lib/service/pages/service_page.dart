@@ -72,8 +72,8 @@ class _ServicePageState extends ConsumerState<ServicePage> {
                 ).marginOnly(right: 8)
 
               ],
-            ).marginSymmetric(horizontal: 12.0, vertical: 8.0),
-          ).paddingSymmetric(vertical: 5.0),
+            ).marginSymmetric(horizontal: 12.0),
+          ),
           TableView<ServiceModel>(
             emptyDataSource: InfiniteListViewEmptyDataSourceBuilder(
                 customEmptyViewBuilder: () => CommonEmptyListView(
@@ -110,7 +110,7 @@ class _ServicePageState extends ConsumerState<ServicePage> {
                                   item.serviceName ?? '',
                                   style: ref.theme.bigTextStyle.weight(FontWeight.w600),
                                 ),
-                                Storage.get(POSStorageKey.userId) != item.userId
+                                Storage.get(POSStorageKey.userId) == item.userId
                                     ? const SizedBox()
                                     : CupertinoMenuButton(
                                   buttonPadding: const EdgeInsets.all(8),

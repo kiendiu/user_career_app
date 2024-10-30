@@ -105,7 +105,7 @@ class _AddRequestPageState extends ConsumerState<AddRequestPage> {
                 ).paddingOnly(bottom: 12.0),
                 TextFieldView.outsideBorder(
                   title: "Ngân sách",
-                  placeholder: "Giá",
+                  placeholder: "Vui lòng nhập",
                   isRequired: true,
                   padding: const EdgeInsets.only(left: 14, right: 14),
                   inputType: TextInputType.number,
@@ -137,7 +137,7 @@ class _AddRequestPageState extends ConsumerState<AddRequestPage> {
                     children: [
                       TextFieldView.outsideBorder(
                         title: "Tên địa điểm",
-                        placeholder: "Tên địa điểm",
+                        placeholder: "Vui lòng nhập",
                         isRequired: true,
                         padding: const EdgeInsets.only(left: 14, right: 14),
                         textFieldDidChange: (text){
@@ -146,7 +146,7 @@ class _AddRequestPageState extends ConsumerState<AddRequestPage> {
                       ).paddingOnly(bottom: 12.0),
                       TextFieldView.outsideBorder(
                         title: "Địa chỉ",
-                        placeholder: "Địa chỉ",
+                        placeholder: "Vui lòng nhập",
                         isRequired: true,
                         padding: const EdgeInsets.only(left: 14, right: 14),
                         textFieldDidChange: (text){

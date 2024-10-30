@@ -10,7 +10,7 @@ enum StatusServiceEnum {
 
   String get localizedValue => switch (this) {
     StatusServiceEnum.pending => L.more.manageServiceStatusWaiting,
-    StatusServiceEnum.confirmed => L.more.manageServiceStatusConfirmed,
+    StatusServiceEnum.confirmed => "Xác nhận",
     StatusServiceEnum.inProgress => "Đang diễn ra",
     StatusServiceEnum.completed => L.more.manageServiceStatusDone,
     StatusServiceEnum.cancelled => "Đã hủy",

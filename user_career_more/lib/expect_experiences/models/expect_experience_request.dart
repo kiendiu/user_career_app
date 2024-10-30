@@ -34,7 +34,7 @@ class ExpectExperienceRequest implements Encodable{
     "category_id": categoryId,
     "start_time": startTime,
     "end_time": endTime,
-    "currently_working": currentlyWorking,
+    "currently_working": currentlyWorking == null ? false : true,
     "job_description": jobDescription,
     "position": position,
     };

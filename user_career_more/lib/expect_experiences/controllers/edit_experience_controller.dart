@@ -17,7 +17,7 @@ class EditExperienceController extends AutoDisposeFamilyNotifier<ExpectExperienc
         nameCategory: arg.nameCategory,
         startTime: arg.startTime?.toString(),
         endTime: arg.endTime?.toString(),
-        currentlyWorking: arg.currentlyWorking == 0 ? false : true,
+        currentlyWorking: arg.currentlyWorking == null ? false : true,
         jobDescription: arg.jobDescription,
         position: arg.position,
       );

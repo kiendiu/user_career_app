@@ -27,7 +27,8 @@ AsyncNotifierProvider.autoDispose<ExpectInformationController, ExpectInformation
   return ExpectInformationController();
 });
 
-class ExpectController extends AutoDisposeNotifier<ExpectInformationRequest> with AlertMixin{
+class ExpectController extends AutoDisposeNotifier<ExpectInformationRequest>
+    with AlertMixin, MetadataUpdater{
   @override
   ExpectInformationRequest build() {
     final expectInformation = ref.watch(expectInformationControllerProvider);
@@ -36,8 +37,9 @@ class ExpectController extends AutoDisposeNotifier<ExpectInformationRequest> wit
         return ExpectInformationRequest(
           experienceYears: data.experienceYears,
           skillDescription: data.skillDescription,
-          languages: data.languages!.map((e) => e.id).cast<int>().toList(),
-          languagesLocal: data.languages?.toSet(),
+          listLanguages: data.languages,
+          // languages: data.languages!.map((e) => e.id).cast<int>().toList(),
+          // languagesLocal: data.languages?.toSet(),
         );
       },
       orElse: () => ExpectInformationRequest(),
@@ -64,6 +66,26 @@ class ExpectController extends AutoDisposeNotifier<ExpectInformationRequest> wit
     return result.items;
   }
 
+  Future<List<BaseSelectableItemModel<LanguageModel>>> getLanguagesBase() async {
+    try {
+      final result = await ref
+          .read(expectRepositoryProvider)
+          .getLanguages()
+          .updateMetadataBy(this)
+          .showErrorBy(this)
+          .getItems();
+      return result.map((element) {
+        return BaseSelectableItemModel<LanguageModel>(
+          data: element,
+          id: element.id,
+          name: element.nameLanguage,
+        );
+      }).toList();
+    } catch (e) {
+      return [];
+    }
+  }
+
   void setExperienceYears(int? experienceYears){
     state = state.copyWith(experienceYears: experienceYears);
   }
@@ -72,14 +94,17 @@ class ExpectController extends AutoDisposeNotifier<ExpectInformationRequest> wit
     state = state.copyWith(skillDescription: skillDescription);
   }
 
-  void setLanguages(List<int>? languages){
-    state = state.copyWith(languages: languages);
+  void setListLanguages(List<BaseSelectableItemModel<LanguageModel>>? listLanguages){
+    state = state.copyWith(listLanguages: listLanguages);
   }
 
-  void setLanguagesLocal(Set<LanguageModel>? languagesLocal){
-    state = state.copyWith(languagesLocal: languagesLocal);
-  }
-
+  // void setLanguages(List<int>? languages){
+  //   state = state.copyWith(languages: languages);
+  // }
+  //
+  // void setLanguagesLocal(Set<LanguageModel>? languagesLocal){
+  //   state = state.copyWith(languagesLocal: languagesLocal);
+  // }
 
 }
 

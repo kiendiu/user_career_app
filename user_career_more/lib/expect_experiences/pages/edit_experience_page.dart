@@ -101,24 +101,27 @@ class _EditExperiencePageState extends ConsumerState<EditExperiencePage> {
                       controller.setExpectStartTime(date);
                     }
                 ).paddingOnly(top: 12),
-                Row(
-                  children: [
-                    Checkbox(
-                      value: isWorkingHere,
-                      activeColor: AppColors.mainColor,
-                      onChanged: (bool? newValue) {
-                        isWorkingHere = newValue ?? false;
+                BaseCheckBox.initState(
+                  isSelected: state.isCurrentlyWorking,
+                  checkBoxStyle: CheckBoxStyle.roundedSquare,
+                  onTap: (value) {
+                    setState(() {
+                      if(value){
+                        isWorkingHere = false;
                         controller.setExpectCurrentlyWorking(isWorkingHere);
-                      },
-                    ),
-                    Text(L.more.addExperienceAskWorkHere),
-                  ],
-                ),
+                      } else {
+                        isWorkingHere = true;
+                        controller.setExpectCurrentlyWorking(isWorkingHere);
+                      }
+                    });
+                  },
+                  rightWidget: Text(L.more.addExperienceAskWorkHere),
+                ).paddingOnly(top: 12),
                 DatePickerTextFieldView(
                     title: L.more.addExperienceTextFieldEndDate,
                     padding: const EdgeInsets.only(left: 14, right: 14),
                     errorText: () => "Thời gian không hợp lệ !",
-                    isDisabled: state.currentlyWorking ?? false,
+                    isDisabled: state.currentlyWorking ?? true,
                     initialDateTime: () => state.currentlyWorking == true ? null : DateTime.parse(state.endTime ?? ''),
                     onConfirmSelectTime: (date) {
                       controller.setExpectEndTime(date);

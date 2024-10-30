@@ -29,7 +29,7 @@ class ServiceRepository extends MoreBaseRepository
   @override
   ResultFuture<bool> updateStatusService(int id, String status) {
     return make.request(
-      path: "/manages//updateStatusService/$id/$status",
+      path: "/manages/updateStatusService/$id/$status",
       decoder: const EmptyResponse(),
     ).put().map(onValue: (value) => true);
   }

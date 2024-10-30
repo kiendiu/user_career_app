@@ -56,7 +56,7 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
           children: [
             TextFieldView.outsideBorder(
               title: L.more.addExperienceTextFieldCompany,
-              placeholder: L.more.addExperienceTextFieldCompany,
+              placeholder: "Vui lòng nhập",
               isRequired: true,
               validator: (_) => expectExperienceState.isEmptyCompany,
               errorText: () => L.more.errorEmpty,
@@ -71,7 +71,7 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
               },
               child: TextFieldView.outsideBorder(
                 title: L.more.addExperienceTextFieldCategory,
-                placeholder: L.more.addExperienceTextFieldCategory,
+                placeholder: "Vui lòng chọn",
                 isRequired: true,
                 validator: (_) => (expectExperienceState.isEmptyCategory),
                 errorText: () => L.more.errorEmpty,
@@ -80,7 +80,7 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
             ),
             TextFieldView.outsideBorder(
               title: L.more.addExperienceTextFieldPosition,
-              placeholder: L.more.addExperienceTextFieldPosition,
+              placeholder: "Vui lòng nhập",
               isRequired: true,
               validator: (_) => (expectExperienceState.isEmptyPosition),
               errorText: () => L.more.errorEmpty,
@@ -122,7 +122,7 @@ class _AddExperiencePageState extends ConsumerState<AddExperiencePage> {
             ).paddingOnly(top: 12),
             TextFieldView.outsideBorder(
               title: L.more.addExperienceTextFieldDescription,
-              placeholder: L.more.addExperienceTextFieldDescription,
+              placeholder: "Vui lòng nhập",
               isRequired: true,
               maxLength: 4,
               isExpanded: true,

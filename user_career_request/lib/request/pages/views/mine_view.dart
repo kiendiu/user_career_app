@@ -64,8 +64,8 @@ class _MinePageState extends ConsumerState<MinePage> with SingleTickerProviderSt
               },
               selectedColor: AppColors.white1Color,
               color: AppColors.black1Color,
-              fillColor: AppColors.main1Color,
-              borderColor: AppColors.main1Color,
+              fillColor: AppColors.mainColor,
+              borderColor: AppColors.mainColor,
               selectedBorderColor: AppColors.main1Color,
               borderRadius: BorderRadius.circular(8),
               children: const [

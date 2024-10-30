@@ -100,6 +100,7 @@ class _BookingPageState extends ConsumerState<BookingPage> {
           ).marginOnly(right: 8).expand(),
           AppButton(
             title: "Tiếp tục",
+            isEnabled: bookingState.canContinue(_currentIndex, widget.infoBookingModel?.contactMethod ?? ""),
             onPressed: () {
               _onNext();
               if(_currentIndex == 2) {
@@ -126,47 +127,44 @@ class _BookingPageState extends ConsumerState<BookingPage> {
                   expertId: bookingState.expertId,
                   cost: (bookingState.totalPrice ?? 0).toInt(),
                   methodPayment: "Bank"
-                )).then((value) {
-                  if(value){
-                    context.router.popUntil(
-                            (route) => route.settings.name != BookingRoute.name);
-                    context.showSuccess("Thanh toán thành công");
-                  }else{
-                    context.showOverlay(
-                      BaseConfirmPopupView.custom(
-                        title: "Thanh toán thất bại",
-                        message: "Số dư của bạn không đủ? Bạn có thể thanh toán sau hoặc hủy lịch hẹn.",
-                        buttons: [
-                          ConfirmPopupViewButton(
-                            title: "Đồng ý",
-                            titleColor: AppColors.white1Color,
-                            background: AppColors.mainColor,
-                            callback: () {
-                              context.maybePop().then((value) {
+                ), (){
+                  context.router.popUntil(
+                          (route) => route.settings.name != BookingRoute.name);
+                  context.showSuccess("Thanh toán thành công");
+                }, (){
+                  context.showOverlay(
+                    BaseConfirmPopupView.custom(
+                      title: "Thanh toán thất bại",
+                      message: "Số dư của bạn không đủ? Bạn có thể thanh toán sau hoặc hủy lịch hẹn.",
+                      buttons: [
+                        ConfirmPopupViewButton(
+                          title: "Hủy lịch hẹn",
+                          titleColor: AppColors.black1Color,
+                          background: AppColors.white4Color,
+                          callback: () {
+                            bookingController.deleteBooking(bookId).then((value) {
+                              if(value){
+                                context.showSuccess("Hủy lịch hẹn thành công");
                                 context.router.popUntil(
                                         (route) => route.settings.name != BookingRoute.name);
-                              });
-
-                            },
-                          ),
-                          ConfirmPopupViewButton(
-                            title: "Hủy",
-                            titleColor: AppColors.black1Color,
-                            background: AppColors.white4Color,
-                            callback: () {
-                              bookingController.deleteBooking(bookId).then((value) {
-                                if(value){
-                                  context.showSuccess("Hủy lịch hẹn thành công");
-                                  context.router.popUntil(
-                                          (route) => route.settings.name != BookingRoute.name);
-                                }
-                              });
-                            },
-                          ),
-                        ],
-                      )
-                    );
-                  }
+                              }
+                            });
+                          },
+                        ),
+                        ConfirmPopupViewButton(
+                          title: "Đồng ý",
+                          titleColor: AppColors.white1Color,
+                          background: AppColors.mainColor,
+                          callback: () {
+                            context.maybePop().then((value) {
+                              context.router.popUntil(
+                                      (route) => route.settings.name != BookingRoute.name);
+                            });
+                          },
+                        ),
+                      ],
+                    )
+                  );
                 });
               }
             },
@@ -240,7 +238,7 @@ class _BookingPageState extends ConsumerState<BookingPage> {
                       TextFieldView.outsideBorder(
                         isRequired: true,
                         title: "Lời nhắn",
-                        placeholder: "Nhập lời nhắn",
+                        placeholder: "Vui lòng nhập",
                         validator: (_) => bookingState.isEmptyMessage,
                         errorText: () => L.more.errorEmpty,
                         textFieldDidChange: (text) {
@@ -260,7 +258,7 @@ class _BookingPageState extends ConsumerState<BookingPage> {
                             TextFieldView.outsideBorder(
                               isRequired: true,
                               title: "Tên địa điểm",
-                              placeholder: "Nhập tên địa điểm",
+                              placeholder: "Vui lòng nhập",
                               validator: (_) => bookingState.isEmptyLocation,
                               errorText: () => L.more.errorEmpty,
                               textFieldDidChange: (text) {
@@ -270,7 +268,7 @@ class _BookingPageState extends ConsumerState<BookingPage> {
                             TextFieldView.outsideBorder(
                               isRequired: true,
                               title: "Địa chỉ",
-                              placeholder: "Nhập địa chỉ",
+                              placeholder: "Vui lòng nhập",
                               validator: (_) => bookingState.isEmptyAddress,
                               errorText: () => L.more.errorEmpty,
                               textFieldDidChange: (text) {
@@ -289,7 +287,7 @@ class _BookingPageState extends ConsumerState<BookingPage> {
                       CalendarDatePicker2(
                         config: CalendarDatePicker2Config(
                           calendarType: CalendarDatePicker2Type.single,
-                          lastDate: DateTime.now().add(const Duration(days: 0)),
+                          firstDate: DateTime.now().add(const Duration(days: 0)),
                           rangeBidirectional: true,
                           centerAlignModePicker: true,
                           selectedDayHighlightColor: AppColors.main1Color,
@@ -383,7 +381,7 @@ class _BookingPageState extends ConsumerState<BookingPage> {
                                   textAlign: TextAlign.center,
                                   controller: timeEditingController,
                                   decoration: InputDecoration(
-                                    hintText: "Thời gian dự kiến",
+                                    hintText: "Phút",
                                     contentPadding: const EdgeInsets.symmetric(horizontal: 14),
                                     border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(20.0),
@@ -403,27 +401,6 @@ class _BookingPageState extends ConsumerState<BookingPage> {
                                     bookingController.updateDuration(number);
                                   },
                                 ).expand(),
-                                SizedBox(
-                                  width: 80,
-                                  child: TextField(
-                                    textAlign: TextAlign.center,
-                                    enabled: false,
-                                    decoration: InputDecoration(
-                                      hintText: "Phút",
-                                      fillColor: Colors.grey.shade200,
-                                      filled: true,
-                                      hintStyle: ref.theme.mediumTextStyle.copyWith(
-                                        color: Colors.grey.shade600,
-                                        fontWeight: FontWeight.bold,
-                                      ),
-                                      contentPadding: const EdgeInsets.symmetric(horizontal: 14),
-                                      border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(20.0),
-                                        borderSide: BorderSide(color: Colors.grey.shade300),
-                                      ),
-                                    ),
-                                  ),
-                                ).paddingOnly(left: 10)
                               ],
                             ).paddingOnly(bottom: 10)
                           ],
