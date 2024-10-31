@@ -2,11 +2,11 @@ import 'package:user_career_core/user_career_core.dart';
 
 class ReviewModel implements Decodable{
   int? rating;
-  String? comments;
+  String? comment;
 
   ReviewModel({
     this.rating,
-    this.comments,
+    this.comment,
   });
 
 
@@ -16,12 +16,12 @@ class ReviewModel implements Decodable{
   }) {
     return ReviewModel(
       rating: rating ?? this.rating,
-      comments: comments ?? this.comments,
+      comment: comments ?? this.comment,
     );
   }
   @override
   void decode(json) {
     rating = json['rating'];
-    comments = json['comments'];
+    comment = json['comment'];
   }
 }

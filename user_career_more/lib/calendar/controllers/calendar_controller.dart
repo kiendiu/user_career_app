@@ -15,7 +15,7 @@ class CalendarController extends AutoDisposeNotifier<CalendarControllerState> {
       type: UserExpectEnum.allType,
       endDate: dateTimeNow,
       startDate: dateTimeNow.add(const Duration(days: 7)),
-      selectedTimeOption: DateTimeEnum.lastSevenDays,
+      selectedTimeOption: DateTimeEnum.nextSevenDays,
     );
   }
 
@@ -40,9 +40,7 @@ class CalendarController extends AutoDisposeNotifier<CalendarControllerState> {
       );
     } else {
       ref.read(reportDatetimePickerProvider.notifier).state = ReportDatetimePicker();
-      if (option == DateTimeEnum.yesterday) {
-        state = state.copyWith(endDate: option?.rawValue);
-      } else if (option == DateTimeEnum.lastMonth) {
+      if (option == DateTimeEnum.nextMonth) {
         state = state.copyWith(
             endDate: DateTime(dateTimeNow.year, dateTimeNow.month, 0));
       } else {

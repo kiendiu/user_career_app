@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:intl/intl.dart';
 import 'package:user_career_core/user_career_core.dart';
+import 'package:user_career_more/core/router.gm.dart';
 import 'package:user_career_more/wallet/controllers/deposit_controller.dart';
 import 'package:user_career_more/wallet/controllers/wallet_controller.dart';
 import 'package:user_career_more/wallet/models/wallet_request.dart';
@@ -76,6 +77,9 @@ class _DepositWalletPageState extends ConsumerState<DepositWalletPage> {
     return BaseScaffold(
       customAppBar: BaseAppBarView(
         title: 'Nạp tiền',
+        onTapBackButton: () {
+          context.router.popUntil((route) => route.settings.name != DepositWalletRoute.name);
+        },
       ),
       backgroundColor: AppColors.white3Color,
       bottomView: Container(

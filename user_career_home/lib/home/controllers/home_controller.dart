@@ -18,7 +18,7 @@ class HomeController extends AutoDisposeNotifier<HomeControllerState>
         .getListExpects(HomeParams(
             page: page + 1,
             searchText: state.searchText,
-            categoryId: state.categoryId
+            categoryId: state.categoryId == 0 ? null : state.categoryId
           )
         )
         .showErrorBy(this)

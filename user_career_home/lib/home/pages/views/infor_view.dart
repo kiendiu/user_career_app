@@ -21,17 +21,19 @@ class _InforViewState extends ConsumerState<InforView> {
         InfoRow(
           icon: Icons.language,
           label: 'Ngôn ngữ:',
-          value: widget.information.language ?? "",
+          value: widget.information.language ?? "_",
         ).paddingOnly(top: 2),
         InfoRow(
           icon: Icons.history,
           label: 'Số năm kinh nghiệm:',
-          value: '${widget.information.experienceYear} năm kinh nghiệm',
+          value: widget.information.experienceYear.isNull
+            ? "_"
+            : '${widget.information.experienceYear} năm kinh nghiệm',
         ),
         InfoRow(
           icon: Icons.workspace_premium_outlined,
           label: 'Kỹ năng:',
-          value: widget.information.skillDescription ?? "",
+          value: widget.information.skillDescription ?? "_",
         ),
       ],
     );

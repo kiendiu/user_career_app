@@ -52,7 +52,7 @@ class _ExpansionTileCategoryViewState extends ConsumerState<ExpansionTileCategor
       onExpansionChanged: (value) {
         ref
             .read(filterControllerProvider.notifier)
-            .setCategory(optionAllCategoriesId, "Tất cả");
+            .setCategory(0, "Tất cả");
       },
     ).makeColor(AppColors.white1Color);
   }

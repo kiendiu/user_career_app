@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/base_app_bar_view.dart';
 import 'package:user_career_core/views/common_empty_list_view.dart';
 import 'package:user_career_home/core/router.gm.dart';
 import 'package:user_career_home/home/controllers/home_controller.dart';

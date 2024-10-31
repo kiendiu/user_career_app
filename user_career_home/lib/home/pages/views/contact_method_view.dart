@@ -28,38 +28,43 @@ class _ContactMethodViewState extends ConsumerState<ContactMethodView> {
           const Divider(color: Colors.grey),
           const Gap(5),
           ...ContactMethodEnum.values.map((type) {
-            return Row(
+            return Column(
               children: [
-                type.rawValue == "offline"
-                  ? const Icon(Icons.people_outline, color: AppColors.mainColor)
-                  : const Icon(Icons.phone_in_talk_outlined, color: AppColors.mainColor),
-                Text(
-                  type.localizedValue,
-                  style: ref.theme.bigTextStyle,
-                ).paddingOnly(left: 10),
-              ]
-            ).paddingOnly(bottom: 10).onTapWidget((){
-              InfoBookingModel infoBookingModel;
-              if(type.rawValue == "offline") {
-                infoBookingModel = InfoBookingModel(
-                  serviceId: widget.expectDetailResponse?.serviceId,
-                  expertId: widget.expectDetailResponse?.expertId,
-                  contactMethod: type.rawValue,
-                  price: widget.expectDetailResponse?.priceOffline,
-                  time: widget.expectDetailResponse?.timeOffline,
-                );
-                context.pushRoute(BookingRoute(infoBookingModel: infoBookingModel));
-              } else {
-                infoBookingModel = InfoBookingModel(
-                  serviceId: widget.expectDetailResponse?.serviceId,
-                  expertId: widget.expectDetailResponse?.expertId,
-                  contactMethod: type.rawValue,
-                  price: widget.expectDetailResponse?.priceOnline,
-                  time: widget.expectDetailResponse?.timeOnline,
-                );
-                context.pushRoute(BookingRoute(infoBookingModel: infoBookingModel));
-              }
-            });
+                Row(
+                  children: [
+                    type.rawValue == "offline"
+                      ? const Icon(Icons.people_outline, color: AppColors.mainColor)
+                      : const Icon(Icons.phone_in_talk_outlined, color: AppColors.mainColor),
+                    Text(
+                      type.localizedValue,
+                      style: ref.theme.bigTextStyle,
+                    ).paddingOnly(left: 10),
+                  ]
+                ).paddingSymmetric(vertical: 10).onTapWidget((){
+                  InfoBookingModel infoBookingModel;
+                  if(type.rawValue == "offline") {
+                    infoBookingModel = InfoBookingModel(
+                      serviceId: widget.expectDetailResponse?.serviceId,
+                      expertId: widget.expectDetailResponse?.expertId,
+                      contactMethod: type.rawValue,
+                      price: widget.expectDetailResponse?.priceOffline,
+                      time: widget.expectDetailResponse?.timeOffline,
+                    );
+                    context.pushRoute(BookingRoute(infoBookingModel: infoBookingModel));
+                  } else {
+                    infoBookingModel = InfoBookingModel(
+                      serviceId: widget.expectDetailResponse?.serviceId,
+                      expertId: widget.expectDetailResponse?.expertId,
+                      contactMethod: type.rawValue,
+                      price: widget.expectDetailResponse?.priceOnline,
+                      time: widget.expectDetailResponse?.timeOnline,
+                    );
+                    context.pushRoute(BookingRoute(infoBookingModel: infoBookingModel));
+                  }
+                }),
+                const Divider(color: AppColors.white4Color),
+              ],
+            );
           }),
         ],
       ).paddingSymmetric(horizontal: 20),

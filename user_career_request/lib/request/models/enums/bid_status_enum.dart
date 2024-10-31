@@ -6,9 +6,9 @@ enum BidStatusEnum {
 
   String get localizedValue => switch (this) {
     BidStatusEnum.pending => "Chờ xác nhận",
-    BidStatusEnum.accepted => "Đã chấp nhận",
-    BidStatusEnum.rejected => "Đã từ chối",
-    BidStatusEnum.completed => "Đã hoàn thành",
+    BidStatusEnum.accepted => "Chấp nhận",
+    BidStatusEnum.rejected => "Từ chối",
+    BidStatusEnum.completed => "Hoàn thành",
   };
 
   String get rawValue => switch (this) {

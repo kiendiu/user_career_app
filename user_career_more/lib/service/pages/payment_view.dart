@@ -3,6 +3,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
+import 'package:user_career_more/core/router.gm.dart';
 import 'package:user_career_more/service/controllers/payment_controller.dart';
 import 'package:user_career_more/service/controllers/service_controller.dart';
 import 'package:user_career_more/service/models/payment_request.dart';
@@ -101,13 +102,35 @@ class _PaymentViewState extends ConsumerState<PaymentView> {
                         expertId: widget.serviceModel.expertId,
                         cost: (widget.serviceModel.totalPrice ?? 0).toInt(),
                         methodPayment: "Bank"
-                    ),
-                  ).then((value) {
-                    if (value) {
-                      ref.invalidate(serviceControllerProvider);
-                      context.maybePop();
-                      context.showSuccess("Thanh toán thành công");
-                    }
+                    ), (){
+                    context.maybePop();
+                    NotificationCenter().postNotification(RawStringNotificationName('reloadService'));
+                    context.showSuccess("Thanh toán thành công");
+                  }, (){
+                    context.showOverlay(
+                        BaseConfirmPopupView.custom(
+                          title: "Thanh toán thất bại",
+                          message: "Số dư của bạn không đủ? Bạn cần nạp thêm tiền không?",
+                          buttons: [
+                            ConfirmPopupViewButton(
+                              title: "Quay lại",
+                              titleColor: AppColors.black1Color,
+                              background: AppColors.white4Color,
+                              callback: () {
+                                context.maybePop();
+                              },
+                            ),
+                            ConfirmPopupViewButton(
+                              title: "Đồng ý",
+                              titleColor: AppColors.white1Color,
+                              background: AppColors.mainColor,
+                              callback: () {
+                                context.pushRoute(const DepositWalletRoute());
+                              },
+                            ),
+                          ],
+                        )
+                    );
                   });
                 },
                 ),

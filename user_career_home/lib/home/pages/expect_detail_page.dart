@@ -2,7 +2,6 @@ import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_home/core/router.gm.dart';
 import 'package:user_career_home/home/controllers/expect_detail_controller.dart';
 import 'package:user_career_home/home/models/expect_detail_response.dart';
 import 'package:user_career_home/home/models/info_service_model.dart';

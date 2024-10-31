@@ -8,12 +8,14 @@ import 'package:user_career_core/views/common_action_chip.dart';
 import 'package:user_career_core/views/common_empty_list_view.dart';
 import 'package:user_career_more/service/controllers/service_controller.dart';
 import 'package:user_career_more/service/controllers/service_item_controller.dart';
+import 'package:user_career_more/service/models/review_model.dart';
 import 'package:user_career_more/service/models/service_model.dart';
 import 'package:user_career_more/service/models/status_service_enum.dart';
 import 'package:user_career_more/calendar/models/user_expect_enum.dart';
 import 'package:user_career_more/service/pages/payment_container_view.dart';
 import 'package:user_career_more/service/pages/payment_view.dart';
 import 'package:user_career_more/service/pages/review_view.dart';
+import 'package:user_career_more/wallet/pages/star_rating_view.dart';
 
 @RoutePage()
 class ServicePage extends ConsumerStatefulWidget {
@@ -25,13 +27,21 @@ class ServicePage extends ConsumerStatefulWidget {
 }
 
 class _ServicePageState extends ConsumerState<ServicePage> {
-  //StatusServiceEnum _selectedStatusOption = StatusServiceEnum.pending;
   final List<StatusServiceEnum> _statusOptions = StatusServiceEnum.values.toList();
 
   UserExpectEnum _selectedTypeOption = UserExpectEnum.allType;
   final List<UserExpectEnum> _typeOptions = UserExpectEnum.values.toList();
 
   final controller = TableViewController();
+
+  @override
+  void initState() {
+    super.initState();
+    NotificationCenter().addObserver(
+        RawStringNotificationName('reloadService'), callback: (_) {
+      controller.refresh();
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -132,15 +142,19 @@ class _ServicePageState extends ConsumerState<ServicePage> {
                                               switch (status) {
                                                 case StatusServiceEnum.pending:
                                                   serviceController.updateStatusSelected(StatusServiceEnum.pending);
+                                                  controller.refresh();
                                                   break;
                                                 case StatusServiceEnum.inProgress:
                                                   serviceController.updateStatusSelected(StatusServiceEnum.inProgress);
+                                                  controller.refresh();
                                                   break;
                                                 case StatusServiceEnum.confirmed:
                                                   serviceController.updateStatusSelected(StatusServiceEnum.confirmed);
+                                                  controller.refresh();
                                                   break;
                                                 case StatusServiceEnum.completed:
                                                   serviceController.updateStatusSelected(StatusServiceEnum.completed);
+                                                  controller.refresh();
                                                   break;
                                                 default:
                                                   break;
@@ -148,7 +162,6 @@ class _ServicePageState extends ConsumerState<ServicePage> {
                                               context.showSuccess("Cập nhật trạng thái thành công!");
                                             }
                                           });
-                                          controller.refresh();
                                         },
                                       );
                                     }).toList();
@@ -196,32 +209,44 @@ class _ServicePageState extends ConsumerState<ServicePage> {
                             Text(
                               "Ngày hẹn: ${(item.scheduleTime.hhMMddyyyy2() ?? '')}",
                               style: ref.theme.defaultTextStyle,
-                            ),
+                            ).paddingOnly(bottom: 5),
                             Text(
                               "Thời gian: ${(item.duration ?? '')} phút",
-                            ),
+                            ).paddingOnly(bottom: 5),
                             Text(
                               "Hinh thức: ${(item.contactMethod ?? '')}",
-                            ),
+                            ).paddingOnly(bottom: 5),
                             item.contactMethod == 'offline'
                               ? Text(
                                   "Địa chỉ: ${(item.address ?? '')}",
                                   style: ref.theme.defaultTextStyle
-                                )
+                                ).paddingOnly(bottom: 5)
                               : const SizedBox.shrink(),
                             item.contactMethod == 'offline'
                                 ? Text(
                                     "Tên địa điểm: ${(item.locationName ?? '')}",
                                     style: ref.theme.defaultTextStyle
-                                  )
+                                  ).paddingOnly(bottom: 5)
                                 : const SizedBox.shrink(),
+                            item.isReviewed == true
+                              ? Row(
+                                  children: [
+                                    StarRating(rating: (item.review?.rating ?? 0).toDouble(), sizeStar: 18),
+                                    Text(
+                                      item.review?.comment ?? '',
+                                      maxLines: 2,
+                                      style: ref.theme.defaultTextStyle
+                                    ).paddingOnly(left: 8).expand(),
+                                  ],
+                                ).paddingOnly(bottom: 5)
+                              : const SizedBox.shrink(),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 Row(
                                   children: [
                                     StatusPaymentContainerView(PaymentStatusEnum.values.firstWhere((e) => e.rawValue == item.isPaid)),
-                                    item.isPaid == true
+                                    Storage.get(POSStorageKey.userId) != item.userId || item.isPaid == true
                                         ? const SizedBox()
                                         : Text(
                                             "Thanh toán tại đây",
@@ -230,8 +255,8 @@ class _ServicePageState extends ConsumerState<ServicePage> {
                                             ),
                                           ),
                                   ]
-                                ).onTapWidget(() => context.showOverlay(PaymentView(serviceModel: item))),
-                                serviceState.statusSelected == StatusServiceEnum.completed
+                                ).onTapWidget(() => context.showOverlay(PaymentView(serviceModel: item))).paddingOnly(bottom: 5),
+                                Storage.get(POSStorageKey.userId) == item.userId &&serviceState.statusSelected == StatusServiceEnum.completed
                                  ? item.isReviewed == false
                                     ? Container(
                                         padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 3),
@@ -253,7 +278,7 @@ class _ServicePageState extends ConsumerState<ServicePage> {
                                           const Icon(Icons.check, size: 20, color: AppColors.mainColor),
                                           Text(
                                             "Đã đánh giá",
-                                            style: ref.theme.defaultTextStyle.copyWith(
+                                            style: ref.theme.mediumTextStyle.copyWith(
                                               color: AppColors.mainColor,
                                             ),
                                           )

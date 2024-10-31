@@ -10,17 +10,23 @@ class PaymentController extends AutoDisposeNotifier<PaymentRequest>
     return PaymentRequest();
   }
 
-  Future<bool> createPayment(PaymentRequest request) async {
-    try {
-      final result = await ref
-          .read(serviceRepositoryProvider)
-          .createPayment(request)
-          .showErrorBy(this)
-          .map(onValue: (value) => value ?? false)
-          .mapToValueOr(defaultValue: false).asFuture();
-      return result;
-    } catch (e) {
-      return false;
+  Future<void> createPayment(PaymentRequest request, Function() onSuccess, Function() onRemind) async {
+    final result = await ref
+        .read(serviceRepositoryProvider)
+        .createPayment(request)
+        .hideLoadingBy(this)
+        .asFuture();
+    switch(result){
+      case Success():
+        onSuccess();
+        break;
+      case Failure(error: final error):
+        if(error.errorCode == 400){
+          onRemind();
+        }else{
+          showError(error);
+        }
+        break;
     }
   }
 

@@ -86,6 +86,7 @@ class _MorePageState extends ConsumerState<MorePage> {
             ).paddingSymmetric(horizontal: 16.0).paddingOnly(top: 40.0),
           ),
           _buildBody(),
+          const Gap(5),
           _buildFooter(),
         ],
       ),
@@ -130,33 +131,41 @@ class _MorePageState extends ConsumerState<MorePage> {
       color: Colors.white,
       child: ListView(
         shrinkWrap: true,
+        padding: EdgeInsets.zero,
         physics: const NeverScrollableScrollPhysics(),
         children: [
           ListTile(
             leading: const Icon(Icons.account_circle_outlined),
             title: Text(L.more.inforTitle),
             onTap: () { context.router.push(const UpdateInformationRoute());},
+            hoverColor: Colors.grey[200],
           ),
+          const Divider(thickness: 1, color: AppColors.white3Color),
           ListTile(
             leading: const Icon(Icons.file_present_outlined),
             title: Text(L.more.expectTitle),
             onTap: () {context.router.push(const ExpectRoute());},
+            hoverColor: Colors.grey[200],
           ),
+          const Divider(thickness: 1, color: AppColors.white3Color),
           ListTile(
             leading: const Icon(Icons.password_rounded),
             title: Text(L.more.changePasswordTitle),
             onTap: () {context.router.push(const ChangePasswordRoute());},
+            hoverColor: Colors.grey[200],
           ),
+          const Divider(thickness: 1, color: AppColors.white3Color),
           ListTile(
             leading: Assets.icons.icLogoutIcon.svg(height: 20, width: 20),
             title: Text(L.more.logout),
             onTap: () {
               context.showOverlay(const LogoutView());
             },
+            hoverColor: Colors.grey[200],
           ),
         ],
       ),
-    ).paddingOnly(top: 10);
+    );
   }
 
   Widget _buildServiceStatusButton(StatusServiceEnum status) {

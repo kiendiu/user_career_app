@@ -49,7 +49,7 @@ class _ReviewPopupState extends ConsumerState<ReviewView> with AlertMixin {
             isRequired: true,
             height: 50,
             validator: (_) => reviewState.isEmptyComments,
-            errorText: () => "Vui lòng nhập đánh giá",
+            errorText: () => "Vui lòng nhập",
             lengthLimiter: CharacterLengthLimiter(length: 100),
             textFieldDidChange: (text) {
               reviewController.updateReview(text!);

@@ -27,23 +27,19 @@ class _ExpectPageState extends ConsumerState<ExpectPage> {
       customAppBar: BaseAppBarView(
         title: L.more.expectTitle,
         controller: appBarController,
-        shouldShowLeading: true,
-        actions: [
-          AppBarActionButton(
-            child: Text(
-              L.more.expectTextButton,
-              style: ref.theme.bigTextStyle.copyWith(
-                color: AppColors.white1Color
-              )
-            ),
-            onTap: () {
-              expectController.updateExpectInformation().then((value) {
-                context.showSuccess(L.more.messageChangeSuccessful);
-              });
-            }),
-        ],
       ),
-      backgroundColor: AppColors.white1Color,
+      backgroundColor: AppColors.white3Color,
+      bottomView: Container(
+        color: AppColors.white1Color,
+        child: AppButton(
+          title: "Lưu thông tin",
+          onPressed: () {
+            expectController.updateExpectInformation().then((value) {
+              context.showSuccess(L.more.messageChangeSuccessful);
+            });
+          },
+        ).paddingSymmetric(horizontal: 16).paddingOnly(top: 12, bottom: 40),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -127,7 +123,7 @@ class _ExpectPageState extends ConsumerState<ExpectPage> {
               ),
             ),
           ],
-        ).paddingSymmetric(horizontal: 14.0),
+        ).paddingSymmetric(horizontal: 14.0).makeColor(AppColors.white1Color),
       ),
     );
   }

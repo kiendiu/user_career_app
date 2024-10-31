@@ -22,7 +22,7 @@ class CalendarPage extends ConsumerStatefulWidget {
 }
 
 class _CalendarPageState extends ConsumerState<CalendarPage> {
-  DateTimeEnum _selectedTimeOption = DateTimeEnum.lastSevenDays;
+  DateTimeEnum _selectedTimeOption = DateTimeEnum.nextSevenDays;
   final List<DateTimeEnum> _timeOptions = DateTimeEnum.values.toList();
 
   final List<UserExpectEnum> _typeOptions = UserExpectEnum.values.toList();
@@ -170,7 +170,7 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                                 ),
                                 Text(
                                   calendar.contactMethod == 'offline'
-                                    ? 'Gặp Gặp mặt'
+                                    ? 'Gặp mặt'
                                     : 'Gọi điện',
                                   style: ref.theme.defaultTextStyle.copyWith(
                                     color: AppColors.mainColor,
@@ -213,13 +213,13 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
                             ? Text(
                             "Địa chỉ: ${(calendar.address ?? '')}",
                             style: ref.theme.defaultTextStyle
-                        )
+                        ).paddingOnly(bottom: 5.0)
                             : const SizedBox.shrink(),
                         calendar.contactMethod == 'offline'
                             ? Text(
                             "Tên địa điểm: ${(calendar.locationName ?? '')}",
                             style: ref.theme.defaultTextStyle
-                        )
+                        ).paddingOnly(bottom: 5.0)
                             : const SizedBox.shrink(),
                       ]
                   ).paddingSymmetric(horizontal: 12, vertical: 8),

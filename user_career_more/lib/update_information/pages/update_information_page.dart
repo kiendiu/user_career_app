@@ -4,7 +4,6 @@ import 'package:auto_route/annotations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/common_appbar.dart';
 import 'package:user_career_more/more/controllers/more_controller.dart';
 import 'package:user_career_more/update_information/controllers/update_information_controller.dart';
 
