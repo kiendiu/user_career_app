@@ -3,10 +3,11 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_auth/admin/controllers/category_controller.dart';
 import 'package:user_career_auth/admin/controllers/category_info_controller.dart';
 import 'package:user_career_auth/admin/models/category_model.dart';
-import 'package:user_career_auth/admin/pages/views/category_detail_view.dart';
-import 'package:user_career_auth/admin/pages/views/category_info_view.dart';
+import 'package:user_career_auth/admin/pages/views/category_views/category_detail_view.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_core/views/common_empty_list_view.dart';
+
+import 'category_info_view.dart';
 
 class CategoryTab extends ConsumerStatefulWidget {
   const CategoryTab({super.key});

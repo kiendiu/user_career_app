@@ -1,10 +1,10 @@
 import 'package:auto_route/annotations.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:user_career_auth/admin/pages/views/category_tab.dart';
-import 'package:user_career_auth/admin/pages/views/dash_board_tab.dart';
-import 'package:user_career_auth/admin/pages/views/expert_tab.dart';
-import 'package:user_career_auth/admin/pages/views/language_tab.dart';
+import 'package:user_career_auth/admin/pages/views/category_views/category_tab.dart';
+import 'package:user_career_auth/admin/pages/views/dash_board_views/dash_board_tab.dart';
+import 'package:user_career_auth/admin/pages/views/expert_views/expert_tab.dart';
+import 'package:user_career_auth/admin/pages/views/language_views/language_tab.dart';
 import 'package:user_career_auth/admin/pages/views/logout_view.dart';
 import 'package:user_career_core/user_career_core.dart';
 
