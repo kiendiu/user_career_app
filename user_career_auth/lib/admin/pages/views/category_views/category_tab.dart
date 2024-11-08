@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:user_career_auth/admin/controllers/category_controller.dart';
-import 'package:user_career_auth/admin/controllers/category_info_controller.dart';
+import 'package:user_career_auth/admin/controllers/category_controllers/category_controller.dart';
+import 'package:user_career_auth/admin/controllers/category_controllers/category_info_controller.dart';
 import 'package:user_career_auth/admin/models/category_model.dart';
 import 'package:user_career_auth/admin/pages/views/category_views/category_detail_view.dart';
 import 'package:user_career_core/user_career_core.dart';

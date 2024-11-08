@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:user_career_auth/admin/controllers/category_info_controller.dart';
+import 'package:user_career_auth/admin/controllers/category_controllers/category_info_controller.dart';
 import 'package:user_career_auth/admin/models/category_model.dart';
 import 'package:user_career_core/user_career_core.dart';
-
 import 'category_detail_view.dart';
 
 class CategoryInfoView extends ConsumerStatefulWidget {
@@ -92,21 +91,6 @@ class _ProductInfoViewState extends ConsumerState<CategoryInfoView> {
             .svg(
             colorFilter:
             const ColorFilter.mode(Colors.white, BlendMode.srcIn))
-            .squareBox(edgeSize: 24)),
-    SwipeAction(
-        color: AppColors.black3Color,
-        onTap: (_) {
-          // _controller.closeAllOpenCell();
-          // context.pushRoute(AddOrEditProductRoute(
-          //     editProductData: ref.watch(productInfoControllerProvider(widget.product)),
-          //     onEditSuccess: (result) {
-          //       context.maybePop();
-          //       ref
-          //           .read(productInfoControllerProvider(widget.product)
-          //           .notifier)
-          //           .update((state) => result);
-          //     }));
-        },
-        content: const Icon(Icons.edit, size: 24)), //Assets.icons.icAppBarEdit.svg().squareBox(edgeSize: 24)),
+            .squareBox(edgeSize: 24)), //Assets.icons.icAppBarEdit.svg().squareBox(edgeSize: 24)),
   ];
 }
