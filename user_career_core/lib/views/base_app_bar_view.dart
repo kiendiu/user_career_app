@@ -34,7 +34,7 @@ class BaseAppBarView extends StatefulWidget implements PreferredSizeWidget {
         this.controller,
         this.onSearchTextChanged,
         this.onTapBackButton})
-      : assert(actions.length <= 2); // max actions = 2
+      : assert(actions.length <= 3); // max actions = 2
 
   @override
   State<BaseAppBarView> createState() => _BaseAppBarViewState();

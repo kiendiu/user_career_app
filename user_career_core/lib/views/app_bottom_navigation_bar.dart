@@ -53,7 +53,7 @@ class _AppBottomNavigationBarState
               child: const LineSeparator(
                 margin: EdgeInsets.only(right: 16.0, left: 16.0),
                 height: 3,
-                color: AppColors.main1Color,
+                color: AppColors.mainColor,
               ),
             ),
           ),
@@ -63,7 +63,7 @@ class _AppBottomNavigationBarState
             ),
             child: BottomNavigationBar(
               backgroundColor: Colors.white,
-              selectedItemColor: AppColors.main1Color,
+              selectedItemColor: AppColors.mainColor,
               unselectedItemColor: AppColors.tabbarTitle,
               selectedLabelStyle: ref.theme.smallTextStyle,
               unselectedLabelStyle: ref.theme.smallTextStyle,

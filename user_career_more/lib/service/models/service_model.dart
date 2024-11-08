@@ -67,6 +67,7 @@ class ServiceModel implements Decodable{
   String? address;
   DateTime? createdAt;
   String? status;
+  String? cancelReason;
   int? requestId;
   String? userName;
   String? expertName;
@@ -90,6 +91,7 @@ class ServiceModel implements Decodable{
     this.address,
     this.createdAt,
     this.status,
+    this.cancelReason,
     this.requestId,
     this.userName,
     this.expertName,
@@ -113,6 +115,7 @@ class ServiceModel implements Decodable{
     String? address,
     DateTime? createdAt,
     String? status,
+    String? cancelReason,
     int? requestId,
     String? userName,
     String? expertName,
@@ -135,6 +138,7 @@ class ServiceModel implements Decodable{
       address: address ?? this.address,
       createdAt: createdAt ?? this.createdAt,
       status: status ?? this.status,
+      cancelReason: cancelReason ?? this.cancelReason,
       requestId: requestId ?? this.requestId,
       userName: userName ?? this.userName,
       expertName: expertName ?? this.expertName,
@@ -160,6 +164,7 @@ class ServiceModel implements Decodable{
     address = json['address'];
     createdAt = DateTime.parse(json['created_at']);
     status = json['status'];
+    cancelReason = json['cancel_reason'];
     requestId = json['request_id'];
     userName = json['user_name'];
     expertName = json['expert_name'];

@@ -8,7 +8,6 @@ import 'package:user_career_core/views/common_action_chip.dart';
 import 'package:user_career_core/views/common_empty_list_view.dart';
 import 'package:user_career_more/service/controllers/service_controller.dart';
 import 'package:user_career_more/service/controllers/service_item_controller.dart';
-import 'package:user_career_more/service/models/review_model.dart';
 import 'package:user_career_more/service/models/service_model.dart';
 import 'package:user_career_more/service/models/status_service_enum.dart';
 import 'package:user_career_more/calendar/models/user_expect_enum.dart';
@@ -16,6 +15,8 @@ import 'package:user_career_more/service/pages/payment_container_view.dart';
 import 'package:user_career_more/service/pages/payment_view.dart';
 import 'package:user_career_more/service/pages/review_view.dart';
 import 'package:user_career_more/wallet/pages/star_rating_view.dart';
+
+import 'cancel_view.dart';
 
 @RoutePage()
 class ServicePage extends ConsumerStatefulWidget {
@@ -40,6 +41,14 @@ class _ServicePageState extends ConsumerState<ServicePage> {
     NotificationCenter().addObserver(
         RawStringNotificationName('reloadService'), callback: (_) {
       controller.refresh();
+    });
+
+    NotificationCenter().addObserver(
+        RawStringNotificationName('reloadCancel'), callback: (status) {
+      if(status is StatusServiceEnum){
+        ref.read(serviceControllerProvider(widget.selectedStatusOption).notifier).updateStatusSelected(status);
+        controller.refresh();
+      }
     });
   }
 
@@ -129,39 +138,43 @@ class _ServicePageState extends ConsumerState<ServicePage> {
                                     final nextStatuses = getNextStatuses(StatusServiceEnum.values.firstWhere((e) => e.rawValue == item.status));
                                     return nextStatuses.map((status) {
                                       return CupertinoMenuItem(
-                                        trailing: Icon(status.icon, color: Colors.green),
+                                        trailing: Icon(status.icon, color:status == StatusServiceEnum.cancelled ? Colors.red : Colors.green),
                                         child: Text(
                                           status.localizedValue,
                                           style: ref.theme.defaultTextStyle.copyWith(
-                                            color: Colors.green,
+                                            color: status == StatusServiceEnum.cancelled ? Colors.red : Colors.green,
                                           ),
                                         ),
                                         onTap: () {
-                                          serviceController.updateStatusService(item.bookId ?? 0, status.rawValue).then((value){
-                                            if(value){
-                                              switch (status) {
-                                                case StatusServiceEnum.pending:
-                                                  serviceController.updateStatusSelected(StatusServiceEnum.pending);
-                                                  controller.refresh();
-                                                  break;
-                                                case StatusServiceEnum.inProgress:
-                                                  serviceController.updateStatusSelected(StatusServiceEnum.inProgress);
-                                                  controller.refresh();
-                                                  break;
-                                                case StatusServiceEnum.confirmed:
-                                                  serviceController.updateStatusSelected(StatusServiceEnum.confirmed);
-                                                  controller.refresh();
-                                                  break;
-                                                case StatusServiceEnum.completed:
-                                                  serviceController.updateStatusSelected(StatusServiceEnum.completed);
-                                                  controller.refresh();
-                                                  break;
-                                                default:
-                                                  break;
+                                          if(status == StatusServiceEnum.cancelled){
+                                            context.showOverlay(CancelView(bookId: item.bookId ?? 0));
+                                          }else{
+                                            serviceController.updateStatusService(item.bookId ?? 0, status.rawValue).then((value){
+                                              if(value){
+                                                switch (status) {
+                                                  case StatusServiceEnum.pending:
+                                                    serviceController.updateStatusSelected(StatusServiceEnum.pending);
+                                                    controller.refresh();
+                                                    break;
+                                                  case StatusServiceEnum.inProgress:
+                                                    serviceController.updateStatusSelected(StatusServiceEnum.inProgress);
+                                                    controller.refresh();
+                                                    break;
+                                                  case StatusServiceEnum.confirmed:
+                                                    serviceController.updateStatusSelected(StatusServiceEnum.confirmed);
+                                                    controller.refresh();
+                                                    break;
+                                                  case StatusServiceEnum.completed:
+                                                    serviceController.updateStatusSelected(StatusServiceEnum.completed);
+                                                    controller.refresh();
+                                                    break;
+                                                  default:
+                                                    break;
+                                                }
+                                                context.showSuccess("Cập nhật trạng thái thành công!");
                                               }
-                                              context.showSuccess("Cập nhật trạng thái thành công!");
-                                            }
-                                          });
+                                            });
+                                          }
                                         },
                                       );
                                     }).toList();
@@ -253,9 +266,9 @@ class _ServicePageState extends ConsumerState<ServicePage> {
                                             style: ref.theme.smallTextStyle.copyWith(
                                               color: AppColors.mainColor,
                                             ),
-                                          ),
+                                          ).onTapWidget(() => context.showOverlay(PaymentView(serviceModel: item))),
                                   ]
-                                ).onTapWidget(() => context.showOverlay(PaymentView(serviceModel: item))).paddingOnly(bottom: 5),
+                                ).paddingOnly(bottom: 5),
                                 Storage.get(POSStorageKey.userId) == item.userId &&serviceState.statusSelected == StatusServiceEnum.completed
                                  ? item.isReviewed == false
                                     ? Container(
@@ -308,7 +321,7 @@ class _ServicePageState extends ConsumerState<ServicePage> {
   List<StatusServiceEnum> getNextStatuses(StatusServiceEnum currentStatus) {
     switch (currentStatus) {
       case StatusServiceEnum.pending:
-        return [StatusServiceEnum.confirmed];
+        return [StatusServiceEnum.confirmed, StatusServiceEnum.cancelled];
       case StatusServiceEnum.confirmed:
         return [StatusServiceEnum.inProgress];
       case StatusServiceEnum.inProgress:

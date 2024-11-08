@@ -13,7 +13,7 @@ enum StatusServiceEnum {
     StatusServiceEnum.confirmed => "Xác nhận",
     StatusServiceEnum.inProgress => "Đang diễn ra",
     StatusServiceEnum.completed => L.more.manageServiceStatusDone,
-    StatusServiceEnum.cancelled => "Đã hủy",
+    StatusServiceEnum.cancelled => "Hủy",
   };
 
   String get rawValue => switch (this) {

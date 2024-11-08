@@ -1,6 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_more/core/repository.dart';
+import 'package:user_career_more/service/models/cancel_request.dart';
 import 'package:user_career_more/service/models/payment_request.dart';
 import 'package:user_career_more/service/models/review_request.dart';
 import 'package:user_career_more/service/models/service_model.dart';
@@ -13,6 +14,8 @@ abstract interface class IServiceRepository{
   ResultFuture<bool> addReview(int id, ReviewRequest reviewRequest);
 
   ResultFuture<bool> createPayment(PaymentRequest request);
+
+  ResultFuture<bool> cancelService(int id, CancelRequest cancelRequest);
 }
 
 class ServiceRepository extends MoreBaseRepository
@@ -54,6 +57,15 @@ class ServiceRepository extends MoreBaseRepository
         return true;
       },
     );
+  }
+
+  @override
+  ResultFuture<bool> cancelService(int id, CancelRequest cancelRequest) {
+    return make.request(
+      path: "/manages/booked_services/cancel_reason/$id",
+      body: cancelRequest.encode(),
+      decoder: const EmptyResponse(),
+    ).put().map(onValue: (value) => true);
   }
 }
 

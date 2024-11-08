@@ -124,7 +124,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                             const Icon(
                               Icons.local_library_outlined,
                               size: 15,
-                              color: AppColors.main1Color
+                              color: AppColors.mainColor
                             ).paddingOnly(right: 5.0),
                             Text(
                               expect.nameCategory ?? '',
@@ -139,7 +139,7 @@ class _HomePageState extends ConsumerState<HomePage> {
                             const Icon(
                               Icons.phone_in_talk_outlined,
                               size: 15,
-                              color: AppColors.main1Color
+                              color: AppColors.mainColor
                             ).paddingOnly(right: 5.0),
                             Text(
                               '${expect.priceOnlineString} / ${expect.timeOnline ?? ''} phút',
@@ -152,15 +152,15 @@ class _HomePageState extends ConsumerState<HomePage> {
                             const Icon(
                                 Icons.people_outline,
                                 size: 15,
-                                color: AppColors.main1Color
+                                color: AppColors.mainColor
                             ).paddingOnly(right: 5.0),
                             Text(
                               '${expect.priceOfflineString} / ${expect.timeOffline ?? ''} phút',
                               style: ref.theme.itemTextStyle,
                             ).expand(),
                             Text(
-                              "Xem chi tiết",
-                              style: ref.theme.itemTextStyle.copyWith(color: AppColors.main1Color),
+                              "Xem chi tiết >> ",
+                              style: ref.theme.itemTextStyle.copyWith(color: AppColors.mainColor),
                             ).paddingOnly(right: 10.0).onTapWidget(() {
                               context.pushRoute(ExpectDetailRoute(expectId: expect.expectId ?? 0));
                             }),
