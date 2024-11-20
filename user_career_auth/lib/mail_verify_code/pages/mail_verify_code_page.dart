@@ -1,9 +1,11 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:email_auth/email_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pin_input_text_field/pin_input_text_field.dart';
+import 'package:user_career_auth/Register/controllers/register_controller.dart';
 import 'package:user_career_auth/core/router.gm.dart';
 import 'package:user_career_auth/mail_verify_code/controllers/countdown_timer.dart';
 import 'package:user_career_auth/mail_verify_code/controllers/mail_verify_code_controller.dart';
@@ -156,4 +158,14 @@ class _MailVerifyCodePageState extends ConsumerState<MailVerifyCodePage>
       }
     });
   }
+
+void verifyOTP() async {
+  var res = EmailAuth(sessionName: "Nhập mã OTP:").validateOtp(
+      recipientMail: Storage.get(POSStorageKey.mailKey),
+      userOtp: ref.read(mailVerifyCodeControllerProvider).verifyCode ?? "",
+  );
+  if(res){
+    //_register();
+  }
+}
 }

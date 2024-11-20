@@ -20,6 +20,8 @@ dependencies:
   pin_input_text_field: ^4.5.1
   riverpod_annotation: ^2.3.5
   url_launcher: ^6.3.0
+  email_auth: ^2.0.0
+  firebase_auth: ^5.2.0
 
 dev_dependencies:
   auto_route_generator: ^8.0.0

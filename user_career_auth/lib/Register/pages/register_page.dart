@@ -1,10 +1,12 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:email_auth/email_auth.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:user_career_auth/Register/controllers/register_controller.dart';
 import 'package:user_career_auth/core/router.gm.dart';
+import 'package:user_career_core/common/career_storage_key.dart';
 import 'package:user_career_core/user_career_core.dart';
 
 @RoutePage()
@@ -109,11 +111,26 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
           isEnabled: ref.watch(registerControllerProvider).canRegister,
           title: "Đăng ký",
           color: AppColors.main1Color,
-          onPressed: () => _register(),
+          onPressed: () {
+            sendOTP();
+            //_register();
+          },
         );
       },
     );
   }
+  
+  void sendOTP() async {
+    Storage.save(POSStorageKey.mailKey, ref.read(registerControllerProvider).email);
+    var res = await EmailAuth(sessionName: "Nhập mã OTP:").sendOtp(
+        recipientMail: ref.read(registerControllerProvider).email ?? "",
+        otpLength: 6,
+    );
+    if(res){
+      appRouter.push(const MailVerifyCodeRoute());
+    }
+  }
+  
   Widget _buildXWebLogo() {
     return RichText(
       text: TextSpan(
