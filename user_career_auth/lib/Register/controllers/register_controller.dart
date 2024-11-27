@@ -31,6 +31,10 @@ class RegisterController extends AutoDisposeNotifier<RegisterRequest>
   void updatePassword(String password) {
     state = state.copyWith(password: password);
   }
+
+  void updatePhone(String phone) {
+    state = state.copyWith(phone: phone);
+  }
 }
 
 final registerControllerProvider =

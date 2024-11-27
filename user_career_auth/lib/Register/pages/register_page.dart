@@ -32,6 +32,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
             _buildAppLogo(),
             _buildTextFieldUserName(),
             _buildTextFieldEmail(),
+            _buildTextFieldPhone(),
             _buildTextFieldPassword(),
             _buildButtonRegister(),
             _buildXWebLogo()
@@ -75,6 +76,19 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
             .updateUsername(text?.trim() ?? ""),
     ).marginOnly(bottom: 20);
   }
+  Widget _buildTextFieldPhone() {
+    return TextFieldView.outsideBorder(
+      isRequired: true,
+      title: 'Số điện thoại',
+      placeholder: L.auth.textFieldEmailHint,
+      padding: const EdgeInsets.only(left: 10, right: 10),
+      validator: (text) => ref.read(registerControllerProvider).isPhoneValid,
+      errorText: () => L.auth.textErrorEmptyData,
+      textFieldDidChange: (text) => ref
+          .read(registerControllerProvider.notifier)
+          .updatePhone(text?.trim() ?? ""),
+    ).marginOnly(bottom: 20);
+  }
   Widget _buildTextFieldEmail() {
     return TextFieldView.outsideBorder(
       isRequired: true,
@@ -112,23 +126,11 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
           title: "Đăng ký",
           color: AppColors.main1Color,
           onPressed: () {
-            sendOTP();
-            //_register();
+            _register();
           },
         );
       },
     );
-  }
-  
-  void sendOTP() async {
-    Storage.save(POSStorageKey.mailKey, ref.read(registerControllerProvider).email);
-    var res = await EmailAuth(sessionName: "Nhập mã OTP:").sendOtp(
-        recipientMail: ref.read(registerControllerProvider).email ?? "",
-        otpLength: 6,
-    );
-    if(res){
-      appRouter.push(const MailVerifyCodeRoute());
-    }
   }
   
   Widget _buildXWebLogo() {

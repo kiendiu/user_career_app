@@ -8,8 +8,17 @@ class MailVerifyCodeRequest implements Encodable{
   Map<String, dynamic> encode() {
     return {
       "email": email,
-      "verify_code": verifyCode,
+      "otp": verifyCode,
     };
+  }
+
+  MailVerifyCodeRequest copyWith({
+    String? email,
+    String? verifyCode,
+  }) {
+    return MailVerifyCodeRequest()
+      ..email = email ?? this.email
+      ..verifyCode = verifyCode ?? this.verifyCode;
   }
 
   bool get canSubmitVerifyCode => (verifyCode?.length ?? 0) > 5;

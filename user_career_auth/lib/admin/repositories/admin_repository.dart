@@ -1,10 +1,19 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_auth/admin/models/category_model.dart';
 import 'package:user_career_auth/admin/models/language_model.dart';
+import 'package:user_career_auth/admin/models/requests/approval_request.dart';
+import 'package:user_career_auth/admin/models/responses/user_detail_response.dart';
+import 'package:user_career_auth/admin/models/responses/user_response.dart';
 import 'package:user_career_auth/core/repository.dart';
 import 'package:user_career_core/user_career_core.dart';
 
 abstract interface class IAdminRepository {
+  ResultFuture<bool> approvalExpert(ApprovalRequest request);
+
+  ResultFuture<BaseListResponse<UserResponse>> getUser(BaseParams params);
+
+  ResultFuture<UserDetailResponse> getUserDetail(int userId);
+
   ResultFuture<BaseListResponse<CategoryModel>> getCategories();
 
   ResultFuture<BaseListResponse<CategoryModel>> getCategoriesParent();
@@ -25,6 +34,32 @@ abstract interface class IAdminRepository {
 }
 
 class AdminRepository extends AuthBaseRepository implements IAdminRepository {
+  @override
+  ResultFuture<bool> approvalExpert(ApprovalRequest request) {
+    return make.request(
+        path: "/users/approval/expert",
+        decoder: const EmptyResponse(),
+        body: request.encode(),
+    ).put().map(onValue: (value) => true);
+  }
+
+  @override
+  ResultFuture<BaseListResponse<UserResponse>> getUser(BaseParams params) {
+    return make.request(
+      path: '/expects/getListUserInAdmin',
+      params: params,
+      decoder: BaseListResponseModel.decodeBy(() => UserResponse()),
+    ).get();
+  }
+
+  @override
+  ResultFuture<UserDetailResponse> getUserDetail(int userId) {
+    return make.request(
+      path: '/expects/getListUserInAdmin/$userId',
+      decoder: UserDetailResponse(),
+    ).get();
+  }
+
   @override
   ResultFuture<BaseListResponse<CategoryModel>> getCategories() {
     return make.request(

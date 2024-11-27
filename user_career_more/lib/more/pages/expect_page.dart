@@ -4,7 +4,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_more/core/router.gm.dart';
 import 'package:user_career_more/more/controllers/expect_controller.dart';
+import 'package:user_career_more/more/models/approval_enum.dart';
 import 'package:user_career_more/more/models/language_model.dart';
+import 'package:user_career_more/more/pages/views/approval_container_view.dart';
 
 @RoutePage()
 class ExpectPage extends ConsumerStatefulWidget {
@@ -44,6 +46,41 @@ class _ExpectPageState extends ConsumerState<ExpectPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            const Text(
+                "Bạn cần được duyệt từ quản trị viên để có thể đăng tải thông tin. \nHoặc bạn có thể thêm thông tin: \n\t\t +chứng chỉ \n\t\t + kỹ năng \n\t\t + kinh nghiệm \nvà gửi yêu cầu duyệt sau!",
+                style: TextStyle(
+                  color: Colors.grey,
+                  fontSize: 14,
+                  fontWeight: FontWeight.w500,
+                )
+            ).paddingSymmetric(vertical: 12),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                const Text(
+                  "Trạng thái: ",
+                  style: TextStyle(
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w800,
+                  ),
+                ).paddingOnly(right: 8),
+                ApprovalContainerView(expectState.approval ?? ApprovalEnum.user).paddingOnly(right: 100),
+                Visibility(
+                  visible: !(expectState.approval == ApprovalEnum.pending || expectState.approval == ApprovalEnum.accepted),
+                  child: AppButton(
+                    title: "Gửi yêu cầu",
+                    onPressed: () {
+                      ref.watch(expectInformationControllerProvider.notifier).submitRequireApprove().then(
+                        (value){
+                          context.showSuccess("Gửi yêu cầu duyệt thành công!");
+                        }
+                      );
+                    },
+                  ).box(h: 40),
+                ).expand(),
+              ]
+            ),
             BaseWrapItemsSelectableView<BaseSelectableItemModel<LanguageModel>>(
               title: 'Ngôn ngữ',
               itemPickerTitle: "Chọn ngôn ngữ",

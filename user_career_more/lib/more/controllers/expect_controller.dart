@@ -1,5 +1,6 @@
 import 'package:riverpod_annotation/riverpod_annotation.dart';
 import 'package:user_career_core/user_career_core.dart';
+import 'package:user_career_more/more/models/approval_enum.dart';
 import 'package:user_career_more/more/models/expect_information_request.dart';
 import 'package:user_career_more/more/models/expect_information_response.dart';
 import 'package:user_career_more/more/models/language_model.dart';
@@ -20,6 +21,16 @@ class ExpectInformationController extends AutoDisposeAsyncNotifier<ExpectInforma
         .asFuture();
     return result;
   }
+
+  Future<bool> submitRequireApprove() async {
+    final result = await ref
+        .read(expectRepositoryProvider)
+        .submitRequireApprove(ApprovalEnum.pending.rawValue)
+        .showErrorBy(this)
+        .mapToValueOr(defaultValue: true)
+        .asFuture();
+    return result;
+  }
 }
 
 final expectInformationControllerProvider =
@@ -37,9 +48,8 @@ class ExpectController extends AutoDisposeNotifier<ExpectInformationRequest>
         return ExpectInformationRequest(
           experienceYears: data.experienceYears,
           skillDescription: data.skillDescription,
+          approval: data.approval,
           listLanguages: data.languages,
-          // languages: data.languages!.map((e) => e.id).cast<int>().toList(),
-          // languagesLocal: data.languages?.toSet(),
         );
       },
       orElse: () => ExpectInformationRequest(),

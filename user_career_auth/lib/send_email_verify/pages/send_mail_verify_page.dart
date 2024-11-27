@@ -3,8 +3,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_auth/core/router.gm.dart';
 import 'package:user_career_auth/mail_verify_code/controllers/countdown_timer.dart';
+import 'package:user_career_auth/send_email_verify/controllers/send_mail_verify_controller.dart';
+import 'package:user_career_core/common/career_storage_key.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/app_button.dart';
 import 'package:user_career_core/views/common_appbar.dart';
 
 @RoutePage()
@@ -16,6 +17,7 @@ class SendMailVerifyPage extends ConsumerStatefulWidget {
 }
 
 class _SendMailVerifyPageState extends ConsumerState<SendMailVerifyPage> {
+
   @override
   Widget build(BuildContext context) {
     ref.watch(countdownTimerProvider.notifier);
@@ -46,26 +48,20 @@ class _SendMailVerifyPageState extends ConsumerState<SendMailVerifyPage> {
       title: L.auth.textFieldEmailTitle,
       placeholder: L.auth.textFieldEmailHint,
       padding: const EdgeInsets.only(left: 14, right: 14),
-      // errorText: () => L.common.errorCheckEmail,
-      // textFieldDidChange: (text) {
-      //   ref
-      //       .read(sendMailVerifyControllerProvider.notifier)
-      //       .updateEmail(text?.trim() ?? "");
-      // },
-      // validator: (text) {
-      //   return ref
-      //       .read(sendMailVerifyControllerProvider)
-      //       .canSubmitLogin;
-      // }
+      textFieldDidChange: (text) {
+        ref
+            .read(sendMailVerifyControllerProvider.notifier)
+            .updateEmail(text?.trim() ?? "");
+      },
     ).marginOnly(bottom: 30);
   }
   Widget _buildButtonSendMail() {
     return Consumer(builder: (context, ref, child) {
       return AppButton(
         title: L.auth.buttonResetPasswordText,
-        // isEnabled: ref
-        //     .watch(sendMailVerifyControllerProvider)
-        //     .canSubmitLogin,
+        isEnabled: ref
+            .watch(sendMailVerifyControllerProvider)
+            .canSubmitLogin,
         onPressed: () => _sendMailVerify(),
       );
     });
@@ -73,24 +69,20 @@ class _SendMailVerifyPageState extends ConsumerState<SendMailVerifyPage> {
 
   void _sendMailVerify() async {
     if(ref.read(countdownTimerProvider.notifier).isTimerComplete) {
-      ref.read(countdownTimerProvider.notifier).setInitialValue(60);
-      ref.read(countdownTimerProvider.notifier).startTimer();
-      context.router.push(const MailVerifyCodeRoute());
-      // ref.read(sendMailVerifyControllerProvider.notifier).sendMail()
-      //   .then((value) =>{
-      //     if(value) {
-      //       Storage.save(
-      //           POSStorageKey.userNameKey,
-      //           ref
-      //               .read(sendMailVerifyControllerProvider)
-      //               .email
-      //       ),
-      //       ref.read(countdownTimerProvider.notifier).setInitialValue(60),
-      //       ref.read(countdownTimerProvider.notifier).startTimer(),
-      //       context.router.push(const MailVerifyCodeRoute()),
-      //     }
-      //   }
-      // );
+      ref.read(sendMailVerifyControllerProvider.notifier).sendMail()
+          .then((value) =>{
+        if(value) {
+          Storage.save(
+              POSStorageKey.userNameKey,
+              ref
+                  .read(sendMailVerifyControllerProvider)
+                  .email
+          ),
+          ref.read(countdownTimerProvider.notifier).setInitialValue(60),
+          ref.read(countdownTimerProvider.notifier).startTimer(),
+          context.router.push(const MailVerifyCodeRoute()),
+        }
+      });
     }else{
       context.router.push(const MailVerifyCodeRoute());
     }

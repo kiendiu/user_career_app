@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_auth/core/router.gm.dart';
 import 'package:user_career_auth/reset_password/controllers/reset_password_controller.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/app_button.dart';
 import 'package:user_career_core/views/common_appbar.dart';
 
 @RoutePage()

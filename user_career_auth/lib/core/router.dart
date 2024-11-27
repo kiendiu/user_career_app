@@ -20,6 +20,7 @@ class AuthRouterModule extends $AuthRouterModule {
     AutoRoute(page: MailVerifyCodeRoute.page),
     AutoRoute(page: SuccessfulRoute.page),
     AutoRoute(page: ResetPasswordRoute.page),
-    AutoRoute(page: AdminRoute.page)
+    AutoRoute(page: AdminRoute.page),
+    AutoRoute(page: UserDetailRoute.page)
   ];
 }

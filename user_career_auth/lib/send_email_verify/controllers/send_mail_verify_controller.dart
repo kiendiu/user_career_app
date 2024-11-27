@@ -14,7 +14,7 @@ class SendMailVerifyController
     showLoading();
     return ref
         .read(sendMailVerifyRepositoryProvider)
-        .sendMailVerify(state)
+        .sendMailVerify(state.email ?? '')
         .hideLoadingBy(this)
         .showErrorBy(this)
         .showSuccessBy(this, message: L.auth.sendMailVerifySuccessfulText)

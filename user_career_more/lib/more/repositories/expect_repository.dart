@@ -12,6 +12,7 @@ abstract interface class IExpectRepository {
 
   ResultFuture<ExpectInformationResponse> getExpectInformation();
 
+  ResultFuture<bool> submitRequireApprove(String approval);
 
 }
 
@@ -40,6 +41,14 @@ class ExpectRepository extends MoreBaseRepository implements IExpectRepository {
       path: "/users/details",
       decoder: ExpectInformationResponse(),
     ).get();
+  }
+
+  @override
+  ResultFuture<bool> submitRequireApprove(String approval) {
+    return make.request(
+      path: "/users//approval/$approval",
+      decoder: const EmptyResponse()
+    ).put().map(onValue: (value) => true);
   }
 
 }

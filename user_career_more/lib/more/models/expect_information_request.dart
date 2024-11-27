@@ -1,20 +1,19 @@
 import 'package:user_career_core/user_career_core.dart';
+import 'package:user_career_more/more/models/approval_enum.dart';
 
 import 'language_model.dart';
 
 class ExpectInformationRequest implements Encodable{
   int? experienceYears;
   String? skillDescription;
+  ApprovalEnum? approval;
   List<BaseSelectableItemModel<LanguageModel>>? listLanguages = [];
-  // List<int>? languages;
-  // Set<LanguageModel>? languagesLocal;
 
   ExpectInformationRequest({
     this.experienceYears,
     this.skillDescription,
+    this.approval,
     this.listLanguages,
-    // this.languages,
-    // this.languagesLocal,
   });
 
   @override
@@ -29,16 +28,14 @@ class ExpectInformationRequest implements Encodable{
   ExpectInformationRequest copyWith({
     int? experienceYears,
     String? skillDescription,
+    ApprovalEnum? approval,
     List<BaseSelectableItemModel<LanguageModel>>? listLanguages,
-    // List<int>? languages,
-    // Set<LanguageModel>? languagesLocal,
   }) {
     return ExpectInformationRequest(
       experienceYears: experienceYears ?? this.experienceYears,
       skillDescription: skillDescription ?? this.skillDescription,
+      approval: approval ?? this.approval,
       listLanguages: listLanguages ?? this.listLanguages,
-      // languages: languages ?? this.languages,
-      // languagesLocal: languagesLocal ?? this.languagesLocal,
     );
   }
 }

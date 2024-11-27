@@ -4,18 +4,17 @@ import 'package:user_career_auth/send_email_verify/models/send_mail_verify_reque
 import 'package:user_career_core/user_career_core.dart';
 
 abstract interface class ISendMailVerifyRepository {
-  ResultFuture<bool> sendMailVerify(SendMailVerifyRequest request);
+  ResultFuture<bool> sendMailVerify(String email);
 }
 
 class ResetPasswordRepository extends AuthBaseRepository
     implements ISendMailVerifyRepository {
   @override
-  ResultFuture<bool> sendMailVerify(SendMailVerifyRequest request) {
+  ResultFuture<bool> sendMailVerify(String email) {
     return make
         .request(
-            path: "/oauth/send-mail-verify-code",
-            decoder: const EmptyResponse(),
-            body: request.encode())
+            path: "/otp/sendOtp/$email",
+            decoder: const EmptyResponse())
         .post()
         .map(onValue: (value) => true);
   }

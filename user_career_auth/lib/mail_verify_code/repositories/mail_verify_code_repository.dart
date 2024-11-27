@@ -1,23 +1,22 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_auth/core/repository.dart';
 import 'package:user_career_auth/mail_verify_code/models/mail_verify_code_request.dart';
-import 'package:user_career_auth/mail_verify_code/models/mail_verify_response.dart';
 import 'package:user_career_core/user_career_core.dart';
 
 abstract interface class IMailVerifyCodeRepository {
-  ResultFuture<MailVerifyResponse> sendMailVerifyCode(MailVerifyCodeRequest request);
+  ResultFuture<bool> sendMailVerifyCode(MailVerifyCodeRequest request);
 }
 
 class MailVerifyCodeRepository extends AuthBaseRepository
     implements IMailVerifyCodeRepository {
   @override
-  ResultFuture<MailVerifyResponse> sendMailVerifyCode(MailVerifyCodeRequest request) {
+  ResultFuture<bool> sendMailVerifyCode(MailVerifyCodeRequest request) {
     return make
         .request(
-            path: "/oauth/verify-code",
-            decoder: MailVerifyResponse(),
+            path: "/otp/verifyOtp",
+            decoder: const EmptyResponse(),
             body: request.encode())
-        .post();
+        .post().map(onValue: (value) => true);
   }
 }
 

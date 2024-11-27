@@ -1,3 +1,4 @@
+import 'package:user_career_core/common/career_storage_key.dart';
 import 'package:user_career_core/user_career_core.dart';
 
 class ResetPasswordRequest implements Encodable {
@@ -14,10 +15,12 @@ class ResetPasswordRequest implements Encodable {
 
   @override
   Map<String, dynamic> encode() {
-    return {"new_password": password, "confirm_new_password": confirmPassword};
+    return {
+      "email": Storage.get(POSStorageKey.userNameKey),
+      "newPassword": password};
   }
 
-  bool get canPassword => (password?.length ?? 0) > 8;
+  bool get canPassword => (password?.length ?? 0) > 0;
 
   bool get canConfirmPassword =>
       confirmPassword != null && confirmPassword == password;
