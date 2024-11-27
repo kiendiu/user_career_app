@@ -29,14 +29,6 @@ class _AdminPageState extends ConsumerState<AdminPage> {
         controller: _appBarController,
         actions: [
           AppBarActionButton(
-              child: Assets.icons.icFilter.svg(),
-              onTap: () {}),
-          AppBarActionButton(
-              child: Assets.icons.icSearch.svg(),
-              onTap: () {
-                _appBarController.changeAppBarState(false);
-              }),
-          AppBarActionButton(
               child: Assets.icons.icLogoutIcon.svg(
                   height: 20,
                   width: 20,

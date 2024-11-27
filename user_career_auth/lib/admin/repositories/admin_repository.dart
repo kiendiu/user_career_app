@@ -1,9 +1,11 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_auth/admin/models/category_model.dart';
+import 'package:user_career_auth/admin/models/chart_model.dart';
 import 'package:user_career_auth/admin/models/language_model.dart';
 import 'package:user_career_auth/admin/models/requests/approval_request.dart';
 import 'package:user_career_auth/admin/models/responses/user_detail_response.dart';
 import 'package:user_career_auth/admin/models/responses/user_response.dart';
+import 'package:user_career_auth/admin/models/chart_data.dart';
 import 'package:user_career_auth/core/repository.dart';
 import 'package:user_career_core/user_career_core.dart';
 
@@ -31,6 +33,10 @@ abstract interface class IAdminRepository {
   ResultFuture<bool> updateLanguage(LanguageModel language);
 
   ResultFuture<bool> deleteLanguage(int languageId);
+
+  ResultBaseListFuture<SaleChartData> getSaleChartData();
+
+  ResultFuture<OpportunityChartData> getOpportunityChartData();
 }
 
 class AdminRepository extends AuthBaseRepository implements IAdminRepository {
@@ -133,6 +139,25 @@ class AdminRepository extends AuthBaseRepository implements IAdminRepository {
       body: language.encode(),
       decoder:const  EmptyResponse(),
     ).put().map(onValue: (value) => true);
+  }
+
+  @override
+  ResultFuture<OpportunityChartData> getOpportunityChartData() {
+    return make
+        .requestJson(
+        path: '/statistics/status',
+        jsonDecoder: (json) => OpportunityChartDataModel.fromJson(json))
+        .get();
+  }
+
+  @override
+  ResultBaseListFuture<SaleChartData> getSaleChartData() {
+    return make
+        .requestJson(
+        path: '/statistics/month/2024',
+        jsonDecoder: (json) => BaseListResponseJsonModel.decodeBy(
+            json, (data) => SaleChartDataModel.fromJson(data)))
+        .get();
   }
 }
 

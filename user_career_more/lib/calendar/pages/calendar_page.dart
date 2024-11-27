@@ -60,9 +60,9 @@ class _CalendarPageState extends ConsumerState<CalendarPage> {
       body: Column(
         children: [
           Container(
-            color: AppColors.mainColor,
+            color: AppColors.white3Color,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 CommonActionChip(
                   textTitle: ref

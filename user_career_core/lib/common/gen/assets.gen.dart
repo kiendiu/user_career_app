@@ -68,6 +68,10 @@ class $AssetsIconsGen {
   /// File path: assets/icons/ic_camera.svg
   SvgGenImage get icCamera => const SvgGenImage('assets/icons/ic_camera.svg');
 
+  /// File path: assets/icons/ic_chart_empty_data.svg
+  SvgGenImage get icChartEmptyData =>
+      const SvgGenImage('assets/icons/ic_chart_empty_data.svg');
+
   /// File path: assets/icons/ic_check_box.svg
   SvgGenImage get icCheckBox =>
       const SvgGenImage('assets/icons/ic_check_box.svg');
@@ -92,6 +96,10 @@ class $AssetsIconsGen {
 
   /// File path: assets/icons/ic_filter.svg
   SvgGenImage get icFilter => const SvgGenImage('assets/icons/ic_filter.svg');
+
+  /// File path: assets/icons/ic_load_chart_failed.svg
+  SvgGenImage get icLoadChartFailed =>
+      const SvgGenImage('assets/icons/ic_load_chart_failed.svg');
 
   /// File path: assets/icons/ic_logo.svg
   SvgGenImage get icLogo => const SvgGenImage('assets/icons/ic_logo.svg');
@@ -221,6 +229,7 @@ class $AssetsIconsGen {
         icBarcode,
         icCalendarBottomHome,
         icCamera,
+        icChartEmptyData,
         icCheckBox,
         icDefaultImgGood,
         icDeleteUser,
@@ -228,6 +237,7 @@ class $AssetsIconsGen {
         icExpand2,
         icEye,
         icFilter,
+        icLoadChartFailed,
         icLogo,
         icLogoStatusNotification,
         icLogoVnpay,

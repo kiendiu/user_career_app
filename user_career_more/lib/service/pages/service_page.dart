@@ -67,9 +67,9 @@ class _ServicePageState extends ConsumerState<ServicePage> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
-            color: AppColors.mainColor,
+            color: AppColors.white3Color,
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 CommonActionChip(
                   textTitle: serviceState.statusSelected?.localizedValue ?? '',
@@ -310,7 +310,7 @@ class _ServicePageState extends ConsumerState<ServicePage> {
                     ],
                   );
                 },
-              );
+              ).paddingSymmetric(horizontal: 12);
             },
           ).expand()
         ],
