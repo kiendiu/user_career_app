@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:user_career/router/app_router.dart';
 import 'package:user_career_auth/core/module.dart';
+import 'package:user_career_core/common/career_storage_key.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_core/utils/app_refresh_token_request_detector.dart';
 import 'package:user_career_core/utils/app_refresh_token_service.dart';
@@ -13,6 +16,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'module.dart';
+
+Future<void> saveIpAddress() async {
+  String? ipAddress = await getIpAddress();
+  if (ipAddress != null) {
+    Storage.save(POSStorageKey.ipAddressKey, ipAddress);
+  }
+}
+
+
+Future<String?> getIpAddress() async {
+  List<NetworkInterface> interfaces = await NetworkInterface.list();
+  for (var interface in interfaces) {
+    for (var address in interface.addresses) {
+      if (address.type == InternetAddressType.IPv4) {
+        return address.address;
+      }
+    }
+  }
+  return null;
+}
 
 void createApp(Env env) {
   WidgetsFlutterBinding.ensureInitialized();

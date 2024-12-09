@@ -123,7 +123,7 @@ class _MailVerifyCodePageState extends ConsumerState<MailVerifyCodePage>
       ),
       TextSpan(
         text: " (${ref.watch(countdownTimerProvider)}s)",
-        style: ref.theme.itemTextStyle.textColor(AppColors.main1Color),
+        style: ref.theme.itemTextStyle.textColor(AppColors.mainColor),
       ),
     ]));
   }
@@ -132,7 +132,7 @@ class _MailVerifyCodePageState extends ConsumerState<MailVerifyCodePage>
     return RichText(
         text: TextSpan(
       text: L.auth.textButtonResendEmailText,
-      style: ref.theme.itemTextStyle.textColor(AppColors.main1Color),
+      style: ref.theme.itemTextStyle.textColor(AppColors.mainColor),
       recognizer: TapGestureRecognizer()..onTap = _resendMailVerifyCode,
     ));
   }

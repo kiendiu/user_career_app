@@ -31,11 +31,11 @@ class OpportunityChartDataModel extends OpportunityChartData {
   OpportunityChartDataModel.fromJson(dynamic json)
       : super(
     winOpportunityCount: EntityDecoder.decodeBy(
-        json?['COMPLETED_BOOKING_COUNT'], ChartDataModel.fromJson),
+        json?['data']['COMPLETED_BOOKING_COUNT'], ChartDataModel.fromJson),
     openOpportunityCount: EntityDecoder.decodeBy(
-        json?['DOING_BOOKING_COUNT'], ChartDataModel.fromJson),
+        json?['data']['DOING_BOOKING_COUNT'], ChartDataModel.fromJson),
     lostOpportunityCount: EntityDecoder.decodeBy(
-        json?['CANCEL_BOOKING_COUNT'], ChartDataModel.fromJson),
+        json?['data']['CANCEL_BOOKING_COUNT'], ChartDataModel.fromJson),
   );
 }
 

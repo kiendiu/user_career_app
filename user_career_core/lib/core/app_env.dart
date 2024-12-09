@@ -3,13 +3,18 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:mobile_framework/packages/env/environment.dart';
+import 'package:user_career_core/common/career_storage_key.dart';
+import 'package:user_career_core/user_career_core.dart';
 
 enum AppEnvKey implements EnvExtraKey {
   oneSignalAppIdKey,
 }
 
 class DevEnv extends Env {
+  late final String _ipAddress;
+
   DevEnv() {
+    _ipAddress = Storage.get(POSStorageKey.ipAddressKey) ?? 'localhost';
     set(AppEnvKey.oneSignalAppIdKey, "");
   }
 
@@ -17,7 +22,7 @@ class DevEnv extends Env {
   String get apiVersion => '/api';
 
   @override
-  String get baseUrl => 'http://192.168.8.103:3000';
+  String get baseUrl => 'http://10.0.2.2:8080';
 
   @override
   String get fileBaseUrl => '';
@@ -27,20 +32,4 @@ class DevEnv extends Env {
 
   @override
   EnvType get type => EnvType.dev;
-
-  Future<String?> getIpAddress() async {
-    try {
-      List<NetworkInterface> interfaces = await NetworkInterface.list();
-      for (var interface in interfaces) {
-        for (var address in interface.addresses) {
-          if (address.type == InternetAddressType.IPv4) {
-            return address.address;
-          }
-        }
-      }
-    } catch (e) {
-      debugPrint(e.toString());
-    }
-    return null;
-  }
 }

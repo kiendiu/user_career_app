@@ -24,6 +24,11 @@ class _HomePageState extends ConsumerState<HomePage> {
   void initState() {
     super.initState();
 
+    NotificationCenter().addObserver(
+        RawStringNotificationName("open_home_route"), callback: (_) {
+      appRouter.replaceAll([const HomeRoute()]);
+    });
+
     NotificationCenter()
       .addObserver(RawStringNotificationName("reloadListExpectView"),
       callback: (notification) {

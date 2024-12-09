@@ -24,7 +24,7 @@ class ServiceController extends AutoDisposeFamilyNotifier<ServiceControllerState
       final result = await ref
           .read(serviceRepositoryProvider)
           .getListServices(ServiceParam(
-            page: page +1,
+            page: page + 1,
             size: 10,
             type: state.typeSelected?.rawValue,
             status: state.statusSelected?.rawValue

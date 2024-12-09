@@ -68,7 +68,7 @@ class _BookingPageState extends ConsumerState<BookingPage> {
 
     return BaseScaffold(
       customAppBar: BaseAppBarView(
-        title: "Danh sách chuyên gia",
+        title: "Đặt lịch hẹn",
         controller: _appBarController,
         shouldShowLeading: true,
       ),
@@ -122,50 +122,82 @@ class _BookingPageState extends ConsumerState<BookingPage> {
                 }
               }
               if(_currentIndex == 3){
-                bookingController.createPayment(PaymentRequest(
-                  bookId: bookId,
-                  expertId: bookingState.expertId,
-                  cost: (bookingState.totalPrice ?? 0).toInt(),
-                  methodPayment: "Bank"
-                ), (){
-                  context.router.popUntil(
-                          (route) => route.settings.name != BookingRoute.name);
-                  context.showSuccess("Thanh toán thành công");
-                }, (){
-                  context.showOverlay(
-                    BaseConfirmPopupView.custom(
-                      title: "Thanh toán thất bại",
-                      message: "Số dư của bạn không đủ? Bạn có thể thanh toán sau hoặc hủy lịch hẹn.",
-                      buttons: [
-                        ConfirmPopupViewButton(
-                          title: "Hủy lịch hẹn",
-                          titleColor: AppColors.black1Color,
-                          background: AppColors.white4Color,
-                          callback: () {
-                            bookingController.deleteBooking(bookId).then((value) {
-                              if(value){
-                                context.showSuccess("Hủy lịch hẹn thành công");
-                                context.router.popUntil(
-                                        (route) => route.settings.name != BookingRoute.name);
-                              }
-                            });
-                          },
-                        ),
-                        ConfirmPopupViewButton(
-                          title: "Đồng ý",
-                          titleColor: AppColors.white1Color,
-                          background: AppColors.mainColor,
-                          callback: () {
-                            context.maybePop().then((value) {
-                              context.router.popUntil(
-                                      (route) => route.settings.name != BookingRoute.name);
-                            });
-                          },
-                        ),
-                      ],
-                    )
-                  );
-                });
+                context.showOverlay(
+                  // BaseConfirmPopupView.success(
+                  //   title: "Thanh toán",
+                  //   message: "Bạn có muốn thanh toán ngay không!",
+                  //   confirmText: "Đồng ý",
+                  //   onConfirm: (){
+                  //
+                  //   },
+                  //   cancelText: "Để sau",
+                  // ),
+                  BaseConfirmPopupView.custom(
+                    title: "Thanh toán",
+                    message: "Bạn có muốn thanh toán ngay không!",
+                    buttons: [
+                      ConfirmPopupViewButton(
+                        title: "Để sau",
+                        titleColor: AppColors.black1Color,
+                        background: AppColors.white4Color,
+                        callback: () {
+                          NotificationCenter().postNotification(RawStringNotificationName("open_main_route"));
+                        },
+                      ),
+                      ConfirmPopupViewButton(
+                        title: "Đồng ý",
+                        titleColor: AppColors.white1Color,
+                        background: AppColors.mainColor,
+                        callback: () {
+                          bookingController.createPayment(PaymentRequest(
+                              bookId: bookId,
+                              expertId: bookingState.expertId,
+                              cost: (bookingState.totalPrice ?? 0).toInt(),
+                              methodPayment: "Bank"
+                          ), (){
+                            context.router.popUntil(
+                                    (route) => route.settings.name != BookingRoute.name);
+                            context.showSuccess("Thanh toán thành công");
+                          }, (){
+                            context.showOverlay(
+                                BaseConfirmPopupView.custom(
+                                  title: "Thanh toán thất bại",
+                                  message: "Số dư của bạn không đủ? Bạn có thể thanh toán sau hoặc hủy lịch hẹn.",
+                                  buttons: [
+                                    ConfirmPopupViewButton(
+                                      title: "Hủy lịch hẹn",
+                                      titleColor: AppColors.black1Color,
+                                      background: AppColors.white4Color,
+                                      callback: () {
+                                        bookingController.deleteBooking(bookId).then((value) {
+                                          if(value){
+                                            context.showSuccess("Hủy lịch hẹn thành công");
+                                            context.router.popUntil(
+                                                    (route) => route.settings.name != BookingRoute.name);
+                                          }
+                                        });
+                                      },
+                                    ),
+                                    ConfirmPopupViewButton(
+                                      title: "Đồng ý",
+                                      titleColor: AppColors.white1Color,
+                                      background: AppColors.mainColor,
+                                      callback: () {
+                                        context.maybePop().then((value) {
+                                          context.router.popUntil(
+                                                  (route) => route.settings.name != BookingRoute.name);
+                                        });
+                                      },
+                                    ),
+                                  ],
+                                )
+                            );
+                          });
+                        },
+                      ),
+                    ],
+                  )
+                );
               }
             },
           ).expand(),

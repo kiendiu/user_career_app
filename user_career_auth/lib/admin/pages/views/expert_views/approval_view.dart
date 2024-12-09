@@ -27,7 +27,7 @@ class _ApprovalViewState extends ConsumerState<ApprovalView> {
             textAlign: TextAlign.center,
           ).paddingSymmetric(vertical: 5.0).paddingOnly(top: 5),
           const Divider(color: Colors.grey),
-          const Gap(5),
+          const Gap(12),
           BaseCheckBox.initState(
             checkBoxStyle: CheckBoxStyle.circle,
             isSelected: isReject,
@@ -36,10 +36,12 @@ class _ApprovalViewState extends ConsumerState<ApprovalView> {
               style: ref.theme.bigTextStyle,
             ),
             onTap: (value){
-              isReject = value;
+              setState(() {
+                isReject = true;
+              });
               controller.setApproval(ApprovalEnum.rejected);
             },
-          ),
+          ).paddingOnly(bottom: 12),
           BaseCheckBox.initState(
             checkBoxStyle: CheckBoxStyle.circle,
             isSelected: !isReject,
@@ -48,17 +50,19 @@ class _ApprovalViewState extends ConsumerState<ApprovalView> {
               style: ref.theme.bigTextStyle,
             ),
             onTap: (value){
-              isReject = value;
+              setState(() {
+                isReject = false;
+              });
               controller.setApproval(ApprovalEnum.accepted);
             },
-          ),
+          ).paddingOnly(bottom: 12),
           TextFieldView.outsideBorder(
             title: "Lý do",
             placeholder: "Vui lòng nhập",
             textFieldDidChange: (value){
               controller.setReason(value ?? '');
             },
-          ),
+          ).paddingOnly(bottom: 12),
           AppButton(
             title: 'Hoàn tất',
             onPressed: () {
@@ -69,8 +73,7 @@ class _ApprovalViewState extends ConsumerState<ApprovalView> {
                 }
               });
             },
-          )
-
+          ).paddingOnly(bottom: 12)
         ],
       ).paddingSymmetric(horizontal: 20),
     ).paddingSymmetric(horizontal: 50);

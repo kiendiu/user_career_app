@@ -124,7 +124,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
         return AppButton(
           isEnabled: ref.watch(registerControllerProvider).canRegister,
           title: "Đăng ký",
-          color: AppColors.main1Color,
+          color: AppColors.mainColor,
           onPressed: () {
             _register();
           },
@@ -144,7 +144,7 @@ class _RegisterPageState extends ConsumerState<RegisterPage> {
           TextSpan(
             text: ' Đăng nhập',
             style:
-                ref.theme.defaultTextStyle.textColor(AppColors.main1Color),
+                ref.theme.defaultTextStyle.textColor(AppColors.mainColor),
             recognizer: TapGestureRecognizer()
                 ..onTap = ()=>
                     context.router.replaceAll(const [SignInRoute()]),
