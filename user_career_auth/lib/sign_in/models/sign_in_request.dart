@@ -13,7 +13,7 @@ class SignInRequest implements Encodable {
 
   SignInRequest copyWith({String? username, String? password}) {
     return SignInRequest(
-        email: username ?? this.email,
+        email: username ?? email,
         password: password ?? this.password);
   }
 

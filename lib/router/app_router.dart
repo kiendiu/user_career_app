@@ -7,8 +7,6 @@ import 'package:user_career_request/core/router.dart';
 import 'package:user_career_request/core/router.gm.dart';
 import 'package:user_career_more/core/router.dart';
 import 'package:user_career_more/core/router.gm.dart';
-import 'package:user_career_message/core/router.dart';
-import 'package:user_career_message/core/router.gm.dart';
 import 'package:auto_route/auto_route.dart';
 
 import 'app_router.gr.dart';

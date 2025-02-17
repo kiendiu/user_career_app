@@ -84,7 +84,7 @@ class CalendarModel implements Decodable{
     expertId = json['expert_id'];
     scheduleTime = DateTime.parse(json['schedule_time']);
     duration = json['duration'];
-    totalPrice = json['total_price'];
+    totalPrice = (json['total_price']).toInt();
     noteMessage = json['note_message'];
     contactMethod = json['contact_method'];
     locationName = json['location_name'];

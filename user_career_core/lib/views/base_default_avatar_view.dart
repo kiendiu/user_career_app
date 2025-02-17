@@ -2,7 +2,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:mobile_framework/mobile_framework.dart';
-import 'package:mobile_framework/packages/ui/widgets/dev_pack_configuration.dart';
 
 class BaseDefaultAvatarView extends StatelessWidget with GlobalThemePlugin {
   final String name;

@@ -16,7 +16,7 @@ class ReviewModel implements Decodable{
   }) {
     return ReviewModel(
       rating: rating ?? this.rating,
-      comment: comments ?? this.comment,
+      comment: comments ?? comment,
     );
   }
   @override

@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_auth/core/repository.dart';
-import 'package:user_career_auth/send_email_verify/models/send_mail_verify_request.dart';
 import 'package:user_career_core/user_career_core.dart';
 
 abstract interface class ISendMailVerifyRepository {

@@ -5,7 +5,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_more/core/router.gm.dart';
 import 'package:user_career_more/service/controllers/payment_controller.dart';
-import 'package:user_career_more/service/controllers/service_controller.dart';
 import 'package:user_career_more/service/models/payment_request.dart';
 import 'package:user_career_more/service/models/service_model.dart';
 

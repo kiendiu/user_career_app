@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_auth/core/router.gm.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/app_button.dart';
 
 @RoutePage()
 class SuccessfulPage extends ConsumerStatefulWidget {

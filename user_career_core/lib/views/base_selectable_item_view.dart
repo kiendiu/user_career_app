@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
 
-import 'base_default_avatar_view.dart';
 
 abstract class BaseSelectableItem extends StandardIDComparableEntity
     with ItemPickerCompatible {

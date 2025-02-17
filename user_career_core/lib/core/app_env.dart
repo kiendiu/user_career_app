@@ -1,8 +1,4 @@
-import 'dart:async';
-import 'dart:io';
 
-import 'package:flutter/material.dart';
-import 'package:mobile_framework/packages/env/environment.dart';
 import 'package:user_career_core/common/career_storage_key.dart';
 import 'package:user_career_core/user_career_core.dart';
 
@@ -22,7 +18,7 @@ class DevEnv extends Env {
   String get apiVersion => '/api';
 
   @override
-  String get baseUrl => 'http://10.0.2.2:8080';
+  String get baseUrl => 'http://10.0.2.2:3000';
 
   @override
   String get fileBaseUrl => '';

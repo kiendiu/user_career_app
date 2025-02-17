@@ -8,7 +8,6 @@ import 'package:user_career_core/common/career_storage_key.dart';
 import 'package:user_career_core/user_career_core.dart';
 import 'package:user_career_home/booking/models/info_booking_model.dart';
 import 'package:flutter_datetime_picker_plus/flutter_datetime_picker_plus.dart' as dtp;
-import 'package:user_career_home/booking/models/payment_request.dart';
 import 'package:user_career_home/core/router.gm.dart';
 import '../controllers/booking_controller.dart';
 
@@ -71,6 +70,36 @@ class _BookingPageState extends ConsumerState<BookingPage> {
         title: "Đặt lịch hẹn",
         controller: _appBarController,
         shouldShowLeading: true,
+        onTapBackButton: (){
+          context.showOverlay(
+            BaseConfirmPopupView.warning(
+                title: "Cảnh báo",
+                message: "Nếu bạn thoát thì thông tin lịch hẹn sẽ bị xóa! Bạn có chắc muốn thoát không",
+                confirmText: "Đồng ý",
+                onConfirm: (){
+                  if(bookId == 0){
+                    bookingController.updateServiceId(widget.infoBookingModel?.serviceId ?? 0);
+                    bookingController.updateExpertId(widget.infoBookingModel?.expertId ?? 0);
+                    bookingController.updateContactMethod(widget.infoBookingModel?.contactMethod ?? "");
+                    bookingController.updateTotalPrice(
+                        (widget.infoBookingModel?.price!.toDouble() ?? 0 ) * (bookingState.duration ?? 0) /( widget.infoBookingModel?.time ?? 1)
+                    );
+                    bookingController.createBooking().then((value) {
+                      if(value.bookId != 0) {
+                        bookingController.updateBookId(value.bookId ?? 0);
+                        setState(() {
+                          bookId = value.bookId ?? 0;
+                        });
+                      }
+                    });
+                  }
+                  context.router.popUntil(
+                    (route) => route.settings.name != BookingRoute.name
+                  );
+                }
+            )
+          );
+        }
       ),
       backgroundColor: AppColors.white3Color,
       bottomView: Row(
@@ -122,82 +151,76 @@ class _BookingPageState extends ConsumerState<BookingPage> {
                 }
               }
               if(_currentIndex == 3){
-                context.showOverlay(
-                  // BaseConfirmPopupView.success(
-                  //   title: "Thanh toán",
-                  //   message: "Bạn có muốn thanh toán ngay không!",
-                  //   confirmText: "Đồng ý",
-                  //   onConfirm: (){
-                  //
-                  //   },
-                  //   cancelText: "Để sau",
-                  // ),
-                  BaseConfirmPopupView.custom(
-                    title: "Thanh toán",
-                    message: "Bạn có muốn thanh toán ngay không!",
-                    buttons: [
-                      ConfirmPopupViewButton(
-                        title: "Để sau",
-                        titleColor: AppColors.black1Color,
-                        background: AppColors.white4Color,
-                        callback: () {
-                          NotificationCenter().postNotification(RawStringNotificationName("open_main_route"));
-                        },
-                      ),
-                      ConfirmPopupViewButton(
-                        title: "Đồng ý",
-                        titleColor: AppColors.white1Color,
-                        background: AppColors.mainColor,
-                        callback: () {
-                          bookingController.createPayment(PaymentRequest(
-                              bookId: bookId,
-                              expertId: bookingState.expertId,
-                              cost: (bookingState.totalPrice ?? 0).toInt(),
-                              methodPayment: "Bank"
-                          ), (){
-                            context.router.popUntil(
-                                    (route) => route.settings.name != BookingRoute.name);
-                            context.showSuccess("Thanh toán thành công");
-                          }, (){
-                            context.showOverlay(
-                                BaseConfirmPopupView.custom(
-                                  title: "Thanh toán thất bại",
-                                  message: "Số dư của bạn không đủ? Bạn có thể thanh toán sau hoặc hủy lịch hẹn.",
-                                  buttons: [
-                                    ConfirmPopupViewButton(
-                                      title: "Hủy lịch hẹn",
-                                      titleColor: AppColors.black1Color,
-                                      background: AppColors.white4Color,
-                                      callback: () {
-                                        bookingController.deleteBooking(bookId).then((value) {
-                                          if(value){
-                                            context.showSuccess("Hủy lịch hẹn thành công");
-                                            context.router.popUntil(
-                                                    (route) => route.settings.name != BookingRoute.name);
-                                          }
-                                        });
-                                      },
-                                    ),
-                                    ConfirmPopupViewButton(
-                                      title: "Đồng ý",
-                                      titleColor: AppColors.white1Color,
-                                      background: AppColors.mainColor,
-                                      callback: () {
-                                        context.maybePop().then((value) {
-                                          context.router.popUntil(
-                                                  (route) => route.settings.name != BookingRoute.name);
-                                        });
-                                      },
-                                    ),
-                                  ],
-                                )
-                            );
-                          });
-                        },
-                      ),
-                    ],
-                  )
+                context.router.popUntil(
+                  (route) => route.settings.name != BookingRoute.name
                 );
+                // context.showOverlay(
+                //   BaseConfirmPopupView.custom(
+                //     title: "Thanh toán",
+                //     message: "Bạn có muốn thanh toán ngay không!",
+                //     buttons: [
+                //       ConfirmPopupViewButton(
+                //         title: "Để sau",
+                //         titleColor: AppColors.black1Color,
+                //         background: AppColors.white4Color,
+                //         callback: () {
+                //           NotificationCenter().postNotification(RawStringNotificationName("open_main_route"));
+                //         },
+                //       ),
+                //       ConfirmPopupViewButton(
+                //         title: "Đồng ý",
+                //         titleColor: AppColors.white1Color,
+                //         background: AppColors.mainColor,
+                //         callback: () {
+                //           bookingController.createPayment(PaymentRequest(
+                //               bookId: bookId,
+                //               expertId: bookingState.expertId,
+                //               cost: (bookingState.totalPrice ?? 0).toInt(),
+                //               methodPayment: "Bank"
+                //           ), (){
+                //             context.router.popUntil(
+                //                     (route) => route.settings.name != BookingRoute.name);
+                //             context.showSuccess("Thanh toán thành công");
+                //           }, (){
+                //             context.showOverlay(
+                //                 BaseConfirmPopupView.custom(
+                //                   title: "Thanh toán thất bại",
+                //                   message: "Số dư của bạn không đủ? Bạn có thể thanh toán sau hoặc hủy lịch hẹn.",
+                //                   buttons: [
+                //                     ConfirmPopupViewButton(
+                //                       title: "Hủy lịch hẹn",
+                //                       titleColor: AppColors.black1Color,
+                //                       background: AppColors.white4Color,
+                //                       callback: () {
+                //                         bookingController.deleteBooking(bookId).then((value) {
+                //                           if(value){
+                //                             context.showSuccess("Hủy lịch hẹn thành công");
+                //                             context.router.popUntil(
+                //                                     (route) => route.settings.name != BookingRoute.name);
+                //                           }
+                //                         });
+                //                       },
+                //                     ),
+                //                     ConfirmPopupViewButton(
+                //                       title: "Đồng ý",
+                //                       titleColor: AppColors.white1Color,
+                //                       background: AppColors.mainColor,
+                //                       callback: () {
+                //                         context.maybePop().then((value) {
+                //                           context.router.popUntil(
+                //                                   (route) => route.settings.name != BookingRoute.name);
+                //                         });
+                //                       },
+                //                     ),
+                //                   ],
+                //                 )
+                //             );
+                //           });
+                //         },
+                //       ),
+                //     ],
+                //   )
+                // );
               }
             },
           ).expand(),

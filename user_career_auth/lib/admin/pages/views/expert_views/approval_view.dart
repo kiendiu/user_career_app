@@ -17,7 +17,7 @@ class _ApprovalViewState extends ConsumerState<ApprovalView> {
   bool isReject = false;
   @override
   Widget build(BuildContext context) {
-    final controller = ref.read(approvalControllerProvider(widget.userId).notifier);
+    final controller = ref.watch(approvalControllerProvider(widget.userId).notifier);
     return PopupView(
       child: Column(
         children: [
@@ -69,6 +69,8 @@ class _ApprovalViewState extends ConsumerState<ApprovalView> {
               controller.approvalExpert().then((value) {
                 if(value){
                   context.maybePop();
+                  NotificationCenter()
+                      .postNotification(RawStringNotificationName('adminExpert'));
                   context.showSuccess("Duyệt chuyên gia thành công!");
                 }
               });

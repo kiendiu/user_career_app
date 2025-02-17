@@ -1,13 +1,8 @@
-import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_request/core/router.gm.dart';
 import 'package:user_career_request/request/controllers/bid_request_controller.dart';
-import 'package:user_career_request/request/controllers/general_controller.dart';
-import 'package:user_career_request/request/controllers/mine_controller.dart';
 import 'package:user_career_request/request/models/request_model.dart';
 
 @RoutePage()

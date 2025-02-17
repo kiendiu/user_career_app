@@ -43,7 +43,7 @@ class AdminRepository extends AuthBaseRepository implements IAdminRepository {
   @override
   ResultFuture<bool> approvalExpert(ApprovalRequest request) {
     return make.request(
-        path: "/users/approval/expert",
+        path: "/users/approval_expert",
         decoder: const EmptyResponse(),
         body: request.encode(),
     ).put().map(onValue: (value) => true);

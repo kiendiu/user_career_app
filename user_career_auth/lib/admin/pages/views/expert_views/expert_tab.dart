@@ -24,6 +24,15 @@ class _ExpertTabState extends ConsumerState<ExpertTab> {
   final controller = TableViewController();
 
   @override
+  void initState() {
+    super.initState();
+    NotificationCenter().addObserver(
+        RawStringNotificationName('adminExpert'), callback: (_) {
+      controller.refresh();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     final userState = ref.watch(expertControllerProvider);
 

@@ -19,11 +19,11 @@ class CalendarParams extends BaseParams{
   Map<String, dynamic> buildParams() {
     return super.buildParams()
       ..addAll({
-        "page": page,
+        "page": page == 0 ? 1 : page,
         "size": size,
         "type": type,
-        "start_date": startDate,
-        "end_date": endDate
+        "start_time": startDate,
+        "end_time": endDate
       });
   }
 }

@@ -8,7 +8,7 @@ class ApprovalController extends AutoDisposeFamilyNotifier<ApprovalRequest, int>
     with AlertMixin, MetadataUpdater {
   @override
   ApprovalRequest build(int arg) {
-    return ApprovalRequest(userId: arg);
+    return ApprovalRequest(userId: arg, approval: ApprovalEnum.accepted);
   }
 
   Future<bool> approvalExpert() async {
@@ -22,7 +22,7 @@ class ApprovalController extends AutoDisposeFamilyNotifier<ApprovalRequest, int>
   }
 
   void setApproval(ApprovalEnum? approval){
-    state = state.copyWith(approval: approval?.rawValue);
+    state = state.copyWith(approval: approval);
   }
 
   void setUserId(int userId){

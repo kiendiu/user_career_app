@@ -126,7 +126,7 @@ class _AskanyAppState extends ConsumerState<AdminPOSApp>
   @override
   Widget build(BuildContext context) {
     return ProviderScope(
-        overrides: [],
+        overrides: const [],
         observers: [TalkerRiverpodObserver(talker: talker)],
         child: RefreshConfiguration(
           headerTriggerDistance: 35,
@@ -170,13 +170,13 @@ class _AskanyAppState extends ConsumerState<AdminPOSApp>
                           );
                           return OverlayRootBuilderWidget(
                               builder: (context, ref) => ResponsiveBreakpoints(
-                                  child: child!,
-                                  breakpoints: [
-                                    const Breakpoint(
+                                  breakpoints: const [
+                                    Breakpoint(
                                         start: 0, end: 450, name: MOBILE),
-                                    const Breakpoint(
+                                    Breakpoint(
                                         start: 451, end: 800, name: TABLET),
-                                  ]));
+                                  ],
+                                  child: child!));
                         },
                       ),
                     ),

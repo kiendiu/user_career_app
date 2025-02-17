@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:user_career_core/user_career_core.dart';
-import 'package:user_career_core/views/base_selectable_item_view.dart';
 import 'package:user_career_more/expect_price_service/models/add_service_user_request.dart';
 import 'package:user_career_more/expect_price_service/models/service_user_request.dart';
 import 'package:user_career_more/expect_price_service/models/service_user_response.dart';

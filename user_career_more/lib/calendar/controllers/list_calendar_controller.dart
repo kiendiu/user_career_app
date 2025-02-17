@@ -20,7 +20,7 @@ class ListCalendarController extends AutoDisposeNotifier<void>
       final result = await ref
           .read(calendarRepositoryProvider)
           .getListCalendars(CalendarParams(
-            page: page+1,
+            page: page,
             type: calendarState.type?.rawValue,
             endDate: calendarState.endDate.toString(),
             startDate: calendarState.startDate.toString(),

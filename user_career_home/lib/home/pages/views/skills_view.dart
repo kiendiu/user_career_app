@@ -121,7 +121,7 @@ class _SkillsViewState extends ConsumerState<SkillsView> {
           Assets.icons.icNoPermission.svg(),
           const Text(
             "Không có kỹ năng nào khác!",
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w400,
               color: Color(0xff242133),

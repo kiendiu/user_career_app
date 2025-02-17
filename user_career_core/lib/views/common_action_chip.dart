@@ -8,8 +8,8 @@ class CommonActionChip extends ActionChip {
     OutlinedBorder? line,
     String? textTitle,
     TextStyle? titleStyle,
-    EdgeInsetsGeometry padding = const EdgeInsets.all(8.0),
-    EdgeInsetsGeometry? labelPadding,
+    EdgeInsetsGeometry super.padding = const EdgeInsets.all(8.0),
+    super.labelPadding,
     Widget? iconTitle,
     Widget? title,
     Color? backgroundColor,
@@ -20,8 +20,6 @@ class CommonActionChip extends ActionChip {
         RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(100),
         ),
-    padding: padding,
-    labelPadding: labelPadding,
     label: title ??
         Row(
           children: [
